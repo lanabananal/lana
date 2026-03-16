@@ -1,0 +1,31 @@
+---
+import BlogPostLayout from '../../../layouts/BlogPostLayout.astro';
+import { getCollection } from 'astro:content';
+import { locales } from '../../../i18n/translations';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: {
+      locale: post.data.lang,
+      slug: post.data.postSlug,
+    },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { locale } = Astro.params;
+const { Content } = await post.render();
+---
+
+<BlogPostLayout
+  locale={locale}
+  title={post.data.title}
+  description={post.data.description}
+  pubDate={post.data.pubDate}
+  author={post.data.author}
+  tags={post.data.tags}
+>
+  <Content />
+</BlogPostLayout>

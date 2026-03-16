@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Services from '../../components/Services.astro';
+import WhyParaguay from '../../components/WhyParaguay.astro';
+import HowItWorks from '../../components/HowItWorks.astro';
+import CTA from '../../components/CTA.astro';
+import { locales, isValidLocale } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return locales.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+
+if (!isValidLocale(locale)) {
+  return Astro.redirect('/en/', 302);
+}
+---
+
+<BaseLayout locale={locale}>
+  <Hero locale={locale} />
+  <Services locale={locale} />
+  <WhyParaguay locale={locale} />
+  <HowItWorks locale={locale} />
+  <CTA locale={locale} />
+</BaseLayout>

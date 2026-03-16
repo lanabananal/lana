@@ -1,0 +1,81 @@
+---
+import { getTranslations } from '../i18n/translations';
+
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+---
+
+<section class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-brand-900">
+  <!-- Background decoration -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] rounded-full bg-brand-500/10 blur-3xl"></div>
+    <div class="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-brand-400/5 blur-3xl"></div>
+    <!-- Grid overlay -->
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 60px 60px;"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-28">
+    <div class="max-w-3xl">
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-500/10 border border-brand-400/20 rounded-full mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span>
+        <span class="text-brand-300 text-sm font-medium">{t.hero.badge}</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.05] tracking-tight mb-2">
+        {t.hero.headline}
+      </h1>
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-8">
+        <span class="bg-gradient-to-r from-brand-300 to-brand-500 bg-clip-text text-transparent">
+          {t.hero.headline2}
+        </span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mb-10">
+        {t.hero.subheadline}
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-4">
+        <a
+          href={`/${locale}#contact`}
+          class="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-500 hover:bg-brand-400 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-brand-500/25 hover:shadow-brand-400/30 hover:scale-[1.02] active:scale-[0.98]"
+        >
+          {t.hero.cta}
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <a
+          href={`/${locale}#services`}
+          class="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/15 text-white font-semibold rounded-xl border border-white/20 transition-all duration-200 backdrop-blur-sm"
+        >
+          {t.hero.ctaSecondary}
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex flex-wrap gap-8 mt-14 pt-10 border-t border-white/10">
+        <div>
+          <div class="text-3xl font-black text-white">10%</div>
+          <div class="text-slate-400 text-sm">Max Tax Rate</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black text-white">60</div>
+          <div class="text-slate-400 text-sm">Days to Residency</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black text-white">$0</div>
+          <div class="text-slate-400 text-sm">Tax on Foreign Income</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

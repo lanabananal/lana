@@ -1,0 +1,44 @@
+---
+import { getTranslations } from '../i18n/translations';
+
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+---
+
+<section class="py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: text -->
+      <div>
+        <span class="section-label mb-4 inline-flex">Paraguay</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-4 mb-4">{t.why.title}</h2>
+        <p class="text-slate-500 text-lg mb-10">{t.why.subtitle}</p>
+
+        <a href={`/${locale}#contact`} class="btn-primary">
+          {t.cta.button}
+        </a>
+      </div>
+
+      <!-- Right: benefits grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {t.why.items.map((item) => (
+          <div class="bg-white rounded-xl p-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-brand-200 transition-all duration-200 group">
+            <div class="w-8 h-8 rounded-lg bg-brand-50 flex items-center justify-center mb-3 group-hover:bg-brand-100 transition-colors">
+              <svg class="w-4 h-4 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1">{item.title}</h3>
+            <p class="text-slate-500 text-xs leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

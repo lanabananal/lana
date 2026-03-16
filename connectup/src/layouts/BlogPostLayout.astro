@@ -1,0 +1,72 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { getTranslations } from '../i18n/translations';
+
+interface Props {
+  locale: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+  author: string;
+  tags?: string[];
+}
+
+const { locale, title, description, pubDate, author, tags } = Astro.props;
+const t = getTranslations(locale);
+
+const formattedDate = pubDate.toLocaleDateString(
+  locale === 'pt-br' ? 'pt-BR' : locale === 'pl' ? 'pl-PL' : locale === 'es' ? 'es-ES' : 'en-US',
+  { year: 'numeric', month: 'long', day: 'numeric' }
+);
+---
+
+<BaseLayout locale={locale} title={title} description={description}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+    <!-- Back link -->
+    <a
+      href={`/${locale}/blog`}
+      class="inline-flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 font-medium mb-10 group"
+    >
+      <svg class="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      {t.blog.backToBlog}
+    </a>
+
+    <!-- Tags -->
+    {tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-4">
+        {tags.map(tag => (
+          <span class="px-3 py-1 bg-brand-50 text-brand-700 text-xs font-semibold rounded-full border border-brand-100">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <!-- Title -->
+    <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 leading-tight mb-4">{title}</h1>
+    <p class="text-lg text-slate-500 mb-6">{description}</p>
+
+    <!-- Meta -->
+    <div class="flex items-center gap-3 text-sm text-slate-400 mb-10 pb-10 border-b border-slate-100">
+      <div class="w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold text-sm">C</div>
+      <span class="font-medium text-slate-600">{author}</span>
+      <span>·</span>
+      <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+    </div>
+
+    <!-- Content -->
+    <article class="prose-content">
+      <slot />
+    </article>
+
+    <!-- CTA footer -->
+    <div class="mt-16 p-8 bg-brand-50 rounded-2xl border border-brand-100 text-center">
+      <h3 class="text-xl font-bold text-slate-900 mb-2">{t.cta.title}</h3>
+      <p class="text-slate-600 mb-6">{t.cta.subtitle}</p>
+      <a href={`/${locale}#contact`} class="btn-primary">{t.cta.button}</a>
+    </div>
+  </div>
+</BaseLayout>

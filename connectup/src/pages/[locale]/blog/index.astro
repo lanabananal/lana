@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+import { getTranslations, locales, isValidLocale } from '../../../i18n/translations';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  return locales.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+
+if (!isValidLocale(locale)) {
+  return Astro.redirect('/en/blog', 302);
+}
+
+const t = getTranslations(locale);
+
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter(p => p.data.lang === locale)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout locale={locale} title={t.blog.title}>
+
+  <!-- Header -->
+  <section class="bg-gradient-to-br from-slate-900 to-slate-800 pt-20 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="section-label border-brand-400/20 bg-brand-500/10 text-brand-300 mb-4 inline-flex">{t.blog.title}</span>
+      <h1 class="text-4xl sm:text-5xl font-black text-white mt-4 tracking-tight mb-3">{t.blog.title}</h1>
+      <p class="text-slate-300 text-lg max-w-2xl">{t.blog.subtitle}</p>
+    </div>
+  </section>
+
+  <!-- Posts grid -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {posts.length === 0 ? (
+        <p class="text-center text-slate-500 py-20 text-lg">
+          {locale === 'en' ? 'Posts coming soon...' :
+           locale === 'pt-br' ? 'Posts em breve...' :
+           locale === 'pl' ? 'Posty już wkrótce...' :
+           'Posts próximamente...'}
+        </p>
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map(post => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              postSlug={post.data.postSlug}
+              locale={locale}
+              author={post.data.author}
+              tags={post.data.tags}
+              readMore={t.blog.readMore}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
