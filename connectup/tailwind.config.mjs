@@ -4,38 +4,30 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
+        heading: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['DM Sans', 'sans-serif'],
       },
       colors: {
         brand: {
-          50:  '#f3f0fe',
-          100: '#e9e3fd',
-          200: '#d3c7fb',
-          300: '#b8a3f8',
-          400: '#9a7af4',
-          500: '#5030E5',
-          600: '#4828cc',
-          700: '#3a20a8',
-          800: '#2d1882',
-          900: '#1a1051',
+          DEFAULT: '#8417aa',
+          dark:    '#470050',
+          light:   '#e1a7f1',
+          lilac:   '#795389',
         },
-        teal: {
-          DEFAULT: '#00B3E3',
-          light:   '#33c5ea',
-          dark:    '#0090b6',
-        },
-        dark:     '#1A1A1A',
-        offwhite: '#F5F5F5',
+        cyan:     '#07ffd2',
+        offwhite: '#f7f4fa',
+        border:   '#dfdede',
+        teal:     '#4da88d',
       },
       typography: {
         DEFAULT: {
           css: {
             maxWidth: '72ch',
-            color: '#1A1A1A',
-            a: { color: '#5030E5' },
-            h1: { color: '#1A1A1A' },
-            h2: { color: '#1A1A1A' },
-            h3: { color: '#1A1A1A' },
+            color: '#000',
+            a: { color: '#8417aa' },
+            h1: { fontFamily: 'Fraunces, serif', color: '#000' },
+            h2: { fontFamily: 'Fraunces, serif', color: '#000' },
+            h3: { fontFamily: 'Fraunces, serif', color: '#000' },
           },
         },
       },

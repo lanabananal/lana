@@ -147,12 +147,15 @@ const translations = {
     },
     hero: {
       badge: 'Especialistas em Residência Fiscal no Paraguai',
-      headline: 'Economize em Impostos.',
-      headline2: 'Viva Livre.',
+      headline: 'O Brasil tributa até 27,5% do que você ganha.',
+      headline2: 'O Paraguai, zero sobre renda do exterior.',
       subheadline:
-        'Residência fiscal, abertura de empresa, serviços de maquila e planejamento financeiro para cidadãos globais prontos para assumir o controle das suas finanças.',
-      cta: 'Agendar Consulta Gratuita',
-      ctaSecondary: 'Saiba Mais',
+        'Residência fiscal legal, segura e sem complicação — com quem já fez o caminho.',
+      cta: 'Falar com a Lana',
+      ctaSecondary: 'Como funciona',
+      statTaxRate: 'Alíquota Máxima',
+      statDays: 'Dias para Residência',
+      statForeign: 'Imposto sobre Renda Exterior',
     },
     services: {
       title: 'Nossos Serviços',
@@ -191,6 +194,7 @@ const translations = {
       subtitle: 'Agende sua consulta gratuita de 30 minutos hoje.',
       button: 'Agendar Consulta Gratuita',
     },
+
     about: {
       title: 'Sobre Mim',
       badge: 'Minha História',

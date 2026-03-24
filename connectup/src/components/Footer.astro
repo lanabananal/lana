@@ -54,8 +54,8 @@ const year = new Date().getFullYear();
             <li>
               <a
                 href={`/${l}`}
-                class={`text-sm transition-colors ${l === locale ? 'text-teal font-semibold' : 'hover:text-white'}`}
-                style={l === locale ? '' : 'color: rgba(255,255,255,0.56);'}
+                class={`text-sm transition-colors ${l === locale ? 'font-semibold' : 'hover:text-white'}`}
+                style={l === locale ? 'color: #07ffd2;' : 'color: rgba(255,255,255,0.56);'}
               >
                 {languageLabels[l]}
               </a>

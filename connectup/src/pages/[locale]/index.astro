@@ -1,11 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
-import Services from '../../components/Services.astro';
-import WhyParaguay from '../../components/WhyParaguay.astro';
-import HowItWorks from '../../components/HowItWorks.astro';
-import CTA from '../../components/CTA.astro';
 import VideoSection from '../../components/VideoSection.astro';
+import Services from '../../components/Services.astro';
+import TaxComparison from '../../components/TaxComparison.astro';
+import HowItWorksPtBr from '../../components/HowItWorksPtBr.astro';
+import HowItWorks from '../../components/HowItWorks.astro';
+import WhyParaguay from '../../components/WhyParaguay.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
 import { locales, isValidLocale } from '../../i18n/translations';
 
 export function getStaticPaths() {
@@ -13,17 +16,19 @@ export function getStaticPaths() {
 }
 
 const { locale } = Astro.params;
+if (!isValidLocale(locale)) return Astro.redirect('/en/', 302);
 
-if (!isValidLocale(locale)) {
-  return Astro.redirect('/en/', 302);
-}
+const isPtBr = locale === 'pt-br';
 ---
 
 <BaseLayout locale={locale}>
   <Hero locale={locale} />
+  {isPtBr && <VideoSection locale={locale} />}
   <Services locale={locale} />
-  <WhyParaguay locale={locale} />
-  <HowItWorks locale={locale} />
-  <VideoSection locale={locale} />
+  {isPtBr && <TaxComparison />}
+  {isPtBr ? <HowItWorksPtBr /> : <HowItWorks locale={locale} />}
+  {!isPtBr && <WhyParaguay locale={locale} />}
+  {!isPtBr && <VideoSection locale={locale} />}
+  {isPtBr && <FAQ />}
   <CTA locale={locale} />
 </BaseLayout>

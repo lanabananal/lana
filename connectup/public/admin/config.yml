@@ -1,0 +1,41 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: pt
+
+media_folder: "public/images/blog"
+public_folder: "/images/blog"
+
+collections:
+  - name: "blog-ptbr"
+    label: "Blog (PT-BR)"
+    folder: "src/content/blog"
+    create: true
+    filter: {field: "lang", value: "pt-br"}
+    slug: "pt-br-{{slug}}"
+    fields:
+      - { label: "Título",     name: "title",       widget: "string" }
+      - { label: "Descrição",  name: "description",  widget: "text",   required: false }
+      - { label: "Data",       name: "pubDate",      widget: "datetime" }
+      - { label: "Slug",       name: "postSlug",     widget: "string" }
+      - { label: "Tags",       name: "tags",         widget: "list",   required: false }
+      - { label: "Conteúdo",   name: "body",         widget: "markdown" }
+      - { label: "lang",       name: "lang",         widget: "hidden", default: "pt-br" }
+      - { label: "author",     name: "author",       widget: "hidden", default: "ConnectUp" }
+
+  - name: "blog-en"
+    label: "Blog (English)"
+    folder: "src/content/blog"
+    create: true
+    filter: {field: "lang", value: "en"}
+    slug: "en-{{slug}}"
+    fields:
+      - { label: "Title",       name: "title",       widget: "string" }
+      - { label: "Description", name: "description",  widget: "text",   required: false }
+      - { label: "Date",        name: "pubDate",      widget: "datetime" }
+      - { label: "Slug",        name: "postSlug",     widget: "string" }
+      - { label: "Tags",        name: "tags",         widget: "list",   required: false }
+      - { label: "Body",        name: "body",         widget: "markdown" }
+      - { label: "lang",        name: "lang",         widget: "hidden", default: "en" }
+      - { label: "author",      name: "author",       widget: "hidden", default: "ConnectUp" }

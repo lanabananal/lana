@@ -1,72 +1,58 @@
 ---
 import { getTranslations } from '../i18n/translations';
-
-interface Props {
-  locale: string;
-}
-
+interface Props { locale: string; }
 const { locale } = Astro.props;
 const t = getTranslations(locale);
-
 const videoId = locale === 'pt-br' ? 'V20XZKEuJkg' : 'DvoRPSaVbqg';
+
+const qaCards = t.video.qa;
 ---
 
-<section class="relative overflow-hidden" style="background: linear-gradient(135deg, #1A1A1AF2 0%, #1a0a2e 50%, #5030E5CC 100%);">
+<section class="py-20 bg-white">
+  <div class="max-w-[1140px] mx-auto px-6">
 
-  <!-- Glow orbs -->
-  <div class="absolute top-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none" style="background: #5030E530; filter: blur(100px);"></div>
-  <div class="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full pointer-events-none" style="background: #00B3E320; filter: blur(80px);"></div>
-
-  <div class="relative max-w-[1140px] mx-auto px-6 py-20">
-
-    <!-- Section header -->
-    <div class="text-center max-w-2xl mx-auto mb-14">
-      <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-4" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.75);">Q&A</span>
-      <h2 class="font-bold text-white mb-4" style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.02em;">{t.video.title}</h2>
-      <p class="text-lg" style="color: rgba(255,255,255,0.69);">{t.video.subtitle}</p>
+    <!-- Label -->
+    <div class="text-center mb-10">
+      <span class="section-tag">ASSISTA — ADVOGADA PARAGUAIA RESPONDE</span>
     </div>
 
-    <!-- Two-column layout: on mobile Q&A first, video second -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+    <!-- Video -->
+    <div class="flex justify-center mb-12">
+      <div class="relative w-full max-w-[760px]" style="aspect-ratio: 16/9;">
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}`}
+          title="ConnectUP Q&A"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"
+          class="absolute inset-0 w-full h-full"
+          style="border-radius: 16px; box-shadow: 0 16px 48px rgba(0,0,0,0.15);"
+        ></iframe>
+      </div>
+    </div>
 
-      <!-- Q&A accordion — order-1 on mobile (first), order-2 on desktop (right) -->
-      <div class="order-1 lg:order-2 space-y-3">
-        {t.video.qa.map((item, i) => (
-          <details class="group qa-item rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);">
-            <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer list-none select-none" style="color: white;">
-              <span class="font-semibold text-sm leading-snug pr-2">{item.q}</span>
-              <span class="shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300 group-open:rotate-45" style="background: rgba(255,255,255,0.10);">
-                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                </svg>
-              </span>
-            </summary>
-            <div class="px-6 pb-5 pt-1 text-sm leading-relaxed" style="color: rgba(255,255,255,0.69); border-top: 1px solid rgba(255,255,255,0.08);">
-              {item.a}
+    <!-- Q&A cards grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+      {qaCards.map((item) => (
+        <div class="rounded-xl p-5" style="background: #f7f4fa; border: 1px solid #dfdede;">
+          <div class="flex items-start gap-3">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#07ffd2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+            <div>
+              <p style="font-family: 'DM Sans'; font-weight: 500; font-size: 0.85rem; color: #8417aa;" class="mb-1">{item.q}</p>
+              <p style="font-family: 'DM Sans'; font-size: 0.82rem; color: #555; line-height: 1.5;">{item.a}</p>
             </div>
-          </details>
-        ))}
-      </div>
-
-      <!-- Video — order-2 on mobile (second), order-1 on desktop (left) -->
-      <div class="order-2 lg:order-1 flex justify-center lg:justify-start">
-        <div class="relative w-full max-w-[300px]" style="aspect-ratio: 9/16;">
-          <iframe
-            src={`https://www.youtube.com/embed/${videoId}`}
-            title="ConnectUP Q&A"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            loading="lazy"
-            class="absolute inset-0 w-full h-full"
-            style="border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.5);"
-          ></iframe>
+          </div>
         </div>
-      </div>
-
+      ))}
     </div>
 
     <!-- Trust line -->
-    <p class="text-center mt-10 text-sm italic" style="color: rgba(255,255,255,0.45);">{t.video.trust}</p>
+    <p class="text-center text-sm italic mb-8" style="color: #795389; font-family: 'DM Sans';">{t.video.trust}</p>
 
+    <!-- CTA -->
+    <div class="text-center">
+      <a href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        Falar com a ConnectUp
+      </a>
+    </div>
   </div>
 </section>
