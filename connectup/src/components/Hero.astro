@@ -9,36 +9,32 @@ const { locale } = Astro.props;
 const t = getTranslations(locale);
 ---
 
-<section class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-brand-900">
-  <!-- Background decoration -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] rounded-full bg-brand-500/10 blur-3xl"></div>
-    <div class="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-brand-400/5 blur-3xl"></div>
-    <!-- Grid overlay -->
-    <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 60px 60px;"></div>
-  </div>
+<section class="relative overflow-hidden pt-[120px] pb-20" style="background: linear-gradient(165deg, #1A1A1AF0 0%, #1a0a2eE8 40%, #5030E5D0 100%);">
 
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-28">
+  <!-- Glow orbs -->
+  <div class="absolute top-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none" style="background: #5030E540; filter: blur(100px);"></div>
+  <div class="absolute bottom-0 left-1/4 w-[300px] h-[300px] rounded-full pointer-events-none" style="background: #00B3E330; filter: blur(80px);"></div>
+
+  <!-- Dot pattern -->
+  <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: radial-gradient(#BB89FF 1px, transparent 1px); background-size: 32px 32px;"></div>
+
+  <div class="relative max-w-[1140px] mx-auto px-6">
     <div class="max-w-3xl">
 
-      <!-- Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-500/10 border border-brand-400/20 rounded-full mb-8">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span>
-        <span class="text-brand-300 text-sm font-medium">{t.hero.badge}</span>
+      <!-- Tag -->
+      <div class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-8" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.75);">
+        {t.hero.badge}
       </div>
 
       <!-- Headline -->
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.05] tracking-tight mb-2">
+      <h1 class="font-black text-white leading-[1.1] tracking-tight mb-8" style="font-size: clamp(36px, 6vw, 64px); letter-spacing: -0.03em;">
         {t.hero.headline}
-      </h1>
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-8">
-        <span class="bg-gradient-to-r from-brand-300 to-brand-500 bg-clip-text text-transparent">
-          {t.hero.headline2}
-        </span>
+        <br />
+        <span style="color: #BB89FF;">{t.hero.headline2}</span>
       </h1>
 
       <!-- Subheadline -->
-      <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mb-10">
+      <p class="leading-relaxed mb-10 max-w-2xl" style="font-size: clamp(16px, 2vw, 19px); color: rgba(255,255,255,0.70);">
         {t.hero.subheadline}
       </p>
 
@@ -48,7 +44,8 @@ const t = getTranslations(locale);
           href="https://web.whatsapp.com/send?phone=5511913062315"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-500 hover:bg-brand-400 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-brand-500/25 hover:shadow-brand-400/30 hover:scale-[1.02] active:scale-[0.98]"
+          class="inline-flex items-center gap-2 font-semibold rounded-[10px] transition-all duration-200 hover:-translate-y-px"
+          style="background: #5030E5; color: white; padding: 14px 28px; font-size: 15px;"
         >
           {t.hero.cta}
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,27 +54,29 @@ const t = getTranslations(locale);
         </a>
         <a
           href={`/${locale}#services`}
-          class="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/15 text-white font-semibold rounded-xl border border-white/20 transition-all duration-200 backdrop-blur-sm"
+          class="inline-flex items-center gap-2 font-semibold rounded-[10px] transition-all duration-200 hover:-translate-y-px"
+          style="border: 2px solid #00B3E3; color: #00B3E3; padding: 14px 28px; font-size: 15px;"
         >
           {t.hero.ctaSecondary}
         </a>
       </div>
 
       <!-- Stats -->
-      <div class="flex flex-wrap gap-8 mt-14 pt-10 border-t border-white/10">
+      <div class="flex flex-wrap gap-8 mt-14 pt-10" style="border-top: 1px solid rgba(255,255,255,0.10);">
         <div>
           <div class="text-3xl font-black text-white">10%</div>
-          <div class="text-slate-400 text-sm">Max Tax Rate</div>
+          <div class="text-sm" style="color: rgba(255,255,255,0.56);">Max Tax Rate</div>
         </div>
         <div>
           <div class="text-3xl font-black text-white">60</div>
-          <div class="text-slate-400 text-sm">Days to Residency</div>
+          <div class="text-sm" style="color: rgba(255,255,255,0.56);">Days to Residency</div>
         </div>
         <div>
           <div class="text-3xl font-black text-white">$0</div>
-          <div class="text-slate-400 text-sm">Tax on Foreign Income</div>
+          <div class="text-sm" style="color: rgba(255,255,255,0.56);">Tax on Foreign Income</div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
