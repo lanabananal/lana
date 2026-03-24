@@ -57,7 +57,7 @@ function localePath(targetLocale: string, path: string) {
           {locales.map(l => (
             <a
               href={localePath(l, rawPath)}
-              class={`flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-offwhite transition-colors ${l === locale ? 'text-brand-500 font-semibold' : 'text-[#2A2A2A]'}`}
+              class={`flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-offwhite transition-colors ${l === locale ? 'text-brand font-semibold' : 'text-[#2A2A2A]'}`}
               role="menuitem"
             >
               {languageLabels[l]}
@@ -93,7 +93,7 @@ function localePath(targetLocale: string, path: string) {
         {locales.map(l => (
           <a
             href={localePath(l, rawPath)}
-            class={`block px-4 py-2.5 rounded-xl text-sm font-medium ${l === locale ? 'text-brand-500 bg-brand-500/5' : 'text-dark hover:bg-offwhite'}`}
+            class={`block px-4 py-2.5 rounded-xl text-sm font-medium ${l === locale ? 'text-brand bg-brand/5' : 'text-dark hover:bg-offwhite'}`}
           >
             {languageLabels[l]}
           </a>
@@ -109,11 +109,11 @@ function localePath(targetLocale: string, path: string) {
 
 <style>
   .nav-link {
-    @apply px-3 py-2 rounded-lg text-sm font-medium text-[#2A2A2A] hover:text-brand-500 transition-colors relative;
+    @apply px-3 py-2 rounded-lg text-sm font-medium text-[#2A2A2A] hover:text-brand transition-colors relative;
   }
   .nav-link::after {
     content: '';
-    @apply absolute bottom-0 left-3 right-3 h-0.5 bg-brand-500 scale-x-0 transition-transform duration-200;
+    @apply absolute bottom-0 left-3 right-3 h-0.5 bg-brand scale-x-0 transition-transform duration-200;
   }
   .nav-link:hover::after {
     @apply scale-x-100;
