@@ -4,31 +4,36 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'],
       },
       colors: {
         brand: {
-          50:  '#ecfdf5',
-          100: '#d1fae5',
-          200: '#a7f3d0',
-          300: '#6ee7b7',
-          400: '#34d399',
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
-          800: '#065f46',
-          900: '#064e3b',
+          50:  '#f0edfe',
+          100: '#e1dafd',
+          200: '#c3b5fb',
+          300: '#a590f9',
+          400: '#7860ef',
+          500: '#5030E5',
+          600: '#4428cc',
+          700: '#3620a3',
+          800: '#28187a',
+          900: '#1a1051',
+        },
+        accent: {
+          DEFAULT: '#00B3E3',
+          light:   '#33c5ea',
+          dark:    '#0090b6',
         },
       },
       typography: {
         DEFAULT: {
           css: {
             maxWidth: '72ch',
-            color: '#1e293b',
-            a: { color: '#059669' },
-            h1: { color: '#0f172a' },
-            h2: { color: '#0f172a' },
-            h3: { color: '#0f172a' },
+            color: '#1A1A1A',
+            a: { color: '#5030E5' },
+            h1: { color: '#1A1A1A' },
+            h2: { color: '#1A1A1A' },
+            h3: { color: '#1A1A1A' },
           },
         },
       },

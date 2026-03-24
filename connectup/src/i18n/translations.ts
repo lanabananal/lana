@@ -123,6 +123,10 @@ const translations = {
       rights: 'All rights reserved.',
       links: { home: 'Home', about: 'About', blog: 'Blog', contact: 'Contact' },
     },
+    video: {
+      title: 'Q&A: Tax Residency in Paraguay',
+      subtitle: 'A Paraguayan attorney answers the most common questions about obtaining tax residency in Paraguay.',
+    },
   },
 
   'pt-br': {
@@ -206,6 +210,10 @@ const translations = {
       tagline: 'Residência fiscal e liberdade financeira no Paraguai.',
       rights: 'Todos os direitos reservados.',
       links: { home: 'Início', about: 'Sobre', blog: 'Blog', contact: 'Contato' },
+    },
+    video: {
+      title: 'Perguntas & Respostas: Residência Fiscal no Paraguai',
+      subtitle: 'Uma advogada paraguaia responde as dúvidas mais comuns sobre como obter residência fiscal no Paraguai.',
     },
   },
 
@@ -291,6 +299,10 @@ const translations = {
       rights: 'Wszelkie prawa zastrzeżone.',
       links: { home: 'Strona Główna', about: 'O Mnie', blog: 'Blog', contact: 'Kontakt' },
     },
+    video: {
+      title: 'Q&A: Rezydencja Podatkowa w Paragwaju',
+      subtitle: 'Paragwajska prawniczka odpowiada na najczęstsze pytania dotyczące uzyskania rezydencji podatkowej w Paragwaju.',
+    },
   },
 
   es: {
@@ -374,6 +386,10 @@ const translations = {
       tagline: 'Residencia fiscal y libertad financiera en Paraguay.',
       rights: 'Todos los derechos reservados.',
       links: { home: 'Inicio', about: 'Sobre Mí', blog: 'Blog', contact: 'Contacto' },
+    },
+    video: {
+      title: 'Preguntas & Respuestas: Residencia Fiscal en Paraguay',
+      subtitle: 'Una abogada paraguaya responde las preguntas más frecuentes sobre cómo obtener la residencia fiscal en Paraguay.',
     },
   },
 } as const;

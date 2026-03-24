@@ -5,6 +5,7 @@ import Services from '../../components/Services.astro';
 import WhyParaguay from '../../components/WhyParaguay.astro';
 import HowItWorks from '../../components/HowItWorks.astro';
 import CTA from '../../components/CTA.astro';
+import VideoSection from '../../components/VideoSection.astro';
 import { locales, isValidLocale } from '../../i18n/translations';
 
 export function getStaticPaths() {
@@ -23,5 +24,6 @@ if (!isValidLocale(locale)) {
   <Services locale={locale} />
   <WhyParaguay locale={locale} />
   <HowItWorks locale={locale} />
+  <VideoSection locale={locale} />
   <CTA locale={locale} />
 </BaseLayout>
