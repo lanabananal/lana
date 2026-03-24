@@ -11,23 +11,62 @@ const t = getTranslations(locale);
 const videoId = locale === 'pt-br' ? 'V20XZKEuJkg' : 'DvoRPSaVbqg';
 ---
 
-<section class="py-20 bg-slate-50">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">{t.video.title}</h2>
-    <p class="text-slate-500 text-lg mb-10">{t.video.subtitle}</p>
+<section class="relative overflow-hidden" style="background: linear-gradient(135deg, #1A1A1AF2 0%, #1a0a2e 50%, #5030E5CC 100%);">
 
-    <div class="flex justify-center">
-      <!-- 9:16 aspect ratio container for YouTube Short -->
-      <div class="relative w-full max-w-xs" style="aspect-ratio: 9/16;">
-        <iframe
-          src={`https://www.youtube.com/embed/${videoId}`}
-          title="ConnectUp"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          class="absolute inset-0 w-full h-full rounded-2xl shadow-xl"
-          loading="lazy"
-        ></iframe>
-      </div>
+  <!-- Glow orbs -->
+  <div class="absolute top-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none" style="background: #5030E530; filter: blur(100px);"></div>
+  <div class="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full pointer-events-none" style="background: #00B3E320; filter: blur(80px);"></div>
+
+  <div class="relative max-w-[1140px] mx-auto px-6 py-20">
+
+    <!-- Section header -->
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-4" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.75);">Q&A</span>
+      <h2 class="font-bold text-white mb-4" style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.02em;">{t.video.title}</h2>
+      <p class="text-lg" style="color: rgba(255,255,255,0.69);">{t.video.subtitle}</p>
     </div>
+
+    <!-- Two-column layout: on mobile Q&A first, video second -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+
+      <!-- Q&A accordion — order-1 on mobile (first), order-2 on desktop (right) -->
+      <div class="order-1 lg:order-2 space-y-3">
+        {t.video.qa.map((item, i) => (
+          <details class="group qa-item rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);">
+            <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer list-none select-none" style="color: white;">
+              <span class="font-semibold text-sm leading-snug pr-2">{item.q}</span>
+              <span class="shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300 group-open:rotate-45" style="background: rgba(255,255,255,0.10);">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5 pt-1 text-sm leading-relaxed" style="color: rgba(255,255,255,0.69); border-top: 1px solid rgba(255,255,255,0.08);">
+              {item.a}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Video — order-2 on mobile (second), order-1 on desktop (left) -->
+      <div class="order-2 lg:order-1 flex justify-center lg:justify-start">
+        <div class="relative w-full max-w-[300px]" style="aspect-ratio: 9/16;">
+          <iframe
+            src={`https://www.youtube.com/embed/${videoId}`}
+            title="ConnectUP Q&A"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+            class="absolute inset-0 w-full h-full"
+            style="border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.5);"
+          ></iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Trust line -->
+    <p class="text-center mt-10 text-sm italic" style="color: rgba(255,255,255,0.45);">{t.video.trust}</p>
+
   </div>
 </section>

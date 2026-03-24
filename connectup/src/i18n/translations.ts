@@ -126,6 +126,14 @@ const translations = {
     video: {
       title: 'Q&A: Tax Residency in Paraguay',
       subtitle: 'A Paraguayan attorney answers the most common questions about obtaining tax residency in Paraguay.',
+      trust: 'Questions answered by Gabriela, Paraguayan attorney specializing in immigration and tax law.',
+      qa: [
+        { q: 'Do I need to physically live in Paraguay for tax residency?', a: 'No minimum days required. Temporary residency requires 1 visit per year; permanent residency requires 1 visit every 36 months.' },
+        { q: 'How many trips to Paraguay does the process require?', a: 'Two trips to Asunción, approximately 5 business days each.' },
+        { q: 'Will Paraguay tax my foreign income?', a: 'No. Paraguay uses a territorial tax system — only income sourced within Paraguay is taxed. All foreign income is fully exempt.' },
+        { q: 'What\'s the difference between temporary and permanent residency?', a: 'Temporary residency lasts 2 years and is renewable to permanent. Permanent residency is indefinite, renewed every 10 years.' },
+        { q: 'What is the fiscal residency certificate and when do I need it?', a: 'Issued by SET (Paraguay\'s tax authority). Required by banks, brokers, and crypto exchanges to prove your tax domicile. Requires an active RUC and up-to-date tax filings.' },
+      ],
     },
   },
 
@@ -214,6 +222,14 @@ const translations = {
     video: {
       title: 'Perguntas & Respostas: Residência Fiscal no Paraguai',
       subtitle: 'Uma advogada paraguaia responde as dúvidas mais comuns sobre como obter residência fiscal no Paraguai.',
+      trust: 'Perguntas respondidas por Gabriela, advogada paraguaia especialista em direito imigratório e fiscal.',
+      qa: [
+        { q: 'Preciso morar fisicamente no Paraguai para ter residência fiscal?', a: 'Não há exigência de dias mínimos. A residência temporária requer 1 visita por ano; a permanente requer 1 visita a cada 36 meses.' },
+        { q: 'Quantas viagens ao Paraguai o processo exige?', a: 'Duas viagens a Assunção, de aproximadamente 5 dias úteis cada.' },
+        { q: 'O Paraguai vai tributar minha renda no exterior?', a: 'Não. O Paraguai adota o sistema de tributação territorial — apenas a renda gerada dentro do país é tributada. Toda renda estrangeira é isenta.' },
+        { q: 'Qual a diferença entre residência temporária e permanente?', a: 'A residência temporária dura 2 anos e pode ser convertida em permanente. A permanente é por prazo indeterminado, renovada a cada 10 anos.' },
+        { q: 'O que é o certificado de residência fiscal e quando preciso dele?', a: 'Emitido pelo SET (autoridade fiscal do Paraguai). Exigido por bancos, corretoras e exchanges de cripto para comprovar seu domicílio fiscal. Requer RUC ativo e declarações em dia.' },
+      ],
     },
   },
 
@@ -302,6 +318,14 @@ const translations = {
     video: {
       title: 'Q&A: Rezydencja Podatkowa w Paragwaju',
       subtitle: 'Paragwajska prawniczka odpowiada na najczęstsze pytania dotyczące uzyskania rezydencji podatkowej w Paragwaju.',
+      trust: 'Odpowiedzi udzieliła Gabriela, paragwajska prawniczka specjalizująca się w prawie imigracyjnym i podatkowym.',
+      qa: [
+        { q: 'Czy muszę fizycznie mieszkać w Paragwaju, aby uzyskać rezydencję podatkową?', a: 'Nie ma minimalnej liczby dni. Rezydencja tymczasowa wymaga 1 wizyty rocznie; stała wymaga 1 wizyty co 36 miesięcy.' },
+        { q: 'Ile podróży do Paragwaju wymaga cały proces?', a: 'Dwie podróże do Asunción, każda trwająca około 5 dni roboczych.' },
+        { q: 'Czy Paragwaj opodatkuje moje dochody zagraniczne?', a: 'Nie. Paragwaj stosuje terytorialny system podatkowy — opodatkowane są wyłącznie dochody uzyskane w Paragwaju. Wszelkie dochody zagraniczne są zwolnione z podatku.' },
+        { q: 'Jaka jest różnica między rezydencją tymczasową a stałą?', a: 'Rezydencja tymczasowa trwa 2 lata i może być przekształcona w stałą. Stała jest bezterminowa, odnawiana co 10 lat.' },
+        { q: 'Czym jest certyfikat rezydencji podatkowej i kiedy jest potrzebny?', a: 'Wydawany przez SET (paragwajski urząd skarbowy). Wymagany przez banki, brokerów i giełdy kryptowalut jako dowód miejsca zamieszkania do celów podatkowych. Wymaga aktywnego RUC i aktualnych deklaracji podatkowych.' },
+      ],
     },
   },
 
@@ -390,6 +414,14 @@ const translations = {
     video: {
       title: 'Preguntas & Respuestas: Residencia Fiscal en Paraguay',
       subtitle: 'Una abogada paraguaya responde las preguntas más frecuentes sobre cómo obtener la residencia fiscal en Paraguay.',
+      trust: 'Preguntas respondidas por Gabriela, abogada paraguaya especializada en derecho migratorio y fiscal.',
+      qa: [
+        { q: '¿Necesito vivir físicamente en Paraguay para tener residencia fiscal?', a: 'No hay días mínimos requeridos. La residencia temporal exige 1 visita al año; la permanente exige 1 visita cada 36 meses.' },
+        { q: '¿Cuántos viajes a Paraguay requiere el proceso?', a: 'Dos viajes a Asunción, de aproximadamente 5 días hábiles cada uno.' },
+        { q: '¿Paraguay gravará mis ingresos del exterior?', a: 'No. Paraguay utiliza un sistema de tributación territorial — solo se gravan los ingresos generados dentro del país. Todos los ingresos extranjeros están completamente exentos.' },
+        { q: '¿Cuál es la diferencia entre residencia temporal y permanente?', a: 'La residencia temporal dura 2 años y es renovable a permanente. La permanente es indefinida, renovada cada 10 años.' },
+        { q: '¿Qué es el certificado de residencia fiscal y cuándo lo necesito?', a: 'Emitido por la SET (autoridad fiscal de Paraguay). Requerido por bancos, brokers e exchanges de cripto para acreditar tu domicilio fiscal. Requiere RUC activo y declaraciones al día.' },
+      ],
     },
   },
 } as const;
