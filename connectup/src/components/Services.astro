@@ -1,55 +1,72 @@
 ---
 import { getTranslations } from '../i18n/translations';
-
-interface Props {
-  locale: string;
-}
-
+interface Props { locale: string; }
 const { locale } = Astro.props;
 const t = getTranslations(locale);
 
 const icons = [
-  // Consultancy - briefcase
-  `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />`,
-  // Full Residency - home
-  `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />`,
-  // Company Setup - building
-  `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />`,
-  // Financial Planning - chart
-  `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />`,
-  // Maquila - gear
-  `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`,
+  `<path stroke-linecap="round" stroke-linejoin="round" d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />`,
+  `<path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />`,
+  `<path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />`,
+  `<path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />`,
+  `<path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`,
 ];
-
-// Alternate border colors: teal, purple, teal, purple, teal
-const borderColors = ['#8417aa', '#07ffd2', '#8417aa', '#07ffd2', '#8417aa'];
 ---
 
-<section id="services" class="py-20 bg-white">
-  <div class="max-w-[1140px] mx-auto px-6">
-
-    <div class="text-center max-w-2xl mx-auto mb-14">
-      <span class="section-tag">{t.services.title}</span>
-      <h2 class="font-bold text-dark mt-2 mb-4" style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.02em;">{t.services.title}</h2>
-      <p class="text-lg" style="color: #9A95A3;">{t.services.subtitle}</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {t.services.items.map((service, i) => (
-        <div
-          class={`bg-white rounded-2xl p-7 cursor-pointer transition-all duration-300 hover:-translate-y-1 ${i === 4 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
-          style={`border: 1px solid #E8E4ED; border-left: 4px solid ${borderColors[i]};`}
-        >
-          <div
-            class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-colors"
-            style={`background: ${borderColors[i]}15;`}
-          >
-            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={`color: ${borderColors[i]};`} set:html={icons[i]} />
-          </div>
-          <h3 class="text-lg font-bold text-dark mb-2">{service.title}</h3>
-          <p class="text-sm leading-relaxed" style="color: #9A95A3;">{service.description}</p>
+<section id="services" class="py-8 px-4 md:px-6">
+  <div class="max-w-[1140px] mx-auto">
+    <div class="services-section">
+      <div class="services-bg"></div>
+      <div class="services-content">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;">{t.services.title}</span>
+          <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;color:white;margin-top:0.5rem;">{t.services.subtitle}</h2>
         </div>
-      ))}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {t.services.items.map((service, i) => (
+            <div class="glass-card">
+              <div class="mb-4">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#07ffd2" stroke-width="1.5" set:html={icons[i]}></svg>
+              </div>
+              <h3 style="font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;color:white;margin-bottom:6px;">{service.title}</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;">{service.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+.services-section {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 52px 36px;
+}
+.services-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/ss.png');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.55);
+}
+.services-content {
+  position: relative;
+  z-index: 2;
+}
+.glass-card {
+  background: rgba(255,255,255,0.09);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 22px 18px;
+  transition: transform 0.2s;
+}
+.glass-card:hover {
+  transform: translateY(-3px);
+}
+</style>

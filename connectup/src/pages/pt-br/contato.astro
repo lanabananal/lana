@@ -8,8 +8,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <div class="text-center mb-10">
         <span class="section-tag">Contato</span>
-        <h1 style="font-family:'Fraunces',serif;font-size:clamp(1.75rem,4vw,2.25rem);font-weight:600;margin-top:0.5rem;">Fale com a ConnectUP</h1>
-        <p style="font-family:'DM Sans';font-size:1rem;color:#555;margin-top:0.5rem;">Responderemos em até 24h.</p>
+        <h1 style="font-family:'Poppins',sans-serif;font-size:clamp(1.75rem,4vw,2.25rem);font-weight:600;margin-top:0.5rem;">Fale com a ConnectUP</h1>
+        <p style="font-family:'Poppins',sans-serif;font-size:1rem;font-weight:300;color:#555;margin-top:0.5rem;">Responderemos em até 24h.</p>
       </div>
 
       <form name="contato" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/pt-br/obrigado"
@@ -18,19 +18,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <input type="hidden" name="bot-field" />
 
         <div>
-          <label style="font-family:'DM Sans';font-size:0.85rem;font-weight:500;display:block;margin-bottom:6px;">Seu nome</label>
+          <label style="font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:500;display:block;margin-bottom:6px;">Seu nome</label>
           <input type="text" name="nome" placeholder="Seu nome completo" required class="form-input" />
         </div>
         <div>
-          <label style="font-family:'DM Sans';font-size:0.85rem;font-weight:500;display:block;margin-bottom:6px;">Telefone / WhatsApp</label>
+          <label style="font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:500;display:block;margin-bottom:6px;">Telefone / WhatsApp</label>
           <input type="tel" name="telefone" placeholder="+55 11 99999-9999" required class="form-input" />
         </div>
         <div>
-          <label style="font-family:'DM Sans';font-size:0.85rem;font-weight:500;display:block;margin-bottom:6px;">E-mail</label>
+          <label style="font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:500;display:block;margin-bottom:6px;">E-mail</label>
           <input type="email" name="email" placeholder="seu@email.com" required class="form-input" />
         </div>
         <div>
-          <label style="font-family:'DM Sans';font-size:0.85rem;font-weight:500;display:block;margin-bottom:6px;">Mensagem</label>
+          <label style="font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:500;display:block;margin-bottom:6px;">Mensagem</label>
           <textarea name="mensagem" placeholder="Como podemos ajudar?" rows="5" required class="form-input" style="resize:vertical;"></textarea>
         </div>
 
@@ -46,7 +46,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   border: 0.5px solid #dfdede;
   border-radius: 8px;
   padding: 0.75rem 1rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
   font-size: 0.9rem;
   background: white;
   transition: all 0.2s;

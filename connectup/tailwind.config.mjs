@@ -4,8 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['Fraunces', 'Georgia', 'serif'],
-        sans: ['DM Sans', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'],
       },
       colors: {
         brand: {
@@ -18,18 +17,6 @@ export default {
         offwhite: '#f7f4fa',
         border:   '#dfdede',
         teal:     '#4da88d',
-      },
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: '72ch',
-            color: '#000',
-            a: { color: '#8417aa' },
-            h1: { fontFamily: 'Fraunces, serif', color: '#000' },
-            h2: { fontFamily: 'Fraunces, serif', color: '#000' },
-            h3: { fontFamily: 'Fraunces, serif', color: '#000' },
-          },
-        },
       },
     },
   },

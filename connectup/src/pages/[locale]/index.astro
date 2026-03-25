@@ -6,8 +6,8 @@ import Services from '../../components/Services.astro';
 import TaxComparison from '../../components/TaxComparison.astro';
 import HowItWorksPtBr from '../../components/HowItWorksPtBr.astro';
 import HowItWorks from '../../components/HowItWorks.astro';
-import WhyParaguay from '../../components/WhyParaguay.astro';
 import FAQ from '../../components/FAQ.astro';
+import BlogCarousel from '../../components/BlogCarousel.astro';
 import CTA from '../../components/CTA.astro';
 import { locales, isValidLocale } from '../../i18n/translations';
 
@@ -27,8 +27,8 @@ const isPtBr = locale === 'pt-br';
   <Services locale={locale} />
   {isPtBr && <TaxComparison />}
   {isPtBr ? <HowItWorksPtBr /> : <HowItWorks locale={locale} />}
-  {!isPtBr && <WhyParaguay locale={locale} />}
   {!isPtBr && <VideoSection locale={locale} />}
   {isPtBr && <FAQ />}
+  <BlogCarousel locale={locale} />
   <CTA locale={locale} />
 </BaseLayout>

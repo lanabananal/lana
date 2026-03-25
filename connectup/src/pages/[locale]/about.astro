@@ -1,80 +1,157 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CTA from '../../components/CTA.astro';
-import { getTranslations, locales, isValidLocale } from '../../i18n/translations';
+import { locales, isValidLocale } from '../../i18n/translations';
 
 export function getStaticPaths() {
   return locales.map(locale => ({ params: { locale } }));
 }
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect('/en/about', 302);
-const t = getTranslations(locale);
+if (!isValidLocale(locale)) return Astro.redirect('/en/', 302);
+
+const content: Record<string, any> = {
+  'pt-br': {
+    label: 'Fundadora & Consultora Internacional',
+    h1: 'A ponte entre você e o sistema que vai te libertar.',
+    bio: 'Vim até o Paraguai para entender o sistema por dentro. Construí relacionamentos com advogados, contadores e especialistas locais; mapeei cada etapa do processo; e me tornei o elo que faltava para empreendedores e empresários que querem fazer isso com segurança. Hoje a ConnectUp atende pessoas do Brasil, Polônia, Espanha e de todo o mundo, com clareza, método e profissionais de confiança do início ao fim.',
+    quote: 'Minha missão é simples: ajudar você a guardar mais do que ganha, de onde quer que você esteja.',
+    bridgeCaption: 'Estratégia e acompanhamento',
+    stats: [{ n:'3+', l:'Continentes atendidos' }, { n:'100%', l:'Legal e seguro' }, { n:'1', l:'Ponto de contato para tudo' }],
+    servicesTitle: 'O que fazemos',
+    services: ['Residência fiscal no Paraguai', 'Abertura de empresa e Maquila', 'Planejamento tributário internacional', 'Consultoria estratégica personalizada'],
+    valuesTitle: 'Nossos valores',
+    values: ['Clareza antes de tudo', 'Só o que é legal', 'Estrutura própria, não improviso'],
+    ctaTitle: 'Pronto para guardar mais do que ganha?',
+    ctaBtn: 'Fale com a gente →',
+  },
+  'en': {
+    label: 'Founder & International Consultant',
+    h1: 'The bridge between you and the system that will set you free.',
+    bio: 'I came to Paraguay to understand the system from the inside. I built relationships with local lawyers, accountants and specialists; mapped every step of the process; and became the missing link for entrepreneurs and business owners who want to do this safely. Today ConnectUp serves people from Brazil, Poland, Spain and around the world, with clarity, method and trusted professionals from start to finish.',
+    quote: 'My mission is simple: help you keep more of what you earn, wherever you are.',
+    bridgeCaption: 'Strategy and guidance',
+    stats: [{ n:'3+', l:'Continents served' }, { n:'100%', l:'Legal and safe' }, { n:'1', l:'Single point of contact' }],
+    servicesTitle: 'What we do',
+    services: ['Tax residency in Paraguay', 'Company setup and Maquila', 'International tax planning', 'Personalized strategic consulting'],
+    valuesTitle: 'Our values',
+    values: ['Clarity first', 'Only what is legal', 'Proper structure, not improvisation'],
+    ctaTitle: 'Ready to keep more of what you earn?',
+    ctaBtn: 'Get in Touch →',
+  },
+  'es': {
+    label: 'Fundadora & Consultora Internacional',
+    h1: 'El puente entre tú y el sistema que te va a liberar.',
+    bio: 'Vine a Paraguay para entender el sistema desde adentro. Construí relaciones con abogados, contadores y especialistas locales; mapeé cada etapa del proceso; y me convertí en el eslabón que faltaba para emprendedores y empresarios que quieren hacer esto con seguridad. Hoy ConnectUp atiende personas de Brasil, Polonia, España y de todo el mundo, con claridad, método y profesionales de confianza de principio a fin.',
+    quote: 'Mi misión es simple: ayudarte a conservar más de lo que ganas, desde donde estés.',
+    bridgeCaption: 'Estrategia y acompañamiento',
+    stats: [{ n:'3+', l:'Continentes atendidos' }, { n:'100%', l:'Legal y seguro' }, { n:'1', l:'Un solo punto de contacto' }],
+    servicesTitle: 'Qué hacemos',
+    services: ['Residencia fiscal en Paraguay', 'Apertura de empresa y Maquila', 'Planificación tributaria internacional', 'Consultoría estratégica personalizada'],
+    valuesTitle: 'Nuestros valores',
+    values: ['Claridad ante todo', 'Solo lo que es legal', 'Estructura propia, no improvisación'],
+    ctaTitle: '¿Listo para guardar más de lo que ganas?',
+    ctaBtn: 'Contáctanos →',
+  },
+  'pl': {
+    label: 'Założycielka & Konsultantka Międzynarodowa',
+    h1: 'Most między Tobą a systemem, który Cię wyzwoli.',
+    bio: 'Przyjechałam do Paragwaju, aby zrozumieć system od środka. Zbudowałam relacje z lokalnymi prawnikami, księgowymi i specjalistami; zmapowałam każdy etap procesu; i stałam się brakującym ogniwem dla przedsiębiorców, którzy chcą to zrobić bezpiecznie. Dziś ConnectUp obsługuje osoby z Brazylii, Polski, Hiszpanii i całego świata, z jasnością, metodą i zaufanymi profesjonalistami od początku do końca.',
+    quote: 'Moja misja jest prosta: pomóc Ci zachować więcej z tego, co zarabiasz, gdziekolwiek jesteś.',
+    bridgeCaption: 'Strategia i wsparcie',
+    stats: [{ n:'3+', l:'Obsługiwane kontynenty' }, { n:'100%', l:'Legalnie i bezpiecznie' }, { n:'1', l:'Jeden punkt kontaktu' }],
+    servicesTitle: 'Co robimy',
+    services: ['Rezydencja podatkowa w Paragwaju', 'Zakładanie firm i Maquila', 'Międzynarodowe planowanie podatkowe', 'Spersonalizowane doradztwo strategiczne'],
+    valuesTitle: 'Nasze wartości',
+    values: ['Przejrzystość przede wszystkim', 'Tylko to, co jest legalne', 'Własna struktura, nie improwizacja'],
+    ctaTitle: 'Gotowy, by zachować więcej z tego, co zarabiasz?',
+    ctaBtn: 'Skontaktuj się →',
+  },
+};
+
+const c = content[locale] ?? content['en'];
 ---
 
-<BaseLayout locale={locale} title={t.about.title}>
+<BaseLayout locale={locale} title={c.h1}>
+  <div style="padding-top:80px;">
 
-  <!-- Hero -->
-  <section class="relative overflow-hidden pt-[120px] pb-16" style="background: linear-gradient(165deg, #1A1A1AF0 0%, #1a0a2e 50%, #8417aaCC 100%);">
-    <div class="absolute top-0 right-0 w-[300px] h-[300px] rounded-full pointer-events-none" style="background:#8417aa30;filter:blur(80px);"></div>
-    <div class="max-w-[1140px] mx-auto px-6">
-      <span class="section-tag" style="color:rgba(255,255,255,0.6);">{t.about.badge}</span>
-      <h1 style="font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3rem);font-weight:600;color:white;margin-top:0.5rem;">{t.about.title}</h1>
-    </div>
-  </section>
-
-  <!-- Story -->
-  <section class="py-20 bg-white">
-    <div class="max-w-[1140px] mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
-
-        <!-- Visual -->
-        <div class="lg:col-span-2">
-          <div class="sticky top-28">
-            <div class="aspect-square rounded-3xl flex items-center justify-center max-w-sm mx-auto lg:mx-0 overflow-hidden" style="background:linear-gradient(135deg,#e1a7f1,#8417aa30);">
-              <div class="text-center p-8">
-                <div class="w-24 h-24 rounded-full mx-auto flex items-center justify-center text-white mb-4" style="background:#8417aa;font-family:'Fraunces',serif;font-size:2.5rem;font-weight:700;">C</div>
-                <p style="font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;color:#8417aa;">ConnectUP</p>
-                <p style="font-family:'DM Sans';font-size:0.85rem;color:#795389;margin-top:4px;">Paraguay Tax Residency</p>
-              </div>
-            </div>
-
-            <!-- Mission -->
-            <div class="mt-6 p-6 rounded-2xl" style="background:#f7f4fa;border:1px solid #dfdede;">
-              <div class="w-8 h-8 rounded-full flex items-center justify-center mb-3" style="background:#07ffd2;">
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#000" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-              </div>
-              <p style="font-family:'DM Sans';font-size:0.9rem;color:#333;font-style:italic;line-height:1.6;">"{t.about.mission}"</p>
-            </div>
-          </div>
+    <!-- Hero: photo + text -->
+    <section style="background:#f7f4fa;padding:4rem 1.5rem;">
+      <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;" class="about-grid">
+        <div>
+          <span style="display:block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#795389;margin-bottom:0.75rem;">{c.label}</span>
+          <h1 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.75rem);font-weight:600;line-height:1.3;margin-bottom:1.25rem;">{c.h1}</h1>
+          <p style="font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:300;line-height:1.8;color:#444;margin-bottom:1.5rem;">{c.bio}</p>
+          <blockquote style="border-left:3px solid #8417aa;background:#fff;padding:1rem 1.25rem;border-radius:0 8px 8px 0;font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:400;font-style:italic;color:#333;">
+            {c.quote}
+          </blockquote>
         </div>
-
-        <!-- Story text -->
-        <div class="lg:col-span-3">
-          <div class="space-y-6">
-            {t.about.story.map((paragraph) => (
-              <p style="font-family:'DM Sans';font-size:1.05rem;color:#555;line-height:1.75;">{paragraph}</p>
-            ))}
-          </div>
-
-          <!-- Values -->
-          <div class="mt-14">
-            <h2 style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;margin-bottom:1.5rem;">
-              {locale === 'pt-br' ? 'Nossos valores' : locale === 'pl' ? 'Nasze wartości' : locale === 'es' ? 'Nuestros valores' : 'Our values'}
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-              {t.about.values.map((value, i) => (
-                <div class="card" style={`border-top: 3px solid ${i % 2 === 0 ? '#07ffd2' : '#8417aa'};`}>
-                  <h3 style="font-family:'Fraunces',serif;font-size:1rem;font-weight:600;margin-bottom:6px;">{value.title}</h3>
-                  <p style="font-family:'DM Sans';font-size:0.85rem;color:#555;line-height:1.5;">{value.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div>
+          <img src="/lana-profissa.jpg" alt="Lana — ConnectUp" style="width:100%;border-radius:14px;object-fit:cover;max-height:480px;" />
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <CTA locale={locale} />
+    <!-- Bridge pill -->
+    <section style="padding:2.5rem 1.5rem;text-align:center;background:white;">
+      <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#795389;background:#f7f4fa;border:1px solid #dfdede;padding:6px 16px;border-radius:99px;">ConnectUp</span>
+      <p style="font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:300;color:#795389;margin-top:0.5rem;">{c.bridgeCaption}</p>
+    </section>
+
+    <!-- Stats -->
+    <section style="background:#f7f4fa;padding:3rem 1.5rem;">
+      <div style="max-width:700px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;text-align:center;" class="stats-grid">
+        {c.stats.map((s: any) => (
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:600;color:#8417aa;">{s.n}</div>
+            <div style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:400;color:#795389;margin-top:4px;">{s.l}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Services grid 2x2 -->
+    <section style="padding:4rem 1.5rem;background:white;">
+      <div style="max-width:800px;margin:0 auto;">
+        <h2 style="font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:600;text-align:center;margin-bottom:2rem;">{c.servicesTitle}</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;" class="services2x2">
+          {c.services.map((s: string, i: number) => (
+            <div style={`border:1px solid #dfdede;border-radius:10px;padding:1.25rem 1.5rem;border-left:4px solid ${i % 2 === 0 ? '#8417aa' : '#07ffd2'};`}>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:500;color:#1a1a1a;">{s}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Values grid 3 -->
+    <section style="background:#f7f4fa;padding:4rem 1.5rem;">
+      <div style="max-width:900px;margin:0 auto;">
+        <h2 style="font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:600;text-align:center;margin-bottom:2rem;">{c.valuesTitle}</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;" class="values-grid">
+          {c.values.map((v: string) => (
+            <div style="background:white;border:1px solid #dfdede;border-radius:10px;padding:1.25rem 1.5rem;text-align:center;">
+              <p style="font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:500;color:#1a1a1a;">{v}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA block -->
+    <section style="background:#8417aa;padding:4rem 1.5rem;text-align:center;">
+      <h3 style="font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:600;color:white;margin-bottom:1.5rem;">{c.ctaTitle}</h3>
+      <a href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:white;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;" onmouseover="this.style.background='#e1a7f1'" onmouseout="this.style.background='white'">
+        {c.ctaBtn}
+      </a>
+    </section>
+  </div>
 </BaseLayout>
+
+<style>
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr !important; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .services2x2 { grid-template-columns: 1fr !important; }
+  .values-grid { grid-template-columns: 1fr !important; }
+}
+</style>

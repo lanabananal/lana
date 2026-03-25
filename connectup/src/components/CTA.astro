@@ -3,6 +3,37 @@ import { getTranslations } from '../i18n/translations';
 interface Props { locale: string; }
 const { locale } = Astro.props;
 const t = getTranslations(locale);
+
+const titles: Record<string, string> = {
+  'pt-br': 'Agende uma conversa gratuita de 30 minutos',
+  'en':    'Book a free 30-minute consultation',
+  'es':    'Agenda una consulta gratuita de 30 minutos',
+  'pl':    'Umów bezpłatną 30-minutową konsultację',
+};
+const subtitles: Record<string, string> = {
+  'pt-br': 'Sem compromisso. Entenda se faz sentido para o seu perfil.',
+  'en':    'No commitment. Find out if it makes sense for your situation.',
+  'es':    'Sin compromiso. Descubre si tiene sentido para tu perfil.',
+  'pl':    'Bez zobowiązań. Sprawdź, czy to ma sens dla Twojego profilu.',
+};
+const ctaPrimary: Record<string, string> = {
+  'pt-br': 'Agendar agora →',
+  'en':    'Book now →',
+  'es':    'Agendar ahora →',
+  'pl':    'Zarezerwuj teraz →',
+};
+const ctaSecondary: Record<string, string> = {
+  'pt-br': 'Fale com a gente',
+  'en':    'Get in Touch',
+  'es':    'Contáctanos',
+  'pl':    'Skontaktuj się',
+};
+const footerNote: Record<string, string> = {
+  'pt-br': 'Consulta de 30 minutos · Gratuita · Sem compromisso',
+  'en':    '30-minute consultation · Free · No commitment',
+  'es':    'Consulta de 30 minutos · Gratuita · Sin compromiso',
+  'pl':    'Konsultacja 30 minut · Bezpłatna · Bez zobowiązań',
+};
 ---
 
 <section id="contact" class="relative py-20 overflow-hidden" style="background: linear-gradient(135deg, #470050, #8417aa);">
@@ -10,27 +41,27 @@ const t = getTranslations(locale);
   <div class="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full pointer-events-none" style="background: rgba(7,255,210,0.1); filter: blur(80px);"></div>
 
   <div class="relative max-w-[1140px] mx-auto px-6 text-center">
-    <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.5rem,4vw,2rem);font-weight:600;color:white;margin-bottom:1rem;">
-      Agende uma conversa gratuita de 20 minutos
+    <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.5rem,4vw,2rem);font-weight:600;color:white;margin-bottom:1rem;">
+      {titles[locale] ?? titles['en']}
     </h2>
-    <p style="font-family:'DM Sans';font-size:1.05rem;color:rgba(255,255,255,0.8);margin-bottom:2.5rem;font-weight:300;">
-      Sem compromisso. Entenda se faz sentido para o seu perfil.
+    <p style="font-family:'Poppins',sans-serif;font-size:1.05rem;color:rgba(255,255,255,0.8);margin-bottom:2.5rem;font-weight:300;">
+      {subtitles[locale] ?? subtitles['en']}
     </p>
 
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
       <a href="https://calendly.com/lana-theconnectup/aula-demo" target="_blank" rel="noopener noreferrer"
-        style="display:inline-flex;align-items:center;gap:8px;background:white;color:#8417aa;font-family:'DM Sans';font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;"
+        style="display:inline-flex;align-items:center;gap:8px;background:white;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;"
         onmouseover="this.style.background='#e1a7f1'" onmouseout="this.style.background='white'">
-        Agendar agora →
+        {ctaPrimary[locale] ?? ctaPrimary['en']}
       </a>
       <a href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer"
-        style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid white;color:white;font-family:'DM Sans';font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;">
-        Falar no WhatsApp
+        style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid white;color:white;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;">
+        {ctaSecondary[locale] ?? ctaSecondary['en']}
       </a>
     </div>
 
-    <p style="font-family:'DM Sans';font-size:11px;color:rgba(255,255,255,0.55);">
-      Consulta de 20 minutos · Gratuita · Sem compromisso
+    <p style="font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,0.55);font-weight:300;">
+      {footerNote[locale] ?? footerNote['en']}
     </p>
   </div>
 </section>

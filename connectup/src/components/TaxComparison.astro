@@ -1,75 +1,45 @@
 ---
-// PT-BR only section
 ---
-<section class="py-20" style="background: #f7f4fa;">
-  <div class="max-w-[1140px] mx-auto px-6">
-
-    <div class="text-center mb-14">
-      <span class="section-tag">Por que sair do Brasil fiscalmente?</span>
-      <h2 style="font-family: 'Fraunces', serif; font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 600; margin-top: 0.5rem;">Brasil vs. Paraguai: compare os impostos</h2>
+<section style="background:#f7f4fa;padding:5rem 1.5rem;">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#795389;">Comparativo</span>
+      <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;margin-top:0.5rem;">Brasil vs Paraguai</h2>
     </div>
 
-    <!-- Bar chart -->
-    <div class="grid grid-cols-1 gap-6 max-w-3xl mx-auto mb-14">
+    <div style="max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:1.5rem;">
       {[
-        { label: 'IRPF máximo', br: 27.5, py: 10, brColor: '#e63946', pyColor: '#8417aa' },
-        { label: 'Dividendos', br: 22.5, py: 0, brColor: '#e63946', pyColor: '#07ffd2' },
-        { label: 'Ganho de capital', br: 22.5, py: 0, brColor: '#e63946', pyColor: '#07ffd2' },
-        { label: 'Renda do exterior', br: 27.5, py: 0, brColor: '#e63946', pyColor: '#07ffd2' },
-      ].map(row => (
+        { label:'IRPF',             br: { pct:27.5, w:100 }, py: { pct:10,   w:36,  label:'10%' } },
+        { label:'Dividendos',       br: { pct:22.5, w:82  }, py: { pct:0,    w:0,   label:'0% isento' } },
+        { label:'Ganho de capital', br: { pct:22.5, w:82  }, py: { pct:0,    w:0,   label:'0% isento' } },
+        { label:'Renda exterior',   br: { pct:27.5, w:100 }, py: { pct:0,    w:0,   label:'0% isento' } },
+        { label:'Previdência',      br: { pct:14,   w:51  }, py: { pct:null, w:0,   label:'Opcional' } },
+      ].map((row) => (
         <div>
-          <p style="font-family: 'DM Sans'; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px;">{row.label}</p>
-          <div class="flex gap-2 items-center">
-            <span style="font-size: 0.75rem; width: 60px; text-align: right; font-family: 'DM Sans'; color: #555;">Brasil</span>
-            <div style={`height: 24px; width: ${row.br * 3}px; background: ${row.brColor}; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;`}>
-              <span style="color: white; font-size: 0.7rem; font-family: 'DM Sans'; font-weight: 500;">{row.br}%</span>
+          <div style="font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:500;margin-bottom:8px;color:#333;">{row.label}</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;color:#795389;width:60px;flex-shrink:0;">Brasil</span>
+              <div style="flex:1;height:32px;background:rgba(128,128,128,0.1);border-radius:6px;overflow:hidden;">
+                <div style={`width:${row.br.w}%;height:100%;background:linear-gradient(90deg,#470050,#8417aa);border-radius:6px;display:flex;align-items:center;padding:0 12px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:white;`}>{row.br.pct}%</div>
+              </div>
             </div>
-          </div>
-          <div class="flex gap-2 items-center mt-1">
-            <span style="font-size: 0.75rem; width: 60px; text-align: right; font-family: 'DM Sans'; color: #555;">Paraguai</span>
-            <div style={`height: 24px; width: ${Math.max(row.py * 3, 40)}px; background: ${row.pyColor}; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;`}>
-              <span style="color: ${row.py === 0 ? '#000' : 'white'}; font-size: 0.7rem; font-family: 'DM Sans'; font-weight: 500;">{row.py === 0 ? '0% — isento' : `${row.py}%`}</span>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;color:#795389;width:60px;flex-shrink:0;">Paraguai</span>
+              <div style="flex:1;height:32px;background:rgba(128,128,128,0.1);border-radius:6px;overflow:hidden;">
+                {row.py.w > 0 ? (
+                  <div style={`width:${row.py.w}%;height:100%;background:rgba(7,255,210,0.15);border:1px dashed rgba(7,255,210,0.5);border-radius:6px;display:flex;align-items:center;padding:0 12px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:#07ffd2;`}>{row.py.label}</div>
+                ) : (
+                  <div style="height:100%;background:rgba(7,255,210,0.08);border:1px dashed rgba(7,255,210,0.3);border-radius:6px;display:flex;align-items:center;padding:0 12px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:#07ffd2;">{row.py.label}</div>
+                )}
+              </div>
             </div>
           </div>
         </div>
       ))}
     </div>
 
-    <!-- Legend -->
-    <div class="flex justify-center gap-6 mb-14">
-      <div class="flex items-center gap-2"><div style="width:12px;height:12px;background:#e63946;border-radius:2px;"></div><span style="font-family:'DM Sans';font-size:0.8rem;">Brasil</span></div>
-      <div class="flex items-center gap-2"><div style="width:12px;height:12px;background:#8417aa;border-radius:2px;"></div><span style="font-family:'DM Sans';font-size:0.8rem;">Paraguai</span></div>
-    </div>
-
-    <!-- Table -->
-    <div class="max-w-2xl mx-auto mb-12 overflow-x-auto">
-      <table style="width:100%;border-collapse:collapse;font-family:'DM Sans';font-size:0.875rem;">
-        <thead>
-          <tr style="background:#8417aa;color:white;">
-            <th style="padding:10px 16px;text-align:left;border-radius:8px 0 0 0;">Imposto</th>
-            <th style="padding:10px 16px;text-align:center;">Brasil</th>
-            <th style="padding:10px 16px;text-align:center;border-radius:0 8px 0 0;">Paraguai</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            ['IRPF máximo','27,5%','10%'],
-            ['Dividendos','15–22,5%','0%'],
-            ['Ganho de capital','até 22,5%','0%'],
-            ['Renda do exterior','Tributada','Isenta'],
-            ['Previdência','até 14%','Opcional'],
-          ].map((row, i) => (
-            <tr style={`background:${i%2===0?'white':'#f7f4fa'};`}>
-              <td style="padding:10px 16px;color:#333;">{row[0]}</td>
-              <td style="padding:10px 16px;text-align:center;color:#e63946;font-weight:500;">{row[1]}</td>
-              <td style="padding:10px 16px;text-align:center;color:#8417aa;font-weight:500;">{row[2]}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-
-    <div class="text-center">
+    <div style="text-align:center;margin-top:3rem;">
       <a href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer" class="btn-primary">Quero pagar menos imposto</a>
     </div>
   </div>

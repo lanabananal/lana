@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import { getTranslations } from '../i18n/translations';
+
+interface Props { locale: string; }
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+
+// Map locale to content collection lang prefix
+const langMap: Record<string, string> = {
+  'pt-br': 'pt-br',
+  'en': 'en',
+  'es': 'es',
+  'pl': 'pl',
+};
+const lang = langMap[locale] ?? 'en';
+
+let posts: any[] = [];
+try {
+  const allPosts = await getCollection('blog');
+  posts = allPosts
+    .filter((p: any) => p.id.startsWith(lang + '-') || p.data.lang === lang)
+    .sort((a: any, b: any) => new Date(b.data.pubDate ?? b.data.date ?? 0).getTime() - new Date(a.data.pubDate ?? a.data.date ?? 0).getTime())
+    .slice(0, 5);
+} catch(e) {
+  posts = [];
+}
+
+const bc = (t as any).blogCarousel ?? { tag: 'Blog', title: 'Latest posts', readMore: 'Read', viewAll: 'View all' };
+---
+
+{posts.length > 0 && (
+<section style="padding:5rem 1.5rem;background:white;">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#795389;">{bc.tag}</span>
+      <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;margin-top:0.5rem;">{bc.title}</h2>
+    </div>
+    <div class="blog-carousel-track">
+      {posts.map((post: any) => (
+        <a href={`/${locale}/blog/${post.slug ?? post.id.replace(/^[^-]+-/, '').replace(/\.md$/, '')}`} class="blog-card">
+          <div class="blog-card-inner" style={post.data.image ? `background-image:url('${post.data.image}')` : 'background:linear-gradient(135deg,#470050,#8417aa)'}>
+            {post.data.image && <div style="position:absolute;inset:0;background:rgba(132,23,170,0.45);mix-blend-mode:multiply;border-radius:12px;"></div>}
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,2,15,0.96) 0%,transparent 60%);border-radius:12px;"></div>
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:1.25rem;">
+              {post.data.tags?.[0] && <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#07ffd2;margin-bottom:6px;">{post.data.tags[0]}</span>}
+              <h3 style="font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:500;color:white;line-height:1.4;margin-bottom:8px;">{post.data.title}</h3>
+              <span style="font-family:'Poppins',sans-serif;font-size:0.8rem;font-weight:400;color:#07ffd2;">{bc.readMore} →</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href={`/${locale}/blog`} style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #8417aa;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:500;padding:12px 24px;border-radius:8px;transition:all 0.2s;" onmouseover="this.style.background='#f7f4fa'" onmouseout="this.style.background='transparent'">
+        {bc.viewAll}
+      </a>
+    </div>
+  </div>
+</section>
+)}
+
+<style>
+.blog-carousel-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 768px) {
+  .blog-carousel-track { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .blog-carousel-track { grid-template-columns: 1fr; }
+}
+.blog-card {
+  display: block;
+  text-decoration: none;
+}
+.blog-card-inner {
+  position: relative;
+  height: 360px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.blog-card:hover .blog-card-inner {
+  transform: translateY(-4px);
+}
+</style>
