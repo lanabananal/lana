@@ -16,17 +16,17 @@ function localePath(targetLocale: string, path: string) {
 ---
 
 <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(255,255,255,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid transparent;">
-  <nav class="max-w-[1140px] mx-auto px-6 h-[72px] flex items-center justify-between gap-4">
+  <nav class="max-w-[1140px] mx-auto px-6 h-[88px] flex items-center justify-between gap-4">
 
     <!-- Logo -->
-    <a href={`/${locale}`} class="flex items-center shrink-0">
-      <img src="/logo-color.png" alt="ConnectUP" class="h-10 w-auto" />
+    <a href={`/${locale}`} class="flex flex-col items-center shrink-0">
+      <img src="/C_COLORIDO.png" alt="ConnectUP" class="h-14 w-auto" />
+      <span style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.08em;color:#8417aa;margin-top:2px;">ConnectUP</span>
     </a>
 
     <!-- Desktop nav -->
     <div class="hidden md:flex items-center gap-1">
       <a href={`/${locale}`}         class="nav-link">{t.nav.home}</a>
-      <a href={`/${locale}/about`}   class="nav-link">{t.nav.about}</a>
       <a href={`/${locale}/blog`}    class="nav-link">{t.nav.blog}</a>
       <a href={`/${locale}/contact`} class="nav-link">{t.nav.contact}</a>
     </div>
@@ -84,7 +84,6 @@ function localePath(targetLocale: string, path: string) {
   <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#E8E4ED]" style="box-shadow: 0 8px 32px rgba(0,0,0,0.08);">
     <div class="max-w-[1140px] mx-auto px-6 py-4 space-y-1">
       <a href={`/${locale}`}         class="block px-4 py-2.5 rounded-xl text-dark hover:bg-offwhite font-medium text-sm">{t.nav.home}</a>
-      <a href={`/${locale}/about`}   class="block px-4 py-2.5 rounded-xl text-dark hover:bg-offwhite font-medium text-sm">{t.nav.about}</a>
       <a href={`/${locale}/blog`}    class="block px-4 py-2.5 rounded-xl text-dark hover:bg-offwhite font-medium text-sm">{t.nav.blog}</a>
       <a href={`/${locale}/contact`} class="block px-4 py-2.5 rounded-xl text-dark hover:bg-offwhite font-medium text-sm">{t.nav.contact}</a>
 

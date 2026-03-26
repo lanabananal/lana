@@ -13,50 +13,29 @@ const icons = [
 ];
 ---
 
-<section id="services" class="py-8 px-4 md:px-6">
-  <div class="max-w-[1140px] mx-auto">
-    <div class="services-section">
-      <div class="services-bg"></div>
-      <div class="services-content">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;">{t.services.title}</span>
-          <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;color:white;margin-top:0.5rem;">{t.services.subtitle}</h2>
+<section id="services" class="relative py-16 px-6">
+  <!-- Full-width background image -->
+  <div class="absolute inset-0" style="background-image:url('/ss.png');background-size:cover;background-position:center;filter:brightness(0.55);"></div>
+  <div class="relative max-w-[1140px] mx-auto" style="z-index:2;">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;">{t.services.title}</span>
+      <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;color:white;margin-top:0.5rem;">{t.services.subtitle}</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {t.services.items.map((service, i) => (
+        <div class="glass-card">
+          <div class="icon-wrap">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#07ffd2" stroke-width="1.5" set:html={icons[i]}></svg>
+          </div>
+          <h3 style="font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;color:white;margin-bottom:6px;">{service.title}</h3>
+          <p style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;">{service.description}</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {t.services.items.map((service, i) => (
-            <div class="glass-card">
-              <div class="mb-4">
-                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#07ffd2" stroke-width="1.5" set:html={icons[i]}></svg>
-              </div>
-              <h3 style="font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;color:white;margin-bottom:6px;">{service.title}</h3>
-              <p style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;">{service.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
-.services-section {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  padding: 52px 36px;
-}
-.services-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('/ss.png');
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.55);
-}
-.services-content {
-  position: relative;
-  z-index: 2;
-}
 .glass-card {
   background: rgba(255,255,255,0.09);
   backdrop-filter: blur(16px);
@@ -64,9 +43,15 @@ const icons = [
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 14px;
   padding: 22px 18px;
+  text-align: center;
   transition: transform 0.2s;
 }
 .glass-card:hover {
   transform: translateY(-3px);
+}
+.icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
 }
 </style>

@@ -20,7 +20,7 @@ const translations = {
     nav: {
       home: 'Home',
       about: 'About',
-      blog: 'Blog',
+      blog: 'Content',
       contact: 'Contact',
       getStarted: 'Get Started',
     },
@@ -124,6 +124,7 @@ const translations = {
       links: { home: 'Home', about: 'About', blog: 'Blog', contact: 'Contact' },
     },
     video: {
+      label: 'WATCH — PARAGUAYAN LAWYER ANSWERS',
       title: 'Q&A: Tax Residency in Paraguay',
       subtitle: 'A Paraguayan attorney answers the most common questions about obtaining tax residency in Paraguay.',
       trust: 'Questions answered by Gabriela, Paraguayan attorney specializing in immigration and tax law.',
@@ -186,7 +187,7 @@ const translations = {
     nav: {
       home: 'Início',
       about: 'Sobre',
-      blog: 'Blog',
+      blog: 'Conteúdos',
       contact: 'Contato',
       getStarted: 'Começar',
     },
@@ -269,6 +270,7 @@ const translations = {
       links: { home: 'Início', about: 'Sobre', blog: 'Blog', contact: 'Contato' },
     },
     video: {
+      label: 'ASSISTA — ADVOGADA PARAGUAIA RESPONDE',
       title: 'Perguntas & Respostas: Residência Fiscal no Paraguai',
       subtitle: 'Uma advogada paraguaia responde as dúvidas mais comuns sobre como obter residência fiscal no Paraguai.',
       trust: 'Perguntas respondidas por Gabriela, advogada paraguaia especialista em direito imigratório e fiscal.',
@@ -331,7 +333,7 @@ const translations = {
     nav: {
       home: 'Strona Główna',
       about: 'O Mnie',
-      blog: 'Blog',
+      blog: 'Treści',
       contact: 'Kontakt',
       getStarted: 'Zacznij',
     },
@@ -410,6 +412,7 @@ const translations = {
       links: { home: 'Strona Główna', about: 'O Mnie', blog: 'Blog', contact: 'Kontakt' },
     },
     video: {
+      label: 'OGLĄDAJ — PARAGWAJSKA PRAWNICZKA ODPOWIADA',
       title: 'Q&A: Rezydencja Podatkowa w Paragwaju',
       subtitle: 'Paragwajska prawniczka odpowiada na najczęstsze pytania dotyczące uzyskania rezydencji podatkowej w Paragwaju.',
       trust: 'Odpowiedzi udzieliła Gabriela, paragwajska prawniczka specjalizująca się w prawie imigracyjnym i podatkowym.',
@@ -472,7 +475,7 @@ const translations = {
     nav: {
       home: 'Inicio',
       about: 'Sobre Mí',
-      blog: 'Blog',
+      blog: 'Contenidos',
       contact: 'Contacto',
       getStarted: 'Comenzar',
     },
@@ -551,6 +554,7 @@ const translations = {
       links: { home: 'Inicio', about: 'Sobre Mí', blog: 'Blog', contact: 'Contacto' },
     },
     video: {
+      label: 'MIRA — ABOGADA PARAGUAYA RESPONDE',
       title: 'Preguntas & Respuestas: Residencia Fiscal en Paraguay',
       subtitle: 'Una abogada paraguaya responde las preguntas más frecuentes sobre cómo obtener la residencia fiscal en Paraguay.',
       trust: 'Preguntas respondidas por Gabriela, abogada paraguaya especializada en derecho migratorio y fiscal.',

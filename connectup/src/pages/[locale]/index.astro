@@ -26,8 +26,8 @@ const isPtBr = locale === 'pt-br';
   {isPtBr && <VideoSection locale={locale} />}
   <Services locale={locale} />
   {isPtBr && <TaxComparison />}
-  {isPtBr ? <HowItWorksPtBr /> : <HowItWorks locale={locale} />}
   {!isPtBr && <VideoSection locale={locale} />}
+  {isPtBr ? <HowItWorksPtBr /> : <HowItWorks locale={locale} />}
   {isPtBr && <FAQ />}
   <BlogCarousel locale={locale} />
   <CTA locale={locale} />

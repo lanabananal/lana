@@ -1,0 +1,128 @@
+---
+interface Props { locale: string; }
+const { locale } = Astro.props;
+
+const content: Record<string, any> = {
+  'pt-br': {
+    h2: 'A ponte entre você e o sistema que vai te libertar.',
+    bio: 'Vim até o Paraguai para entender o sistema por dentro. Construí relacionamentos com advogados, contadores e especialistas locais; mapeei cada etapa do processo; e me tornei o elo que faltava para empreendedores e empresários que querem fazer isso com segurança. Hoje a ConnectUP atende pessoas do Brasil, Polônia, Espanha e de todo o mundo, com clareza, método e profissionais de confiança do início ao fim.',
+    quote: 'Minha missão é simples: ajudar você a guardar mais do que ganha, de onde quer que você esteja.',
+    bridgeCaption: 'ConnectUP — Estratégia e acompanhamento',
+    stats: [{ n:'3+', l:'Continentes atendidos' }, { n:'100%', l:'Legal e seguro' }, { n:'1', l:'Ponto de contato para tudo' }],
+    servicesTitle: 'O que fazemos',
+    services: ['Residência fiscal no Paraguai', 'Abertura de empresa e Maquila', 'Planejamento tributário internacional', 'Consultoria estratégica personalizada'],
+    valuesTitle: 'Nossos valores',
+    values: ['Clareza antes de tudo', 'Só o que é legal', 'Estrutura própria, não improviso'],
+  },
+  'en': {
+    h2: 'The bridge between you and the system that will set you free.',
+    bio: 'I came to Paraguay to understand the system from the inside. I built relationships with local lawyers, accountants and specialists; mapped every step of the process; and became the missing link for entrepreneurs and business owners who want to do this safely. Today ConnectUP serves people from Brazil, Poland, Spain and around the world, with clarity, method and trusted professionals from start to finish.',
+    quote: 'My mission is simple: help you keep more of what you earn, wherever you are.',
+    bridgeCaption: 'ConnectUP — Strategy and guidance',
+    stats: [{ n:'3+', l:'Continents served' }, { n:'100%', l:'Legal and safe' }, { n:'1', l:'Single point of contact' }],
+    servicesTitle: 'What we do',
+    services: ['Tax residency in Paraguay', 'Company setup and Maquila', 'International tax planning', 'Personalized strategic consulting'],
+    valuesTitle: 'Our values',
+    values: ['Clarity first', 'Only what is legal', 'Proper structure, not improvisation'],
+  },
+  'es': {
+    h2: 'El puente entre tú y el sistema que te va a liberar.',
+    bio: 'Vine a Paraguay para entender el sistema desde adentro. Construí relaciones con abogados, contadores y especialistas locales; mapeé cada etapa del proceso; y me convertí en el eslabón que faltaba para emprendedores y empresarios que quieren hacer esto con seguridad. Hoy ConnectUP atiende personas de Brasil, Polonia, España y de todo el mundo, con claridad, método y profesionales de confianza de principio a fin.',
+    quote: 'Mi misión es simple: ayudarte a conservar más de lo que ganas, desde donde estés.',
+    bridgeCaption: 'ConnectUP — Estrategia y acompañamiento',
+    stats: [{ n:'3+', l:'Continentes atendidos' }, { n:'100%', l:'Legal y seguro' }, { n:'1', l:'Un solo punto de contacto' }],
+    servicesTitle: 'Qué hacemos',
+    services: ['Residencia fiscal en Paraguay', 'Apertura de empresa y Maquila', 'Planificación tributaria internacional', 'Consultoría estratégica personalizada'],
+    valuesTitle: 'Nuestros valores',
+    values: ['Claridad ante todo', 'Solo lo que es legal', 'Estructura propia, no improvisación'],
+  },
+  'pl': {
+    h2: 'Most między Tobą a systemem, który Cię wyzwoli.',
+    bio: 'Przyjechałam do Paragwaju, aby zrozumieć system od środka. Zbudowałam relacje z lokalnymi prawnikami, księgowymi i specjalistami; zmapowałam każdy etap procesu; i stałam się brakującym ogniwem dla przedsiębiorców, którzy chcą to zrobić bezpiecznie. Dziś ConnectUP obsługuje osoby z Brazylii, Polski, Hiszpanii i całego świata, z jasnością, metodą i zaufanymi profesjonalistami od początku do końca.',
+    quote: 'Moja misja jest prosta: pomóc Ci zachować więcej z tego, co zarabiasz, gdziekolwiek jesteś.',
+    bridgeCaption: 'ConnectUP — Strategia i wsparcie',
+    stats: [{ n:'3+', l:'Obsługiwane kontynenty' }, { n:'100%', l:'Legalnie i bezpiecznie' }, { n:'1', l:'Jeden punkt kontaktu' }],
+    servicesTitle: 'Co robimy',
+    services: ['Rezydencja podatkowa w Paragwaju', 'Zakładanie firm i Maquila', 'Międzynarodowe planowanie podatkowe', 'Spersonalizowane doradztwo strategiczne'],
+    valuesTitle: 'Nasze wartości',
+    values: ['Przejrzystość przede wszystkim', 'Tylko to, co jest legalne', 'Własna struktura, nie improwizacja'],
+  },
+};
+
+const c = content[locale] ?? content['en'];
+---
+
+<section style="background:#f7f4fa;padding:5rem 1.5rem;">
+  <div style="max-width:1140px;margin:0 auto;">
+
+    <!-- Headline + bio -->
+    <div style="max-width:760px;margin:0 auto 3rem;text-align:center;">
+      <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;line-height:1.3;margin-bottom:1.25rem;">{c.h2}</h2>
+      <p style="font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:300;line-height:1.8;color:#444;margin-bottom:1.5rem;">{c.bio}</p>
+      <blockquote style="border-left:3px solid #8417aa;background:#fff;padding:1rem 1.25rem;border-radius:0 8px 8px 0;font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:400;font-style:italic;color:#333;text-align:left;">
+        {c.quote}
+      </blockquote>
+    </div>
+
+    <!-- Bridge label + Stats -->
+    <div style="text-align:center;margin-bottom:3rem;">
+      <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#795389;background:#fff;border:1px solid #dfdede;padding:6px 16px;border-radius:99px;margin-bottom:2rem;">{c.bridgeCaption}</span>
+      <div class="about-stats-grid">
+        {c.stats.map((s: any) => (
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:600;color:#8417aa;">{s.n}</div>
+            <div style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:400;color:#795389;margin-top:4px;">{s.l}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Services + Values -->
+    <div class="about-bottom-grid">
+      <!-- O que fazemos -->
+      <div>
+        <h3 style="font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:1rem;">{c.servicesTitle}</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" class="about-services-grid">
+          {c.services.map((s: string, i: number) => (
+            <div style={`border:1px solid #dfdede;border-radius:10px;padding:1rem 1.25rem;border-left:4px solid ${i % 2 === 0 ? '#8417aa' : '#07ffd2'};background:white;`}>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:500;color:#1a1a1a;">{s}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <!-- Nossos valores -->
+      <div>
+        <h3 style="font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:1rem;">{c.valuesTitle}</h3>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          {c.values.map((v: string) => (
+            <div style="background:white;border:1px solid #dfdede;border-radius:10px;padding:1rem 1.25rem;">
+              <p style="font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:500;color:#1a1a1a;">{v}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+.about-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+@media (max-width: 768px) {
+  .about-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-bottom-grid { grid-template-columns: 1fr; }
+  .about-services-grid { grid-template-columns: 1fr !important; }
+}
+</style>
