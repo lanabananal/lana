@@ -13,7 +13,7 @@ interface Props {
 const { locale, title, description } = Astro.props;
 const t = getTranslations(locale);
 
-const siteUrl = 'https://www.theconnectup.com';
+const siteUrl = 'https://tax.theconnectup.com';
 const pageTitle = title ? `${title} — ConnectUP` : 'ConnectUP — Paraguay Tax Residency | Legal & Fast';
 const pageDesc = description ?? t.hero.subheadline;
 const canonicalPath = Astro.url.pathname;

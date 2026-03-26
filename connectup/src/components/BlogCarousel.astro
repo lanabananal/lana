@@ -41,7 +41,7 @@ const bc = (t as any).blogCarousel ?? { tag: 'Blog', title: 'Latest posts', read
       <div id="blog-posts-grid" class="blog-carousel-track">
         {posts.map((post: any, index: number) => (
           <a
-            href={`/${locale}/blog/${post.slug ?? post.id.replace(/^[^-]+-/, '').replace(/\.md$/, '')}`}
+            href={`/${locale}/blog/${post.data.postSlug}`}
             class="blog-text-card"
             data-index={index}
             style={index >= 3 ? 'display:none;' : ''}

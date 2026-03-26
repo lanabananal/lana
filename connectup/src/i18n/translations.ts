@@ -23,6 +23,7 @@ const translations = {
       blog: 'Content',
       contact: 'Contact',
       getStarted: 'Get Started',
+      language: 'Language',
     },
     hero: {
       badge: 'Paraguay Tax Residency Experts',
@@ -66,6 +67,12 @@ const translations = {
           description:
             "Take advantage of Paraguay's Maquila Law for manufacturing and export-oriented businesses.",
           icon: '🏭',
+        },
+        {
+          title: 'Relocation Assistance',
+          description:
+            'Everything you need to establish your tax residency in Paraguay — from your first trip to settling in with confidence.',
+          icon: '✈️',
         },
       ],
     },
@@ -121,6 +128,8 @@ const translations = {
     footer: {
       tagline: 'Tax residency and financial freedom in Paraguay.',
       rights: 'All rights reserved.',
+      linksTitle: 'Links',
+      languagesTitle: 'Languages',
       links: { home: 'Home', about: 'About', blog: 'Blog', contact: 'Contact' },
     },
     video: {
@@ -128,6 +137,7 @@ const translations = {
       title: 'Q&A: Tax Residency in Paraguay',
       subtitle: 'A Paraguayan attorney answers the most common questions about obtaining tax residency in Paraguay.',
       trust: 'Questions answered by Gabriela, Paraguayan attorney specializing in immigration and tax law.',
+      cta: 'Talk to ConnectUP',
       qa: [
         { q: 'Do I need to physically live in Paraguay for tax residency?', a: 'No minimum days required. Temporary residency requires 1 visit per year; permanent residency requires 1 visit every 36 months.' },
         { q: 'How many trips to Paraguay does the process require?', a: 'Two trips to Asunción, approximately 5 business days each.' },
@@ -172,6 +182,9 @@ const translations = {
       tag: 'YOUR POINT OF CONTACT',
       title: 'Get in touch',
       subtitle: 'We respond within 24 hours.',
+      founderRole: 'Founder & Consultant',
+      founderBio: 'I came to Paraguay to understand the system from the inside and became the missing link.',
+      scheduleBtn: 'Schedule a meeting',
       namePlaceholder: 'Your name',
       phonePlaceholder: 'Your phone',
       emailPlaceholder: 'your@email.com',
@@ -190,6 +203,7 @@ const translations = {
       blog: 'Conteúdos',
       contact: 'Contato',
       getStarted: 'Começar',
+      language: 'Idioma',
     },
     hero: {
       badge: 'Especialistas em Residência Fiscal no Paraguai',
@@ -212,6 +226,7 @@ const translations = {
         { title: 'Abertura de Empresa', description: 'Registre sua empresa no Paraguai — SAE, SRL ou SA — com suporte jurídico completo do início ao fim.', icon: '🏢' },
         { title: 'Planejamento Financeiro', description: 'Planejamento financeiro estratégico para maximizar sua economia fiscal e proteger seu patrimônio a longo prazo.', icon: '📊' },
         { title: 'Serviços de Maquila', description: 'Aproveite a Lei de Maquila do Paraguai para empresas de manufatura e exportação.', icon: '🏭' },
+        { title: 'Assistência à Relocação', description: 'Tudo que você precisa para estabelecer sua residência fiscal no Paraguai — da primeira viagem à chegada com segurança.', icon: '✈️' },
       ],
     },
     why: {
@@ -267,6 +282,8 @@ const translations = {
     footer: {
       tagline: 'Residência fiscal e liberdade financeira no Paraguai.',
       rights: 'Todos os direitos reservados.',
+      linksTitle: 'Links',
+      languagesTitle: 'Idiomas',
       links: { home: 'Início', about: 'Sobre', blog: 'Blog', contact: 'Contato' },
     },
     video: {
@@ -274,6 +291,7 @@ const translations = {
       title: 'Perguntas & Respostas: Residência Fiscal no Paraguai',
       subtitle: 'Uma advogada paraguaia responde as dúvidas mais comuns sobre como obter residência fiscal no Paraguai.',
       trust: 'Perguntas respondidas por Gabriela, advogada paraguaia especialista em direito imigratório e fiscal.',
+      cta: 'Falar com a ConnectUP',
       qa: [
         { q: 'Preciso morar fisicamente no Paraguai para ter residência fiscal?', a: 'Não há exigência de dias mínimos. A residência temporária requer 1 visita por ano; a permanente requer 1 visita a cada 36 meses.' },
         { q: 'Quantas viagens ao Paraguai o processo exige?', a: 'Duas viagens a Assunção, de aproximadamente 5 dias úteis cada.' },
@@ -318,6 +336,9 @@ const translations = {
       tag: 'QUEM VAI TE ATENDER',
       title: 'Entre em contato',
       subtitle: 'Respondemos em até 24 horas.',
+      founderRole: 'Fundadora & Consultora',
+      founderBio: 'Vim ao Paraguai para entender o sistema por dentro e me tornei o elo que faltava.',
+      scheduleBtn: 'Agendar reunião',
       namePlaceholder: 'Seu nome',
       phonePlaceholder: 'Seu telefone',
       emailPlaceholder: 'seu@email.com',
@@ -336,6 +357,7 @@ const translations = {
       blog: 'Treści',
       contact: 'Kontakt',
       getStarted: 'Zacznij',
+      language: 'Język',
     },
     hero: {
       badge: 'Eksperci ds. Rezydencji Podatkowej w Paragwaju',
@@ -355,6 +377,7 @@ const translations = {
         { title: 'Zakładanie Firm', description: 'Zarejestruj swoją firmę w Paragwaju — SAE, SRL lub SA — z pełnym wsparciem prawnym od początku do końca.', icon: '🏢' },
         { title: 'Planowanie Finansowe', description: 'Strategiczne planowanie finansowe w celu maksymalizacji oszczędności podatkowych i długoterminowej ochrony majątku.', icon: '📊' },
         { title: 'Usługi Maquila', description: 'Skorzystaj z paragwajskiej Ustawy Maquila dla firm produkcyjnych i eksportowych.', icon: '🏭' },
+        { title: 'Pomoc w Relokacji', description: 'Wszystko, czego potrzebujesz, aby ustanowić rezydencję podatkową w Paragwaju — od pierwszej podróży do pewnego osiedlenia się.', icon: '✈️' },
       ],
     },
     why: {
@@ -409,6 +432,8 @@ const translations = {
     footer: {
       tagline: 'Rezydencja podatkowa i wolność finansowa w Paragwaju.',
       rights: 'Wszelkie prawa zastrzeżone.',
+      linksTitle: 'Linki',
+      languagesTitle: 'Języki',
       links: { home: 'Strona Główna', about: 'O Mnie', blog: 'Blog', contact: 'Kontakt' },
     },
     video: {
@@ -416,6 +441,7 @@ const translations = {
       title: 'Q&A: Rezydencja Podatkowa w Paragwaju',
       subtitle: 'Paragwajska prawniczka odpowiada na najczęstsze pytania dotyczące uzyskania rezydencji podatkowej w Paragwaju.',
       trust: 'Odpowiedzi udzieliła Gabriela, paragwajska prawniczka specjalizująca się w prawie imigracyjnym i podatkowym.',
+      cta: 'Porozmawiaj z ConnectUP',
       qa: [
         { q: 'Czy muszę fizycznie mieszkać w Paragwaju, aby uzyskać rezydencję podatkową?', a: 'Nie ma minimalnej liczby dni. Rezydencja tymczasowa wymaga 1 wizyty rocznie; stała wymaga 1 wizyty co 36 miesięcy.' },
         { q: 'Ile podróży do Paragwaju wymaga cały proces?', a: 'Dwie podróże do Asunción, każda trwająca około 5 dni roboczych.' },
@@ -460,6 +486,9 @@ const translations = {
       tag: 'TWÓJ PUNKT KONTAKTU',
       title: 'Skontaktuj się',
       subtitle: 'Odpowiadamy w ciągu 24 godzin.',
+      founderRole: 'Założycielka & Konsultantka',
+      founderBio: 'Przyjechałam do Paragwaju, aby zrozumieć system od środka i stałam się brakującym ogniwem.',
+      scheduleBtn: 'Umów spotkanie',
       namePlaceholder: 'Twoje imię',
       phonePlaceholder: 'Twój telefon',
       emailPlaceholder: 'twoj@email.com',
@@ -478,6 +507,7 @@ const translations = {
       blog: 'Contenidos',
       contact: 'Contacto',
       getStarted: 'Comenzar',
+      language: 'Idioma',
     },
     hero: {
       badge: 'Expertos en Residencia Fiscal en Paraguay',
@@ -497,6 +527,7 @@ const translations = {
         { title: 'Apertura de Empresa', description: 'Registra tu empresa en Paraguay — SAE, SRL o SA — con soporte legal completo de principio a fin.', icon: '🏢' },
         { title: 'Planificación Financiera', description: 'Planificación financiera estratégica para maximizar tu ahorro fiscal y proteger tu patrimonio a largo plazo.', icon: '📊' },
         { title: 'Servicios Maquila', description: 'Aprovecha la Ley Maquila de Paraguay para empresas de manufactura y exportación.', icon: '🏭' },
+        { title: 'Asistencia de Reubicación', description: 'Todo lo que necesitas para establecer tu residencia fiscal en Paraguay — desde tu primer viaje hasta instalarte con confianza.', icon: '✈️' },
       ],
     },
     why: {
@@ -551,6 +582,8 @@ const translations = {
     footer: {
       tagline: 'Residencia fiscal y libertad financiera en Paraguay.',
       rights: 'Todos los derechos reservados.',
+      linksTitle: 'Enlaces',
+      languagesTitle: 'Idiomas',
       links: { home: 'Inicio', about: 'Sobre Mí', blog: 'Blog', contact: 'Contacto' },
     },
     video: {
@@ -558,6 +591,7 @@ const translations = {
       title: 'Preguntas & Respuestas: Residencia Fiscal en Paraguay',
       subtitle: 'Una abogada paraguaya responde las preguntas más frecuentes sobre cómo obtener la residencia fiscal en Paraguay.',
       trust: 'Preguntas respondidas por Gabriela, abogada paraguaya especializada en derecho migratorio y fiscal.',
+      cta: 'Hablar con ConnectUP',
       qa: [
         { q: '¿Necesito vivir físicamente en Paraguay para tener residencia fiscal?', a: 'No hay días mínimos requeridos. La residencia temporal exige 1 visita al año; la permanente exige 1 visita cada 36 meses.' },
         { q: '¿Cuántos viajes a Paraguay requiere el proceso?', a: 'Dos viajes a Asunción, de aproximadamente 5 días hábiles cada uno.' },
@@ -602,6 +636,9 @@ const translations = {
       tag: 'TU PUNTO DE CONTACTO',
       title: 'Contáctanos',
       subtitle: 'Respondemos en menos de 24 horas.',
+      founderRole: 'Fundadora & Consultora',
+      founderBio: 'Vine a Paraguay para entender el sistema desde adentro y me convertí en el eslabón que faltaba.',
+      scheduleBtn: 'Agendar reunión',
       namePlaceholder: 'Tu nombre',
       phonePlaceholder: 'Tu teléfono',
       emailPlaceholder: 'tu@email.com',

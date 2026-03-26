@@ -7,41 +7,40 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = getTranslations(locale);
+const s = (t as any).steps;
+
+const icons = [
+  `<path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>`,
+  `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>`,
+  `<path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>`,
+  `<path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>`,
+  `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>`,
+];
 ---
 
-<section class="relative py-24 overflow-hidden">
-  <!-- City background: BW + blur -->
-  <div
-    class="absolute inset-0 bg-cover bg-center"
-    style="background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=80'); filter: grayscale(100%) blur(3px); transform: scale(1.05);"
-  ></div>
-  <!-- Dark overlay -->
-  <div class="absolute inset-0" style="background: linear-gradient(135deg, #1A1A1AF2 0%, #470050E0 100%);"></div>
-
-  <div class="relative max-w-[1140px] mx-auto px-6">
-
-    <div class="text-center max-w-2xl mx-auto mb-16">
-      <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-4" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.75); font-family: 'Poppins', sans-serif;">{t.howItWorks.title}</span>
-      <h2 class="text-white mt-2 mb-4" style="font-size: clamp(28px, 4vw, 42px); font-family: 'Poppins', sans-serif; font-weight: 600;">{t.howItWorks.title}</h2>
-      <p class="text-lg" style="color: rgba(255,255,255,0.69); font-family: 'Poppins', sans-serif; font-weight: 300;">{t.howItWorks.subtitle}</p>
+<section class="relative py-16 px-6">
+  <div style="position:absolute;inset:0;background-image:url('/rs.png');background-size:cover;background-position:center;filter:brightness(0.5);"></div>
+  <div style="position:relative;z-index:2;max-width:1140px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;">{s.tag}</span>
+      <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;color:white;margin-top:0.5rem;">{s.title}</h2>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-      <!-- Connector line -->
-      <div class="hidden md:block absolute h-px" style="background: rgba(255,255,255,0.15); top: 2.5rem; left: calc(33.333% + 2.5rem); right: calc(33.333% + 2.5rem);"></div>
-
-      {t.howItWorks.steps.map((step) => (
-        <div class="flex flex-col items-center text-center group">
-          <div
-            class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-white font-semibold text-sm"
-            style="background: linear-gradient(135deg, #470050, #8417aa); font-family: 'Poppins', sans-serif;"
-          >
-            {step.number}
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
+      {s.items.map((step: any, i: number) => (
+        <div style="background:rgba(255,255,255,0.09);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:22px 18px;text-align:center;">
+          <div style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:600;color:#07ffd2;margin-bottom:12px;">{step.n}</div>
+          <div style="display:flex;justify-content:center;margin-bottom:10px;">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5" set:html={icons[i]}></svg>
           </div>
-          <h3 class="text-lg text-white mb-3" style="font-family: 'Poppins', sans-serif; font-weight: 600;">{step.title}</h3>
-          <p class="leading-relaxed" style="color: rgba(255,255,255,0.69); font-family: 'Poppins', sans-serif; font-weight: 300;">{step.description}</p>
+          <h3 style="font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:600;color:white;margin-bottom:6px;">{step.title}</h3>
+          <p style="font-family:'Poppins',sans-serif;font-size:0.8rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.5;">{step.desc}</p>
         </div>
       ))}
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="https://calendly.com/lana-theconnectup/connectup" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:white;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;" onmouseover="this.style.background='#f7f4fa'" onmouseout="this.style.background='white'">
+        {s.cta}
+      </a>
     </div>
   </div>
 </section>
