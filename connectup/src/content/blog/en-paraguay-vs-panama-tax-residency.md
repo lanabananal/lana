@@ -1,8 +1,9 @@
 ---
 title: "Paraguay vs Panama Tax Residency: Which One Actually Makes Sense in 2026"
 description: "Both Paraguay and Panama offer territorial taxation and relatively easy residency. But they are not the same thing. Here is an honest comparison of costs, requirements, lifestyle, and what each option actually delivers."
-slug: "paraguay-vs-panama-tax-residency"
-date: "2026-03-31"
+postSlug: "paraguay-vs-panama-tax-residency"
+pubDate: "2026-03-31"
+lang: "en"
 tags: ["Paraguay vs Panama tax residency", "best second residency South America", "territorial tax country comparison", "Paraguay residency 2026", "Panama residency 2026"]
 ---
 

@@ -1,8 +1,9 @@
 ---
 title: "Residencia Fiscal en Paraguay: Cómo Funciona, Cuánto Cuesta y lo que Nadie te Cuenta"
 description: "El sistema territorial de Paraguay significa 0% sobre renta extranjera. Pero ser residente fiscal genuino implica mucho más que obtener un documento. Así es el proceso completo de principio a fin."
-slug: "residencia-fiscal-paraguay-como-funciona"
-date: "2026-03-31"
+postSlug: "residencia-fiscal-paraguay-como-funciona"
+pubDate: "2026-03-31"
+lang: "es"
 tags: ["residencia fiscal Paraguay cómo funciona", "requisitos residencia Paraguay 2026", "Paraguay 0% impuesto renta extranjera", "cómo ser residente fiscal Paraguay", "RUC Paraguay extranjeros"]
 ---
 

@@ -1,8 +1,9 @@
 ---
 title: "Paraguay vs Panamá: Cuál Residencia Fiscal Conviene en 2026"
 description: "Los dos tienen tributación territorial y residencia accesible. Pero no son lo mismo. Una comparación honesta de costos, requisitos, estilo de vida y lo que cada opción realmente entrega."
-slug: "paraguay-vs-panama-residencia-fiscal"
-date: "2026-03-31"
+postSlug: "paraguay-vs-panama-residencia-fiscal"
+pubDate: "2026-03-31"
+lang: "es"
 tags: ["Paraguay vs Panamá residencia fiscal", "mejor segunda residencia Latinoamérica", "comparación países tributación territorial", "residencia Paraguay 2026", "residencia Panamá 2026"]
 ---
 

@@ -1,8 +1,9 @@
 ---
 title: "O Paraguai ainda vale a pena em 2026?"
 description: "Residência fiscal no Paraguai segue sendo uma das opções mais procuradas por brasileiros — mas o processo tem detalhes que a maioria dos conteúdos ignora. Entenda o que funciona, o que mudou e o que você precisa saber antes de decidir."
-slug: paraguai-vale-a-pena-2026
-date: 2026-03-29
+postSlug: paraguai-vale-a-pena-2026
+pubDate: 2026-03-29
+lang: "pt-br"
 tags: [residencia fiscal, paraguai, brasileiros no exterior, planejamento tributario, nomade digital]
 ---
 

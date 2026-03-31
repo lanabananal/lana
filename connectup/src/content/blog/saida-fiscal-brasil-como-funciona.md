@@ -1,8 +1,9 @@
 ---
 title: "Saída Fiscal do Brasil: o que é, como funciona e o que acontece se você não fizer"
 description: "Se você mora fora do Brasil ou está pensando em mudar, a saída fiscal é uma das obrigações mais ignoradas e mais caras de ignorar. Entenda o que é, como funciona na prática e o que muda na sua vida depois que você faz."
-slug: "saida-fiscal-brasil-como-funciona"
-date: "2026-03-31"
+postSlug: "saida-fiscal-brasil-como-funciona"
+pubDate: "2026-03-31"
+lang: "pt-br"
 tags: ["saída fiscal brasil", "declaração saída definitiva brasil", "como parar de pagar imposto brasil", "deixar de ser residente fiscal brasileiro", "saída fiscal paraguai"]
 ---
 

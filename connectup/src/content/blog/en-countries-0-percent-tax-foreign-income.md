@@ -1,8 +1,9 @@
 ---
 title: "Countries with 0% Tax on Foreign Income: How Territorial Taxation Works"
 description: "If you earn money from clients or investments outside your country, there are places in the world where that income is completely tax-free. Here is how territorial tax systems work and which countries actually offer this legally."
-slug: "countries-0-percent-tax-foreign-income"
-date: "2026-03-31"
+postSlug: "countries-0-percent-tax-foreign-income"
+pubDate: "2026-03-31"
+lang: "en"
 tags: ["countries with 0% tax on foreign income", "territorial tax system", "best countries tax residency", "how to pay less taxes living abroad", "digital nomad tax strategy"]
 ---
 

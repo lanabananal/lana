@@ -1,8 +1,9 @@
 ---
 title: "Paraguay Tax Residency: How It Works, What It Costs, and What Nobody Tells You"
 description: "Paraguay's territorial tax system means 0% on foreign income. But becoming a genuine tax resident involves more than getting a document. Here is what the process actually looks like from start to finish."
-slug: "paraguay-tax-residency-how-it-works"
-date: "2026-03-31"
+postSlug: "paraguay-tax-residency-how-it-works"
+pubDate: "2026-03-31"
+lang: "en"
 tags: ["Paraguay tax residency how it works", "Paraguay residency requirements 2026", "Paraguay 0% tax foreign income", "how to become tax resident Paraguay", "Paraguay RUC registration"]
 ---
 

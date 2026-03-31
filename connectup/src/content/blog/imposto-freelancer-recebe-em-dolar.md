@@ -1,8 +1,9 @@
 ---
 title: "Imposto para Freelancer que Recebe em Dólar: o que ninguém te conta"
 description: "Se você trabalha para clientes no exterior e recebe em dólar, euro ou qualquer moeda estrangeira, existe uma obrigação fiscal que a maioria ignora e que pode sair caro. Entenda como funciona o imposto para freelancer que recebe do exterior e quais são suas opções."
-slug: "imposto-freelancer-recebe-em-dolar"
-date: "2026-03-31"
+postSlug: "imposto-freelancer-recebe-em-dolar"
+pubDate: "2026-03-31"
+lang: "pt-br"
 tags: ["imposto freelancer dólar", "carnê leão exterior", "tributação renda exterior brasil", "freelancer imposto brasil", "como declarar renda exterior"]
 ---
 

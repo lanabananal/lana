@@ -1,8 +1,9 @@
 ---
 title: "Países con 0% de Impuesto sobre Renta Extranjera: Cómo Funciona la Tributación Territorial"
 description: "Si ganás dinero de clientes o inversiones fuera de tu país, existen lugares en el mundo donde esa renta está completamente libre de impuestos. Así funciona la tributación territorial y qué países la ofrecen legalmente."
-slug: "paises-0-impuesto-renta-extranjera"
-date: "2026-03-31"
+postSlug: "paises-0-impuesto-renta-extranjera"
+pubDate: "2026-03-31"
+lang: "es"
 tags: ["países 0% impuesto renta extranjera", "sistema tributación territorial", "residencia fiscal extranjero", "cómo pagar menos impuestos viviendo afuera", "estrategia fiscal nómada digital"]
 ---
 

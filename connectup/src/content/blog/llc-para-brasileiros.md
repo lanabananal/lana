@@ -1,8 +1,9 @@
 ---
 title: "LLC para Brasileiros: quando vale a pena e quando não vale"
 description: "A LLC americana virou febre entre brasileiros que querem receber em dólar. Mas antes de abrir a sua, entenda como a tributação realmente funciona, quais são os riscos e quando essa estrutura faz sentido de verdade."
-slug: "llc-para-brasileiros"
-date: "2026-03-31"
+postSlug: "llc-para-brasileiros"
+pubDate: "2026-03-31"
+lang: "pt-br"
 tags: ["LLC para brasileiros", "abrir empresa nos EUA", "LLC imposto brasileiro", "empresa fora do brasil freelancer", "receber em dólar LLC"]
 ---
 
