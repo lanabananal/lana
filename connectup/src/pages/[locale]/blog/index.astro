@@ -9,21 +9,25 @@ export async function getStaticPaths() {
 }
 
 const { locale } = Astro.params;
-
 if (!isValidLocale(locale)) {
   return Astro.redirect('/en/blog', 302);
 }
 
 const t = getTranslations(locale);
 
+const blogDescs: Record<string, string> = {
+  'pt-br': 'Artigos e guias completos sobre residência fiscal no Paraguai, abertura de empresa, regime de Maquila e planejamento tributário para brasileiros.',
+  'en':    'Guides and articles about Paraguay tax residency, company registration, Maquila regime and international tax planning.',
+  'es':    'Artículos y guías sobre residencia fiscal en Paraguay, apertura de empresa, régimen de Maquila y planificación tributaria internacional.',
+  'pl':    'Artykuły i poradniki o rezydencji podatkowej w Paragwaju, zakładaniu firm, reżimie Maquila i międzynarodowym planowaniu podatkowym.',
+};
+
 const allPosts = await getCollection('blog');
 const posts = allPosts
   .filter(p => p.data.lang === locale)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
-
-<BaseLayout locale={locale} title={t.blog.title}>
-
+<BaseLayout locale={locale} title={t.blog.title} description={blogDescs[locale]}>
   <!-- Header -->
   <section class="bg-gradient-to-br from-slate-900 to-slate-800 pt-20 pb-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,7 +36,6 @@ const posts = allPosts
       <p class="text-slate-300 text-lg max-w-2xl">{t.blog.subtitle}</p>
     </div>
   </section>
-
   <!-- Posts grid -->
   <section class="py-20 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
