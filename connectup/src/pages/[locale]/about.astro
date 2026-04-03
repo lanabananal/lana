@@ -11,6 +11,8 @@ if (!isValidLocale(locale)) return Astro.redirect('/en/', 302);
 
 const content: Record<string, any> = {
   'pt-br': {
+    seoTitle: 'Sobre a ConnectUP — Especialistas em Residência Fiscal no Paraguai',
+    seoDesc: 'Conheça a ConnectUP, consultoria especializada em residência fiscal no Paraguai para brasileiros. Processo legal, seguro e com suporte jurídico completo.',
     label: 'Fundadora & Consultora Internacional',
     h1: 'A ponte entre você e o sistema que vai te libertar.',
     bio: 'Vim até o Paraguai para entender o sistema por dentro. Construí relacionamentos com advogados, contadores e especialistas locais; mapeei cada etapa do processo; e me tornei o elo que faltava para empreendedores e empresários que querem fazer isso com segurança. Hoje a ConnectUp atende pessoas do Brasil, Polônia, Espanha e de todo o mundo, com clareza, método e profissionais de confiança do início ao fim.',
@@ -25,6 +27,8 @@ const content: Record<string, any> = {
     ctaBtn: 'Fale com a gente →',
   },
   'en': {
+    seoTitle: 'About ConnectUP — Paraguay Tax Residency Specialists',
+    seoDesc: 'Meet ConnectUP, specialists in Paraguay tax residency. Legal, safe process with full legal support from start to finish.',
     label: 'Founder & International Consultant',
     h1: 'The bridge between you and the system that will set you free.',
     bio: 'I came to Paraguay to understand the system from the inside. I built relationships with local lawyers, accountants and specialists; mapped every step of the process; and became the missing link for entrepreneurs and business owners who want to do this safely. Today ConnectUp serves people from Brazil, Poland, Spain and around the world, with clarity, method and trusted professionals from start to finish.',
@@ -39,6 +43,8 @@ const content: Record<string, any> = {
     ctaBtn: 'Get in Touch →',
   },
   'es': {
+    seoTitle: 'Sobre ConnectUP — Especialistas en Residencia Fiscal en Paraguay',
+    seoDesc: 'Conoce ConnectUP, consultoría especializada en residencia fiscal en Paraguay. Proceso legal, seguro y con soporte jurídico completo.',
     label: 'Fundadora & Consultora Internacional',
     h1: 'El puente entre tú y el sistema que te va a liberar.',
     bio: 'Vine a Paraguay para entender el sistema desde adentro. Construí relaciones con abogados, contadores y especialistas locales; mapeé cada etapa del proceso; y me convertí en el eslabón que faltaba para emprendedores y empresarios que quieren hacer esto con seguridad. Hoy ConnectUp atiende personas de Brasil, Polonia, España y de todo el mundo, con claridad, método y profesionales de confianza de principio a fin.',
@@ -53,6 +59,8 @@ const content: Record<string, any> = {
     ctaBtn: 'Contáctanos →',
   },
   'pl': {
+    seoTitle: 'O ConnectUP — Specjaliści ds. Rezydencji Podatkowej w Paragwaju',
+    seoDesc: 'Poznaj ConnectUP, specjalistów od rezydencji podatkowej w Paragwaju. Legalny, bezpieczny proces z pełnym wsparciem prawnym.',
     label: 'Założycielka & Konsultantka Międzynarodowa',
     h1: 'Most między Tobą a systemem, który Cię wyzwoli.',
     bio: 'Przyjechałam do Paragwaju, aby zrozumieć system od środka. Zbudowałam relacje z lokalnymi prawnikami, księgowymi i specjalistami; zmapowałam każdy etap procesu; i stałam się brakującym ogniwem dla przedsiębiorców, którzy chcą to zrobić bezpiecznie. Dziś ConnectUp obsługuje osoby z Brazylii, Polski, Hiszpanii i całego świata, z jasnością, metodą i zaufanymi profesjonalistami od początku do końca.',
@@ -71,7 +79,7 @@ const content: Record<string, any> = {
 const c = content[locale] ?? content['en'];
 ---
 
-<BaseLayout locale={locale} title={c.h1}>
+<BaseLayout locale={locale} title={c.seoTitle} description={c.seoDesc}>
   <div style="padding-top:80px;">
 
     <!-- Hero: photo + text -->
