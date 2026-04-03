@@ -1,3 +1,4 @@
+```astro
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
@@ -12,14 +13,33 @@ interface Props {
 
 const { locale, title, description } = Astro.props;
 const t = getTranslations(locale);
-
 const siteUrl = 'https://tax.theconnectup.com';
-const pageTitle = title ? `${title} — ConnectUP` : 'ConnectUP — Paraguay Tax Residency | Legal & Fast';
-const pageDesc = description ?? t.hero.subheadline;
+
+const defaultTitles: Record<string, string> = {
+  'pt-br': 'Residência Fiscal no Paraguai para Brasileiros | ConnectUP',
+  'en':    'Paraguay Tax Residency for Brazilians | ConnectUP',
+  'es':    'Residencia Fiscal en Paraguay para Brasileños | ConnectUP',
+  'pl':    'Rezydencja Podatkowa w Paragwaju dla Brazylijczyków | ConnectUP',
+};
+
+const defaultDescs: Record<string, string> = {
+  'pt-br': 'Residência fiscal legal no Paraguai. Zero imposto sobre renda do exterior. Processo completo com suporte jurídico. Consulta gratuita.',
+  'en':    'Legal Paraguay tax residency. 0% tax on foreign income. Full process with legal support. Free consultation.',
+  'es':    'Residencia fiscal legal en Paraguay. 0% de impuesto sobre ingresos del exterior. Proceso completo con soporte jurídico. Consulta gratuita.',
+  'pl':    'Legalna rezydencja podatkowa w Paragwaju. 0% podatku od dochodów zagranicznych. Pełny proces z obsługą prawną. Bezpłatna konsultacja.',
+};
+
+const pageTitle = title
+  ? `${title} | ConnectUP`
+  : (defaultTitles[locale] ?? 'Paraguay Tax Residency | ConnectUP');
+
+const pageDesc = description
+  ?? defaultDescs[locale]
+  ?? t.hero.subheadline;
+
 const canonicalPath = Astro.url.pathname;
 const canonicalUrl = `${siteUrl}${canonicalPath}`;
 const ogImage = `${siteUrl}/C_COLORIDO.png`;
-
 const localePath = canonicalPath.replace(/^\/(en|pt-br|pl|es)/, '');
 
 const jsonLd = {
@@ -64,7 +84,6 @@ const jsonLd = {
   ],
 };
 ---
-
 <!doctype html>
 <html lang={locale} class="scroll-smooth">
   <head>
@@ -72,10 +91,8 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={pageDesc} />
     <meta name="robots" content="index, follow" />
-
     <!-- Canonical -->
     <link rel="canonical" href={canonicalUrl} />
-
     <!-- Open Graph -->
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDesc} />
@@ -84,23 +101,19 @@ const jsonLd = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content="ConnectUP" />
     <meta property="og:locale" content={locale === 'pt-br' ? 'pt_BR' : locale === 'pl' ? 'pl_PL' : locale === 'es' ? 'es_ES' : 'en_US'} />
-
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDesc} />
     <meta name="twitter:image" content={ogImage} />
-
     <!-- Alternate language links -->
     <link rel="alternate" hreflang="en"    href={`${siteUrl}/en${localePath}`} />
     <link rel="alternate" hreflang="pt-BR" href={`${siteUrl}/pt-br${localePath}`} />
     <link rel="alternate" hreflang="pl"    href={`${siteUrl}/pl${localePath}`} />
     <link rel="alternate" hreflang="es"    href={`${siteUrl}/es${localePath}`} />
     <link rel="alternate" hreflang="x-default" href={`${siteUrl}/en${localePath}`} />
-
     <link rel="icon" type="image/png" href="/C_COLORIDO.png" />
     <title>{pageTitle}</title>
-
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
@@ -112,3 +125,6 @@ const jsonLd = {
     <Footer locale={locale} />
   </body>
 </html>
+```
+
+Cola esse código inteiro no `BaseLayout.astro`, substituindo tudo. Depois commit e o Netlify já deploya automaticamente.
