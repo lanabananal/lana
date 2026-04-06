@@ -1,8 +1,7 @@
 ---
 title: "Reforma Tributária 2026: o que muda e por que o Paraguai nunca fez tanto sentido"
 description: "IRPFM, dividendos tributados, carnê-leão: entenda o que a reforma tributária brasileira de 2026 muda para quem ganha bem — e como a residência fiscal no Paraguai resolve isso legalmente."
-slug: "reforma-tributaria-brasil-2026-residencia-paraguai"
-date: "2026-04-02"
+pubDate: "2026-04-02"
 lang: "pt-br"
 tags: ["reforma tributária 2026", "IRPFM", "dividendos", "residência fiscal paraguai", "saída definitiva brasil"]
 author: "ConnectUP"

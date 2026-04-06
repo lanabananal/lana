@@ -1,8 +1,9 @@
 ---
 title: "Imposto para Freelancer que Recebe em Dólar: o que ninguém te conta"
 description: "Carnê-leão, GCAP, come-cotas: entenda por que pagar imposto no Brasil sobre renda do exterior não é obrigatório — e o que fazer para sair desse sistema legalmente."
-pubDate: "2026-04-31"
+pubDate: "2026-04-30"
 lang: "pt-br"
+postSlug: "imposto-freelancer-recebe-em-dolar"
 tags: ["imposto freelancer dólar", "carnê leão exterior", "tributação renda exterior brasil", "freelancer imposto brasil", "como declarar renda exterior"]
 ---
 
