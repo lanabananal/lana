@@ -1,20 +1,51 @@
 ---
 import BlogPostLayout from '../../../layouts/BlogPostLayout.astro';
 import { getCollection } from 'astro:content';
-import { locales } from '../../../i18n/translations';
+
+const hreflangMap: Record<string, string> = {
+  'en':    'en',
+  'pt-br': 'pt-BR',
+  'pl':    'pl',
+  'es':    'es',
+};
+
+const siteUrl = 'https://theconnectup.com';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map(post => ({
-    params: {
-      locale: post.data.lang,
-      slug: post.data.postSlug,
-    },
-    props: { post },
-  }));
+
+  const hreflangMapInner: Record<string, string> = {
+    'en':    'en',
+    'pt-br': 'pt-BR',
+    'pl':    'pl',
+    'es':    'es',
+  };
+  const siteUrlInner = 'https://theconnectup.com';
+
+  return posts.map(post => {
+    const postSlug = post.data.postSlug;
+    const siblings = posts.filter(p => p.data.postSlug === postSlug);
+
+    const hreflangUrls: Record<string, string> = {};
+    for (const p of siblings) {
+      const hreflang = hreflangMapInner[p.data.lang] ?? p.data.lang;
+      hreflangUrls[hreflang] = `${siteUrlInner}/${p.data.lang}/blog/${postSlug}`;
+    }
+    const defaultSibling = siblings.find(p => p.data.lang === 'en') ?? siblings[0];
+    const defaultHreflang = hreflangMapInner[defaultSibling.data.lang] ?? defaultSibling.data.lang;
+    hreflangUrls['x-default'] = hreflangUrls[defaultHreflang];
+
+    return {
+      params: {
+        locale: post.data.lang,
+        slug: postSlug,
+      },
+      props: { post, hreflangUrls },
+    };
+  });
 }
 
-const { post } = Astro.props;
+const { post, hreflangUrls } = Astro.props;
 const { locale } = Astro.params;
 const { Content } = await post.render();
 ---
@@ -26,6 +57,7 @@ const { Content } = await post.render();
   pubDate={post.data.pubDate}
   author={post.data.author}
   tags={post.data.tags}
+  hreflangUrls={hreflangUrls}
 >
   <Content />
 </BlogPostLayout>

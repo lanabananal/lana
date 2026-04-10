@@ -41,6 +41,7 @@
     border: 1px solid #dfdede;
   }
 
+  .prose-content h1 { display: none; }
   .prose-content h2 { font-family: 'Poppins', sans-serif; @apply text-2xl font-semibold mt-10 mb-4; }
   .prose-content h3 { font-family: 'Poppins', sans-serif; @apply text-xl mt-8 mb-3; }
   .prose-content p  { @apply text-gray-600 leading-relaxed mb-5; }

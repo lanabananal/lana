@@ -9,9 +9,34 @@ interface Props {
   pubDate: Date;
   author: string;
   tags?: string[];
+  hreflangUrls?: Record<string, string>;
 }
 
-const { locale, title, description, pubDate, author, tags } = Astro.props;
+const { locale, title, description, pubDate, author, tags, hreflangUrls } = Astro.props;
+
+const siteUrl = 'https://theconnectup.com';
+const canonicalPath = Astro.url.pathname;
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  image: `${siteUrl}/C_COLORIDO.png`,
+  author: {
+    '@type': 'Organization',
+    name: 'ConnectUP',
+    url: siteUrl,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'ConnectUP',
+    logo: { '@type': 'ImageObject', url: `${siteUrl}/C_COLORIDO.png` },
+  },
+  datePublished: pubDate.toISOString(),
+  dateModified: pubDate.toISOString(),
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteUrl}${canonicalPath}` },
+};
 const t = getTranslations(locale);
 
 const formattedDate = pubDate.toLocaleDateString(
@@ -20,7 +45,8 @@ const formattedDate = pubDate.toLocaleDateString(
 );
 ---
 
-<BaseLayout locale={locale} title={title} description={description}>
+<BaseLayout locale={locale} title={title} description={description} ogType="article" pubDate={pubDate} postAuthor={author} hreflangUrls={hreflangUrls}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleLd)} slot="head" />
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
     <!-- Back link -->

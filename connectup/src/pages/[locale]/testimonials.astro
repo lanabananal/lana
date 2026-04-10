@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { locales, isValidLocale } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return locales.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!isValidLocale(locale)) return Astro.redirect('/en/', 302);
+
+const content: Record<string, any> = {
+  'en': {
+    seoTitle: 'Testimonials | ConnectUP — Paraguay Tax Residency',
+    seoDesc: 'See what clients say about ConnectUP\'s Paraguay tax residency service. Real experiences from professionals who achieved financial and geographic freedom.',
+    badge: 'Testimonials',
+    h1: 'What Our',
+    h1accent: 'Clients Say',
+    subtitle: 'Real stories from professionals who took the step toward financial freedom.',
+    placeholder: '⚠️ These are placeholder testimonials. Replace with real client reviews.',
+    testimonials: [
+      { name: 'Rodrigo M.', role: 'Software Engineer, Remote', country: 'Brazil → Paraguay', rating: 5, text: 'ConnectUP made the entire Paraguay residency process incredibly smooth. I was worried about the bureaucracy but Lana and the team guided me through every single step. Within 60 days I had my cedula in hand. I\'m saving over $2,000/month in taxes now. Best investment I\'ve ever made.' },
+      { name: 'Ana Paula S.', role: 'Marketing Consultant', country: 'São Paulo → Asunción', rating: 5, text: 'I had so many doubts about whether this was really legal and worth it. After the free consultation I had all my answers. The process was exactly as described — two trips, great support, no surprises. The fiscal exit from Brazil was handled flawlessly. I highly recommend ConnectUP.' },
+      { name: 'Marcin K.', role: 'E-commerce Entrepreneur', country: 'Poland → Paraguay', rating: 5, text: 'I found ConnectUP through a friend recommendation and I\'m so glad I did. They speak Polish and understand the European side of this move perfectly. The RUC registration and company setup were done faster than I expected. Professional, responsive, and truly knowledgeable.' },
+      { name: 'Carlos V.', role: 'Digital Nomad & Investor', country: 'Argentina → Paraguay', rating: 5, text: 'As an Argentine, tax planning is essential. Paraguay\'s territorial system is a game-changer and ConnectUP explained every detail clearly during the consultation. The whole process was professional and transparent. My only regret is not doing this sooner.' },
+      { name: 'Fernanda L.', role: 'UX Designer, Freelancer', country: 'Brazil → Paraguay', rating: 5, text: 'I was nervous about going through this process alone. Having ConnectUP by my side — literally accompanying me during the trips to Asunción — made all the difference. Everything was organized, explained, and stress-free. I now have full peace of mind about my tax situation.' },
+      { name: 'João R.', role: 'Financial Advisor', country: 'Rio de Janeiro → Asunción', rating: 5, text: 'As someone who works in finance, I did extensive due diligence before choosing ConnectUP. Their knowledge of both the Paraguayan legal framework and the Brazilian fiscal exit process is unmatched. The team is professional, ethical, and delivers exactly what they promise.' },
+    ],
+    ctaTitle: 'Ready to write your own story?',
+    ctaBtn: 'Book a free consultation →',
+    ctaNote: 'Free · No commitment',
+  },
+  'pt-br': {
+    seoTitle: 'Depoimentos | ConnectUP — Residência Fiscal no Paraguai',
+    seoDesc: 'Veja o que os clientes dizem sobre o serviço de residência fiscal no Paraguai da ConnectUP. Experiências reais de profissionais que conquistaram liberdade financeira e geográfica.',
+    badge: 'Depoimentos',
+    h1: 'O Que Nossos',
+    h1accent: 'Clientes Dizem',
+    subtitle: 'Histórias reais de profissionais que deram o passo em direção à liberdade financeira.',
+    placeholder: '⚠️ Estes são depoimentos provisórios. Substitua pelos depoimentos reais dos seus clientes.',
+    testimonials: [
+      { name: 'Rodrigo M.', role: 'Engenheiro de Software, Remoto', country: 'Brasil → Paraguai', rating: 5, text: 'A ConnectUP tornou todo o processo de residência no Paraguai incrivelmente tranquilo. Eu estava preocupado com a burocracia, mas a Lana e a equipe me guiaram em cada etapa. Em 60 dias eu já tinha minha cédula. Economizo mais de R$ 10.000/mês em impostos. Melhor investimento da minha vida.' },
+      { name: 'Ana Paula S.', role: 'Consultora de Marketing', country: 'São Paulo → Assunção', rating: 5, text: 'Tinha muitas dúvidas sobre se isso era realmente legal e valia a pena. Depois da consulta gratuita, todas as dúvidas foram respondidas. O processo foi exatamente como descrito — duas viagens, ótimo suporte, sem surpresas. A saída fiscal do Brasil foi feita perfeitamente. Recomendo muito.' },
+      { name: 'Marcin K.', role: 'Empreendedor de E-commerce', country: 'Polônia → Paraguai', rating: 5, text: 'Encontrei a ConnectUP por indicação de um amigo e estou muito feliz por isso. Eles entendem perfeitamente o lado europeu dessa mudança. O registro do RUC e a abertura da empresa foram feitos mais rápido do que eu esperava. Profissional, responsivo e realmente especializado.' },
+      { name: 'Carlos V.', role: 'Nômade Digital e Investidor', country: 'Argentina → Paraguai', rating: 5, text: 'Como argentino, o planejamento fiscal é essencial. O sistema territorial do Paraguai é revolucionário e a ConnectUP explicou cada detalhe com clareza. Todo o processo foi profissional e transparente. Meu único arrependimento foi não ter feito isso antes.' },
+      { name: 'Fernanda L.', role: 'Designer UX, Freelancer', country: 'Brasil → Paraguai', rating: 5, text: 'Estava nervosa em passar por esse processo sozinha. Ter a ConnectUP ao meu lado — literalmente me acompanhando nas viagens a Assunção — fez toda a diferença. Tudo foi organizado, explicado e sem estresse. Agora tenho total tranquilidade em relação à minha situação fiscal.' },
+      { name: 'João R.', role: 'Assessor Financeiro', country: 'Rio de Janeiro → Assunção', rating: 5, text: 'Como profissional de finanças, fiz uma due diligence extensiva antes de escolher a ConnectUP. O conhecimento da equipe sobre o arcabouço jurídico paraguaio e o processo de saída fiscal brasileira é incomparável. A equipe é profissional, ética e entrega exatamente o que promete.' },
+    ],
+    ctaTitle: 'Pronto para escrever a sua história?',
+    ctaBtn: 'Agendar consulta gratuita →',
+    ctaNote: 'Gratuita · Sem compromisso',
+  },
+  'es': {
+    seoTitle: 'Testimonios | ConnectUP — Residencia Fiscal en Paraguay',
+    seoDesc: 'Descubre lo que dicen los clientes de ConnectUP sobre el servicio de residencia fiscal en Paraguay. Experiencias reales de profesionales que lograron la libertad financiera.',
+    badge: 'Testimonios',
+    h1: 'Lo Que Dicen',
+    h1accent: 'Nuestros Clientes',
+    subtitle: 'Historias reales de profesionales que dieron el paso hacia la libertad financiera.',
+    placeholder: '⚠️ Estos son testimonios provisionales. Reemplázalos con los testimonios reales de tus clientes.',
+    testimonials: [
+      { name: 'Rodrigo M.', role: 'Ingeniero de Software, Remoto', country: 'Brasil → Paraguay', rating: 5, text: 'ConnectUP hizo que todo el proceso de residencia en Paraguay fuera increíblemente fluido. Me preocupaba la burocracia, pero Lana y el equipo me guiaron en cada paso. En 60 días ya tenía mi cédula en mano. Ahorro más de $2,000/mes en impuestos. La mejor inversión de mi vida.' },
+      { name: 'Ana Paula S.', role: 'Consultora de Marketing', country: 'São Paulo → Asunción', rating: 5, text: 'Tenía muchas dudas sobre si esto era realmente legal y valía la pena. Después de la consulta gratuita, tuve todas mis respuestas. El proceso fue exactamente como se describió. La salida fiscal de Brasil se manejó perfectamente. Recomiendo ConnectUP ampliamente.' },
+      { name: 'Carlos V.', role: 'Nómada Digital e Inversor', country: 'Argentina → Paraguay', rating: 5, text: 'Como argentino, la planificación fiscal es esencial. El sistema territorial de Paraguay es un cambio de juego y ConnectUP explicó cada detalle claramente. Todo el proceso fue profesional y transparente. Mi único arrepentimiento es no haber hecho esto antes.' },
+      { name: 'Fernanda L.', role: 'Diseñadora UX, Freelancer', country: 'Brasil → Paraguay', rating: 5, text: 'Estaba nerviosa de pasar por este proceso sola. Tener a ConnectUP a mi lado — acompañándome literalmente durante los viajes a Asunción — marcó toda la diferencia. Todo fue organizado, explicado y sin estrés. Ahora tengo total tranquilidad sobre mi situación fiscal.' },
+      { name: 'Marcin K.', role: 'Emprendedor de E-commerce', country: 'Polonia → Paraguay', rating: 5, text: 'Encontré ConnectUP por recomendación y estoy muy contento. El registro del RUC y la apertura de empresa se completaron más rápido de lo esperado. Equipo profesional, receptivo y verdaderamente experto.' },
+      { name: 'João R.', role: 'Asesor Financiero', country: 'Río de Janeiro → Asunción', rating: 5, text: 'Como profesional de finanzas, hice una debida diligencia extensa antes de elegir ConnectUP. Su conocimiento del marco legal paraguayo y el proceso de salida fiscal brasileño no tiene comparación. El equipo es profesional, ético y cumple exactamente lo que promete.' },
+    ],
+    ctaTitle: '¿Listo para escribir tu propia historia?',
+    ctaBtn: 'Agendar consulta gratuita →',
+    ctaNote: 'Gratuita · Sin compromiso',
+  },
+  'pl': {
+    seoTitle: 'Opinie | ConnectUP — Rezydencja Podatkowa w Paragwaju',
+    seoDesc: 'Zobacz, co mówią klienci o usłudze rezydencji podatkowej ConnectUP w Paragwaju. Prawdziwe doświadczenia profesjonalistów, którzy osiągnęli wolność finansową.',
+    badge: 'Opinie',
+    h1: 'Co Mówią',
+    h1accent: 'Nasi Klienci',
+    subtitle: 'Prawdziwe historie profesjonalistów, którzy zrobili krok ku wolności finansowej.',
+    placeholder: '⚠️ To są zastępcze opinie. Zastąp je prawdziwymi recenzjami klientów.',
+    testimonials: [
+      { name: 'Rodrigo M.', role: 'Inżynier Oprogramowania, Zdalnie', country: 'Brazylia → Paragwaj', rating: 5, text: 'ConnectUP sprawił, że cały proces rezydencji w Paragwaju przebiegł niezwykle sprawnie. Obawiałem się biurokracji, ale Lana i zespół prowadzili mnie przez każdy krok. W 60 dni miałem już cédula w rękach. Oszczędzam ponad 2 000 USD miesięcznie na podatkach. Najlepsza inwestycja w moim życiu.' },
+      { name: 'Marcin K.', role: 'Przedsiębiorca E-commerce', country: 'Polska → Paragwaj', rating: 5, text: 'Znalazłem ConnectUP dzięki poleceniu znajomego. Doskonale rozumieją europejski aspekt tej zmiany. Rejestracja RUC i założenie firmy zostały zakończone szybciej niż się spodziewałem. Profesjonalny, responsywny i naprawdę kompetentny zespół.' },
+      { name: 'Ana Paula S.', role: 'Konsultantka Marketingu', country: 'São Paulo → Asunción', rating: 5, text: 'Miałam wiele wątpliwości, czy to naprawdę legalne i opłacalne. Po bezpłatnej konsultacji miałam wszystkie odpowiedzi. Proces przebiegł dokładnie tak, jak opisano — dwie podróże, świetne wsparcie, bez niespodzianek. Wyjście podatkowe z Brazylii zostało obsłużone bez zarzutu.' },
+      { name: 'Carlos V.', role: 'Cyfrowy Nomad i Inwestor', country: 'Argentyna → Paragwaj', rating: 5, text: 'Terytorialny system podatkowy Paragwaju zmienia zasady gry, a ConnectUP wyjaśnił każdy szczegół podczas konsultacji. Cały proces był profesjonalny i transparentny. Moje jedyne żałowanie to, że nie zrobiłem tego wcześniej.' },
+      { name: 'Fernanda L.', role: 'Projektantka UX, Freelancer', country: 'Brazylia → Paragwaj', rating: 5, text: 'Obawiałam się przejść przez ten proces samodzielnie. Obecność ConnectUP u mojego boku — dosłownie towarzysząc mi podczas podróży do Asunción — zrobiła ogromną różnicę. Wszystko było zorganizowane, wyjaśnione i bez stresu.' },
+      { name: 'João R.', role: 'Doradca Finansowy', country: 'Rio de Janeiro → Asunción', rating: 5, text: 'Jako specjalista finansowy przeprowadziłem dokładne badanie przed wyborem ConnectUP. Ich wiedza na temat paragwajskich ram prawnych i brazylijskiego procesu wyjścia podatkowego jest niezrównana. Zespół jest profesjonalny, etyczny i dostarcza dokładnie to, co obiecuje.' },
+    ],
+    ctaTitle: 'Gotowy, aby napisać własną historię?',
+    ctaBtn: 'Umów bezpłatną konsultację →',
+    ctaNote: 'Bezpłatna · Bez zobowiązań',
+  },
+};
+
+const c = content[locale] ?? content['en'];
+---
+
+<BaseLayout locale={locale} title={c.seoTitle} description={c.seoDesc}>
+  <div style="padding-top:80px;">
+
+    <!-- HERO -->
+    <section class="py-20 px-6" style="background:linear-gradient(165deg,#1A1A1AF0 0%,#1a0a2eE8 100%);">
+      <div class="max-w-[860px] mx-auto text-center">
+        <div class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-6" style="background:rgba(7,255,210,0.08);border:1px solid rgba(7,255,210,0.2);color:rgba(7,255,210,0.85);font-family:'Poppins',sans-serif;">
+          {c.badge}
+        </div>
+        <h1 style="font-family:'Poppins',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:600;color:white;line-height:1.15;margin-bottom:1rem;">
+          {c.h1}<br/><span style="color:#07ffd2;">{c.h1accent}</span>
+        </h1>
+        <p style="font-family:'Poppins',sans-serif;font-size:1.05rem;color:rgba(255,255,255,0.65);font-weight:300;max-width:560px;margin:0 auto;">
+          {c.subtitle}
+        </p>
+      </div>
+    </section>
+
+    <!-- PLACEHOLDER NOTICE -->
+    <div style="background:#fff3cd;border-bottom:2px solid #ffc107;padding:0.75rem 1.5rem;text-align:center;font-family:'Poppins',sans-serif;font-size:0.82rem;color:#856404;">
+      {c.placeholder}
+    </div>
+
+    <!-- TESTIMONIALS GRID -->
+    <section class="py-16 px-6" style="background:#fafafa;">
+      <div class="max-w-[1100px] mx-auto">
+        <div class="testimonials-grid">
+          {c.testimonials.map((t: any) => (
+            <div style="background:white;border:1px solid #e5e7eb;border-radius:16px;padding:1.75rem;display:flex;flex-direction:column;gap:1rem;">
+              <!-- Stars -->
+              <div style="display:flex;gap:3px;">
+                {Array.from({length: t.rating}).map(() => (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#07ffd2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                ))}
+              </div>
+              <!-- Text -->
+              <p style="font-family:'Poppins',sans-serif;font-size:0.88rem;color:#444;line-height:1.75;flex:1;">"{t.text}"</p>
+              <!-- Author -->
+              <div style="border-top:1px solid #f0f0f0;padding-top:1rem;display:flex;align-items:center;gap:0.75rem;">
+                <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#8417aa,#07ffd2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <span style="font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:700;color:white;">{t.name.charAt(0)}</span>
+                </div>
+                <div>
+                  <div style="font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:600;color:#1a1a1a;">{t.name}</div>
+                  <div style="font-family:'Poppins',sans-serif;font-size:0.75rem;color:#888;">{t.role}</div>
+                  <div style="font-family:'Poppins',sans-serif;font-size:0.75rem;color:#07c9a8;font-weight:500;">{t.country}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-6 text-center" style="background:linear-gradient(135deg,#003830,#006655);">
+      <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:white;margin-bottom:1.5rem;">{c.ctaTitle}</h2>
+      <a href="https://calendly.com/lana-theconnectup/connectup" target="_blank" rel="noopener noreferrer"
+        style="display:inline-flex;align-items:center;gap:8px;background:#07ffd2;color:#003830;font-family:'Poppins',sans-serif;font-weight:600;padding:14px 28px;border-radius:8px;">
+        {c.ctaBtn}
+      </a>
+      <p style="font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,0.45);margin-top:1rem;">{c.ctaNote}</p>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 768px) {
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>

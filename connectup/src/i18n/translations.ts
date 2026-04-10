@@ -136,7 +136,7 @@ const translations = {
       rights: 'All rights reserved.',
       linksTitle: 'Links',
       languagesTitle: 'Languages',
-      links: { home: 'Home', about: 'About', blog: 'Blog', contact: 'Contact' },
+      links: { home: 'Home', about: 'About', blog: 'Blog', contact: 'Contact', faq: 'FAQ', testimonials: 'Testimonials' },
     },
     video: {
       label: 'WATCH — PARAGUAYAN LAWYER ANSWERS',
@@ -293,7 +293,7 @@ const translations = {
       rights: 'Todos os direitos reservados.',
       linksTitle: 'Links',
       languagesTitle: 'Idiomas',
-      links: { home: 'Início', about: 'Sobre', blog: 'Blog', contact: 'Contato' },
+      links: { home: 'Início', about: 'Sobre', blog: 'Blog', contact: 'Contato', faq: 'FAQ', testimonials: 'Depoimentos' },
     },
     video: {
       label: 'ASSISTA — ADVOGADA PARAGUAIA RESPONDE',
@@ -449,7 +449,7 @@ const translations = {
       rights: 'Wszelkie prawa zastrzeżone.',
       linksTitle: 'Linki',
       languagesTitle: 'Języki',
-      links: { home: 'Strona Główna', about: 'O Mnie', blog: 'Blog', contact: 'Kontakt' },
+      links: { home: 'Strona Główna', about: 'O Mnie', blog: 'Blog', contact: 'Kontakt', faq: 'FAQ', testimonials: 'Opinie' },
     },
     video: {
       label: 'OGLĄDAJ — PARAGWAJSKA PRAWNICZKA ODPOWIADA',
@@ -605,7 +605,7 @@ const translations = {
       rights: 'Todos los derechos reservados.',
       linksTitle: 'Enlaces',
       languagesTitle: 'Idiomas',
-      links: { home: 'Inicio', about: 'Sobre Mí', blog: 'Blog', contact: 'Contacto' },
+      links: { home: 'Inicio', about: 'Sobre Mí', blog: 'Blog', contact: 'Contacto', faq: 'FAQ', testimonials: 'Testimonios' },
     },
     video: {
       label: 'MIRA — ABOGADA PARAGUAYA RESPONDE',

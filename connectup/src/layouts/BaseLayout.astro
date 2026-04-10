@@ -8,9 +8,13 @@ interface Props {
   locale: string;
   title?: string;
   description?: string;
+  ogType?: 'website' | 'article';
+  pubDate?: Date;
+  postAuthor?: string;
+  hreflangUrls?: Record<string, string>;
 }
 
-const { locale, title, description } = Astro.props;
+const { locale, title, description, ogType = 'website', pubDate, postAuthor, hreflangUrls } = Astro.props;
 const t = getTranslations(locale);
 const siteUrl = 'https://theconnectup.com';
 
@@ -36,16 +40,33 @@ const pageDesc = description
   ?? defaultDescs[locale]
   ?? t.hero.subheadline;
 
+const pageKeywords: Record<string, string> = {
+  'en':    'Paraguay tax residency, Paraguay cedula, territorial tax system, 0% foreign income tax, professional mobility, CV LinkedIn international, company formation Paraguay',
+  'pt-br': 'residência fiscal Paraguai, cédula paraguaia, planejamento fiscal, imposto renda exterior, mobilidade profissional, CV LinkedIn internacional, abertura empresa Paraguai',
+  'es':    'residencia fiscal Paraguay, cédula paraguaya, planificación fiscal, impuesto renta extranjera, movilidad profesional, CV LinkedIn internacional, empresa Paraguay',
+  'pl':    'rezydencja podatkowa Paragwaj, cédula paragwajska, planowanie podatkowe, podatek dochód zagraniczny, mobilność zawodowa, CV LinkedIn internationale',
+};
+
 const canonicalPath = Astro.url.pathname;
 const canonicalUrl = `${siteUrl}${canonicalPath}`;
 const ogImage = `${siteUrl}/C_COLORIDO.png`;
 const localePath = canonicalPath.replace(/^\/(en|pt-br|pl|es)/, '');
 
+const defaultHreflangUrls: Record<string, string> = {
+  'en':       `${siteUrl}/en${localePath}`,
+  'pt-BR':    `${siteUrl}/pt-br${localePath}`,
+  'pl':       `${siteUrl}/pl${localePath}`,
+  'es':       `${siteUrl}/es${localePath}`,
+  'x-default': `${siteUrl}/en${localePath}`,
+};
+
+const resolvedHreflangUrls = hreflangUrls ?? defaultHreflangUrls;
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Organization',
+      '@type': 'ProfessionalService',
       '@id': `${siteUrl}/#organization`,
       name: 'ConnectUP',
       url: siteUrl,
@@ -53,16 +74,45 @@ const jsonLd = {
         '@type': 'ImageObject',
         url: `${siteUrl}/C_COLORIDO.png`,
       },
+      image: `${siteUrl}/C_COLORIDO.png`,
+      description: 'Paraguay tax residency and international professional mobility services. Full legal support for cedula, RUC, company formation, CV & LinkedIn optimization and professional communication.',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Edificio Atrium',
+        addressLocality: 'Asunción',
+        addressRegion: 'Asunción',
+        addressCountry: 'PY',
+      },
+      telephone: '+595991507955',
       contactPoint: {
         '@type': 'ContactPoint',
-        telephone: '+55-11-91306-2315',
+        telephone: '+595991507955',
         contactType: 'customer service',
         availableLanguage: ['Portuguese', 'English', 'Spanish', 'Polish'],
       },
       sameAs: [
         'https://www.linkedin.com/company/theconnectup/',
         'https://www.youtube.com/@Connectupbr',
+        'https://www.instagram.com/theconnectup/',
       ],
+      areaServed: [
+        { '@type': 'Country', name: 'Paraguay' },
+        { '@type': 'Country', name: 'Brazil' },
+        { '@type': 'Country', name: 'United States' },
+        { '@type': 'Country', name: 'Poland' },
+        { '@type': 'Country', name: 'Argentina' },
+        { '@type': 'Country', name: 'Spain' },
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'ConnectUP Services',
+        itemListElement: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Paraguay Tax Residency', description: 'Complete legal Paraguay tax residency including cedula, RUC and SET certificate. 0% tax on foreign income.' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Paraguay Company Formation', description: 'Full company registration in Paraguay — SAE, SRL or SA — with legal support.' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'CV & LinkedIn Optimization', description: 'Resume and LinkedIn profile restructured for international ATS standards.' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Professional Communication', description: 'Corporate English, STAR method coaching and international presentation training.' } },
+        ],
+      },
     },
     {
       '@type': 'WebSite',
@@ -105,32 +155,40 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={pageDesc} />
+    <meta name="keywords" content={pageKeywords[locale] ?? pageKeywords['en']} />
     <meta name="robots" content="index, follow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Canonical -->
     <link rel="canonical" href={canonicalUrl} />
     <!-- Open Graph -->
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDesc} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content="ConnectUP" />
     <meta property="og:locale" content={locale === 'pt-br' ? 'pt_BR' : locale === 'pl' ? 'pl_PL' : locale === 'es' ? 'es_ES' : 'en_US'} />
+    {ogType === 'article' && pubDate && (
+      <meta property="article:published_time" content={pubDate.toISOString()} />
+    )}
+    {ogType === 'article' && postAuthor && (
+      <meta property="article:author" content={postAuthor} />
+    )}
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDesc} />
     <meta name="twitter:image" content={ogImage} />
     <!-- Alternate language links -->
-    <link rel="alternate" hreflang="en"    href={`${siteUrl}/en${localePath}`} />
-    <link rel="alternate" hreflang="pt-BR" href={`${siteUrl}/pt-br${localePath}`} />
-    <link rel="alternate" hreflang="pl"    href={`${siteUrl}/pl${localePath}`} />
-    <link rel="alternate" hreflang="es"    href={`${siteUrl}/es${localePath}`} />
-    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/en${localePath}`} />
+    {Object.entries(resolvedHreflangUrls).map(([lang, url]) => (
+      <link rel="alternate" hreflang={lang} href={url} />
+    ))}
     <link rel="icon" type="image/png" href="/C_COLORIDO.png" />
     <title>{pageTitle}</title>
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col">
     <Navbar locale={locale} />
@@ -140,6 +198,3 @@ const jsonLd = {
     <Footer locale={locale} />
   </body>
 </html>
-```
-
-Cola esse código inteiro no `BaseLayout.astro`, substituindo tudo. Depois commit e o Netlify já deploya automaticamente.
