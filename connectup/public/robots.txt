@@ -17,4 +17,4 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
-Sitemap: https://tax.theconnectup.com/sitemap-index.xml
+Sitemap: https://theconnectup.com/sitemap-index.xml

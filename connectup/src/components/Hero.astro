@@ -4,18 +4,11 @@ interface Props { locale: string; }
 const { locale } = Astro.props;
 const t = getTranslations(locale);
 
-const isPtBr = locale === 'pt-br';
 const ctaHref = 'https://wa.me/5511913062315';
-const secondaryHref = isPtBr ? '#como-funciona' : `/${locale}#services`;
-
-const statLabels = {
-  taxRate: isPtBr ? 'Alíquota Máxima' : 'Max Tax Rate',
-  days:    isPtBr ? 'Dias para Residência' : 'Days to Residency',
-  foreign: isPtBr ? 'Imposto sobre Renda Exterior' : 'Tax on Foreign Income',
-};
+const secondaryHref = `#services-overview`;
 ---
 
-<section class="relative overflow-hidden pt-[120px] pb-20" style="background: linear-gradient(165deg, #1A1A1AF0 0%, #1a0a2eE8 40%, #8417aaCC 100%);">
+<section class="relative overflow-hidden pt-[120px] pb-24" style="background: linear-gradient(165deg, #1A1A1AF0 0%, #1a0a2eE8 40%, #8417aaCC 100%);">
   <div class="absolute top-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none" style="background: #8417aa40; filter: blur(100px);"></div>
   <div class="absolute bottom-0 left-1/4 w-[300px] h-[300px] rounded-full pointer-events-none" style="background: #07ffd230; filter: blur(80px);"></div>
   <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: radial-gradient(#e1a7f1 1px, transparent 1px); background-size: 32px 32px;"></div>
@@ -26,13 +19,13 @@ const statLabels = {
         {t.hero.badge}
       </div>
 
-      <h1 style="font-family: 'Poppins', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 600; line-height: 1.1; color: white;" class="mb-8">
-        {t.hero.headline}
-        {isPtBr && <><br /><span style="color: #07ffd2;">{t.hero.headline2}</span></>}
-        {!isPtBr && <><br /><span style="color: #e1a7f1;">{t.hero.headline2}</span></>}
+      <!-- Headline always in English regardless of locale -->
+      <h1 style="font-family: 'Poppins', sans-serif; font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 700; line-height: 1.05; color: white; letter-spacing: -0.02em;" class="mb-6">
+        Global minds<br />
+        <span style="color: #07ffd2;">connect.</span>
       </h1>
 
-      <p class="leading-relaxed mb-10 max-w-2xl" style="font-size: clamp(1rem, 2vw, 1.15rem); color: rgba(255,255,255,0.70); font-family: 'Poppins', sans-serif; font-weight: 300;">
+      <p class="leading-relaxed mb-10 max-w-2xl" style="font-size: clamp(0.95rem, 1.8vw, 1.05rem); color: rgba(255,255,255,0.65); font-family: 'Poppins', sans-serif; font-weight: 300;">
         {t.hero.subheadline}
       </p>
 
@@ -44,17 +37,6 @@ const statLabels = {
         <a href={secondaryHref} class="btn-secondary" style="border-color: #07ffd2; color: #07ffd2;">
           {t.hero.ctaSecondary}
         </a>
-      </div>
-
-      <div class="flex flex-wrap gap-8 mt-14 pt-10" style="border-top: 1px solid rgba(255,255,255,0.10);">
-        <div>
-          <div style="font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 600; color: white;">10%</div>
-          <div style="font-size: 0.8rem; color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{statLabels.taxRate}</div>
-        </div>
-        <div>
-          <div style="font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 600; color: white;">$0</div>
-          <div style="font-size: 0.8rem; color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{statLabels.foreign}</div>
-        </div>
       </div>
     </div>
   </div>

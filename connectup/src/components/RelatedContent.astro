@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  locale: string;
+  tags: string[];
+  title?: string;
+  tagLabel?: string;
+  viewAllLabel?: string;
+  readMoreLabel?: string;
+}
+
+const {
+  locale,
+  tags,
+  title,
+  tagLabel    = 'Conteúdo',
+  viewAllLabel = 'Ver todos os artigos',
+  readMoreLabel = 'Ler',
+} = Astro.props;
+
+const sectionTitles: Record<string, string> = {
+  'pt-br': title ?? 'Artigos relacionados',
+  'en':    title ?? 'Related articles',
+  'es':    title ?? 'Artículos relacionados',
+  'pl':    title ?? 'Powiązane artykuły',
+};
+const viewAllLabels: Record<string, string> = {
+  'pt-br': 'Ver todos os artigos',
+  'en':    'View all articles',
+  'es':    'Ver todos los artículos',
+  'pl':    'Zobacz wszystkie artykuły',
+};
+const readMoreLabels: Record<string, string> = {
+  'pt-br': 'Ler',
+  'en':    'Read',
+  'es':    'Leer',
+  'pl':    'Czytaj',
+};
+
+const langMap: Record<string, string> = {
+  'pt-br': 'pt-br', 'en': 'en', 'es': 'es', 'pl': 'pl',
+};
+const lang = langMap[locale] ?? 'en';
+
+// Normalise tags for case-insensitive matching
+const normalised = tags.map(t => t.toLowerCase().trim());
+
+let posts: any[] = [];
+try {
+  const all = await getCollection('blog');
+  posts = all
+    .filter((p: any) => {
+      const isLang = p.id.startsWith(lang + '-') || p.data.lang === lang;
+      if (!isLang) return false;
+      const postTags: string[] = (p.data.tags ?? []).map((t: string) => t.toLowerCase().trim());
+      return postTags.some(pt => normalised.some(nt => pt.includes(nt) || nt.includes(pt)));
+    })
+    .sort((a: any, b: any) =>
+      new Date(b.data.pubDate ?? b.data.date ?? 0).getTime() -
+      new Date(a.data.pubDate ?? a.data.date ?? 0).getTime()
+    );
+} catch (e) {
+  posts = [];
+}
+
+const sectionTitle = sectionTitles[locale] ?? sectionTitles['en'];
+const viewAll      = viewAllLabels[locale]  ?? viewAllLabels['en'];
+const readMore     = readMoreLabels[locale] ?? readMoreLabels['en'];
+---
+
+{posts.length > 0 && (
+  <section style="padding:5rem 1.5rem;background:white;">
+    <div style="max-width:1140px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#795389;">{tagLabel}</span>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;margin-top:0.5rem;">{sectionTitle}</h2>
+      </div>
+
+      <div class="rc-grid">
+        {posts.slice(0, 6).map((post: any) => (
+          <a href={`/${locale}/blog/${post.data.postSlug}`} class="rc-card">
+            {post.data.tags?.[0] && (
+              <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#07ffd2;margin-bottom:8px;">{post.data.tags[0]}</span>
+            )}
+            <h3 style="font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;color:white;line-height:1.4;margin-bottom:10px;">{post.data.title}</h3>
+            {post.data.description && (
+              <p style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:14px;">{post.data.description}</p>
+            )}
+            <span style="font-family:'Poppins',sans-serif;font-size:0.8rem;font-weight:500;color:#07ffd2;">{readMore} →</span>
+          </a>
+        ))}
+      </div>
+
+      <div style="text-align:center;margin-top:2rem;">
+        <a href={`/${locale}/blog`} style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #8417aa;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:500;padding:12px 24px;border-radius:8px;transition:all 0.2s;" onmouseover="this.style.background='#f7f4fa'" onmouseout="this.style.background='transparent'">
+          {viewAll}
+        </a>
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+.rc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.rc-card {
+  display: block;
+  text-decoration: none;
+  background: linear-gradient(135deg, #470050, #8417aa);
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-height: 180px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.rc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(132,23,170,0.3);
+}
+@media (max-width: 768px) { .rc-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .rc-grid { grid-template-columns: 1fr; } }
+</style>

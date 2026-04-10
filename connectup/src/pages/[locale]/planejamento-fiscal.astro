@@ -1,0 +1,415 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
+import { locales, isValidLocale } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return locales.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!isValidLocale(locale)) return Astro.redirect('/en/', 302);
+
+const content: Record<string, any> = {
+  'pt-br': {
+    seoTitle: 'Planejamento Fiscal no Paraguai | Residência Fiscal Legal | ConnectUP',
+    seoDesc: 'Residência fiscal no Paraguai com 0% de imposto sobre renda do exterior. Processo completo com suporte jurídico. Calculadora de economia fiscal gratuita.',
+    badge: 'Programa ConnectUP',
+    h1: 'Planejamento Fiscal',
+    h1accent: 'no Paraguai',
+    subtitle: 'Residência fiscal legal com 0% de imposto sobre renda do exterior.',
+    desc: 'O Paraguai tem um dos sistemas tributários mais favoráveis do mundo: imposto territorial, sem tributação de renda do exterior, processo de residência acessível e custo de vida baixo. A ConnectUP guia você do início ao fim — documentação, viagens, empresa e certificado SET.',
+    whyTag: 'Por que o Paraguai',
+    whyTitle: 'O que torna o Paraguai único',
+    whyItems: [
+      { n: '01', title: '0% sobre renda exterior', desc: 'Renda gerada fora do Paraguai não é tributada. Zero. Legal e permanente.' },
+      { n: '02', title: 'Sistema territorial', desc: 'Só paga imposto sobre o que ganhar dentro do Paraguai. Renda global fica de fora.' },
+      { n: '03', title: 'Processo em 2 viagens', desc: 'Residência completa em aproximadamente 60 dias com duas visitas a Assunção.' },
+      { n: '04', title: 'Suporte jurídico completo', desc: 'Do primeiro documento à cédula paraguaia — acompanhamento em cada etapa.' },
+      { n: '05', title: 'Empresa e RUC incluídos', desc: 'Abertura de empresa e registro no sistema fiscal paraguaio (SET) como parte do processo.' },
+      { n: '06', title: 'Custo-benefício real', desc: 'Quem fatura acima de R$ 15 mil/mês pode recuperar o investimento no primeiro mês.' },
+    ],
+    calcTag: 'Calculadora',
+    calcTitle: 'Quanto você vai economizar?',
+    calcDesc: 'Simule sua economia fiscal com a residência no Paraguai. Selecione seu país de origem, perfil e renda anual.',
+    stepsTag: 'Como funciona',
+    stepsTitle: 'O processo da residência',
+    steps: [
+      { n: '01', title: 'Consulta gratuita', desc: 'Entendemos seu perfil e desenhamos a estratégia ideal para sua situação.' },
+      { n: '02', title: 'Documentação', desc: 'Preparamos todos os documentos necessários junto com você.' },
+      { n: '03', title: '1ª viagem a Assunção', desc: 'Aproximadamente 5 dias úteis para iniciar o processo de residência.' },
+      { n: '04', title: '2ª viagem a Assunção', desc: 'Aproximadamente 5 dias úteis para retirar sua cédula paraguaia.' },
+      { n: '05', title: 'Você é residente fiscal', desc: 'Renda do exterior isenta. Estrutura pronta. Certificado SET disponível.' },
+    ],
+    pricingTag: 'Investimento',
+    pricingTitle: 'Quanto custa?',
+    pricingPrice: 'a partir de R$ 12.000',
+    pricingNote: 'Taxas governamentais e consulares inclusas.',
+    assistaTag: 'Assista',
+    assistaTitle: 'Advogada Paraguaia Responde',
+    assistaSub: 'Dúvidas reais sobre residência fiscal respondidas por quem faz isso todos os dias.',
+    pricingIncludes: [
+      'Consultoria e estratégia tributária personalizada',
+      'Preparação e revisão de todos os documentos',
+      'Acompanhamento nas 2 viagens a Assunção',
+      'Abertura de empresa e registro RUC/SET',
+      'Suporte pós-residência por 30 dias',
+    ],
+    pricingCta: 'Agendar consulta gratuita →',
+    ctaTitle: 'Pronto para pagar menos impostos legalmente?',
+    ctaBtn: 'Agendar consulta gratuita →',
+    ctaSecondary: 'Fale pelo WhatsApp',
+    ctaNote: 'Consulta gratuita · Sem compromisso',
+  },
+  'en': {
+    seoTitle: 'Tax Planning in Paraguay | Legal Tax Residency | ConnectUP',
+    seoDesc: 'Paraguay tax residency with 0% tax on foreign income. Full process with legal support. Free tax savings calculator.',
+    badge: 'ConnectUP Program',
+    h1: 'Tax Planning',
+    h1accent: 'in Paraguay',
+    subtitle: 'Legal tax residency with 0% tax on foreign income.',
+    desc: 'Paraguay has one of the most favorable tax systems in the world: territorial taxation, no tax on foreign income, an accessible residency process and low cost of living. ConnectUP guides you from start to finish — documentation, trips, company setup and SET certificate.',
+    whyTag: 'Why Paraguay',
+    whyTitle: 'What makes Paraguay unique',
+    whyItems: [
+      { n: '01', title: '0% on foreign income', desc: 'Income generated outside Paraguay is not taxed. Zero. Legal and permanent.' },
+      { n: '02', title: 'Territorial system', desc: 'You only pay tax on income earned within Paraguay. Global income stays exempt.' },
+      { n: '03', title: 'Process in 2 trips', desc: 'Full residency in approximately 60 days with two visits to Asunción.' },
+      { n: '04', title: 'Full legal support', desc: 'From the first document to your Paraguayan ID — accompanied every step.' },
+      { n: '05', title: 'Company and RUC included', desc: 'Company setup and registration with the Paraguayan tax system (SET) as part of the process.' },
+      { n: '06', title: 'Real return on investment', desc: 'Those earning above $3,000/month can recover the investment in the first month.' },
+    ],
+    calcTag: 'Calculator',
+    calcTitle: 'How much will you save?',
+    calcDesc: 'Simulate your tax savings with Paraguay residency. Select your home country, profile and annual income.',
+    stepsTag: 'How it works',
+    stepsTitle: 'The residency process',
+    steps: [
+      { n: '01', title: 'Free consultation', desc: 'We understand your profile and design the ideal strategy for your situation.' },
+      { n: '02', title: 'Documentation', desc: 'We help you prepare all necessary documents.' },
+      { n: '03', title: '1st trip to Asunción', desc: 'Approximately 5 business days to start the residency process.' },
+      { n: '04', title: '2nd trip to Asunción', desc: 'Approximately 5 business days to pick up your Paraguayan ID.' },
+      { n: '05', title: 'You are a tax resident', desc: 'Foreign income exempt. Structure in place. SET certificate available.' },
+    ],
+    pricingTag: 'Investment',
+    pricingTitle: 'How much does it cost?',
+    pricingPrice: 'from $2,000 USD',
+    pricingNote: 'Government and consular fees are included.',
+    assistaTag: 'Watch',
+    assistaTitle: 'Paraguayan Lawyer Answers',
+    assistaSub: 'Real questions about tax residency answered by someone who does this every day.',
+    pricingIncludes: [
+      'Personalized tax strategy and consulting',
+      'Preparation and review of all documents',
+      'Accompaniment on both trips to Asunción',
+      'Company setup and RUC/SET registration',
+      '30-day post-residency support',
+    ],
+    pricingCta: 'Book a free consultation →',
+    ctaTitle: 'Ready to pay less tax — legally?',
+    ctaBtn: 'Book a free consultation →',
+    ctaSecondary: 'Chat on WhatsApp',
+    ctaNote: 'Free consultation · No commitment',
+  },
+  'es': {
+    seoTitle: 'Planificación Fiscal en Paraguay | Residencia Fiscal Legal | ConnectUP',
+    seoDesc: 'Residencia fiscal en Paraguay con 0% de impuesto sobre ingresos extranjeros. Proceso completo con soporte legal. Calculadora de ahorro fiscal gratuita.',
+    badge: 'Programa ConnectUP',
+    h1: 'Planificación Fiscal',
+    h1accent: 'en Paraguay',
+    subtitle: 'Residencia fiscal legal con 0% de impuesto sobre ingresos extranjeros.',
+    desc: 'Paraguay tiene uno de los sistemas tributarios más favorables del mundo: impuesto territorial, sin tributación de ingresos del exterior, proceso de residencia accesible y bajo costo de vida. ConnectUP te acompaña de principio a fin — documentación, viajes, empresa y certificado SET.',
+    whyTag: 'Por qué Paraguay',
+    whyTitle: 'Lo que hace a Paraguay único',
+    whyItems: [
+      { n: '01', title: '0% sobre ingresos extranjeros', desc: 'Los ingresos generados fuera de Paraguay no se gravan. Cero. Legal y permanente.' },
+      { n: '02', title: 'Sistema territorial', desc: 'Solo pagas impuestos sobre lo que ganes dentro de Paraguay. Los ingresos globales quedan exentos.' },
+      { n: '03', title: 'Proceso en 2 viajes', desc: 'Residencia completa en aproximadamente 60 días con dos visitas a Asunción.' },
+      { n: '04', title: 'Soporte legal completo', desc: 'Desde el primer documento hasta tu cédula paraguaya — acompañamiento en cada etapa.' },
+      { n: '05', title: 'Empresa y RUC incluidos', desc: 'Apertura de empresa y registro en el sistema fiscal paraguayo (SET) como parte del proceso.' },
+      { n: '06', title: 'Retorno real de inversión', desc: 'Quienes facturan más de $3,000/mes pueden recuperar la inversión en el primer mes.' },
+    ],
+    calcTag: 'Calculadora',
+    calcTitle: '¿Cuánto vas a ahorrar?',
+    calcDesc: 'Simula tu ahorro fiscal con la residencia en Paraguay. Selecciona tu país de origen, perfil e ingresos anuales.',
+    stepsTag: 'Cómo funciona',
+    stepsTitle: 'El proceso de residencia',
+    steps: [
+      { n: '01', title: 'Consulta gratuita', desc: 'Entendemos tu perfil y diseñamos la estrategia ideal para tu situación.' },
+      { n: '02', title: 'Documentación', desc: 'Te ayudamos a preparar todos los documentos necesarios.' },
+      { n: '03', title: '1er viaje a Asunción', desc: 'Aproximadamente 5 días hábiles para iniciar el proceso de residencia.' },
+      { n: '04', title: '2do viaje a Asunción', desc: 'Aproximadamente 5 días hábiles para retirar tu cédula paraguaya.' },
+      { n: '05', title: 'Eres residente fiscal', desc: 'Ingresos extranjeros exentos. Estructura lista. Certificado SET disponible.' },
+    ],
+    pricingTag: 'Inversión',
+    pricingTitle: '¿Cuánto cuesta?',
+    pricingPrice: 'desde $2,000 USD',
+    pricingNote: 'Los honorarios gubernamentales y consulares están incluidos.',
+    assistaTag: 'Mira',
+    assistaTitle: 'Abogada Paraguaya Responde',
+    assistaSub: 'Dudas reales sobre residencia fiscal respondidas por quien lo hace todos los días.',
+    pricingIncludes: [
+      'Asesoría y estrategia tributaria personalizada',
+      'Preparación y revisión de todos los documentos',
+      'Acompañamiento en los 2 viajes a Asunción',
+      'Apertura de empresa y registro RUC/SET',
+      'Soporte post-residencia por 30 días',
+    ],
+    pricingCta: 'Agendar consulta gratuita →',
+    ctaTitle: '¿Listo para pagar menos impuestos — legalmente?',
+    ctaBtn: 'Agendar consulta gratuita →',
+    ctaSecondary: 'Escribir por WhatsApp',
+    ctaNote: 'Consulta gratuita · Sin compromiso',
+  },
+  'pl': {
+    seoTitle: 'Planowanie Podatkowe w Paragwaju | Legalna Rezydencja Podatkowa | ConnectUP',
+    seoDesc: 'Rezydencja podatkowa w Paragwaju z 0% podatku od dochodów zagranicznych. Pełny proces z obsługą prawną. Bezpłatny kalkulator oszczędności podatkowych.',
+    badge: 'Program ConnectUP',
+    h1: 'Planowanie Podatkowe',
+    h1accent: 'w Paragwaju',
+    subtitle: 'Legalna rezydencja podatkowa z 0% podatku od dochodów zagranicznych.',
+    desc: 'Paragwaj ma jeden z najbardziej korzystnych systemów podatkowych na świecie: opodatkowanie terytorialne, brak podatku od dochodów zagranicznych, dostępny proces rezydencji i niskie koszty życia. ConnectUP prowadzi Cię od początku do końca — dokumentacja, podróże, firma i certyfikat SET.',
+    whyTag: 'Dlaczego Paragwaj',
+    whyTitle: 'Co sprawia, że Paragwaj jest wyjątkowy',
+    whyItems: [
+      { n: '01', title: '0% od dochodów zagranicznych', desc: 'Dochody uzyskane poza Paragwajem nie są opodatkowane. Zero. Legalnie i na stałe.' },
+      { n: '02', title: 'System terytorialny', desc: 'Płacisz podatek tylko od dochodów uzyskanych w Paragwaju. Globalne dochody są zwolnione.' },
+      { n: '03', title: 'Proces w 2 podróżach', desc: 'Pełna rezydencja w około 60 dni z dwoma wizytami w Asunción.' },
+      { n: '04', title: 'Pełna obsługa prawna', desc: 'Od pierwszego dokumentu do paragwajskiego dowodu tożsamości — towarzyszymy na każdym etapie.' },
+      { n: '05', title: 'Firma i RUC w pakiecie', desc: 'Założenie firmy i rejestracja w paragwajskim systemie podatkowym (SET) w ramach procesu.' },
+      { n: '06', title: 'Realny zwrot z inwestycji', desc: 'Osoby zarabiające powyżej $3,000/miesiąc mogą odzyskać inwestycję w pierwszym miesiącu.' },
+    ],
+    calcTag: 'Kalkulator',
+    calcTitle: 'Ile zaoszczędzisz?',
+    calcDesc: 'Symuluj oszczędności podatkowe z rezydencją w Paragwaju. Wybierz swój kraj, profil i roczny dochód.',
+    stepsTag: 'Jak to działa',
+    stepsTitle: 'Proces rezydencji',
+    steps: [
+      { n: '01', title: 'Bezpłatna konsultacja', desc: 'Rozumiemy Twój profil i projektujemy idealną strategię dla Twojej sytuacji.' },
+      { n: '02', title: 'Dokumentacja', desc: 'Pomagamy Ci przygotować wszystkie niezbędne dokumenty.' },
+      { n: '03', title: '1. podróż do Asunción', desc: 'Około 5 dni roboczych, aby rozpocząć proces rezydencji.' },
+      { n: '04', title: '2. podróż do Asunción', desc: 'Około 5 dni roboczych, aby odebrać paragwajski dowód tożsamości.' },
+      { n: '05', title: 'Jesteś rezydentem podatkowym', desc: 'Dochody zagraniczne zwolnione. Struktura gotowa. Certyfikat SET dostępny.' },
+    ],
+    pricingTag: 'Inwestycja',
+    pricingTitle: 'Ile to kosztuje?',
+    pricingPrice: 'od $2,000 USD',
+    pricingNote: 'Opłaty rządowe i konsularne są wliczone w cenę.',
+    assistaTag: 'Obejrzyj',
+    assistaTitle: 'Paragwajska Prawniczka Odpowiada',
+    assistaSub: 'Prawdziwe pytania o rezydencję podatkową, na które odpowiada ktoś, kto robi to każdego dnia.',
+    pricingIncludes: [
+      'Spersonalizowana strategia podatkowa i doradztwo',
+      'Przygotowanie i weryfikacja wszystkich dokumentów',
+      'Towarzyszenie podczas obu podróży do Asunción',
+      'Założenie firmy i rejestracja RUC/SET',
+      '30-dniowe wsparcie po uzyskaniu rezydencji',
+    ],
+    pricingCta: 'Umów bezpłatną konsultację →',
+    ctaTitle: 'Gotowy, by płacić mniej podatków — legalnie?',
+    ctaBtn: 'Umów bezpłatną konsultację →',
+    ctaSecondary: 'Napisz na WhatsApp',
+    ctaNote: 'Bezpłatna konsultacja · Bez zobowiązań',
+  },
+};
+
+const c = content[locale] ?? content['en'];
+---
+
+<BaseLayout locale={locale} title={c.seoTitle} description={c.seoDesc}>
+  <div style="padding-top:80px;">
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden pt-20 pb-20" style="background:linear-gradient(165deg,#1A1A1AF0 0%,#1a0a2eE8 40%,#07ffd218 100%);">
+      <div class="absolute top-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none" style="background:#07ffd215;filter:blur(100px);"></div>
+      <div class="absolute bottom-0 left-1/4 w-[300px] h-[300px] rounded-full pointer-events-none" style="background:#8417aa30;filter:blur(80px);"></div>
+      <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image:radial-gradient(#07ffd2 1px,transparent 1px);background-size:32px 32px;"></div>
+
+      <div class="relative max-w-[1140px] mx-auto px-6">
+        <div class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-8" style="background:rgba(7,255,210,0.08);border:1px solid rgba(7,255,210,0.2);color:rgba(7,255,210,0.85);font-family:'Poppins',sans-serif;">
+          {c.badge}
+        </div>
+        <h1 style="font-family:'Poppins',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.1;color:white;" class="mb-4">
+          {c.h1}<br />
+          <span style="color:#07ffd2;">{c.h1accent}</span>
+        </h1>
+        <p style="font-family:'Poppins',sans-serif;font-size:clamp(1rem,2vw,1.15rem);color:rgba(255,255,255,0.70);font-weight:300;max-width:640px;line-height:1.7;" class="mb-4">
+          {c.subtitle}
+        </p>
+        <p style="font-family:'Poppins',sans-serif;font-size:0.95rem;color:rgba(255,255,255,0.60);font-weight:300;max-width:680px;line-height:1.8;">
+          {c.desc}
+        </p>
+      </div>
+    </section>
+
+    <!-- WHY PARAGUAY — B&W + purple -->
+    <section class="relative py-16 px-6">
+      <div class="absolute inset-0" style="background-image:url('/meeting.jpg');background-size:cover;background-position:center;filter:grayscale(1) brightness(0.35);"></div>
+      <div class="absolute inset-0" style="background:rgba(0,80,60,0.28);"></div>
+      <div class="relative max-w-[1140px] mx-auto" style="z-index:2;">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;">{c.whyTag}</span>
+          <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;color:white;margin-top:0.5rem;">{c.whyTitle}</h2>
+        </div>
+        <div class="why-grid">
+          {c.whyItems.map((item: any) => (
+            <div class="glass-card">
+              <div style="font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:700;color:#07ffd2;margin-bottom:0.5rem;line-height:1;">{item.n}</div>
+              <h3 style="font-family:'Poppins',sans-serif;font-size:0.92rem;font-weight:600;color:white;margin-bottom:0.4rem;">{item.title}</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ASSISTA -->
+    <section style="background:linear-gradient(135deg,#07ffd2 0%,#5a1f8c 100%);padding:4rem 1.5rem;">
+      <div style="max-width:800px;margin:0 auto;text-align:center;">
+        <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:0.6rem;">{c.assistaTag}</span>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:#fff;margin-bottom:0.75rem;">{c.assistaTitle}</h2>
+        <p style="font-family:'Poppins',sans-serif;font-size:0.95rem;color:rgba(255,255,255,0.8);font-weight:300;max-width:560px;margin:0 auto 2rem;line-height:1.7;">{c.assistaSub}</p>
+        <!-- VIDEO: substitua VIDEO_ID pelo ID do seu vídeo no YouTube -->
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.3);background:#0a0010;">
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_ID"
+            title={c.assistaTitle}
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section style="background:#0a0010;padding:4rem 1.5rem;">
+      <div style="max-width:600px;margin:0 auto;text-align:center;">
+        <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;margin-bottom:0.75rem;">{c.calcTag}</span>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:white;margin-bottom:0.75rem;">{c.calcTitle}</h2>
+        <p style="font-family:'Poppins',sans-serif;font-size:0.92rem;font-weight:300;color:rgba(255,255,255,0.60);line-height:1.7;margin-bottom:2rem;">{c.calcDesc}</p>
+        <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(7,255,210,0.2);box-shadow:0 0 60px rgba(7,255,210,0.08);">
+          <iframe
+            src="/calculadora-fiscal.html"
+            title="Tax Savings Calculator — ConnectUP"
+            width="100%"
+            height="680"
+            style="display:block;border:none;background:transparent;"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section style="background:#f0fdf8;padding:4rem 1.5rem;border-top:1px solid rgba(7,255,210,0.2);">
+      <div style="max-width:680px;margin:0 auto;text-align:center;">
+        <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#006655;margin-bottom:0.75rem;">{c.pricingTag}</span>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:#1a1a1a;margin-bottom:1.5rem;">{c.pricingTitle}</h2>
+        <div style="background:white;border:1.5px solid rgba(7,255,210,0.35);border-radius:16px;padding:2rem 2.5rem;box-shadow:0 4px 24px rgba(7,255,210,0.07);">
+          <div style="font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:700;color:#006655;margin-bottom:0.25rem;">{c.pricingPrice}</div>
+          <p style="font-family:'Poppins',sans-serif;font-size:0.78rem;color:#777;margin-bottom:1.5rem;font-weight:300;">{c.pricingNote}</p>
+          <ul style="list-style:none;margin:0;padding:0;text-align:left;">
+            {c.pricingIncludes.map((item: string) => (
+              <li style="display:flex;align-items:flex-start;gap:0.6rem;padding:0.5rem 0;font-family:'Poppins',sans-serif;font-size:0.88rem;color:#333;border-bottom:1px solid #f0f0f0;">
+                <span style="color:#07c9a8;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <div style="margin-top:1.75rem;">
+            <a href="https://calendly.com/lana-theconnectup/connectup" target="_blank" rel="noopener noreferrer"
+              style="display:inline-flex;align-items:center;gap:8px;background:#07ffd2;color:#003830;font-family:'Poppins',sans-serif;font-weight:600;padding:13px 26px;border-radius:8px;transition:opacity 0.2s;font-size:0.9rem;"
+              onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+              {c.pricingCta}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEPS — purple section -->
+    <section style="background:linear-gradient(160deg,#2d0f5c 0%,#4a1578 100%);padding:4rem 1.5rem;">
+      <div style="max-width:900px;margin:0 auto;">
+        <div style="text-align:center;margin-bottom:2.5rem;">
+          <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:0.5rem;">{c.stepsTag}</span>
+          <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:#fff;">{c.stepsTitle}</h2>
+        </div>
+        <div class="steps-grid">
+          {c.steps.map((step: any) => (
+            <div style="background:white;border:1px solid #dfdede;border-radius:12px;padding:1.5rem 1.75rem;border-left:4px solid #07ffd2;">
+              <div style="font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:700;color:#07ffd2;margin-bottom:0.4rem;line-height:1;">{step.n}</div>
+              <h3 style="font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:600;color:#1a1a1a;margin-bottom:0.4rem;">{step.title}</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:300;color:#555;line-height:1.6;">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED -->
+    <RelatedContent
+      locale={locale}
+      tags={['residência fiscal', 'tax residency', 'paraguai', 'paraguay', 'imposto', 'tax', 'maquila', 'saída fiscal', 'residencia fiscal', 'rezydencja podatkowa']}
+      tagLabel="Conteúdo"
+    />
+
+    <!-- CTA -->
+    <section class="relative py-20 overflow-hidden" style="background:linear-gradient(135deg,#003830,#006655);">
+      <div class="absolute top-0 right-0 w-[350px] h-[350px] rounded-full pointer-events-none" style="background:rgba(7,255,210,0.15);filter:blur(80px);"></div>
+      <div class="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full pointer-events-none" style="background:rgba(7,255,210,0.08);filter:blur(80px);"></div>
+      <div class="relative max-w-[1140px] mx-auto px-6 text-center">
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.5rem,4vw,2rem);font-weight:600;color:white;margin-bottom:1rem;">{c.ctaTitle}</h2>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+          <a href="https://calendly.com/lana-theconnectup/connectup" target="_blank" rel="noopener noreferrer"
+            style="display:inline-flex;align-items:center;gap:8px;background:#07ffd2;color:#003830;font-family:'Poppins',sans-serif;font-weight:600;padding:14px 28px;border-radius:8px;transition:all 0.2s;"
+            onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+            {c.ctaBtn}
+          </a>
+          <a href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer"
+            style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(7,255,210,0.6);color:#07ffd2;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;">
+            {c.ctaSecondary}
+          </a>
+        </div>
+        <p style="font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,0.45);font-weight:300;">{c.ctaNote}</p>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+.glass-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  padding: 22px 20px;
+  transition: transform 0.2s;
+}
+.glass-card:hover { transform: translateY(-3px); }
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.steps-grid > div:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>

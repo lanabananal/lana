@@ -1,0 +1,419 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
+import { locales, isValidLocale } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return locales.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!isValidLocale(locale)) return Astro.redirect('/en/', 302);
+
+const content: Record<string, any> = {
+  'pt-br': {
+    seoTitle: 'Comunicação Profissional Internacional | ConnectUP',
+    seoDesc: 'Desenvolva sua comunicação em inglês para ambientes corporativos globais. Reuniões, apresentações e presença profissional com clareza e confiança.',
+    badge: 'Programa ConnectUP',
+    h1: 'Comunicação Profissional',
+    h1accent: 'Internacional',
+    subtitle: 'Desenvolvimento de comunicação para ambientes corporativos globais.',
+    desc: 'Este programa combina inglês corporativo, oratória profissional e comunicação em reuniões internacionais. O objetivo é melhorar clareza, segurança e estrutura ao se comunicar com equipes e clientes estrangeiros.',
+    forWhoTag: 'Para quem é indicado',
+    forWhoTitle: 'Feito para profissionais globais',
+    audience: [
+      { n: '01', text: 'Trabalham com empresas estrangeiras' },
+      { n: '02', text: 'Participam de reuniões em inglês' },
+      { n: '03', text: 'Precisam apresentar ideias com clareza' },
+      { n: '04', text: 'Querem melhorar presença e comunicação profissional' },
+      { n: '05', text: 'Têm inglês básico ou intermediário, mas dificuldade em reuniões e apresentações' },
+    ],
+    modulesTag: 'O que você aprende',
+    modulesTitle: 'Nossos programas de comunicação',
+    modules: [
+      {
+        title: 'Comunicação em reuniões internacionais',
+        items: ['Abrir e conduzir reuniões', 'Participar de discussões', 'Discordar de forma profissional', 'Explicar problemas ou decisões', 'Comunicação clara em calls'],
+      },
+      {
+        title: 'Apresentações profissionais',
+        items: ['Estrutura clara de apresentação', 'Explicar projetos e resultados', 'Organizar argumentos', 'Responder perguntas com segurança'],
+      },
+      {
+        title: 'Expressão profissional e presença',
+        items: ['Clareza ao falar', 'Organização de ideias', 'Confiança ao se expressar', 'Comunicação objetiva'],
+      },
+      {
+        title: 'Inglês corporativo aplicado',
+        items: ['Vocabulário corporativo', 'Estrutura de comunicação em reuniões', 'Explicar ideias e processos', 'Conversação profissional'],
+      },
+    ],
+    resultTag: 'Resultado esperado',
+    resultTitle: 'O que você vai conquistar',
+    results: [
+      'Participar de reuniões internacionais com segurança e sem travar',
+      'Explicar ideias e decisões com clareza em inglês — sem rodeios',
+      'Apresentar projetos e resultados com estrutura e impacto',
+      'Discordar, questionar e posicionar-se de forma profissional',
+      'Conduzir calls sem depender de roteiros decorados',
+      'Ser percebido como comunicador confiante em ambientes globais',
+      'Reduzir o tempo de adaptação em equipes e clientes internacionais',
+      'Transformar nervosismo em presença — dentro e fora da câmera',
+    ],
+    ctaTitle: 'Pronto para se comunicar com confiança no mundo?',
+    ctaBtn: 'Agendar agora →',
+    ctaSecondary: 'Fale com a gente',
+    ctaNote: 'Consulta gratuita · Sem compromisso',
+  },
+  'en': {
+    seoTitle: 'International Professional Communication | ConnectUP',
+    seoDesc: 'Develop your English communication skills for global corporate environments. Meetings, presentations and professional presence with clarity and confidence.',
+    badge: 'ConnectUP Program',
+    h1: 'International Professional',
+    h1accent: 'Communication',
+    subtitle: 'Communication development for global corporate environments.',
+    desc: 'This program combines corporate English, professional speaking and communication in international meetings. The goal is to improve clarity, confidence and structure when communicating with foreign teams and clients.',
+    forWhoTag: 'Who it is for',
+    forWhoTitle: 'Built for global professionals',
+    audience: [
+      { n: '01', text: 'Work with foreign companies' },
+      { n: '02', text: 'Participate in meetings in English' },
+      { n: '03', text: 'Need to present ideas clearly' },
+      { n: '04', text: 'Want to improve professional presence and communication' },
+      { n: '05', text: 'Have basic or intermediate English, but struggle in meetings or presentations' },
+    ],
+    modulesTag: 'What you learn',
+    modulesTitle: 'Our communication programs',
+    modules: [
+      {
+        title: 'Communication in international meetings',
+        items: ['Open and run meetings', 'Participate in discussions', 'Disagree professionally', 'Explain problems or decisions', 'Clear communication on calls'],
+      },
+      {
+        title: 'Professional presentations',
+        items: ['Clear presentation structure', 'Explain projects and results', 'Organize arguments', 'Answer questions confidently'],
+      },
+      {
+        title: 'Professional expression and presence',
+        items: ['Clarity when speaking', 'Organization of ideas', 'Confidence in self-expression', 'Objective communication'],
+      },
+      {
+        title: 'Applied corporate English',
+        items: ['Corporate vocabulary', 'Meeting communication structure', 'Explain ideas and processes', 'Professional conversation'],
+      },
+    ],
+    resultTag: 'Expected outcome',
+    resultTitle: 'What you will achieve',
+    results: [
+      'Participate in international meetings with confidence — no more freezing up',
+      'Explain ideas and decisions clearly in English, without beating around the bush',
+      'Present projects and results with structure and impact',
+      'Disagree, question and position yourself professionally',
+      'Run calls without relying on memorised scripts',
+      'Be perceived as a confident communicator in global environments',
+      'Reduce adaptation time with international teams and clients',
+      'Turn nervousness into presence — on and off camera',
+    ],
+    ctaTitle: 'Ready to communicate with confidence worldwide?',
+    ctaBtn: 'Book now →',
+    ctaSecondary: 'Get in Touch',
+    ctaNote: 'Free consultation · No commitment',
+  },
+  'es': {
+    seoTitle: 'Comunicación Profesional Internacional | ConnectUP',
+    seoDesc: 'Desarrolla tu comunicación en inglés para entornos corporativos globales. Reuniones, presentaciones y presencia profesional con claridad y confianza.',
+    badge: 'Programa ConnectUP',
+    h1: 'Comunicación Profesional',
+    h1accent: 'Internacional',
+    subtitle: 'Desarrollo de comunicación para entornos corporativos globales.',
+    desc: 'Este programa combina inglés corporativo, oratoria profesional y comunicación en reuniones internacionales. El objetivo es mejorar la claridad, seguridad y estructura al comunicarse con equipos y clientes extranjeros.',
+    forWhoTag: 'Para quién está indicado',
+    forWhoTitle: 'Hecho para profesionales globales',
+    audience: [
+      { n: '01', text: 'Trabajan con empresas extranjeras' },
+      { n: '02', text: 'Participan en reuniones en inglés' },
+      { n: '03', text: 'Necesitan presentar ideas con claridad' },
+      { n: '04', text: 'Quieren mejorar su presencia y comunicación profesional' },
+      { n: '05', text: 'Tienen inglés básico o intermedio, pero dificultad en reuniones o presentaciones' },
+    ],
+    modulesTag: 'Qué aprendes',
+    modulesTitle: 'Nuestros programas de comunicación',
+    modules: [
+      {
+        title: 'Comunicación en reuniones internacionales',
+        items: ['Abrir y conducir reuniones', 'Participar en discusiones', 'Disentir de forma profesional', 'Explicar problemas o decisiones', 'Comunicación clara en calls'],
+      },
+      {
+        title: 'Presentaciones profesionales',
+        items: ['Estructura clara de presentación', 'Explicar proyectos y resultados', 'Organizar argumentos', 'Responder preguntas con seguridad'],
+      },
+      {
+        title: 'Expresión profesional y presencia',
+        items: ['Claridad al hablar', 'Organización de ideas', 'Confianza al expresarse', 'Comunicación objetiva'],
+      },
+      {
+        title: 'Inglés corporativo aplicado',
+        items: ['Vocabulario corporativo', 'Estructura de comunicación en reuniones', 'Explicar ideas y procesos', 'Conversación profesional'],
+      },
+    ],
+    resultTag: 'Resultado esperado',
+    resultTitle: 'Lo que vas a lograr',
+    results: [
+      'Participar en reuniones internacionales con seguridad — sin bloquearte',
+      'Explicar ideas y decisiones con claridad en inglés, sin rodeos',
+      'Presentar proyectos y resultados con estructura e impacto',
+      'Disentir, cuestionar y posicionarte de forma profesional',
+      'Conducir calls sin depender de guiones memorizados',
+      'Ser percibido como comunicador seguro en entornos globales',
+      'Reducir el tiempo de adaptación con equipos y clientes internacionales',
+      'Transformar los nervios en presencia — dentro y fuera de cámara',
+    ],
+    ctaTitle: '¿Listo para comunicarte con confianza en el mundo?',
+    ctaBtn: 'Agendar ahora →',
+    ctaSecondary: 'Contáctanos',
+    ctaNote: 'Consulta gratuita · Sin compromiso',
+  },
+  'pl': {
+    seoTitle: 'Profesjonalna Komunikacja Międzynarodowa | ConnectUP',
+    seoDesc: 'Rozwijaj swoją komunikację w języku angielskim w globalnym środowisku korporacyjnym. Spotkania, prezentacje i profesjonalna obecność z jasnością i pewnością siebie.',
+    badge: 'Program ConnectUP',
+    h1: 'Profesjonalna Komunikacja',
+    h1accent: 'Międzynarodowa',
+    subtitle: 'Rozwój komunikacji dla globalnych środowisk korporacyjnych.',
+    desc: 'Program łączy korporacyjny angielski, profesjonalne wystąpienia i komunikację na międzynarodowych spotkaniach. Celem jest poprawa jasności, pewności siebie i struktury w komunikacji z zagranicznymi zespołami i klientami.',
+    forWhoTag: 'Dla kogo',
+    forWhoTitle: 'Stworzony dla globalnych profesjonalistów',
+    audience: [
+      { n: '01', text: 'Pracują z zagranicznymi firmami' },
+      { n: '02', text: 'Uczestniczą w spotkaniach po angielsku' },
+      { n: '03', text: 'Muszą prezentować pomysły jasno' },
+      { n: '04', text: 'Chcą poprawić swoją profesjonalną obecność i komunikację' },
+      { n: '05', text: 'Mają podstawowy lub średniozaawansowany angielski, ale trudności na spotkaniach lub prezentacjach' },
+    ],
+    modulesTag: 'Czego się uczysz',
+    modulesTitle: 'Nasze programy komunikacyjne',
+    modules: [
+      {
+        title: 'Komunikacja na międzynarodowych spotkaniach',
+        items: ['Otwieranie i prowadzenie spotkań', 'Uczestnictwo w dyskusjach', 'Profesjonalne wyrażanie sprzeciwu', 'Wyjaśnianie problemów lub decyzji', 'Jasna komunikacja na calls'],
+      },
+      {
+        title: 'Profesjonalne prezentacje',
+        items: ['Przejrzysta struktura prezentacji', 'Wyjaśnianie projektów i wyników', 'Organizowanie argumentów', 'Pewne odpowiadanie na pytania'],
+      },
+      {
+        title: 'Profesjonalna ekspresja i obecność',
+        items: ['Jasność wypowiedzi', 'Organizacja myśli', 'Pewność siebie w wyrażaniu się', 'Obiektywna komunikacja'],
+      },
+      {
+        title: 'Stosowany angielski korporacyjny',
+        items: ['Słownictwo korporacyjne', 'Struktura komunikacji na spotkaniach', 'Wyjaśnianie pomysłów i procesów', 'Profesjonalna konwersacja'],
+      },
+    ],
+    resultTag: 'Oczekiwany rezultat',
+    resultTitle: 'Co osiągniesz',
+    results: [
+      'Uczestniczyć w międzynarodowych spotkaniach pewnie — bez blokady',
+      'Jasno wyjaśniać pomysły i decyzje po angielsku, bez owijania w bawełnę',
+      'Prezentować projekty i wyniki ze strukturą i wpływem',
+      'Wyrażać sprzeciw, zadawać pytania i zajmować stanowisko w profesjonalny sposób',
+      'Prowadzić calls bez polegania na zapamiętanych skryptach',
+      'Być postrzeganym jako pewny siebie komunikator w globalnym środowisku',
+      'Skrócić czas adaptacji z międzynarodowymi zespołami i klientami',
+      'Zamienić tremę w obecność — przed kamerą i poza nią',
+    ],
+    ctaTitle: 'Gotowy, by komunikować się pewnie na całym świecie?',
+    ctaBtn: 'Zarezerwuj teraz →',
+    ctaSecondary: 'Skontaktuj się',
+    ctaNote: 'Bezpłatna konsultacja · Bez zobowiązań',
+  },
+};
+
+const c = content[locale] ?? content['en'];
+---
+
+<BaseLayout locale={locale} title={c.seoTitle} description={c.seoDesc}>
+  <div style="padding-top:80px;">
+
+    <!-- HERO — dark gradient -->
+    <section class="relative overflow-hidden pt-20 pb-20" style="background: linear-gradient(165deg, #1A1A1AF0 0%, #1a0a2eE8 40%, #8417aaCC 100%);">
+      <div class="absolute top-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none" style="background:#8417aa40;filter:blur(100px);"></div>
+      <div class="absolute bottom-0 left-1/4 w-[300px] h-[300px] rounded-full pointer-events-none" style="background:#07ffd230;filter:blur(80px);"></div>
+      <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image:radial-gradient(#e1a7f1 1px,transparent 1px);background-size:32px 32px;"></div>
+
+      <div class="relative max-w-[1140px] mx-auto px-6">
+        <div class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-8" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.75);font-family:'Poppins',sans-serif;">
+          {c.badge}
+        </div>
+        <h1 style="font-family:'Poppins',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.1;color:white;" class="mb-4">
+          {c.h1}<br />
+          <span style="color:#07ffd2;">{c.h1accent}</span>
+        </h1>
+        <p style="font-family:'Poppins',sans-serif;font-size:clamp(1rem,2vw,1.15rem);color:rgba(255,255,255,0.70);font-weight:300;max-width:640px;line-height:1.7;" class="mb-4">
+          {c.subtitle}
+        </p>
+        <p style="font-family:'Poppins',sans-serif;font-size:0.95rem;color:rgba(255,255,255,0.60);font-weight:300;max-width:680px;line-height:1.8;">
+          {c.desc}
+        </p>
+      </div>
+    </section>
+
+    <!-- FOR WHO — B&W people image + purple filter + glass cards -->
+    <section class="relative py-16 px-6">
+      <div class="absolute inset-0" style="background-image:url('/meeting.jpg');background-size:cover;background-position:center top;filter:grayscale(1) brightness(0.38);"></div>
+      <div class="absolute inset-0" style="background:rgba(100,10,140,0.30);"></div>
+      <div class="relative max-w-[1140px] mx-auto" style="z-index:2;">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;">{c.forWhoTag}</span>
+          <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;color:white;margin-top:0.5rem;">{c.forWhoTitle}</h2>
+        </div>
+        <div class="audience-grid">
+          {c.audience.map((item: any) => (
+            <div class="glass-card">
+              <div style="font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:700;color:#07ffd2;margin-bottom:0.6rem;line-height:1;">{item.n}</div>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:400;color:rgba(255,255,255,0.9);line-height:1.6;">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULES — light section -->
+    <section style="background:#f7f4fa;padding:4rem 1.5rem;">
+      <div style="max-width:1100px;margin:0 auto;">
+        <div style="text-align:center;margin-bottom:2.5rem;">
+          <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#795389;">{c.modulesTag}</span>
+          <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:#1a1a1a;margin-top:0.5rem;">{c.modulesTitle}</h2>
+        </div>
+        <div class="modules-grid">
+          {c.modules.map((mod: any, i: number) => (
+            <div style={`background:white;border:1px solid #dfdede;border-radius:12px;padding:1.5rem 1.75rem;border-top:4px solid ${i % 2 === 0 ? '#8417aa' : '#07ffd2'};`}>
+              <h3 style="font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:600;color:#1a1a1a;margin-bottom:0.75rem;">{mod.title}</h3>
+              <ul style="list-style:none;padding:0;margin:0;">
+                {mod.items.map((item: string) => (
+                  <li style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:300;color:#555;line-height:1.8;display:flex;align-items:flex-start;gap:8px;">
+                    <span style="color:#8417aa;font-weight:600;flex-shrink:0;">→</span>{item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMULADOR DE ENTREVISTA -->
+    <section style="background:#0a0010;padding:4rem 1.5rem;">
+      <div style="max-width:640px;margin:0 auto;text-align:center;">
+        <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;margin-bottom:0.75rem;">Prática</span>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:white;margin-bottom:0.75rem;">Simulador de Entrevista</h2>
+        <p style="font-family:'Poppins',sans-serif;font-size:0.92rem;font-weight:300;color:rgba(255,255,255,0.60);line-height:1.7;margin-bottom:2rem;">Simule uma entrevista real em inglês corporativo. Receba feedback sobre estrutura, pausas e presença — antes de entrar na sala.</p>
+        <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(196,0,255,0.25);box-shadow:0 0 60px rgba(196,0,255,0.15);">
+          <iframe
+            src="/simulador-entrevista.html"
+            title="Simulador de Entrevista ConnectUP"
+            width="100%"
+            height="780"
+            style="display:block;border:none;background:#0a0010;"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULT — person looking into distance -->
+    <section class="relative py-24 px-6">
+      <div class="absolute inset-0" style="background-image:url('/horizon-person.jpg');background-size:cover;background-position:center 30%;filter:grayscale(1) brightness(0.32);"></div>
+      <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(100,10,140,0.18),rgba(26,10,46,0.72));"></div>
+      <div class="relative max-w-[900px] mx-auto" style="z-index:2;">
+        <div style="text-align:center;margin-bottom:2.5rem;">
+          <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;margin-bottom:0.75rem;">{c.resultTag}</span>
+          <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:white;">{c.resultTitle}</h2>
+        </div>
+        <div class="results-grid">
+          {c.results.map((item: any) => (
+            <div style="background:rgba(255,255,255,0.07);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.13);border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:0.75rem;">
+              <span style="color:#07ffd2;font-weight:700;font-size:1rem;flex-shrink:0;margin-top:1px;">✓</span>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:400;color:rgba(255,255,255,0.88);line-height:1.6;margin:0;">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED CONTENT — blog posts filtered by relevant tags -->
+    <RelatedContent
+      locale={locale}
+      tags={['comunicação profissional', 'professional communication', 'inglês corporativo', 'corporate english', 'oratória', 'reunião', 'meeting', 'apresentação', 'presentation', 'comunicacion profesional']}
+      tagLabel="Conteúdo"
+    />
+
+    <!-- CTA — purple gradient -->
+    <section class="relative py-20 overflow-hidden" style="background:linear-gradient(135deg,#470050,#8417aa);">
+      <div class="absolute top-0 right-0 w-[350px] h-[350px] rounded-full pointer-events-none" style="background:rgba(231,167,241,0.2);filter:blur(80px);"></div>
+      <div class="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full pointer-events-none" style="background:rgba(7,255,210,0.1);filter:blur(80px);"></div>
+      <div class="relative max-w-[1140px] mx-auto px-6 text-center">
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.5rem,4vw,2rem);font-weight:600;color:white;margin-bottom:1rem;">{c.ctaTitle}</h2>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+          <a href="https://calendly.com/lana-theconnectup/connectup" target="_blank" rel="noopener noreferrer"
+            style="display:inline-flex;align-items:center;gap:8px;background:white;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;"
+            onmouseover="this.style.background='#e1a7f1'" onmouseout="this.style.background='white'">
+            {c.ctaBtn}
+          </a>
+          <a href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer"
+            style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid white;color:white;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;">
+            {c.ctaSecondary}
+          </a>
+        </div>
+        <p style="font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,0.55);font-weight:300;">{c.ctaNote}</p>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+.glass-card {
+  background: rgba(255,255,255,0.09);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 22px 20px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.glass-card:hover { transform: translateY(-3px); }
+
+.audience-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: center;
+}
+.audience-grid .glass-card {
+  flex: 0 1 calc(33.333% - 0.85rem);
+  min-width: 220px;
+}
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .audience-grid .glass-card { flex: 1 1 100%; }
+  .modules-grid { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .audience-grid .glass-card { flex: 0 1 calc(50% - 0.65rem); }
+}
+</style>

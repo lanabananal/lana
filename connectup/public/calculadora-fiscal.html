@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Fiscal — ConnectUP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pu: #7B2FBE;
+      --pu-deep: #5a1f8c;
+      --pu-dark: #1a0a2e;
+      --teal: #07ffd2;
+      --teal-dark: #00c9a7;
+      --muted: rgba(255,255,255,0.55);
+      --red: #ff4d4d;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: transparent;
+      margin: 0;
+      padding: 1.25rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    /* ═══════════════════════════════
+       CARD
+    ═══════════════════════════════ */
+    .card {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--pu);
+      position: relative;
+    }
+
+    /* Hex network pattern overlay — matches the image */
+    .hex-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.9) 1.5px, transparent 1.5px),
+        linear-gradient(rgba(255,255,255,0.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.35) 1px, transparent 1px);
+      background-size: 32px 32px, 32px 32px, 32px 32px;
+      background-position: 0 0, 16px 16px, 16px 16px;
+    }
+
+    /* ═══════════════════════════════
+       HEADER — centered
+    ═══════════════════════════════ */
+    .card-header {
+      position: relative;
+      min-height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .header-photo {
+      position: absolute;
+      inset: 0;
+    }
+
+    .header-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      filter: grayscale(0.4) brightness(0.42);
+    }
+
+    .header-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(90,31,140,0.55) 0%, rgba(123,47,190,0.92) 100%);
+    }
+
+    .header-right {
+      position: relative;
+      z-index: 2;
+      padding: 1.75rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .brand-logo {
+      margin-bottom: 0.3rem;
+    }
+
+    .brand-wordmark {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: clamp(1.2rem, 4vw, 1.55rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-subtitle {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    /* ═══════════════════════════════
+       BODY / STEPS
+    ═══════════════════════════════ */
+    .card-body {
+      padding: 1rem 1.25rem 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step { display: none; }
+    .step.active { display: block; }
+
+    .step-header {
+      margin-bottom: 1rem;
+    }
+
+    .step-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .step-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════
+       PILL BUTTONS — matches image
+    ═══════════════════════════════ */
+    .country-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .pill {
+      background: rgba(7,255,210,0.18);
+      border: 1.5px solid rgba(7,255,210,0.35);
+      border-radius: 50px;
+      padding: 0.55rem 0.5rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      transition: all 0.15s;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.2;
+      width: 100%;
+    }
+
+    .pill:hover { background: rgba(7,255,210,0.35); border-color: rgba(7,255,210,0.7); transform: translateY(-1px); }
+    .pill:active { transform: translateY(0); }
+    .pill.selected { background: var(--teal); color: #003830; border-color: var(--teal); }
+    .pill.other-pill { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); border: 2px dashed rgba(255,255,255,0.4); }
+    .pill.other-pill:hover { background: rgba(255,255,255,0.2); color: #fff; }
+
+    /* Profile pills — wider, with icon */
+    .profile-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .profile-pill {
+      background: #fff;
+      border: 2px solid transparent;
+      border-radius: 50px;
+      padding: 0.75rem 1.25rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      transition: all 0.15s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .profile-pill:hover { background: #e8d5ff; transform: translateY(-1px); }
+    .profile-pill:active { transform: translateY(0); }
+    .profile-pill.selected { border-color: var(--teal); background: rgba(7,255,210,0.08); }
+
+    .profile-icon {
+      width: 34px;
+      height: 34px;
+      background: rgba(123,47,190,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .profile-icon svg { width: 16px; height: 16px; }
+
+    .profile-text { flex: 1; }
+    .profile-title { font-size: 13px; font-weight: 600; color: var(--pu-dark); }
+    .profile-desc { font-size: 11px; color: #7a6a8a; margin-top: 1px; }
+
+    /* Back button */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 1rem;
+      transition: color 0.15s;
+    }
+    .back-btn:hover { color: #fff; }
+
+    .breadcrumb {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .breadcrumb strong { color: #fff; font-weight: 600; }
+    .breadcrumb span { color: var(--teal); }
+
+    /* ═══════════════════════════════
+       INPUT
+    ═══════════════════════════════ */
+    .input-group { margin-bottom: 1rem; }
+
+    .input-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      background: #fff;
+      overflow: hidden;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .input-wrap:focus-within { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(7,255,210,0.2); }
+
+    .prefix-box {
+      padding: 0 4px 0 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--pu);
+      flex-shrink: 0;
+      display: none;
+    }
+
+    .prefix-box.visible { display: block; }
+
+    .suffix-box {
+      padding: 0 16px 0 4px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--pu);
+      flex-shrink: 0;
+    }
+
+    .input-wrap input, .input-wrap select {
+      flex: 1;
+      padding: 11px 16px;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--pu-dark);
+      background: transparent;
+      outline: none;
+      min-width: 0;
+    }
+
+    .input-wrap select { cursor: pointer; font-size: 13px; }
+    .input-wrap input::placeholder { color: #bbb; font-weight: 400; font-size: 13px; }
+    input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+    input[type=number] { -moz-appearance: textfield; }
+
+    /* Primary button */
+    .btn-primary {
+      background: var(--teal);
+      color: #003830;
+      border: none;
+      border-radius: 50px;
+      padding: 13px 24px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 0.5rem;
+      transition: all 0.15s;
+      box-shadow: 0 4px 14px rgba(7,255,210,0.35);
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+
+    /* ═══════════════════════════════
+       RESULTS
+    ═══════════════════════════════ */
+    .result-hero {
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 1.25rem;
+      text-align: center;
+      margin-bottom: 0.875rem;
+    }
+
+    .delta-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .delta-value {
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .delta-period {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 0.875rem;
+    }
+
+    .comp-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 0.875rem 1rem;
+      text-align: center;
+    }
+
+    .comp-label { font-size: 10px; color: #7a6a8a; margin-bottom: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .comp-value { font-size: 20px; font-weight: 700; line-height: 1.1; }
+    .comp-value.origin { color: var(--red); }
+    .comp-value.py { color: var(--pu); }
+    .comp-sub { font-size: 10px; color: #7a6a8a; margin-top: 2px; }
+
+    .roi-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .roi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 0.875rem;
+    }
+
+    .roi-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+    }
+
+    .roi-card.y1 { border-top: 3px solid var(--teal); }
+
+    .roi-period { font-size: 10px; font-weight: 700; color: #7a6a8a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .roi-value { font-size: 13px; font-weight: 700; color: var(--pu); line-height: 1.2; }
+    .roi-note { font-size: 9px; color: #aaa; margin-top: 3px; line-height: 1.3; }
+
+    .context-box {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 0.875rem 1rem;
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      margin-bottom: 0.875rem;
+    }
+
+    .breakdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 0.875rem;
+      transition: color 0.15s;
+    }
+    .breakdown-toggle:hover { color: #fff; }
+
+    .breakdown-panel {
+      display: none;
+      background: #fff;
+      border-radius: 14px;
+      padding: 1rem 1.125rem;
+      margin-bottom: 0.875rem;
+    }
+    .breakdown-panel.open { display: block; }
+
+    .bd-section-title { font-size: 10px; font-weight: 700; color: #7a6a8a; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .tax-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid #f0edf5; font-size: 12px; }
+    .tax-row:last-child { border-bottom: none; }
+    .tax-name { color: var(--pu-dark); }
+    .tax-pct { color: #7a6a8a; font-size: 11px; font-weight: 500; }
+    .bd-gap { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #f0edf5; }
+    .bd-note { font-size: 11px; color: #7a6a8a; line-height: 1.6; }
+
+    /* CTA block */
+    .cta-block {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 0.875rem;
+    }
+
+    .cta-badge {
+      display: inline-block;
+      background: #f3eafd;
+      color: var(--pu);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .cta-title { font-size: 13px; font-weight: 700; color: var(--pu-dark); margin-bottom: 5px; }
+    .cta-text { font-size: 12px; color: #7a6a8a; margin-bottom: 0.875rem; line-height: 1.6; }
+
+    .btn-cta {
+      background: var(--pu);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 13px 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(123,47,190,0.35);
+    }
+
+    .btn-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .disclaimer {
+      font-size: 10px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .hint-text {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 420px) {
+      body { padding: 0.75rem; }
+      .card-header { min-height: 140px; }
+      .header-photo { width: 38%; }
+      .card-title { font-size: 1.2rem; }
+      .country-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+      .pill { font-size: 11px; padding: 0.5rem 0.25rem; }
+      .delta-value { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <!-- Hex network pattern -->
+  <div class="hex-bg"></div>
+
+  <!-- ══ HEADER — centered ══ -->
+  <div class="card-header">
+    <div class="header-photo">
+      <img src="/professional-woman.jpg" alt="" />
+    </div>
+    <div class="header-right">
+      <div class="brand-logo">
+        <img src="/C_COLORIDO.png" alt="ConnectUP" style="height:44px;width:auto;display:block;filter:brightness(0) invert(1);" />
+      </div>
+      <p class="brand-wordmark">ConnectUP</p>
+      <h1 class="card-title">Tax Calculator</h1>
+      <p class="card-subtitle">Selecione onde você paga impostos atualmente.</p>
+    </div>
+  </div>
+
+  <!-- ══ STEPS ══ -->
+  <div class="card-body">
+
+    <!-- STEP 1: Country -->
+    <div class="step active" id="step-country">
+      <div class="country-grid">
+        <button class="pill" onclick="selectCountry('br')">Brasil</button>
+        <button class="pill" onclick="selectCountry('us')">EUA</button>
+        <button class="pill" onclick="selectCountry('uk')">Reino Unido</button>
+        <button class="pill" onclick="selectCountry('de')">Alemanha</button>
+        <button class="pill" onclick="selectCountry('es')">Espanha</button>
+        <button class="pill" onclick="selectCountry('fr')">França</button>
+        <button class="pill" onclick="selectCountry('it')">Itália</button>
+        <button class="pill" onclick="selectCountry('ca')">Canadá</button>
+        <button class="pill" onclick="selectCountry('au')">Austrália</button>
+        <button class="pill" onclick="selectCountry('nl')">Holanda</button>
+        <button class="pill" onclick="selectCountry('ar')">Argentina</button>
+        <button class="pill other-pill" onclick="goTo('other')">Outro</button>
+      </div>
+    </div>
+
+    <!-- STEP: Other (custom country) -->
+    <div class="step" id="step-other">
+      <button class="back-btn" onclick="goTo('country')">← voltar</button>
+      <div class="step-header">
+        <div class="step-label">Personalizado</div>
+        <div class="step-title">Informe sua situação fiscal</div>
+        <div class="step-sub">Informe sua alíquota efetiva e calculamos sua economia.</div>
+      </div>
+
+      <div class="input-group">
+        <label>País de origem</label>
+        <div class="input-wrap">
+          <input type="text" id="other-country-name" placeholder="Ex: Portugal" />
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Moeda</label>
+        <div class="input-wrap">
+          <select id="other-currency">
+            <option value="BRL|R$">BRL — Real Brasileiro (R$)</option>
+            <option value="USD|$">USD — Dólar americano ($)</option>
+            <option value="EUR|€">EUR — Euro (€)</option>
+            <option value="GBP|£">GBP — Libra esterlina (£)</option>
+            <option value="ARS|$">ARS — Peso argentino ($)</option>
+            <option value="CAD|CA$">CAD — Dólar canadense (CA$)</option>
+            <option value="AUD|A$">AUD — Dólar australiano (A$)</option>
+            <option value="CHF|CHF">CHF — Franco suíço</option>
+            <option value="MXN|$">MXN — Peso mexicano ($)</option>
+          </select>
+        </div>
+      </div>
+
+      <label style="display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px;">Situação profissional</label>
+      <div class="profile-grid" style="margin-bottom:1rem;">
+        <button class="profile-pill" id="op-freelance" onclick="selectOtherProfile('freelance', this)">
+          <div class="profile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+          <div class="profile-text"><div class="profile-title">Freelancer</div><div class="profile-desc">Autônomo ou contratado</div></div>
+        </button>
+        <button class="profile-pill" id="op-salaried" onclick="selectOtherProfile('salaried', this)">
+          <div class="profile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+          <div class="profile-text"><div class="profile-title">Assalariado</div><div class="profile-desc">Empregado remoto ou local</div></div>
+        </button>
+        <button class="profile-pill" id="op-owner" onclick="selectOtherProfile('owner', this)">
+          <div class="profile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="profile-text"><div class="profile-title">Empresário</div><div class="profile-desc">Empresa ou LTDA</div></div>
+        </button>
+      </div>
+
+      <div class="input-group">
+        <label>Alíquota tributária efetiva aproximada</label>
+        <div class="input-wrap">
+          <input type="number" id="other-rate" placeholder="Ex: 27" min="1" max="99" />
+          <span class="suffix-box">%</span>
+        </div>
+      </div>
+      <p class="hint-text">Some imposto de renda + contribuições sociais para chegar à sua alíquota total.</p>
+
+      <button class="btn-primary" onclick="confirmOther()">Continuar →</button>
+    </div>
+
+    <!-- STEP 2: Profile -->
+    <div class="step" id="step-profile">
+      <button class="back-btn" onclick="goTo('country')">← voltar</button>
+      <div class="step-header">
+        <div class="step-label">Perfil</div>
+        <div class="step-title">Qual é a sua situação profissional?</div>
+      </div>
+      <div class="breadcrumb" id="breadcrumb-profile"></div>
+      <div class="profile-grid">
+        <button class="profile-pill" onclick="selectProfile('freelance')">
+          <div class="profile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+          <div class="profile-text"><div class="profile-title">Freelancer</div><div class="profile-desc">Autônomo ou contratado</div></div>
+        </button>
+        <button class="profile-pill" onclick="selectProfile('salaried')">
+          <div class="profile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+          <div class="profile-text"><div class="profile-title">Assalariado</div><div class="profile-desc">Empregado remoto ou local</div></div>
+        </button>
+        <button class="profile-pill" onclick="selectProfile('owner')">
+          <div class="profile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="profile-text"><div class="profile-title">Empresário</div><div class="profile-desc">Empresa ou LTDA</div></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Income input -->
+    <div class="step" id="step-input">
+      <button class="back-btn" id="back-from-input" onclick="goTo('profile')">← voltar</button>
+      <div class="step-header">
+        <div class="step-label">Renda</div>
+        <div class="step-title">Qual é a sua renda bruta anual?</div>
+      </div>
+      <div class="breadcrumb" id="breadcrumb-input"></div>
+      <div class="input-group">
+        <label id="input-label">Renda bruta anual</label>
+        <div class="input-wrap">
+          <span class="prefix-box" id="prefix-box"></span>
+          <input type="number" id="main-input" placeholder="Digite o valor" min="0" />
+        </div>
+      </div>
+      <button class="btn-primary" onclick="calculate()">Calcular minha economia →</button>
+    </div>
+
+    <!-- STEP 4: Results -->
+    <div class="step" id="step-result">
+      <button class="back-btn" onclick="resetToInput()">← calcular novamente</button>
+
+      <div class="result-hero">
+        <div class="delta-label">Economia anual estimada</div>
+        <div class="delta-value" id="delta-value"></div>
+        <div class="delta-period">por ano com residência fiscal no Paraguai</div>
+      </div>
+
+      <div class="comparison">
+        <div class="comp-card">
+          <div class="comp-label" id="origin-label">Impostos atuais</div>
+          <div class="comp-value origin" id="origin-value"></div>
+          <div class="comp-sub">por ano, estimado</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-label">Paraguai</div>
+          <div class="comp-value py">R$ 0</div>
+          <div class="comp-sub">com residência fiscal</div>
+        </div>
+      </div>
+
+      <div class="roi-label">Sua economia ao longo do tempo</div>
+      <div class="roi-grid">
+        <div class="roi-card y1">
+          <div class="roi-period">Ano 1</div>
+          <div class="roi-value" id="roi-y1"></div>
+          <div class="roi-note">após taxa ConnectUP</div>
+        </div>
+        <div class="roi-card">
+          <div class="roi-period">Ano 5</div>
+          <div class="roi-value" id="roi-y5"></div>
+          <div class="roi-note">economia acumulada</div>
+        </div>
+        <div class="roi-card">
+          <div class="roi-period">Ano 10</div>
+          <div class="roi-value" id="roi-y10"></div>
+          <div class="roi-note">economia acumulada</div>
+        </div>
+      </div>
+
+      <div class="context-box" id="context-box"></div>
+
+      <button class="breakdown-toggle" onclick="toggleBreakdown()">
+        <span id="bd-arrow">▸</span> como calculamos isso
+      </button>
+
+      <div class="breakdown-panel" id="breakdown-panel">
+        <div class="bd-section-title" id="bd-origin"></div>
+        <div id="bd-origin-taxes"></div>
+        <div class="bd-gap">
+          <div class="bd-section-title">Paraguai</div>
+          <div id="bd-py-taxes"></div>
+        </div>
+        <div class="bd-note" id="bd-note"></div>
+      </div>
+
+      <div class="cta-block">
+        <div class="cta-badge">chamada gratuita · 30 min</div>
+        <div class="cta-title">Quer entender como isso funciona?</div>
+        <div class="cta-text">Na primeira chamada, entendemos sua situação e explicamos como funciona o processo. Sem compromisso — só clareza.</div>
+        <a href="https://calendly.com/lana-theconnectup/connectup" target="_blank" class="btn-cta">Agendar minha chamada gratuita →</a>
+      </div>
+
+      <p class="disclaimer">Estimativas baseadas em alíquotas médias vigentes. Não constitui assessoria fiscal. Taxa ConnectUP de $2.000 USD considerada apenas no Ano 1.</p>
+    </div>
+
+  </div><!-- /card-body -->
+</div><!-- /card -->
+
+<script>
+  let selCountry = '', selProfile = '', customCountryData = null;
+  let otherSelProfile = '';
+  const SERVICE_FEE = 2000;
+
+  const pyTaxes = [
+    { name: 'Renda de fonte estrangeira', pct: '0% (isento)' },
+    { name: 'IRACIS (se empresa no PY)', pct: '10% sobre o lucro' }
+  ];
+
+  const pyNote = 'O Paraguai oferece 0% de imposto sobre renda de fonte estrangeira para residentes fiscais. O processo é legal, transparente e acessível.';
+
+  const profileLabels = { freelance: 'Freelancer', salaried: 'Assalariado', owner: 'Empresário' };
+
+  const data = {
+    br: { name:'Brasil', flag:'🇧🇷', symbol:'R$', cur:'BRL', rates:{freelance:0.155,salaried:0.275,owner:0.15}, taxes:{freelance:[{name:'Simples Nacional (média efetiva)',pct:'~15,5%'},{name:'INSS sobre pró-labore',pct:'11%'}],salaried:[{name:'IRPF via carnê-leão',pct:'até 27,5%'},{name:'INSS',pct:'até R$908/mês'}],owner:[{name:'IRPJ + CSLL (Lucro Presumido)',pct:'~15%'},{name:'PIS + COFINS',pct:'3,65%'},{name:'ISS (média)',pct:'~3%'}]}, context:'Profissionais brasileiros enfrentam uma carga tributária complexa que pode ultrapassar 30% para autônomos. A residência no Paraguai oferece 0% sobre renda do exterior e uma estrutura muito mais simples.'},
+    us: { name:'EUA', flag:'🇺🇸', symbol:'$', cur:'USD', rates:{freelance:0.39,salaried:0.30,owner:0.33}, taxes:{freelance:[{name:'Imposto federal (até 37%)',pct:'até 37%'},{name:'Self-employment tax',pct:'15,3%'},{name:'Imposto estadual (média)',pct:'~5%'}],salaried:[{name:'Imposto federal',pct:'até 37%'},{name:'FICA',pct:'7,65%'},{name:'Imposto estadual',pct:'~5%'}],owner:[{name:'Imposto federal',pct:'até 37%'},{name:'Self-employment tax',pct:'15,3%'},{name:'Imposto estadual',pct:'~5%'}]}, context:'Nos EUA, autônomos frequentemente pagam mais de 40% em impostos combinados. A residência fiscal no Paraguai oferece 0% legal sobre renda do exterior.'},
+    uk: { name:'Reino Unido', flag:'🇬🇧', symbol:'£', cur:'GBP', rates:{freelance:0.41,salaried:0.35,owner:0.38}, taxes:{freelance:[{name:'Income tax (até 40%)',pct:'até 40%'},{name:'National Insurance Cl.4',pct:'9% / 2%'},{name:'National Insurance Cl.2',pct:'£3,45/sem'}],salaried:[{name:'Income tax',pct:'até 40%'},{name:'National Insurance Cl.1',pct:'8% / 2%'}],owner:[{name:'Corporation Tax',pct:'25%'},{name:'Tax sobre dividendos',pct:'até 39,35%'},{name:'Employer NI',pct:'13,8%'}]}, context:'No Reino Unido, quem ganha acima de £50.270 entra na alíquota de 40%. Combinado com o NI, freelancers facilmente ultrapassam 42% de carga efetiva.'},
+    ca: { name:'Canadá', flag:'🇨🇦', symbol:'CA$', cur:'CAD', rates:{freelance:0.41,salaried:0.35,owner:0.37}, taxes:{freelance:[{name:'Imposto federal (até 33%)',pct:'até 33%'},{name:'Imposto provincial (Ontario)',pct:'~13%'},{name:'CPP',pct:'~5,95%'}],salaried:[{name:'Imposto federal',pct:'até 33%'},{name:'Imposto provincial',pct:'~13%'},{name:'EI + CPP',pct:'~7%'}],owner:[{name:'Corporate income tax',pct:'~26,5%'},{name:'Imposto pessoal sobre dividendos',pct:'até 33%'},{name:'Imposto provincial',pct:'~13%'}]}, context:'Alíquotas combinadas no Canadá podem ultrapassar 53% em algumas províncias. A residência no Paraguai é alternativa legal para remotos e empresários.'},
+    de: { name:'Alemanha', flag:'🇩🇪', symbol:'€', cur:'EUR', rates:{freelance:0.46,salaried:0.42,owner:0.44}, taxes:{freelance:[{name:'Einkommensteuer (até 45%)',pct:'até 45%'},{name:'Solidaritätszuschlag',pct:'5,5%'},{name:'Kirchensteuer',pct:'~9% sobre o imposto'}],salaried:[{name:'Einkommensteuer',pct:'até 45%'},{name:'Contribuições sociais',pct:'~20%'},{name:'Solidaritätszuschlag',pct:'5,5%'}],owner:[{name:'Körperschaftsteuer',pct:'15%'},{name:'Gewerbesteuer',pct:'~14%'},{name:'Tax pessoal sobre distribuição',pct:'até 45%'}]}, context:'A Alemanha tem uma das maiores cargas tributárias da Europa. Freelancers frequentemente pagam mais de 45% em impostos e contribuições combinados.'},
+    au: { name:'Austrália', flag:'🇦🇺', symbol:'A$', cur:'AUD', rates:{freelance:0.36,salaried:0.32,owner:0.34}, taxes:{freelance:[{name:'Income tax (até 45%)',pct:'até 45%'},{name:'Medicare Levy',pct:'2%'},{name:'Medicare Levy Surcharge',pct:'até 1,5%'}],salaried:[{name:'Income tax',pct:'até 45%'},{name:'Medicare Levy',pct:'2%'}],owner:[{name:'Company tax',pct:'25–30%'},{name:'Tax pessoal sobre dividendos',pct:'até 45%'},{name:'Medicare Levy',pct:'2%'}]}, context:'Australianos que ganham acima de AUD $180.000 pagam 47% combinados. A residência no Paraguai oferece um caminho legal para reduzir significativamente essa carga.'},
+    es: { name:'Espanha', flag:'🇪🇸', symbol:'€', cur:'EUR', rates:{freelance:0.45,salaried:0.37,owner:0.41}, taxes:{freelance:[{name:'IRPF (até 47%)',pct:'até 47%'},{name:'Cotizaciones sociales (autônomo)',pct:'~31%'},{name:'IVA',pct:'21%'}],salaried:[{name:'IRPF',pct:'até 47%'},{name:'Seguridade social (empregado)',pct:'~6,35%'}],owner:[{name:'Impuesto de Sociedades',pct:'25%'},{name:'IRPF sobre dividendos',pct:'até 47%'},{name:'Cotizaciones',pct:'~31%'}]}, context:'A Espanha é um dos países mais caros da Europa para freelancers. Contribuições sociais sozinhas chegam a 31% além do imposto de renda.'},
+    fr: { name:'França', flag:'🇫🇷', symbol:'€', cur:'EUR', rates:{freelance:0.47,salaried:0.42,owner:0.44}, taxes:{freelance:[{name:"Impôt sur le revenu (até 45%)",pct:'até 45%'},{name:'Cotisations sociales',pct:'~45%'},{name:'CFE',pct:'varia'}],salaried:[{name:"Impôt sur le revenu",pct:'até 45%'},{name:'Contribuições sociais',pct:'~22%'},{name:'CSG/CRDS',pct:'9,7%'}],owner:[{name:"Impôt sur les sociétés",pct:'25%'},{name:'Cotisations sobre salário',pct:'~45%'},{name:'Tax sobre dividendos',pct:'até 45%'}]}, context:'A França impõe contribuições sociais entre as mais pesadas do mundo. Autônomos frequentemente pagam mais de 45% sobre o lucro líquido antes do imposto de renda.'},
+    nl: { name:'Holanda', flag:'🇳🇱', symbol:'€', cur:'EUR', rates:{freelance:0.43,salaried:0.38,owner:0.40}, taxes:{freelance:[{name:'Inkomstenbelasting (até 49,5%)',pct:'até 49,5%'},{name:'Volksverzekeringen',pct:'~27,65%'},{name:'Zorgverzekeringswet',pct:'~5,5%'}],salaried:[{name:'Inkomstenbelasting',pct:'até 49,5%'},{name:'Contribuições sociais',pct:'~17%'}],owner:[{name:'Vennootschapsbelasting',pct:'19–25,8%'},{name:'Tax sobre dividendos (Box 2)',pct:'24,5–33%'},{name:'Inkomstenbelasting sobre salário',pct:'até 49,5%'}]}, context:'A alíquota máxima nos Países Baixos chega a 49,5%. A carga efetiva para altos rendimentos frequentemente ultrapassa 50%.'},
+    ar: { name:'Argentina', flag:'🇦🇷', symbol:'$', cur:'ARS', rates:{freelance:0.35,salaried:0.27,owner:0.31}, taxes:{freelance:[{name:'Impuesto a las Ganancias (até 35%)',pct:'até 35%'},{name:'Monotributo/autônomo',pct:'fixo + %'},{name:'Bienes Personales',pct:'até 2,25%'}],salaried:[{name:'Impuesto a las Ganancias',pct:'até 35%'},{name:'Seguridade social (SIPA)',pct:'11%'},{name:'Obra Social + PAMI',pct:'6%'}],owner:[{name:'Ganancias corporativo',pct:'25–35%'},{name:'Ingresos Brutos',pct:'3–5%'},{name:'IVA e municipais',pct:'varia'}]}, context:'Além dos impostos, profissionais na Argentina enfrentam controles cambiais e alta inflação. A residência no Paraguai oferece estabilidade jurídica e acesso ao banking internacional.'},
+    it: { name:'Itália', flag:'🇮🇹', symbol:'€', cur:'EUR', rates:{freelance:0.44,salaried:0.38,owner:0.41}, taxes:{freelance:[{name:'IRPEF (até 43%)',pct:'até 43%'},{name:'Contributi INPS',pct:'~26,23%'},{name:'Adicional regional',pct:'1,23–3,33%'}],salaried:[{name:'IRPEF',pct:'até 43%'},{name:'Contribuições sociais',pct:'~9,19%'},{name:'Adicional regional',pct:'até 4%'}],owner:[{name:'IRES',pct:'24%'},{name:'IRAP',pct:'3,9%'},{name:'IRPEF sobre dividendos',pct:'até 43%'}]}, context:'A Itália combina altas alíquotas com contribuições pesadas à seguridade social. Freelancers frequentemente pagam mais de 40% no total.'}
+  };
+
+  function selectOtherProfile(p, el) {
+    otherSelProfile = p;
+    document.querySelectorAll('#step-other .profile-pill').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function confirmOther() {
+    const name = document.getElementById('other-country-name').value.trim() || 'Outro país';
+    const currencyRaw = document.getElementById('other-currency').value;
+    const [cur, symbol] = currencyRaw.split('|');
+    const rate = parseFloat(document.getElementById('other-rate').value);
+
+    if (!rate || rate <= 0 || rate >= 100) {
+      alert('Informe uma alíquota válida entre 1 e 99%.');
+      return;
+    }
+    if (!otherSelProfile) {
+      alert('Selecione sua situação profissional.');
+      return;
+    }
+
+    customCountryData = {
+      name, flag: '🌐', symbol: symbol || '$', cur,
+      rates: { freelance: rate/100, salaried: rate/100, owner: rate/100 },
+      taxes: {
+        freelance: [{ name: 'Alíquota efetiva informada', pct: rate + '%' }],
+        salaried:  [{ name: 'Alíquota efetiva informada', pct: rate + '%' }],
+        owner:     [{ name: 'Alíquota efetiva informada', pct: rate + '%' }],
+      },
+      context: name + ' — alíquota tributária efetiva de ' + rate + '%. Com residência fiscal no Paraguai, renda de fonte estrangeira passa a 0%, legal e permanente.'
+    };
+
+    selCountry = 'custom';
+    selProfile = otherSelProfile;
+
+    const d = customCountryData;
+    document.getElementById('breadcrumb-input').innerHTML =
+      '<strong>' + d.flag + ' ' + d.name + '</strong> · <span>' + profileLabels[selProfile] + '</span>';
+    document.getElementById('input-label').textContent = 'Renda bruta anual (' + d.cur + ')';
+    document.getElementById('main-input').value = '';
+    document.getElementById('prefix-box').textContent = d.symbol;
+    document.getElementById('prefix-box').classList.remove('visible');
+    document.getElementById('back-from-input').onclick = () => goTo('other');
+    goTo('input');
+  }
+
+  function selectCountry(c) {
+    selCountry = c;
+    customCountryData = null;
+    const d = data[c];
+    document.getElementById('breadcrumb-profile').innerHTML =
+      'Pagando impostos em: <strong>' + d.flag + ' ' + d.name + '</strong>';
+    goTo('profile');
+  }
+
+  function selectProfile(p) {
+    selProfile = p;
+    const d = data[selCountry];
+    document.getElementById('breadcrumb-input').innerHTML =
+      '<strong>' + d.flag + ' ' + d.name + '</strong> · <span>' + profileLabels[p] + '</span>';
+    document.getElementById('input-label').textContent = 'Renda bruta anual (' + d.cur + ')';
+    document.getElementById('main-input').value = '';
+    document.getElementById('prefix-box').textContent = d.symbol;
+    document.getElementById('prefix-box').classList.remove('visible');
+    document.getElementById('back-from-input').onclick = () => goTo('profile');
+    goTo('input');
+  }
+
+  const inp = document.getElementById('main-input');
+  const pfx = document.getElementById('prefix-box');
+
+  inp.addEventListener('input', function() {
+    pfx.classList.toggle('visible', !!this.value);
+  });
+
+  inp.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') calculate();
+  });
+
+  function fmt(symbol, n) {
+    return symbol + ' ' + Math.round(n).toLocaleString('pt-BR');
+  }
+
+  function calculate() {
+    const val = parseFloat(inp.value);
+    if (!val || val <= 0) { inp.focus(); return; }
+
+    const d = selCountry === 'custom' ? customCountryData : data[selCountry];
+    const annualTax = val * d.rates[selProfile];
+
+    document.getElementById('delta-value').textContent = fmt(d.symbol, annualTax);
+    document.getElementById('origin-label').textContent = d.flag + ' ' + d.name;
+    document.getElementById('origin-value').textContent = fmt(d.symbol, annualTax);
+
+    const y1 = Math.max(0, annualTax - SERVICE_FEE);
+    document.getElementById('roi-y1').textContent = fmt(d.symbol, y1);
+    document.getElementById('roi-y5').textContent = fmt(d.symbol, annualTax * 5);
+    document.getElementById('roi-y10').textContent = fmt(d.symbol, annualTax * 10);
+
+    document.getElementById('context-box').textContent = d.context;
+    document.getElementById('bd-origin').textContent = d.name;
+
+    document.getElementById('bd-origin-taxes').innerHTML = d.taxes[selProfile].map(t =>
+      '<div class="tax-row"><span class="tax-name">' + t.name + '</span><span class="tax-pct">' + t.pct + '</span></div>'
+    ).join('');
+
+    document.getElementById('bd-py-taxes').innerHTML = pyTaxes.map(t =>
+      '<div class="tax-row"><span class="tax-name">' + t.name + '</span><span class="tax-pct">' + t.pct + '</span></div>'
+    ).join('');
+
+    document.getElementById('bd-note').textContent = pyNote;
+    document.getElementById('breakdown-panel').classList.remove('open');
+    document.getElementById('bd-arrow').textContent = '▸';
+    goTo('result');
+  }
+
+  function toggleBreakdown() {
+    const p = document.getElementById('breakdown-panel');
+    p.classList.toggle('open');
+    document.getElementById('bd-arrow').textContent = p.classList.contains('open') ? '▾' : '▸';
+  }
+
+  function resetToInput() {
+    inp.value = '';
+    pfx.classList.remove('visible');
+    goTo('input');
+  }
+
+  function goTo(step) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-' + step).classList.add('active');
+  }
+</script>
+
+</body>
+</html>

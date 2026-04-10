@@ -5,34 +5,34 @@ const { locale } = Astro.props;
 const t = getTranslations(locale);
 
 const titles: Record<string, string> = {
-  'pt-br': 'Agende uma conversa gratuita de 30 minutos',
-  'en':    'Book a free 30-minute consultation',
-  'es':    'Agenda una consulta gratuita de 30 minutos',
-  'pl':    'Umów bezpłatną 30-minutową konsultację',
+  'pt-br': 'Pronto para construir sua carreira global?',
+  'en':    'Ready to build your global career?',
+  'es':    '¿Listo para construir tu carrera global?',
+  'pl':    'Gotowy na zbudowanie globalnej kariery?',
 };
 const subtitles: Record<string, string> = {
-  'pt-br': 'Sem compromisso. Entenda se faz sentido para o seu perfil.',
-  'en':    'No commitment. Find out if it makes sense for your situation.',
-  'es':    'Sin compromiso. Descubre si tiene sentido para tu perfil.',
-  'pl':    'Bez zobowiązań. Sprawdź, czy to ma sens dla Twojego profilu.',
+  'pt-br': 'Comunicação, posicionamento e planejamento fiscal — tudo em um lugar. Sem compromisso.',
+  'en':    'Communication, positioning and tax planning — all in one place. No commitment.',
+  'es':    'Comunicación, posicionamiento y planificación fiscal — todo en un lugar. Sin compromiso.',
+  'pl':    'Komunikacja, pozycjonowanie i planowanie podatkowe — wszystko w jednym miejscu. Bez zobowiązań.',
 };
 const ctaPrimary: Record<string, string> = {
-  'pt-br': 'Agendar agora →',
-  'en':    'Book now →',
-  'es':    'Agendar ahora →',
-  'pl':    'Zarezerwuj teraz →',
+  'pt-br': 'Agendar conversa →',
+  'en':    'Book a call →',
+  'es':    'Agendar llamada →',
+  'pl':    'Umów rozmowę →',
 };
 const ctaSecondary: Record<string, string> = {
-  'pt-br': 'Fale com a gente',
-  'en':    'Get in Touch',
-  'es':    'Contáctanos',
-  'pl':    'Skontaktuj się',
+  'pt-br': 'Fale no WhatsApp',
+  'en':    'Chat on WhatsApp',
+  'es':    'Escribir por WhatsApp',
+  'pl':    'WhatsApp',
 };
 const footerNote: Record<string, string> = {
-  'pt-br': 'Consulta de 30 minutos · Gratuita · Sem compromisso',
-  'en':    '30-minute consultation · Free · No commitment',
-  'es':    'Consulta de 30 minutos · Gratuita · Sin compromiso',
-  'pl':    'Konsultacja 30 minut · Bezpłatna · Bez zobowiązań',
+  'pt-br': 'Consulta gratuita · Sem compromisso · Resposta em até 24h',
+  'en':    'Free consultation · No commitment · Reply within 24h',
+  'es':    'Consulta gratuita · Sin compromiso · Respuesta en 24h',
+  'pl':    'Bezpłatna konsultacja · Bez zobowiązań · Odpowiedź w 24h',
 };
 ---
 
@@ -41,26 +41,29 @@ const footerNote: Record<string, string> = {
   <div class="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full pointer-events-none" style="background: rgba(7,255,210,0.1); filter: blur(80px);"></div>
 
   <div class="relative max-w-[1140px] mx-auto px-6 text-center">
+    <div class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-6" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);font-family:'Poppins',sans-serif;">
+      ConnectUP · 360° Global Mobility
+    </div>
     <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.5rem,4vw,2rem);font-weight:600;color:white;margin-bottom:1rem;">
       {titles[locale] ?? titles['en']}
     </h2>
-    <p style="font-family:'Poppins',sans-serif;font-size:1.05rem;color:rgba(255,255,255,0.8);margin-bottom:2.5rem;font-weight:300;">
+    <p style="font-family:'Poppins',sans-serif;font-size:1rem;color:rgba(255,255,255,0.75);margin-bottom:2.5rem;font-weight:300;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;">
       {subtitles[locale] ?? subtitles['en']}
     </p>
 
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
       <a href="https://calendly.com/lana-theconnectup/connectup" target="_blank" rel="noopener noreferrer"
-        style="display:inline-flex;align-items:center;gap:8px;background:white;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;"
+        style="display:inline-flex;align-items:center;gap:8px;background:white;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:600;padding:14px 28px;border-radius:8px;transition:all 0.2s;"
         onmouseover="this.style.background='#e1a7f1'" onmouseout="this.style.background='white'">
         {ctaPrimary[locale] ?? ctaPrimary['en']}
       </a>
       <a href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer"
-        style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid white;color:white;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;">
+        style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,0.6);color:white;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;">
         {ctaSecondary[locale] ?? ctaSecondary['en']}
       </a>
     </div>
 
-    <p style="font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,0.55);font-weight:300;">
+    <p style="font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);font-weight:300;">
       {footerNote[locale] ?? footerNote['en']}
     </p>
   </div>

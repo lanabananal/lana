@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Avaliador ATS — ConnectUP</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #8417aa;
+    --teal:   #07ffd2;
+    --bg:     #0a0010;
+    --card:   rgba(255,255,255,0.07);
+    --border: rgba(255,255,255,0.12);
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1.25rem;
+  }
+
+  .wrapper { width: 100%; max-width: 680px; }
+
+  /* ── Header ── */
+  .header { text-align: center; margin-bottom: 2rem; }
+  .header .badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--teal);
+    border: 1px solid rgba(7,255,210,0.3);
+    border-radius: 99px; padding: 4px 14px; margin-bottom: 0.75rem;
+  }
+  .header h1 {
+    font-size: clamp(1.35rem, 4vw, 1.9rem);
+    font-weight: 600; line-height: 1.2;
+  }
+  .header h1 span { color: var(--teal); }
+  .header p {
+    font-size: 0.85rem; font-weight: 300;
+    color: rgba(255,255,255,0.55); margin-top: 0.6rem; line-height: 1.7;
+  }
+
+  /* ── Textarea ── */
+  .input-area {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .input-area label {
+    display: block; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); margin-bottom: 0.6rem;
+  }
+  textarea {
+    width: 100%; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); border-radius: 8px;
+    color: white; font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem; line-height: 1.7;
+    padding: 0.85rem 1rem; resize: vertical; min-height: 220px;
+    outline: none; transition: border-color 0.2s;
+  }
+  textarea:focus { border-color: rgba(132,23,170,0.6); }
+  textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+  /* ── File upload ── */
+  .upload-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .upload-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.7);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 7px 14px; cursor: pointer; transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .upload-label:hover { border-color: var(--purple); color: white; }
+  .upload-label svg { flex-shrink: 0; }
+  #file-name { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+  #cv-file { display: none; }
+
+  .divider {
+    text-align: center; font-size: 10px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin: 0.6rem 0;
+  }
+
+  /* ── Analyze button ── */
+  .btn-analyze {
+    width: 100%; padding: 13px;
+    background: linear-gradient(135deg, var(--purple), #470050);
+    color: white; font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em;
+    border: none; border-radius: 10px; cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    margin-bottom: 1.5rem;
+  }
+  .btn-analyze:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-analyze:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* ── Score card ── */
+  .score-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: none;
+  }
+  .score-card.visible { display: block; }
+
+  .score-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .score-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .score-number {
+    font-size: 3rem; font-weight: 700; line-height: 1;
+  }
+  .score-number.green { color: #4ade80; }
+  .score-number.yellow { color: #fbbf24; }
+  .score-number.red { color: #f87171; }
+
+  .score-bar-bg {
+    background: rgba(255,255,255,0.08); border-radius: 99px;
+    height: 8px; overflow: hidden; margin-bottom: 1.25rem;
+  }
+  .score-bar-fill {
+    height: 100%; border-radius: 99px;
+    transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .score-bar-fill.green  { background: linear-gradient(90deg, #22c55e, #4ade80); }
+  .score-bar-fill.yellow { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .score-bar-fill.red    { background: linear-gradient(90deg, #dc2626, #f87171); }
+
+  .score-summary {
+    font-size: 0.85rem; color: rgba(255,255,255,0.7);
+    line-height: 1.6; margin-bottom: 1.25rem;
+  }
+
+  /* ── Breakdown ── */
+  .breakdown-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4);
+    margin-bottom: 0.75rem;
+  }
+  .breakdown-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .breakdown-item {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.82rem; line-height: 1.5;
+  }
+  .bi-icon { flex-shrink: 0; font-size: 0.95rem; margin-top: 0px; }
+  .bi-ok   { color: #4ade80; }
+  .bi-warn { color: #fbbf24; }
+  .bi-miss { color: #f87171; }
+  .bi-text { color: rgba(255,255,255,0.8); }
+  .bi-kw   { color: var(--teal); font-weight: 500; }
+
+  /* ── Found keywords ── */
+  .kw-section { margin-top: 1.25rem; }
+  .kw-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.6rem;
+  }
+  .kw-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .kw-chip {
+    font-size: 0.72rem; font-weight: 500; padding: 3px 10px;
+    border-radius: 99px; border: 1px solid;
+  }
+  .kw-chip.found  { background: rgba(7,255,210,0.1); border-color: rgba(7,255,210,0.35); color: var(--teal); }
+  .kw-chip.missing { background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.35); color: #f87171; }
+
+  /* ── CTA ── */
+  .cta-block {
+    background: linear-gradient(135deg, rgba(132,23,170,0.35), rgba(7,255,210,0.08));
+    border: 1px solid rgba(132,23,170,0.4);
+    border-radius: 14px; padding: 1.5rem;
+    text-align: center; display: none;
+    margin-bottom: 1rem;
+  }
+  .cta-block.visible { display: block; }
+  .cta-block p {
+    font-size: 0.88rem; font-weight: 300;
+    color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 1rem;
+  }
+  .cta-block strong { color: white; font-weight: 600; }
+  .btn-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal); color: #0a0010;
+    font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600;
+    padding: 11px 24px; border-radius: 8px; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-cta:hover { opacity: 0.85; }
+
+  /* ── Reset ── */
+  .btn-reset {
+    width: 100%; padding: 10px;
+    background: transparent; border: 1px solid var(--border);
+    color: rgba(255,255,255,0.45); font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem; border-radius: 8px; cursor: pointer;
+    transition: all 0.2s; display: none;
+  }
+  .btn-reset.visible { display: block; }
+  .btn-reset:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">Ferramenta ConnectUP</div>
+    <h1>Avaliador de CV <span>ATS</span></h1>
+    <p>Cole o texto do seu currículo e descubra sua nota ATS — quantas palavras-chave estão presentes, o que está faltando e como melhorar.</p>
+  </div>
+
+  <!-- Input -->
+  <div class="input-area">
+    <label>Seu currículo</label>
+
+    <!-- File upload -->
+    <div class="upload-row">
+      <label class="upload-label" for="cv-file">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+        Subir arquivo (.txt / .pdf text)
+      </label>
+      <span id="file-name">nenhum arquivo selecionado</span>
+    </div>
+    <input type="file" id="cv-file" accept=".txt,.pdf" />
+
+    <div class="divider">— ou cole abaixo —</div>
+
+    <textarea id="cv-text" placeholder="Cole aqui o texto completo do seu currículo...&#10;&#10;Exemplo:&#10;Gerente de Projetos com 8 anos de experiência em gestão de equipes multiculturais, liderança de stakeholders e entrega de resultados em ambientes ágeis. Certificação PMP. Experiência com Scrum, Kanban e OKRs. Fluente em inglês..."></textarea>
+  </div>
+
+  <button class="btn-analyze" id="btn-analyze" onclick="analyzeCV()">Avaliar meu CV →</button>
+
+  <!-- Score card -->
+  <div class="score-card" id="score-card">
+    <div class="score-header">
+      <div>
+        <div class="score-label">Pontuação ATS</div>
+        <div class="score-number" id="score-display">0</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="score-label">Cobertura de palavras-chave</div>
+        <div style="font-size:1.4rem;font-weight:600;color:rgba(255,255,255,0.7);" id="kw-coverage">0 / 0</div>
+      </div>
+    </div>
+    <div class="score-bar-bg">
+      <div class="score-bar-fill" id="score-bar" style="width:0%"></div>
+    </div>
+    <p class="score-summary" id="score-summary"></p>
+
+    <div class="breakdown-title">Análise detalhada</div>
+    <ul class="breakdown-list" id="breakdown-list"></ul>
+
+    <div class="kw-section">
+      <div class="kw-title">Palavras-chave encontradas</div>
+      <div class="kw-chips" id="kw-found"></div>
+    </div>
+    <div class="kw-section" style="margin-top:0.75rem;">
+      <div class="kw-title">Palavras-chave ausentes</div>
+      <div class="kw-chips" id="kw-missing"></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block" id="cta-block">
+    <p><strong>Quer um CV que passa pelo ATS e conquista o recrutador?</strong><br/>
+    Nossa equipe revisa, reposiciona e adapta seu currículo ao padrão internacional — com as palavras-chave certas, estrutura clara e impacto real.</p>
+    <a class="btn-cta" href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.523 5.855L.057 23.197a1 1 0 001.234 1.22l5.428-1.442A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.8a9.8 9.8 0 01-4.998-1.374l-.358-.213-3.718.987.998-3.63-.234-.374A9.793 9.793 0 012.2 12C2.2 6.588 6.588 2.2 12 2.2S21.8 6.588 21.8 12 17.412 21.8 12 21.8z"/></svg>
+      Falar com ConnectUP
+    </a>
+  </div>
+
+  <button class="btn-reset" id="btn-reset" onclick="resetTool()">↺ Avaliar outro CV</button>
+
+</div>
+
+<script>
+// ── ATS keyword bank ──
+const KEYWORD_GROUPS = [
+  {
+    label: 'Liderança e gestão',
+    keywords: ['liderança', 'leadership', 'gestão', 'management', 'gerenciamento', 'coordenação', 'coordination', 'supervisão', 'supervision', 'team lead', 'lider', 'gestor', 'manager', 'diretor', 'director'],
+    weight: 2,
+  },
+  {
+    label: 'Resultados e métricas',
+    keywords: ['resultado', 'result', 'kpi', 'meta', 'target', 'crescimento', 'growth', 'receita', 'revenue', 'redução de custos', 'cost reduction', 'roi', 'performance', 'desempenho', 'impacto', 'impact', 'entrega', 'delivery'],
+    weight: 2,
+  },
+  {
+    label: 'Metodologias ágeis',
+    keywords: ['agile', 'scrum', 'kanban', 'sprint', 'backlog', 'ágil', 'lean', 'six sigma', 'okr', 'okrs'],
+    weight: 1.5,
+  },
+  {
+    label: 'Comunicação e apresentação',
+    keywords: ['comunicação', 'communication', 'apresentação', 'presentation', 'negociação', 'negotiation', 'stakeholder', 'relatório', 'report', 'fluente', 'fluent', 'inglês', 'english', 'bilíngue', 'bilingual'],
+    weight: 1.5,
+  },
+  {
+    label: 'Experiência e conquistas',
+    keywords: ['anos de experiência', 'years of experience', 'implementação', 'implementation', 'projeto', 'project', 'programa', 'program', 'iniciativa', 'initiative', 'estratégia', 'strategy', 'planejamento', 'planning'],
+    weight: 1,
+  },
+  {
+    label: 'Tecnologia e ferramentas',
+    keywords: ['excel', 'powerpoint', 'power bi', 'tableau', 'salesforce', 'sap', 'erp', 'crm', 'sql', 'data', 'análise de dados', 'data analysis', 'automação', 'automation'],
+    weight: 1,
+  },
+  {
+    label: 'Formação e certificações',
+    keywords: ['graduação', 'bachelor', 'mba', 'pós-graduação', 'master', 'certificação', 'certification', 'certificado', 'certified', 'pmp', 'cfa', 'cpa'],
+    weight: 1,
+  },
+  {
+    label: 'Formato e estrutura',
+    keywords: [],  // checked structurally below
+    weight: 0,
+  },
+];
+
+const STRUCTURAL_CHECKS = [
+  { id: 'length',    label: 'Comprimento adequado do currículo',     check: (t) => t.split(/\s+/).length >= 200,                         tip: 'Seu CV tem menos de 200 palavras — muito curto para passar por um ATS.' },
+  { id: 'bullets',   label: 'Uso de listas / bullet points',         check: (t) => /[-•·▪▸→]/.test(t),                                  tip: 'Sem marcadores detectados. Listas são essenciais para rastreadores ATS.' },
+  { id: 'numbers',   label: 'Resultados quantificados (números)',     check: (t) => /\d+\s*(%|mil|k|bi|mi|M\b|reais|usd|€|anos?|meses?)/.test(t.toLowerCase()), tip: 'Sem resultados com números. Acrescente: "aumentei receita em 30%", "gerenciei equipe de 12 pessoas".' },
+  { id: 'contact',   label: 'Informações de contato presentes',      check: (t) => /@|linkedin|github|tel|fone|whatsapp|\+\d{2}/.test(t.toLowerCase()), tip: 'Não encontramos e-mail, LinkedIn ou telefone. Verifique se estão no texto colado.' },
+  { id: 'sections',  label: 'Seções claras identificadas',           check: (t) => /(experiência|experience|educação|education|formação|habilidades|skills|objetivo|objective)/i.test(t), tip: 'Título de seções não detectados. Certifique-se de usar cabeçalhos como "Experiência", "Educação", "Habilidades".' },
+  { id: 'action',    label: 'Verbos de ação no início das frases',   check: (t) => /(lider|gerenci|desenvolv|implement|criou|criamos|coorden|negoci|reduzi|aument|otimiz|entregu|superv|condu|geri)/i.test(t), tip: 'Comece frases com verbos de ação: "Liderou", "Implementou", "Reduziu".' },
+];
+
+// ── File reader ──
+document.getElementById('cv-file').addEventListener('change', function() {
+  const file = this.files[0];
+  if (!file) return;
+  document.getElementById('file-name').textContent = file.name;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    document.getElementById('cv-text').value = e.target.result;
+  };
+  reader.readAsText(file, 'UTF-8');
+});
+
+// ── Main analysis ──
+function analyzeCV() {
+  const rawText = document.getElementById('cv-text').value.trim();
+  if (!rawText) {
+    alert('Cole o texto do seu currículo antes de avaliar.');
+    return;
+  }
+
+  const text = rawText.toLowerCase();
+
+  // Collect keyword matches
+  let totalWeight = 0;
+  let foundWeight = 0;
+  const foundKws   = [];
+  const missingKws = [];
+
+  for (const group of KEYWORD_GROUPS) {
+    if (!group.keywords.length) continue;
+    for (const kw of group.keywords) {
+      totalWeight += group.weight;
+      if (text.includes(kw.toLowerCase())) {
+        foundWeight += group.weight;
+        foundKws.push(kw);
+      } else {
+        missingKws.push(kw);
+      }
+    }
+  }
+
+  // Structural checks
+  const structResults = STRUCTURAL_CHECKS.map(c => ({ ...c, passed: c.check(rawText) }));
+  const structPassed  = structResults.filter(r => r.passed).length;
+  const structTotal   = structResults.length;
+  const structWeight  = 30; // structural = 30% of total score
+  const kwWeight      = 70; // keyword coverage = 70%
+
+  const kwScore     = totalWeight > 0 ? (foundWeight / totalWeight) * kwWeight : 0;
+  const structScore = (structPassed / structTotal) * structWeight;
+  const score       = Math.round(kwScore + structScore);
+
+  const kwTotal    = KEYWORD_GROUPS.reduce((acc, g) => acc + g.keywords.length, 0);
+  const kwFoundCnt = foundKws.length;
+
+  // Color class
+  const cls = score >= 75 ? 'green' : score >= 50 ? 'yellow' : 'red';
+
+  // Summary text
+  const summaries = {
+    green:  'Seu CV tem uma boa cobertura de palavras-chave e está bem estruturado para sistemas ATS. Com alguns ajustes finos de posicionamento, as suas chances aumentam ainda mais.',
+    yellow: 'Seu CV passa por alguns filtros ATS, mas está perdendo palavras-chave importantes e pontos de estrutura. Há espaço significativo para melhoria antes de enviar para vagas internacionais.',
+    red:    'Seu CV provavelmente está sendo rejeitado automaticamente por sistemas ATS antes de chegar a um recrutador. É necessário reestruturar e adicionar palavras-chave estratégicas.',
+  };
+
+  // Render
+  const card   = document.getElementById('score-card');
+  const ctaEl  = document.getElementById('cta-block');
+  const resetEl = document.getElementById('btn-reset');
+  const analyzeBtn = document.getElementById('btn-analyze');
+
+  document.getElementById('score-display').textContent  = score + '/100';
+  document.getElementById('score-display').className    = 'score-number ' + cls;
+  document.getElementById('kw-coverage').textContent    = kwFoundCnt + ' / ' + kwTotal;
+  document.getElementById('score-bar').style.width      = score + '%';
+  document.getElementById('score-bar').className        = 'score-bar-fill ' + cls;
+  document.getElementById('score-summary').textContent  = summaries[cls];
+
+  // Breakdown
+  const bl = document.getElementById('breakdown-list');
+  bl.innerHTML = '';
+  for (const sr of structResults) {
+    const li = document.createElement('li');
+    li.className = 'breakdown-item';
+    li.innerHTML = `<span class="bi-icon ${sr.passed ? 'bi-ok' : 'bi-miss'}">${sr.passed ? '✓' : '✗'}</span>
+      <span class="bi-text">${sr.label}${sr.passed ? '' : '<br/><small style="color:rgba(255,255,255,0.45);font-weight:300;">' + sr.tip + '</small>'}</span>`;
+    bl.appendChild(li);
+  }
+
+  // Keyword chips
+  const kwFoundEl   = document.getElementById('kw-found');
+  const kwMissingEl = document.getElementById('kw-missing');
+  kwFoundEl.innerHTML   = foundKws.slice(0, 30).map(k => `<span class="kw-chip found">${k}</span>`).join('');
+  kwMissingEl.innerHTML = missingKws.slice(0, 20).map(k => `<span class="kw-chip missing">${k}</span>`).join('');
+
+  card.classList.add('visible');
+  ctaEl.classList.add('visible');
+  resetEl.classList.add('visible');
+  analyzeBtn.disabled = true;
+
+  // Animate bar
+  requestAnimationFrame(() => {
+    document.getElementById('score-bar').style.width = score + '%';
+  });
+}
+
+function resetTool() {
+  document.getElementById('cv-text').value = '';
+  document.getElementById('file-name').textContent = 'nenhum arquivo selecionado';
+  document.getElementById('cv-file').value = '';
+  document.getElementById('score-card').classList.remove('visible');
+  document.getElementById('cta-block').classList.remove('visible');
+  document.getElementById('btn-reset').classList.remove('visible');
+  document.getElementById('btn-analyze').disabled = false;
+  document.getElementById('score-bar').style.width = '0%';
+}
+</script>
+</body>
+</html>

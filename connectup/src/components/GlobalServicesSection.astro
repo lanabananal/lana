@@ -1,0 +1,229 @@
+---
+interface Props { locale: string; }
+const { locale } = Astro.props;
+
+const labels: Record<string, any> = {
+  'pt-br': {
+    tag: 'O que oferecemos',
+    title: 'Soluções para sua mobilidade global',
+    subtitle: 'Quatro pilares para quem quer atuar com liberdade no mercado internacional.',
+    services: [
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>`,
+        color: '#07ffd2',
+        title: 'Planejamento Financeiro Internacional',
+        desc: 'Para profissionais que recebem em dólar, euro ou libra. Estruturação jurídica, otimização tributária e estratégia financeira para renda em múltiplas moedas.',
+        href: `/${locale}/planejamento-financeiro`,
+        cta: 'Saiba mais →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>`,
+        color: '#07ffd2',
+        title: 'Planejamento Fiscal no Paraguai',
+        desc: 'Residência fiscal legal com 0% de imposto sobre renda do exterior. Empresa, RUC e certificado SET. Processo completo com suporte jurídico.',
+        href: `/${locale}/planejamento-fiscal`,
+        cta: 'Saiba mais →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>`,
+        color: '#e1a7f1',
+        title: 'Comunicação Profissional Internacional',
+        desc: 'Inglês corporativo, reuniões internacionais, apresentações e método STAR. Para quem quer se comunicar com confiança em qualquer sala do mundo.',
+        href: `/${locale}/comunicacao-profissional`,
+        cta: 'Saiba mais →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>`,
+        color: '#8417aa',
+        title: 'CV & LinkedIn Internacional',
+        desc: 'Currículo no padrão global, posicionamento estratégico e perfil LinkedIn otimizado para recrutadores internacionais e sistemas ATS.',
+        href: `/${locale}/cv-linkedin`,
+        cta: 'Saiba mais →',
+      },
+    ],
+  },
+  'en': {
+    tag: 'What we offer',
+    title: 'Solutions for your global mobility',
+    subtitle: 'Four pillars for professionals who want to work freely in the international market.',
+    services: [
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>`,
+        color: '#07ffd2',
+        title: 'International Financial Planning',
+        desc: 'For professionals receiving income in dollars, euros or pounds. Legal structuring, tax optimization and financial strategy for multi-currency income.',
+        href: `/${locale}/planejamento-financeiro`,
+        cta: 'Learn more →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>`,
+        color: '#07ffd2',
+        title: 'Tax Planning in Paraguay',
+        desc: 'Legal tax residency with 0% tax on foreign income. Company, RUC and SET certificate. Full process with legal support.',
+        href: `/${locale}/planejamento-fiscal`,
+        cta: 'Learn more →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>`,
+        color: '#e1a7f1',
+        title: 'International Professional Communication',
+        desc: 'Corporate English, international meetings, presentations and STAR method. For those who want to communicate confidently in any room.',
+        href: `/${locale}/comunicacao-profissional`,
+        cta: 'Learn more →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>`,
+        color: '#8417aa',
+        title: 'CV & LinkedIn Optimization',
+        desc: 'Resume in global format, strategic positioning and LinkedIn profile optimized for international recruiters and ATS systems.',
+        href: `/${locale}/cv-linkedin`,
+        cta: 'Learn more →',
+      },
+    ],
+  },
+  'es': {
+    tag: 'Lo que ofrecemos',
+    title: 'Soluciones para tu movilidad global',
+    subtitle: 'Cuatro pilares para quienes quieren actuar con libertad en el mercado internacional.',
+    services: [
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>`,
+        color: '#07ffd2',
+        title: 'Planificación Financiera Internacional',
+        desc: 'Para profesionales que reciben en dólares, euros o libras. Estructuración legal, optimización tributaria y estrategia financiera para ingresos en múltiples monedas.',
+        href: `/${locale}/planejamento-financeiro`,
+        cta: 'Saber más →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>`,
+        color: '#07ffd2',
+        title: 'Planificación Fiscal en Paraguay',
+        desc: 'Residencia fiscal legal con 0% de impuesto sobre ingresos extranjeros. Empresa, RUC y certificado SET. Proceso completo con soporte legal.',
+        href: `/${locale}/planejamento-fiscal`,
+        cta: 'Saber más →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>`,
+        color: '#e1a7f1',
+        title: 'Comunicación Profesional Internacional',
+        desc: 'Inglés corporativo, reuniones internacionales, presentaciones y método STAR. Para quienes quieren comunicarse con confianza en cualquier sala.',
+        href: `/${locale}/comunicacao-profissional`,
+        cta: 'Saber más →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>`,
+        color: '#8417aa',
+        title: 'CV & LinkedIn Internacional',
+        desc: 'Currículum en formato global, posicionamiento estratégico y perfil de LinkedIn optimizado para reclutadores internacionales y sistemas ATS.',
+        href: `/${locale}/cv-linkedin`,
+        cta: 'Saber más →',
+      },
+    ],
+  },
+  'pl': {
+    tag: 'Co oferujemy',
+    title: 'Rozwiązania dla Twojej globalnej mobilności',
+    subtitle: 'Cztery filary dla profesjonalistów, którzy chcą działać swobodnie na rynku międzynarodowym.',
+    services: [
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>`,
+        color: '#07ffd2',
+        title: 'Międzynarodowe Planowanie Finansowe',
+        desc: 'Dla profesjonalistów otrzymujących dochody w dolarach, euro lub funtach. Strukturyzacja prawna, optymalizacja podatkowa i strategia finansowa dla dochodów w wielu walutach.',
+        href: `/${locale}/planejamento-financeiro`,
+        cta: 'Dowiedz się więcej →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>`,
+        color: '#07ffd2',
+        title: 'Planowanie Podatkowe w Paragwaju',
+        desc: 'Legalna rezydencja podatkowa z 0% podatku od dochodów zagranicznych. Firma, RUC i certyfikat SET. Pełny proces z obsługą prawną.',
+        href: `/${locale}/planejamento-fiscal`,
+        cta: 'Dowiedz się więcej →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>`,
+        color: '#e1a7f1',
+        title: 'Profesjonalna Komunikacja Międzynarodowa',
+        desc: 'Korporacyjny angielski, spotkania międzynarodowe, prezentacje i metoda STAR. Dla tych, którzy chcą komunikować się pewnie w każdym środowisku.',
+        href: `/${locale}/comunicacao-profissional`,
+        cta: 'Dowiedz się więcej →',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>`,
+        color: '#8417aa',
+        title: 'CV & LinkedIn Optimization',
+        desc: 'Życiorys w globalnym formacie, strategiczne pozycjonowanie i profil LinkedIn zoptymalizowany dla międzynarodowych rekruterów i systemów ATS.',
+        href: `/${locale}/cv-linkedin`,
+        cta: 'Dowiedz się więcej →',
+      },
+    ],
+  },
+};
+
+const l = labels[locale] ?? labels['en'];
+---
+
+<section id="services-overview" style="background:#f7f4fa; padding:5rem 1.5rem;">
+  <div style="max-width:1140px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:3rem;">
+      <span style="display:inline-block; font-family:'Poppins',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:#795389; margin-bottom:0.5rem;">{l.tag}</span>
+      <h2 style="font-family:'Poppins',sans-serif; font-size:clamp(1.6rem,3.5vw,2.2rem); font-weight:600; color:#1a1a1a; margin-bottom:0.75rem;">{l.title}</h2>
+      <p style="font-family:'Poppins',sans-serif; font-size:0.95rem; font-weight:300; color:#555; max-width:560px; margin:0 auto; line-height:1.7;">{l.subtitle}</p>
+    </div>
+
+    <div class="svc-grid">
+      {l.services.map((svc: any) => (
+        <a href={svc.href} class="svc-card" style={`--accent: ${svc.color};`}>
+          <div class="svc-icon-wrap" style={`background:${svc.color}18; border:1px solid ${svc.color}30;`}>
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke={svc.color} stroke-width="1.5" set:html={svc.icon}></svg>
+          </div>
+          <h3 style="font-family:'Poppins',sans-serif; font-size:1.05rem; font-weight:600; color:#1a1a1a; margin-bottom:0.6rem; line-height:1.3;">{svc.title}</h3>
+          <p style="font-family:'Poppins',sans-serif; font-size:0.85rem; font-weight:300; color:#555; line-height:1.7; flex:1;">{svc.desc}</p>
+          <div style={`font-family:'Poppins',sans-serif; font-size:0.85rem; font-weight:600; color:${svc.color}; margin-top:1.25rem;`}>{svc.cta}</div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.svc-card {
+  background: white;
+  border: 1px solid #e8e4ed;
+  border-radius: 16px;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  height: 100%;
+}
+.svc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(132,23,170,0.12);
+  border-color: var(--accent);
+}
+.svc-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  flex-shrink: 0;
+}
+@media (max-width: 640px) {
+  .svc-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+  .svc-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>

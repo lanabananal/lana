@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ConnectUP — Simulador de Entrevista</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pu:#c400ff;--pu2:#e1a7f1;--bg:#0a0010;--bg2:#1a0d22;--bg3:#24143a;--tx:#f5eeff;--tx2:#b89cc8;--tx3:#7a5e8a;--bd:#3d1f52;--card:#1e1029;--ok:#4ade80;--bad:#f87171;--warn:#fbbf24}
+body{font-family:'DM Sans',sans-serif;background:#000;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px}
+.app{width:100%;max-width:560px;background:var(--bg);border-radius:16px;overflow:hidden;min-height:100vh;display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--bg2);border-bottom:1px solid var(--bd);flex-shrink:0}
+.logo{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--tx);display:flex;align-items:center;gap:8px}
+.step-pills{display:flex;gap:4px}
+.sp{width:18px;height:4px;border-radius:2px;background:var(--bd);transition:all .3s}
+.sp.done{background:var(--pu)}
+.sp.active{background:var(--pu);opacity:.45}
+.time-badge{font-size:11px;padding:3px 9px;border-radius:20px;background:var(--bg3);color:var(--tx3);border:1px solid var(--bd)}
+.screen{flex:1;overflow-y:auto}
+.cover{min-height:calc(100vh - 57px);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:40px 24px;text-align:center}
+.cover-bg{position:absolute;inset:0;background-image:url('/Gem.png');background-size:cover;background-position:center top}
+.cover-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,0,16,.3) 0%,rgba(10,0,16,.2) 30%,rgba(10,0,16,.6) 65%,rgba(10,0,16,.95) 100%)}
+.corner{position:absolute;width:70px;height:70px;border-color:rgba(196,0,255,.3);border-style:solid;z-index:2}
+.c-tl{top:16px;left:16px;border-width:1px 0 0 1px}.c-tr{top:16px;right:16px;border-width:1px 1px 0 0}
+.c-bl{bottom:16px;left:16px;border-width:0 0 1px 1px}.c-br{bottom:16px;right:16px;border-width:0 1px 1px 0}
+.cover-content{position:relative;z-index:3;width:100%}
+.cover-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(225,167,241,.9);margin-bottom:14px;font-weight:400}
+.cover-title{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;line-height:1.1;color:#f5eeff;margin-bottom:6px;letter-spacing:-.02em;text-shadow:0 2px 30px rgba(0,0,0,.9)}
+.cover-sub{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;line-height:1.1;color:#c400ff;margin-bottom:28px;letter-spacing:-.02em;text-shadow:0 0 40px rgba(196,0,255,.8)}
+.cover-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(196,0,255,.7),transparent);margin:0 auto 28px}
+.cover-btn{padding:16px 52px;border-radius:50px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;cursor:pointer;border:none;background:linear-gradient(135deg,#c400ff,#7000cc);color:#fff;box-shadow:0 0 40px rgba(196,0,255,.5);transition:transform .15s,box-shadow .15s}
+.cover-btn:hover{transform:scale(1.05);box-shadow:0 0 60px rgba(196,0,255,.7)}
+.cover-hint{font-size:11px;color:rgba(225,167,241,.45);margin-top:14px;font-style:italic;letter-spacing:.04em}
+.body-screen{padding:28px 24px}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pu);margin-bottom:14px;font-weight:500}
+.greeting{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;line-height:1.3;margin-bottom:18px;color:var(--tx)}
+.greeting span{color:var(--pu2)}
+.body-text{font-size:15px;color:var(--tx2);line-height:1.85}
+.body-text p{margin-bottom:18px}
+.body-text p:last-child{margin-bottom:0}
+.hl{color:var(--pu2);font-style:italic}
+.divider{border:none;border-top:1px solid var(--bd);margin:22px 0}
+.name-label{font-size:13px;color:var(--tx2);margin-bottom:10px}
+.name-wrap{display:flex;gap:10px;align-items:center}
+.name-wrap input{flex:1;padding:13px 16px;border-radius:12px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx);font-size:15px;font-family:'DM Sans',sans-serif;outline:none;transition:border .15s}
+.name-wrap input:focus{border-color:var(--pu)}
+.name-wrap input::placeholder{color:var(--tx3)}
+.btn-start{padding:13px 22px;border-radius:12px;font-size:14px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;background:var(--pu);color:#fff;border:none;transition:all .15s;white-space:nowrap;letter-spacing:.02em}
+.btn-start:hover{background:#a800d9}
+.btn-start:disabled{opacity:.35;cursor:default}
+.comfort{font-size:12px;color:var(--tx3);font-style:italic;margin-top:14px;min-height:18px}
+.module-screen{padding:20px}
+.mod-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);margin-bottom:16px;font-weight:500;text-align:center}
+.dark-card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:12px}
+.sec-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);margin-bottom:8px;font-weight:500}
+.prog-bar{height:4px;border-radius:2px;background:var(--bd);overflow:hidden}
+.prog-fill{height:100%;border-radius:2px;background:var(--pu);transition:width .4s}
+.prog-time{font-size:12px;color:var(--tx3);text-align:right;margin-top:4px;margin-bottom:12px;font-variant-numeric:tabular-nums}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{padding:10px 20px;border-radius:10px;font-size:13px;cursor:pointer;border:1px solid var(--bd);background:var(--bg3);color:var(--tx2);transition:all .15s;font-family:'DM Sans',sans-serif}
+.btn:hover{border-color:var(--pu);color:var(--tx)}
+.btn-main{background:var(--pu);color:#fff;border:none;font-weight:500}
+.btn-main:hover{background:#a800d9;color:#fff}
+.btn:disabled{opacity:.35;cursor:default}
+.pill{font-size:11px;padding:3px 9px;border-radius:20px;display:inline-block}
+.pill-pu{background:#c400ff18;color:var(--pu2);border:1px solid #c400ff33}
+.pill-ok{background:#0d2b1a;color:var(--ok);border:1px solid #166534}
+.pill-warn{background:#2b1a00;color:var(--warn);border:1px solid #854f0b}
+.pill-bad{background:#2d0a0a;color:var(--bad);border:1px solid #7f1d1d}
+.pill-gray{background:var(--bg3);color:var(--tx3);border:1px solid var(--bd)}
+.breath-wrap{display:flex;justify-content:center;align-items:center;margin:16px auto;width:130px;height:130px;position:relative}
+.breath-ring{width:130px;height:130px;border-radius:50%;border:1px solid var(--bd);position:absolute}
+.breath-circle{width:70px;height:70px;border-radius:50%;background:var(--pu);display:flex;align-items:center;justify-content:center}
+.breath-num{font-size:20px;font-weight:500;color:#fff;font-variant-numeric:tabular-nums}
+.med-inst{font-size:16px;font-weight:500;color:var(--tx);text-align:center;margin-bottom:4px}
+.med-sub{font-size:12px;color:var(--tx3);text-align:center;font-style:italic;margin-bottom:12px;min-height:16px}
+.sarcasm{font-size:11px;color:var(--tx3);font-style:italic;text-align:center;margin-top:10px;min-height:16px}
+.ck-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--bd);cursor:pointer}
+.ck-item:last-child{border-bottom:none}
+.ck-box{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--tx3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .15s}
+.ck-box.on{background:var(--pu);border-color:var(--pu)}
+.ck-main{font-size:13px;color:var(--tx)}
+.ck-hint{font-size:11px;color:var(--tx3);font-style:italic;margin-top:1px}
+.ck-item.done .ck-main{color:var(--tx3);text-decoration:line-through}
+.q-num{font-size:11px;color:var(--pu);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:500}
+.q-text{font-size:14px;font-weight:500;color:var(--tx);line-height:1.5;margin-bottom:4px}
+.q-ctx{font-size:11.5px;color:var(--tx3);font-style:italic;margin-bottom:14px;line-height:1.4}
+.opts{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.opt{padding:10px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg3);font-size:12.5px;color:var(--tx2);cursor:pointer;transition:all .15s;text-align:left;line-height:1.4;font-family:'DM Sans',sans-serif}
+.opt:hover{border-color:var(--pu);color:var(--tx)}
+.opt.selected{border-color:var(--pu);background:#c400ff12;color:var(--tx)}
+.opt.correct{border-color:var(--ok);background:#0d2b1a;color:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:#2d0a0a;color:var(--bad)}
+.pause-item{background:var(--bg3);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;margin-bottom:8px;border-left:3px solid var(--pu)}
+.pause-title{font-size:13px;font-weight:500;color:var(--tx);margin-bottom:3px}
+.pause-desc{font-size:12px;color:var(--tx2);line-height:1.55;margin-bottom:6px}
+.eg-bad{font-size:12px;color:var(--bad);background:#2d0a0a;padding:6px 8px;border-radius:5px;margin-bottom:4px;line-height:1.4}
+.eg-good{font-size:12px;color:var(--ok);background:#0d2b1a;padding:6px 8px;border-radius:5px;line-height:1.4}
+.q-sim{font-size:14px;font-weight:500;color:var(--tx);line-height:1.55;padding:12px 14px;background:var(--bg3);border-radius:10px;border-left:3px solid var(--pu);margin-bottom:6px}
+.q-ctx-sim{font-size:11px;color:var(--tx3);font-style:italic;margin-bottom:14px}
+.timer-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.timer-num{font-size:20px;font-weight:500;color:var(--tx);font-variant-numeric:tabular-nums}
+.wave-row{display:flex;align-items:center;gap:2px;height:32px;margin-bottom:10px;justify-content:center}
+.wbar{width:3px;border-radius:2px;background:var(--pu);height:3px;transition:height .08s}
+.transcript{min-height:70px;padding:10px 12px;background:var(--bg3);border:1px solid var(--bd);border-radius:10px;font-size:12.5px;color:var(--tx2);line-height:1.7;margin-bottom:12px}
+.interim{color:var(--tx3);font-style:italic}
+.cursor{display:inline-block;width:2px;height:12px;background:var(--pu);animation:blink .8s infinite;vertical-align:middle;margin-left:2px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.metric{background:var(--bg3);border:1px solid var(--bd);border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px}
+.ring{position:relative;width:40px;height:40px;flex-shrink:0}
+.ring svg{transform:rotate(-90deg)}
+.ring-n{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;font-weight:500;color:var(--tx)}
+.m-lbl{font-size:10px;color:var(--tx3)}
+.m-val{font-size:12px;font-weight:500;color:var(--tx)}
+.star-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.tip-box{padding:10px 12px;background:var(--bg3);border-radius:10px;border-left:3px solid var(--pu);font-size:12px;color:var(--tx2);line-height:1.6;margin-bottom:12px}
+.tip-box strong{color:var(--tx);font-weight:500}
+.spinner{width:14px;height:14px;border:2px solid var(--bd);border-top-color:var(--pu);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-row{display:flex;align-items:center;gap:8px;padding:12px;background:var(--bg3);border-radius:10px;margin-bottom:10px;border:1px solid var(--bd)}
+.done-circle{width:64px;height:64px;border-radius:50%;background:var(--pu);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff}
+/* STAR ID */
+.story-box{background:var(--bg3);border:1px solid var(--bd);border-radius:10px;padding:14px;font-size:13px;color:var(--tx2);line-height:1.75;margin-bottom:14px;font-style:italic}
+.star-verdict-btn{flex:1;padding:14px;border-radius:10px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;cursor:pointer;border:1px solid var(--bd);background:var(--bg3);color:var(--tx2);transition:all .2s;text-align:center}
+.star-verdict-btn:hover{transform:scale(1.02)}
+.star-verdict-btn.yes{border-color:#4ade80;color:var(--ok)}
+.star-verdict-btn.yes:hover{background:#0d2b1a}
+.star-verdict-btn.no{border-color:var(--bad);color:var(--bad)}
+.star-verdict-btn.no:hover{background:#2d0a0a}
+.fb-box{border-radius:10px;padding:12px;font-size:12.5px;line-height:1.65;margin-bottom:10px}
+.fb-correct{background:#0d2b1a;border:1px solid #166534;color:var(--ok)}
+.fb-wrong{background:#2d0a0a;border:1px solid #7f1d1d;color:var(--bad)}
+.missing-item{font-size:11.5px;color:var(--tx3);padding:3px 0;display:flex;align-items:flex-start;gap:6px}
+/* STAR DRAG */
+.drag-pool{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.drag-piece{background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:10px 12px;font-size:12.5px;color:var(--tx2);cursor:grab;line-height:1.5;transition:all .15s;user-select:none}
+.drag-piece:hover{border-color:var(--pu);color:var(--tx)}
+.drag-piece.dragging{border-color:var(--pu);background:#c400ff12;opacity:.8;cursor:grabbing}
+.drag-piece.placed{opacity:.4;cursor:default;pointer-events:none}
+.drag-slots{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.drag-slot{border:1.5px dashed var(--bd);border-radius:10px;padding:10px 12px;min-height:70px;transition:all .2s;position:relative}
+.drag-slot-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--pu);letter-spacing:.08em;margin-bottom:4px}
+.drag-slot.drag-over{border-color:var(--pu);background:#c400ff08}
+.drag-slot.filled{border-style:solid;border-color:var(--bd)}
+.drag-slot.correct{border-color:var(--ok);background:#0d2b1a}
+.drag-slot.wrong{border-color:var(--bad);background:#2d0a0a}
+.slot-content{font-size:11.5px;color:var(--tx2);line-height:1.5}
+/* BEHAVIORAL */
+.scenario-box{background:var(--bg3);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-bottom:8px;border-left:3px solid var(--warn)}
+.scenario-label{font-size:10px;color:var(--warn);letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:4px}
+.scenario-text{font-size:13px;color:var(--tx);line-height:1.55}
+.scenario-ctx{font-size:11px;color:var(--tx3);font-style:italic;margin-top:4px}
+.beh-opt{padding:12px 14px;border-radius:10px;border:1px solid var(--bd);background:var(--bg3);font-size:13px;color:var(--tx2);cursor:pointer;transition:all .15s;text-align:left;line-height:1.5;font-family:'DM Sans',sans-serif;margin-bottom:7px;display:flex;gap:10px;align-items:flex-start;width:100%}
+.beh-opt:hover{border-color:var(--pu);color:var(--tx)}
+.beh-opt.selected{border-color:var(--pu);background:#c400ff12}
+.beh-opt.correct{border-color:var(--ok);background:#0d2b1a;color:var(--ok)}
+.beh-opt.wrong{border-color:var(--bad);background:#2d0a0a;color:var(--bad)}
+.beh-tag{flex-shrink:0;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--pu);margin-top:1px}
+.star-example-box{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-bottom:10px}
+.star-example-label{font-size:10px;color:var(--pu);letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:8px}
+.star-row-ex{display:grid;grid-template-columns:1fr;gap:4px}
+.star-el{font-size:12px;color:var(--tx2);line-height:1.55;padding:6px 8px;background:var(--bg3);border-radius:6px}
+.star-el strong{color:var(--pu2)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="logo">ConnectUP</div>
+    <div class="step-pills" id="step-pills">
+      <div class="sp"></div><div class="sp"></div><div class="sp"></div><div class="sp"></div><div class="sp"></div><div class="sp"></div>
+    </div>
+    <div class="time-badge" id="time-badge">25 min</div>
+  </div>
+  <div class="screen" id="main"></div>
+</div>
+
+<script>
+const STEPS=['cover','welcome','med','check','diag','star-id','pausas','sim'];
+let step=0,userName='';
+
+// ── MED ──────────────────────────────────────────────────────────────────────
+const MED_PHASES=[{label:'Inspire',sub:'Pelo nariz, 4 segundos',dur:4},{label:'Segure',sub:'A Purple Company não existe por 4 segundos.',dur:4},{label:'Expire',sub:'Pela boca, 4 segundos',dur:4},{label:'Segure',sub:'Vazio. Calma. Repita.',dur:4}];
+const MED_SARCASMS=['O RH da Purple Company também respira. Às vezes.','Cada expiração é um e-mail urgente que você não leu.','Inspire confiança. Expire insegurança.','Nenhuma reunião existe neste momento. Aproveite.'];
+let medTimer=60,medPhaseIdx=0,medPhaseTime=0,medPaused=false,medInt=null,medScaleInt=null;
+
+// ── CHECKLIST ─────────────────────────────────────────────────────────────────
+const CHECKS=[{m:'Luz na minha frente, não atrás',h:'Contraluz = rosto escuro = impressão ruim.'},{m:'Câmera na altura dos olhos',h:'Notebook no chão = ângulo desfavorável. Use livros.'},{m:'Fone com microfone',h:'Microfone embutido capta tudo. Fone resolve 80%.'},{m:'Ambiente silencioso',h:'O cachorro analista sênior da Purple Company aprova silêncio.'},{m:'Fundo neutro e organizado',h:'Eles julgam. Todo mundo julga.'},{m:'Roupa adequada na parte superior',h:'A Purple Company tem padrões visuais. Acredite.'},{m:'Celular no silencioso',h:'Notificação de delivery durante resposta sobre liderança é irrecuperável.'},{m:'Água ou café por perto',h:'Boca seca acontece. A Purple Company não vai esperar.'}];
+let checked={};
+
+// ── DIAGNÓSTICO ───────────────────────────────────────────────────────────────
+const DIAG_QS=[
+  {t:'A Purple Company te pergunta "me fale sobre você". Você:',c:'Pergunta mais previsível de toda entrevista. Ainda assim a mais reprova.',o:[{t:'Começo do início — onde nasci, estudei...',g:'discurso',w:3},{t:'Tenho resposta mas às vezes me perco no meio.',g:'discurso',w:2},{t:'Adapto ao contexto, foco no que é relevante para a vaga.',g:null,w:0},{t:'Fico em branco e improviso.',g:'nervosismo',w:3}]},
+  {t:'Pedem um exemplo de quando você resolveu um problema complexo. Você:',c:'Querem evidência. Não intenção. Não filosofia. Evidência.',o:[{t:'Tenho histórias prontas e sei qual usar para cada contexto.',g:null,w:0},{t:'Lembro de exemplos mas a cabeça esvazia na hora.',g:'nervosismo',w:2},{t:'Conto a história mas não fica claro meu papel específico.',g:'discurso',w:3},{t:'Respondo de forma geral sem exemplo real.',g:'discurso',w:4}]},
+  {t:'O RH faz uma pausa longa e te olha esperando você continuar. Você:',c:'Técnica clássica de pressão. 70% dos candidatos se auto-sabotam aqui.',o:[{t:'Fico tranquilo — sei que faz parte da entrevista.',g:null,w:0},{t:'Começo a dar informações que não planejava dar.',g:'nervosismo',w:4},{t:'Digo "é isso" sem ter terminado a resposta.',g:'nervosismo',w:3},{t:'Pergunto se respondi o que queriam.',g:'nervosismo',w:1}]}
+];
+const GAP_INFO={discurso:{n:'Estrutura do discurso',d:'Suas respostas perdem o fio condutor. O método STAR é o único formato que resolve isso — cada elemento âncora a narrativa e impede que a resposta vire monólogo sem destino. Você vai praticar isso agora.'},nervosismo:{n:'Gestão do nervosismo',d:'Você sabe a resposta mas o sistema nervoso sequestra a memória. Quanto mais você simula o ambiente com pressão real, menos o cérebro trata a entrevista como ameaça.'}};
+let diagAns=[],diagQ=0,diagSel=null;
+
+// ── STAR IDENTIFICATION ───────────────────────────────────────────────────────
+const STAR_ID_STORIES=[
+  {text:'"Sempre fui muito bom em lidar com pessoas e resolver conflitos. Quando há desentendimento no time, procuro ouvir os dois lados e ser imparcial. Na empresa anterior todos me procuravam quando havia problema entre colegas."',is_star:false,feedback:'Não é STAR — e é a resposta que o RH ouve 40 vezes por dia. Isso é uma autodescriçao genérica sem situação específica, sem contexto real, sem ação concreta sua e sem resultado mensurável. "Sempre fui bom em..." é a frase mais perigosa de uma entrevista. O RH vai concordar educadamente e esquecer você em 30 segundos.',missing:['Situação específica com contexto real','Tarefa com stakes claros (o que estava em jogo)','Ação concreta — o que VOCÊ fez (não "a gente")','Resultado mensurável ou mudança observável']},
+  {text:'"Na última empresa, o prazo de um projeto foi antecipado em 3 semanas sem aviso. Eu era responsável pela integração com o sistema do cliente. Mapeei os riscos, priorizei os pontos críticos com o time de produto e negociei diretamente com o cliente a remoção de duas features secundárias. Entregamos no prazo, dentro do orçamento, e o cliente renovou o contrato por mais 12 meses."',is_star:true,feedback:'É STAR — bem executado. Situação clara (prazo antecipado, com contexto), Tarefa específica (integração, responsabilidade definida), Ação em múltiplos passos com verbos fortes (mapeei, priorizei, negociei) e Resultado com consequência de negócio (renovação de contrato). Sugestão: adicione o percentual de escopo cortado para deixar mais preciso.',present:['Situação com pressão real e contexto','Tarefa com responsabilidade clara','Ação em 3 passos com verbos de dono','Resultado com impacto de negócio']},
+  {text:'"Tivemos um problema grande com um fornecedor que atrasou a entrega e afetou nosso cronograma. Foi um período muito estressante. Mas conseguimos superar com trabalho em equipe e boa comunicação. No final tudo ficou bem e o projeto foi entregue."',is_star:false,feedback:'Não é STAR — mas está disfarçado de história. Esse é o mais perigoso porque parece uma resposta completa. "Ficou tudo certo" não é resultado. "Trabalho em equipe" não é ação. Onde está SEU papel? O que VOCÊ fez? Quantos dias de atraso? Quanto custou? Sem especificidade, o RH ouve ruído.',missing:['Qual era o SEU papel específico (não "a gente")','O que você fez de concreto — ações com verbo forte','Resultado mensurável (tempo, custo, qualidade)']}
+];
+let starIdQ=0,starIdAnswered=false;
+
+// ── PAUSAS ────────────────────────────────────────────────────────────────────
+const PAUSAS_DATA=[
+  {t:'Pausa de ouro — 2 a 3s antes de responder',d:'Transmite confiança, não hesitação. Recrutadores treinados sabem distinguir os dois. Candidatos ansiosos preenchem o silêncio com lixo verbal.',bad:'— "Ah sim então tipo deixa eu pensar bom então..."',good:'+ [2s de pausa] "Tem um exemplo específico que vem à mente aqui..."'},
+  {t:'Pausas entre elementos STAR',d:'Cada transição entre Situação → Tarefa → Ação → Resultado merece uma micro-pausa. Isso estrutura sua resposta de forma audível — o RH consegue acompanhar.',bad:'— "...prazo apertado então precisava fazer várias coisas e decidi reorganizar e falei com todo mundo e no final..."',good:'+ "Era um prazo impossível. [pausa] Minha responsabilidade era garantir a entrega técnica. [pausa] O que fiz foi..."'},
+  {t:'Sinalização verbal — compre tempo com elegância',d:'Quando precisar pensar, diga em voz alta. Compra 3–5 segundos e soa profissional. Silence panic é visível. Sinalização verbal, não.',bad:'— "Hmm... é... então... [6 segundos de silêncio vazio]"',good:'+ "Boa pergunta — deixa eu pensar por um segundo." [pensa] "Teve uma situação específica..."'}
+];
+
+// ── BEHAVIORAL ────────────────────────────────────────────────────────────────
+const BEHAVIORAL_QS=[
+  {scenario:'Uma analista da Purple Company grampeou o cabelo de uma colega durante a retrospectiva de sprint. As duas vieram te perguntar o que fazer.',ctx:'O grampo ainda está no cabelo. O standup começa em 12 minutos.',question:'Como você resolveu uma situação difícil de conflito interpessoal no time?',
+    options:[
+      {tag:'A',text:'Convoca team building com dinâmica de escuta ativa e playlist de jazz. Ambiente de harmonia resolve o grampo.',score:15,correct:false,feedback:'Jazz resolve muita coisa. Grampo no cabelo da colega durante retrospectiva, não. Você usou atividade de grupo para evitar o conflito direto — o que é uma forma elegante de não resolver nada. O RH identifica isso como fuga de conflito.'},
+      {tag:'B',text:'Separa as duas, conversa individualmente para entender o que aconteceu, depois facilita uma conversa focada no impacto no trabalho — não no grampo em si.',score:95,correct:true,feedback:'Correto. Conflitos são tratados privadamente primeiro, coletivamente depois quando necessário. Você focou no impacto no trabalho, não no episódio do grampo — que é exatamente o que demonstra maturidade profissional.'},
+      {tag:'C',text:'Encaminha para o RH porque tecnicamente não é da sua alçada. Grampo é grampo.',score:20,correct:false,feedback:'Encaminhar para o RH antes de qualquer tentativa direta é sinal de que você evita conflito — não que você resolve. Pode ser necessário depois. Mas a primeira responsabilidade era sua, como gestor ou colega sênior.'}
+    ],
+    star_example:[{l:'S',t:'Uma desenvolvedora se recusou a fazer code review para um colega após uma discussão em standup.'},{l:'T',t:'Meu papel era garantir que o sprint não parasse e que a tensão não se espalhasse para o resto do time.'},{l:'A',t:'Conversei com cada um separadamente, ouvi sem julgar, identifiquei que havia uma questão de reconhecimento não resolvida. Depois facilitei uma conversa entre os dois focada no impacto no trabalho.'},{l:'R',t:'O conflito foi resolvido em 4 dias. O sprint foi entregue completo. Na retrospectiva seguinte, o time criou um protocolo de code review.'}]
+  },
+  {scenario:'O gerente da Purple Company decidiu em reunião que o prazo de 3 meses "parece muito". Agora é 6 semanas. A decisão já foi comunicada para o cliente.',ctx:'Você sabe que é impossível. A equipe também sabe. Ninguém falou nada na reunião.',question:'Me conte sobre uma vez que você discordou de uma decisão e como lidou com isso.',
+    options:[
+      {tag:'A',text:'Concorda na reunião e faz o possível. Se não entregar, foi o prazo impossível — não você.',score:10,correct:false,feedback:'Concordar sabendo que vai falhar é uma das formas mais comuns — e mais destrutivas — de gestão de conflito passivo. O RH identifica isso. Você protegeu sua posição por 10 minutos e criou um problema de meses.'},
+      {tag:'B',text:'Manda mensagem privada para o gestor depois da reunião dizendo que viu um risco mas não quis falar na frente de todos.',score:50,correct:false,feedback:'Melhor do que silêncio. Mas tarde demais — o cliente já foi informado. O momento era durante a reunião, com dados e alternativas. Pontue: é o segundo pior caminho, não o pior.'},
+      {tag:'C',text:'Prepara uma análise mostrando o que cabe ou não cabe em 6 semanas e apresenta ao gestor com três opções de escopo. Transforma opinião em dado.',score:97,correct:true,feedback:'Excelente. Você transformou discordância em análise de trade-off com alternativas concretas. O gestor precisa de informação para decidir, não de resistência. Isso é o que distingue comunicação profissional de queixa.'}
+    ],
+    star_example:[{l:'S',t:'Em reunião de planejamento, o prazo foi cortado de 12 para 8 semanas sem consultar o time técnico.'},{l:'T',t:'Precisava comunicar o risco sem parecer que estava resistindo à decisão ou sendo negativo.'},{l:'A',t:'Preparei uma análise em 2 horas mostrando quais features não caberiam e o custo de cada opção de escopo. Apresentei ao gestor com três alternativas.'},{l:'R',t:'Escolhemos reduzir escopo em 30%. Entregamos no prazo. O cliente aceitou porque foi comunicado com antecedência e com explicação técnica.'}]
+  }
+];
+let behQ=0,behSel=null,behAnswered=false;
+
+// ── STAR DRAG ─────────────────────────────────────────────────────────────────
+const STAR_DRAG_SETS=[
+  {intro:'Reorganize os trechos abaixo na ordem correta do método STAR. Arraste ou clique para mover.',pieces:[
+    {id:'d0',text:'O cliente principal ameaçou cancelar o contrato após dois bugs críticos em produção na mesma semana.',slot:'S'},
+    {id:'d1',text:'Minha responsabilidade era coordenar a resposta técnica e manter o cliente informado até a resolução completa.',slot:'T'},
+    {id:'d2',text:'Montei um war room com as três áreas envolvidas, priorizamos os bugs por impacto e implementamos deploy com checklist obrigatório.',slot:'A'},
+    {id:'d3',text:'O cliente aprovou a entrega e o NPS da conta subiu 18 pontos no trimestre seguinte.',slot:'R'}
+  ]},
+  {intro:'Segunda história. Mesmo exercício — organize no método STAR:',pieces:[
+    {id:'e0',text:'As reuniões de alinhamento duravam 90 minutos e metade do time saía sem clareza do que fazer.',slot:'S'},
+    {id:'e1',text:'Como tech lead, era meu papel propor mudanças de processo que o time aceitasse voluntariamente.',slot:'T'},
+    {id:'e2',text:'Propus um sistema de rodízio de facilitação e introduzi agenda com tempo fixo por pauta.',slot:'A'},
+    {id:'e3',text:'As reuniões caíram para 45 minutos em média. O survey trimestral mostrou melhora na sensação de produtividade.',slot:'R'}
+  ]}
+];
+let dragIdx=0,slotAssignments={},selectedPiece=null;
+
+// ── SIM RECORDING ─────────────────────────────────────────────────────────────
+const SIM_RECORD_QS=[
+  {q:'A Purple Company tem uma política de "feedback radical": todo mundo fala o que pensa de todos na all-hands mensal. O último durou 4 horas e terminou com alguém chorando. Me conta sobre uma vez que você deu um feedback difícil.',ctx:'O RH já viu três pessoas entrarem em colapso com essa pergunta. O cachorro analista sênior está tomando notas.',tip:'Feche com o resultado. O feedback mudou algo? Use número se tiver.',t:'Na minha empresa anterior, um colega interrompia os clientes constantemente em calls. Documentei três episódios com exemplos concretos, pedi uma conversa privada e mostrei o padrão sem julgamento. Combinamos um sinal discreto. Em duas semanas o comportamento mudou e o cliente mencionou a melhora na relação.'},
+  {q:'O gestor da Purple Company mudou o escopo do projeto pela quinta vez esta semana. A equipe chama de "agilidade estratégica". Me conte sobre uma vez que você gerenciou mudança constante sem perder o time.',ctx:'O roadmap tem 47 itens com prioridade máxima. Todos adicionados na sexta às 17h.',tip:'O que VOCÊ fez especificamente? Evite "a gente". O RH quer seu papel.',t:'Criei um framework simples de custo de mudança: cada alteração de escopo vinha acompanhada de impacto em prazo e features. Quando ficou visível que mudar uma coisa atrasava três entregas, as conversas mudaram. Caiu de cinco mudanças por semana para uma por sprint.'},
+  {q:'Na Purple Company, um sênior discordou da sua decisão em público, na frente do cliente. Como você lidaria? Me dê um exemplo real.',ctx:'A Purple Company tem 12 seniores que discordam de tudo. É uma tradição cultural.',tip:'Mostre que você mantém a relação profissional. Resultado importa mais que quem estava certo.',t:'Em uma apresentação, o sênior contestou minha estimativa de prazo na frente do cliente. Mantive o tom, disse que revisaríamos os números juntos e depois da reunião marcamos uma conversa. Ele tinha um ponto válido — a estimativa estava otimista. Revisamos juntos e apresentamos a versão atualizada para o cliente. O cliente ficou mais confiante com a transparência.'}
+];
+let recQ=0;
+
+// ── SIM QUEUE ─────────────────────────────────────────────────────────────────
+const SIM_QUEUE=[
+  {type:'record',idx:0},
+  {type:'behavioral',idx:0},
+  {type:'star-drag',idx:0},
+  {type:'record',idx:1},
+  {type:'behavioral',idx:1},
+];
+let simQIdx=0,simTimer=120,simPaused=false,simTInt=null,simWInt=null,simTrInt=null,simCharIdx=0;
+
+const COMFORTS=['O cachorro já está te julgando. Pode digitar seu nome com calma.','25 minutos. Sem pressa. Sem terno. Só prática.','A Purple Company não existe. Mas o nervosismo é real. Vamos trabalhar nisso.','Você tem água? Café? Pega antes de começar.','O RH já está na sala. O cachorro também. Respira.'];
+let comfortIdx=0,comfortInt=null;
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+function goTo(s){step=STEPS.indexOf(s);render();updatePills();}
+function updatePills(){
+  const pills=document.querySelectorAll('.sp');
+  const map={cover:-1,welcome:-1,med:0,check:1,diag:2,'star-id':3,pausas:4,sim:5};
+  const cur=map[STEPS[step]]??-1;
+  pills.forEach((p,i)=>{p.className='sp'+(i<cur?' done':i===cur?' active':'');});
+  const times={cover:'25 min',welcome:'25 min',med:'1 min',check:'1 min',diag:'3 min','star-id':'4 min',pausas:'3 min',sim:'13 min'};
+  document.getElementById('time-badge').textContent=times[STEPS[step]]||'';
+}
+function render(){
+  const s=STEPS[step];
+  if(s==='cover')rCover();
+  else if(s==='welcome')rWelcome();
+  else if(s==='med')rMed();
+  else if(s==='check')rCheck();
+  else if(s==='diag')rDiag();
+  else if(s==='star-id')rStarId();
+  else if(s==='pausas')rPausas();
+  else if(s==='sim'){simQIdx=0;rSimNext();}
+}
+
+// ── COVER ─────────────────────────────────────────────────────────────────────
+function rCover(){
+  document.getElementById('main').innerHTML=`<div class="cover"><div class="cover-bg"></div><div class="cover-overlay"></div><div class="corner c-tl"></div><div class="corner c-tr"></div><div class="corner c-bl"></div><div class="corner c-br"></div><div class="cover-content"><div class="cover-eyebrow">Simulador de Entrevista</div><div style="height:8px"></div><div class="cover-title">Bem-vindo à</div><div class="cover-sub">Purple Company.</div><div class="cover-divider"></div><button class="cover-btn" onclick="goTo('welcome')">Iniciar →</button><div class="cover-hint">O cachorro analista sênior já está na sala.</div></div></div>`;
+}
+
+// ── WELCOME ───────────────────────────────────────────────────────────────────
+function rWelcome(){
+  clearInterval(comfortInt);
+  document.getElementById('main').innerHTML=`<div class="body-screen"><div class="eyebrow">Simulador de Entrevista</div><div class="greeting" id="greeting">Olá! Que bom ter você aqui.</div><div class="body-text"><p>Você está prestes a simular uma entrevista para a <strong style="color:var(--pu2)">Purple Company Inc.</strong> — uma empresa que não produz nada concreto, tem reuniões sobre reuniões, e classifica absolutamente tudo como <span class="hl">"urgente e estratégico"</span>.</p><p>Aqui você vai identificar histórias no método STAR, arrastar peças de histórias para a ordem certa, responder perguntas comportamentais absurdas com A/B/C, e gravar respostas reais com feedback crítico. São 25 minutos. Sem paletó.</p></div><div class="divider"></div><div class="name-label">Como posso te chamar?</div><div class="name-wrap"><input type="text" id="name-input" placeholder="Seu nome" oninput="checkName()" onkeydown="if(event.key==='Enter')startSession()"><button class="btn-start" id="start-btn" onclick="startSession()" disabled>Começar →</button></div><div class="comfort" id="comfort-text">${COMFORTS[0]}</div></div>`;
+  comfortIdx=0;
+  comfortInt=setInterval(()=>{comfortIdx=(comfortIdx+1)%COMFORTS.length;const el=document.getElementById('comfort-text');if(el)el.textContent=COMFORTS[comfortIdx];},4000);
+}
+function checkName(){const v=document.getElementById('name-input').value.trim();document.getElementById('start-btn').disabled=!v;if(v){userName=v;document.getElementById('greeting').innerHTML=`Olá, <span>${v}</span>! Que bom ter você aqui.`;}else document.getElementById('greeting').innerHTML=`Olá! Que bom ter você aqui.`;}
+function startSession(){const v=document.getElementById('name-input').value.trim();if(!v)return;userName=v;clearInterval(comfortInt);goTo('med');}
+
+// ── MED ───────────────────────────────────────────────────────────────────────
+function rMed(){
+  medTimer=60;medPhaseIdx=0;medPhaseTime=0;medPaused=false;clearInterval(medInt);clearInterval(medScaleInt);
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="mod-label">Módulo 1 — Respiração</div><div class="dark-card" style="text-align:center"><div class="sec-label" id="med-phase">prepare-se</div><div class="med-inst" id="med-inst">Feche os olhos</div><div class="med-sub" id="med-sub">Começando em instantes...</div><div class="breath-wrap"><div class="breath-ring"></div><div class="breath-circle" id="breath-circle"><div class="breath-num" id="breath-num">—</div></div></div><div class="prog-bar"><div class="prog-fill" id="med-prog" style="width:100%"></div></div><div class="prog-time" id="med-time">1:00</div><div class="btn-row" style="justify-content:center"><button class="btn" id="med-pb" onclick="medToggle()">Pausar</button><button class="btn" onclick="medSkip()">Pular</button></div><div class="sarcasm" id="med-s">${MED_SARCASMS[0]}</div></div></div>`;
+  medStartPhase();medInt=setInterval(medTick,1000);
+}
+function medStartPhase(){const p=MED_PHASES[medPhaseIdx%MED_PHASES.length];medPhaseTime=p.dur;const pe=document.getElementById('med-phase');if(pe)pe.textContent=p.label.toLowerCase();const ie=document.getElementById('med-inst');if(ie)ie.textContent=p.label;const se=document.getElementById('med-sub');if(se)se.textContent=p.sub;const ne=document.getElementById('breath-num');if(ne)ne.textContent=p.dur;medAnimCircle(p);}
+function medAnimCircle(p){clearInterval(medScaleInt);const isIn=p.label==='Inspire',isH=p.label==='Segure';const s=isIn?.5:1,e=isIn?1:isH?1:.5;const steps=p.dur*20;let st=0;medScaleInt=setInterval(()=>{if(medPaused)return;st++;const v=s+(e-s)*(st/steps);const el=document.getElementById('breath-circle');if(el)el.style.transform=`scale(${v.toFixed(3)})`;if(st>=steps)clearInterval(medScaleInt);},50);}
+function medTick(){if(medPaused)return;medTimer--;medPhaseTime--;const m=Math.floor(medTimer/60),s=medTimer%60;const te=document.getElementById('med-time');if(te)te.textContent=m+':'+(s<10?'0':'')+s;const pe=document.getElementById('med-prog');if(pe)pe.style.width=Math.round(medTimer/60*100)+'%';const ne=document.getElementById('breath-num');if(ne)ne.textContent=Math.max(1,medPhaseTime);if(medTimer<=0){clearInterval(medInt);clearInterval(medScaleInt);medDone();return;}if(medPhaseTime<=0){medPhaseIdx++;medStartPhase();if(Math.random()<.3){const se=document.getElementById('med-s');if(se)se.textContent=MED_SARCASMS[Math.floor(Math.random()*MED_SARCASMS.length)];}}}
+function medToggle(){medPaused=!medPaused;const b=document.getElementById('med-pb');if(b)b.textContent=medPaused?'Continuar':'Pausar';}
+function medSkip(){clearInterval(medInt);clearInterval(medScaleInt);medDone();}
+function medDone(){clearInterval(medInt);clearInterval(medScaleInt);document.getElementById('main').innerHTML=`<div class="module-screen"><div class="dark-card" style="text-align:center;padding:32px 20px;margin-top:20px"><div class="done-circle">ok</div><div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--tx);margin-bottom:6px">Sistema nervoso recalibrado.</div><div style="font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:20px">O RH vai pensar que você faz isso o tempo todo. Continue, ${userName}.</div><button class="btn btn-main" onclick="goTo('check')">Próximo: checklist →</button></div></div>`;}
+
+// ── CHECK ─────────────────────────────────────────────────────────────────────
+function rCheck(){
+  checked={};
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="mod-label">Módulo 2 — Checklist pré-entrevista</div><div class="dark-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div class="sec-label" style="margin:0">Verificados: <span id="ck-c">0</span>/8</div><div class="pill pill-gray" id="ck-pct">0%</div></div><div class="prog-bar" style="margin-bottom:14px"><div class="prog-fill" id="ck-bar" style="width:0%"></div></div><div id="ck-list">${CHECKS.map((c,i)=>`<div class="ck-item" id="cki-${i}" onclick="ckToggle(${i})"><div class="ck-box" id="ckb-${i}"><svg width="10" height="10" viewBox="0 0 10 10" id="ckt-${i}" style="display:none"><polyline points="1.5,5 4,7.5 8.5,2" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div><div><div class="ck-main">${c.m}</div><div class="ck-hint">${c.h}</div></div></div>`).join('')}</div><div style="margin-top:14px" class="btn-row"><button class="btn btn-main" id="ck-btn" onclick="goTo('diag')" disabled>Próximo →</button><div style="font-size:11px;color:var(--tx3);font-style:italic;align-self:center">Marque ao menos 6</div></div></div></div>`;
+}
+function ckToggle(i){checked[i]=!checked[i];document.getElementById('cki-'+i).classList.toggle('done',checked[i]);document.getElementById('ckb-'+i).classList.toggle('on',checked[i]);document.getElementById('ckt-'+i).style.display=checked[i]?'block':'none';const done=Object.values(checked).filter(Boolean).length;document.getElementById('ck-c').textContent=done;const pct=Math.round(done/8*100);document.getElementById('ck-bar').style.width=pct+'%';document.getElementById('ck-pct').textContent=pct+'%';document.getElementById('ck-btn').disabled=done<6;}
+
+// ── DIAGNÓSTICO ───────────────────────────────────────────────────────────────
+function rDiag(){diagAns=[];diagQ=0;diagSel=null;rDiagQ();}
+function rDiagQ(){
+  if(diagQ>=DIAG_QS.length){rDiagResult();return;}
+  const q=DIAG_QS[diagQ];
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="mod-label">Módulo 3 — Diagnóstico · ${diagQ+1}/${DIAG_QS.length}</div><div class="dark-card"><div class="prog-bar" style="margin-bottom:14px"><div class="prog-fill" style="width:${Math.round(diagQ/DIAG_QS.length*100)}%"></div></div><div class="q-num">Pergunta ${diagQ+1}</div><div class="q-text">${q.t}</div><div class="q-ctx">${q.c}</div><div class="opts">${q.o.map((o,i)=>`<button class="opt" id="do-${i}" onclick="dSel(${i})">${o.t}</button>`).join('')}</div><button class="btn btn-main" id="d-next" onclick="dNext()" disabled>Próxima</button></div></div>`;
+  diagSel=null;
+}
+function dSel(i){diagSel=i;document.querySelectorAll('.opt').forEach((o,j)=>o.classList.toggle('selected',j===i));document.getElementById('d-next').disabled=false;}
+function dNext(){if(diagSel===null)return;diagAns.push(DIAG_QS[diagQ].o[diagSel]);diagQ++;rDiagQ();}
+function rDiagResult(){
+  const sc={discurso:0,nervosismo:0};diagAns.forEach(a=>{if(a.g)sc[a.g]+=a.w;});
+  const sorted=Object.entries(sc).sort((a,b)=>b[1]-a[1]).filter(g=>g[1]>0);
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="mod-label">Módulo 3 — Resultado do diagnóstico</div><div class="dark-card"><div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--tx);margin-bottom:4px">${sorted.length?'Gap identificado, '+userName+'.':'Você está calibrado, '+userName+'.'}</div><div style="font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:14px">${sorted.length?'O simulador vai trabalhar exatamente isso. Prepare-se.':'Nenhum gap crítico. A Purple Company vai ter que inventar um motivo para não te contratar.'}</div>${sorted.map(([k,v])=>{const g=GAP_INFO[k];const pct=Math.min(100,Math.round(v/12*100));return`<div style="background:var(--bg3);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-bottom:8px"><div style="font-size:13px;font-weight:500;color:var(--tx);margin-bottom:3px">${g.n}</div><div style="font-size:12px;color:var(--tx2);line-height:1.5;margin-bottom:6px">${g.d}</div><div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div></div>`;}).join('')}<div class="btn-row" style="margin-top:8px"><button class="btn btn-main" onclick="goTo('star-id')">Próximo: método STAR →</button></div></div></div>`;
+}
+
+// ── STAR IDENTIFICATION ───────────────────────────────────────────────────────
+function rStarId(){starIdQ=0;starIdAnswered=false;rStarIdQ();}
+function rStarIdQ(){
+  if(starIdQ>=STAR_ID_STORIES.length){rStarIdDone();return;}
+  const s=STAR_ID_STORIES[starIdQ];
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="mod-label">Módulo 4 — Identificação STAR · ${starIdQ+1}/${STAR_ID_STORIES.length}</div><div class="dark-card"><div class="prog-bar" style="margin-bottom:14px"><div class="prog-fill" style="width:${Math.round(starIdQ/STAR_ID_STORIES.length*100)}%"></div></div><div class="q-num">Esta resposta usa o método STAR?</div><div class="story-box">${s.text}</div><div class="btn-row" style="gap:10px"><button class="star-verdict-btn yes" onclick="starIdAnswer(true)">Sim, é STAR</button><button class="star-verdict-btn no" onclick="starIdAnswer(false)">Não é STAR</button></div></div></div>`;
+}
+function starIdAnswer(userSays){
+  const s=STAR_ID_STORIES[starIdQ];
+  const correct=userSays===s.is_star;
+  let html=`<div class="module-screen"><div class="mod-label">Módulo 4 — Identificação STAR · ${starIdQ+1}/${STAR_ID_STORIES.length}</div><div class="dark-card"><div class="prog-bar" style="margin-bottom:14px"><div class="prog-fill" style="width:${Math.round(starIdQ/STAR_ID_STORIES.length*100)}%"></div></div><div class="story-box">${s.text}</div><div class="fb-box ${correct?'fb-correct':'fb-wrong'}"><strong>${correct?(s.is_star?'Correto — é STAR.':'Correto — não é STAR.'):(s.is_star?'Errado — era STAR.':'Errado — não era STAR.')}</strong><br><br>${s.feedback}</div>`;
+  if(!s.is_star&&s.missing){html+=`<div style="margin-bottom:10px"><div style="font-size:10px;color:var(--tx3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">O que está faltando</div>${s.missing.map(m=>`<div class="missing-item"><span style="color:var(--bad)">✕</span><span>${m}</span></div>`).join('')}</div>`;}
+  if(s.is_star&&s.present){html+=`<div style="margin-bottom:10px"><div style="font-size:10px;color:var(--tx3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">O que está certo</div>${s.present.map(m=>`<div class="missing-item"><span style="color:var(--ok)">✓</span><span>${m}</span></div>`).join('')}</div>`;}
+  html+=`<button class="btn btn-main" onclick="starIdNext()">${starIdQ<STAR_ID_STORIES.length-1?'Próxima história →':'Ver resultado →'}</button></div></div>`;
+  document.getElementById('main').innerHTML=html;
+}
+function starIdNext(){starIdQ++;rStarIdQ();}
+function rStarIdDone(){
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="dark-card" style="text-align:center;padding:28px 20px;margin-top:10px"><div class="done-circle">4</div><div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--tx);margin-bottom:6px">Olho clínico calibrado, ${userName}.</div><div style="font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:20px">Saber identificar uma resposta genérica é o primeiro passo para nunca dar uma.</div><button class="btn btn-main" onclick="goTo('pausas')">Próximo: pausas estratégicas →</button></div></div>`;
+}
+
+// ── PAUSAS ────────────────────────────────────────────────────────────────────
+function rPausas(){
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="mod-label">Módulo 5 — Pausas estratégicas</div><div class="dark-card"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--tx);margin-bottom:4px">3 técnicas essenciais</div><div style="font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:14px">A Purple Company cronometrou seus silêncios. Agora você também vai.</div>${PAUSAS_DATA.map(p=>`<div class="pause-item"><div class="pause-title">${p.t}</div><div class="pause-desc">${p.d}</div><div class="eg-bad">${p.bad}</div><div class="eg-good">${p.good}</div></div>`).join('')}<div class="btn-row" style="margin-top:4px"><button class="btn btn-main" onclick="startSim()">Entrar no simulador →</button></div></div></div>`;
+}
+function startSim(){simQIdx=0;rSimNext();}
+
+// ── SIM — dispatch ─────────────────────────────────────────────────────────────
+function rSimNext(){
+  if(simQIdx>=SIM_QUEUE.length){rSimDone();return;}
+  const item=SIM_QUEUE[simQIdx];
+  if(item.type==='record')rSimRecord(item.idx);
+  else if(item.type==='behavioral')rBehavioral(item.idx);
+  else if(item.type==='star-drag')rStarDrag(item.idx);
+}
+function simProgress(){return`${simQIdx+1}/${SIM_QUEUE.length}`;}
+
+// ── SIM — RECORDING ───────────────────────────────────────────────────────────
+function rSimRecord(idx){
+  simTimer=120;simPaused=false;simCharIdx=0;
+  clearInterval(simTInt);clearInterval(simWInt);clearInterval(simTrInt);
+  const q=SIM_RECORD_QS[idx];
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="mod-label">Módulo 6 — Simulador · ${simProgress()}</div><div class="dark-card"><div class="prog-bar" style="margin-bottom:12px"><div class="prog-fill" style="width:${Math.round(simQIdx/SIM_QUEUE.length*100)}%"></div></div><div class="q-sim">${q.q}</div><div class="q-ctx-sim">${q.ctx}</div><div class="timer-row"><div class="timer-num" id="s-timer">2:00</div><div class="prog-bar" style="flex:1;margin:0 10px"><div class="prog-fill" id="s-tfill" style="width:100%"></div></div><div class="pill pill-gray" id="s-status">Aguardando</div></div><div class="wave-row" id="s-wave">${Array(24).fill('<div class="wbar"></div>').join('')}</div><div class="transcript" id="s-tr"><span style="color:var(--tx3)">Clique em "Iniciar" e fale sua resposta...</span></div><div class="btn-row"><button class="btn btn-main" id="s-start" onclick="sStart(${idx})">Iniciar gravação</button><button class="btn" id="s-pause" onclick="sPause()" style="display:none">Pausar</button><button class="btn" style="background:#2d0a0a;color:var(--bad);border-color:#7f1d1d;display:none" id="s-stop" onclick="sStop(${idx})">Parar e avaliar</button></div></div></div>`;
+}
+function sStart(idx){
+  simCharIdx=0;simPaused=false;
+  const full=SIM_RECORD_QS[idx].t;
+  document.getElementById('s-start').style.display='none';
+  document.getElementById('s-pause').style.display='inline-block';
+  document.getElementById('s-stop').style.display='inline-block';
+  document.getElementById('s-status').className='pill pill-pu';
+  document.getElementById('s-status').textContent='Gravando';
+  document.getElementById('s-tr').innerHTML='<span class="cursor"></span>';
+  if(window.SpeechRecognition||window.webkitSpeechRecognition){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    window._rec=new SR();window._rec.lang='pt-BR';window._rec.continuous=true;window._rec.interimResults=true;
+    let final='';
+    window._rec.onresult=e=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)final+=e.results[i][0].transcript+' ';else interim+=e.results[i][0].transcript;}const el=document.getElementById('s-tr');if(el)el.innerHTML=final+(interim?`<span class="interim">${interim}</span>`:'')+`<span class="cursor"></span>`;};
+    window._rec.onerror=()=>{startSimulated(full);};
+    window._rec.onend=()=>{if(!simPaused&&simCharIdx<9999)window._rec.start();};
+    window._rec.start();
+  } else {startSimulated(full);}
+  simWInt=setInterval(()=>{if(!simPaused)document.querySelectorAll('.wbar').forEach(b=>{b.style.height=Math.round(3+Math.random()*24)+'px';});},80);
+  simTInt=setInterval(()=>{if(!simPaused){simTimer--;const m=Math.floor(simTimer/60),s=simTimer%60;const te=document.getElementById('s-timer');if(te)te.textContent=m+':'+(s<10?'0':'')+s;const fe=document.getElementById('s-tfill');if(fe)fe.style.width=Math.round(simTimer/120*100)+'%';if(simTimer<=0)sStop(idx);}},1000);
+}
+function startSimulated(full){simTrInt=setInterval(()=>{if(!simPaused&&simCharIdx<full.length){simCharIdx+=Math.round(1+Math.random()*3);const cf=full.slice(0,Math.max(0,simCharIdx-8)),it=full.slice(Math.max(0,simCharIdx-8),simCharIdx);const el=document.getElementById('s-tr');if(el)el.innerHTML=cf+(it?`<span class="interim">${it}</span>`:'')+`<span class="cursor"></span>`;}},60);}
+function sPause(){simPaused=!simPaused;if(window._rec){if(simPaused)window._rec.stop();else window._rec.start();}const b=document.getElementById('s-pause');if(b)b.textContent=simPaused?'Continuar':'Pausar';document.getElementById('s-status').className=simPaused?'pill pill-warn':'pill pill-pu';document.getElementById('s-status').textContent=simPaused?'Pausado':'Gravando';if(simPaused)document.querySelectorAll('.wbar').forEach(b=>b.style.height='3px');}
+function sStop(idx){
+  clearInterval(simTInt);clearInterval(simWInt);clearInterval(simTrInt);
+  if(window._rec){window._rec.stop();window._rec=null;}
+  simPaused=false;document.querySelectorAll('.wbar').forEach(b=>b.style.height='3px');
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="dark-card" style="margin-top:10px"><div class="load-row"><div class="spinner"></div><div id="lm" style="font-size:13px;color:var(--tx2)">Processando transcrição...</div></div><div class="prog-bar"><div class="prog-fill" id="lb" style="width:0%;transition:width .5s"></div></div></div></div>`;
+  const msgs=['Analisando método STAR...','Detectando respostas genéricas...','Verificando se você culpou o estagiário...','Calculando pontuação...'];
+  let i=0;const iv=setInterval(()=>{i++;const m=document.getElementById('lm');if(m&&i<=msgs.length)m.textContent=msgs[i-1];const b=document.getElementById('lb');if(b)b.style.width=Math.round(i/msgs.length*100)+'%';},500);
+  setTimeout(()=>{clearInterval(iv);sShowFb(idx);},2400);
+}
+function sShowFb(idx){
+  const q=SIM_RECORD_QS[idx];
+  const tx=q.t;
+  // Harsh scoring
+  const hS=/situação|projeto|cliente|prazo|empresa|time|problema|contexto/i.test(tx);
+  const hT=/responsável|meu papel|precisava|tarefa|objetivo|garantir|minha área/i.test(tx);
+  const hA=/criei|propus|montei|mapeei|conversei|pedi|mostrei|documentei|organizei|apresentei/i.test(tx);
+  const hR=/resultado|melhorou|mudou|reduziu|entregamos|cliente.*aprovou|contrato|nps|passou|depois disso|em \d/i.test(tx);
+  const hasNumber=/\d+/.test(tx);
+  const hasGeneric=/sou muito|sempre fui|trabalho bem em equipe|comunicação|me dedi/i.test(tx);
+  const hasAGente=/a gente/i.test(tx)&&!/eu|minha|meu/i.test(tx);
+
+  let base=42;
+  const conteudo=Math.min(96,base+(hS?12:0)+(hA?14:0)+(hR?16:0)+(hasNumber?8:0)-(hasGeneric?18:0)-(hasAGente?10:0)+Math.round(Math.random()*6));
+  const star=Math.min(96,base+(hS?14:0)+(hT?13:0)+(hA?14:0)+(hR?14:0)-(hasGeneric?15:0)+Math.round(Math.random()*4));
+  const especificidade=Math.min(96,base+(hasNumber?20:0)+(hA?10:0)+(hR?12:0)-(hasGeneric?20:0)+Math.round(Math.random()*8));
+  const ritmo=Math.min(96,60+Math.round(Math.random()*28)-(hasAGente?8:0));
+  const ov=Math.round((conteudo+star+especificidade+ritmo)/4);
+  const lb={conteudo:'Conteúdo',star:'STAR',especificidade:'Especificidade',ritmo:'Ritmo'};
+  const sc={conteudo,star,especificidade,ritmo};
+  const si=['Situação','Tarefa','Ação','Resultado'],hi=[hS,hT,hA,hR];
+  const vd={
+    low:`${userName}, isso vai de volta para o rascunho. Respostas genéricas são invisíveis para o RH.`,
+    med:`${userName}, tem estrutura, mas falta carne. O RH ouviu isso antes.`,
+    good:`${userName}, resposta sólida. O RH ficou surpreso — de forma positiva.`,
+    great:`${userName}, isso é Purple Company certified. O cachorro analista sênior aprovou.`
+  };
+  const verdict=ov<55?vd.low:ov<70?vd.med:ov<85?vd.good:vd.great;
+  const tipMsg=!hR?'Feche <strong>sempre</strong> com o resultado. O que mudou? Quanto? Sem resultado, a história não existe para o RH.':!hA?'Deixe claro o que VOCÊ fez — evite "a gente" sem especificar seu papel. Verbos de dono: criei, propus, mapeei, negociei.':hasGeneric?'Detectamos uma resposta genérica. "Sou muito comprometido" e similares custam pontos. Substitua por evidência concreta.':'Boa resposta! Para 95+: adicione um número (%, dias, valor) e conecte com o impacto de negócio.';
+
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="mod-label">Gravação ${simProgress()} — Feedback</div><div class="dark-card"><div style="display:flex;align-items:baseline;gap:10px;margin-bottom:4px"><div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:700;color:${ov>=80?'var(--ok)':ov>=60?'var(--warn)':'var(--bad)'}">${ov}%</div><div style="font-size:11px;color:var(--tx3)">pontuação geral</div></div><div style="font-size:12.5px;color:var(--tx2);margin-bottom:14px">${verdict}</div><div class="metrics-grid">${Object.entries(sc).map(([k,v])=>{const r=17,c=2*Math.PI*r,d=c*(1-v/100);const col=v>=80?'var(--ok)':v>=60?'var(--warn)':'var(--bad)';return`<div class="metric"><div class="ring"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="${r}" fill="none" stroke="var(--bd)" stroke-width="3"/><circle cx="20" cy="20" r="${r}" fill="none" stroke="${col}" stroke-width="3" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${d.toFixed(1)}" stroke-linecap="round"/></svg><div class="ring-n">${v}%</div></div><div><div class="m-lbl">${lb[k]}</div><div class="m-val" style="color:${col}">${v>=80?'Ótimo':v>=60?'Ok':'Fraco'}</div></div></div>`;}).join('')}</div><div class="star-row">${si.map((s,i)=>`<span class="pill ${hi[i]?'pill-ok':'pill-bad'}">${s}</span>`).join('')}</div><div class="tip-box"><strong>Avaliação crítica:</strong> ${tipMsg}</div><div class="btn-row"><button class="btn btn-main" onclick="simAdvance()">Próximo →</button><button class="btn" onclick="rSimRecord(${idx})">Repetir</button></div></div></div>`;
+}
+
+// ── SIM — BEHAVIORAL A/B/C ────────────────────────────────────────────────────
+function rBehavioral(idx){
+  behQ=idx;behSel=null;behAnswered=false;
+  const q=BEHAVIORAL_QS[idx];
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="mod-label">Módulo 6 — Simulador · ${simProgress()}</div><div class="dark-card"><div class="prog-bar" style="margin-bottom:12px"><div class="prog-fill" style="width:${Math.round(simQIdx/SIM_QUEUE.length*100)}%"></div></div><div class="scenario-box"><div class="scenario-label">Cenário Purple Company</div><div class="scenario-text">${q.scenario}</div><div class="scenario-ctx">${q.ctx}</div></div><div class="q-num" style="margin-bottom:8px">${q.question}</div>${q.options.map((o,i)=>`<button class="beh-opt" id="bopt-${i}" onclick="behSelect(${i})"><span class="beh-tag">${o.tag}</span><span>${o.text}</span></button>`).join('')}<button class="btn btn-main" id="beh-confirm" onclick="behConfirm()" disabled>Confirmar resposta</button></div></div>`;
+}
+function behSelect(i){behSel=i;document.querySelectorAll('.beh-opt').forEach((b,j)=>b.classList.toggle('selected',j===i));document.getElementById('beh-confirm').disabled=false;}
+function behConfirm(){
+  if(behSel===null||behAnswered)return;
+  behAnswered=true;
+  const q=BEHAVIORAL_QS[behQ];
+  const chosen=q.options[behSel];
+  document.querySelectorAll('.beh-opt').forEach((b,i)=>{
+    const o=q.options[i];
+    b.classList.remove('selected');
+    if(o.correct)b.classList.add('correct');
+    else if(i===behSel)b.classList.add('wrong');
+    b.disabled=true;
+  });
+  document.getElementById('beh-confirm').style.display='none';
+  const scoreColor=chosen.score>=80?'var(--ok)':chosen.score>=50?'var(--warn)':'var(--bad)';
+  const starHtml=`<div class="star-example-box"><div class="star-example-label">Como seria no método STAR</div><div class="star-row-ex">${q.star_example.map(e=>`<div class="star-el"><strong>${e.l} —</strong> ${e.t}</div>`).join('')}</div></div>`;
+  const card=document.querySelector('.dark-card');
+  card.insertAdjacentHTML('beforeend',`<div class="fb-box ${chosen.correct?'fb-correct':'fb-wrong'}" style="margin-top:10px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:${scoreColor}">${chosen.score}%</span><span style="font-size:12px;color:var(--tx3)">· opção ${chosen.tag}</span></div>${chosen.feedback}</div>${starHtml}<button class="btn btn-main" style="margin-top:6px" onclick="simAdvance()">Próximo →</button>`);
+}
+
+// ── SIM — STAR DRAG ───────────────────────────────────────────────────────────
+function rStarDrag(idx){
+  dragIdx=idx;slotAssignments={};selectedPiece=null;
+  const set=STAR_DRAG_SETS[idx];
+  const shuffled=[...set.pieces].sort(()=>Math.random()-.5);
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="mod-label">Módulo 6 — Simulador · ${simProgress()}</div><div class="dark-card"><div class="prog-bar" style="margin-bottom:12px"><div class="prog-fill" style="width:${Math.round(simQIdx/SIM_QUEUE.length*100)}%"></div></div><div class="q-num" style="margin-bottom:8px">${set.intro}</div><div style="font-size:11px;color:var(--tx3);margin-bottom:12px">Clique num trecho → depois clique no slot correto. Ou arraste.</div><div class="drag-slots"><div class="drag-slot" id="slot-S" data-slot="S" onclick="slotClick('S')"><div class="drag-slot-label">S — Situação</div><div class="slot-content" id="sc-S"></div></div><div class="drag-slot" id="slot-T" data-slot="T" onclick="slotClick('T')"><div class="drag-slot-label">T — Tarefa</div><div class="slot-content" id="sc-T"></div></div><div class="drag-slot" id="slot-A" data-slot="A" onclick="slotClick('A')"><div class="drag-slot-label">A — Ação</div><div class="slot-content" id="sc-A"></div></div><div class="drag-slot" id="slot-R" data-slot="R" onclick="slotClick('R')"><div class="drag-slot-label">R — Resultado</div><div class="slot-content" id="sc-R"></div></div></div><div class="drag-pool" id="drag-pool">${shuffled.map(p=>`<div class="drag-piece" id="dp-${p.id}" data-id="${p.id}" draggable="true" onclick="pieceClick('${p.id}')">${p.text}</div>`).join('')}</div><button class="btn btn-main" id="drag-check" onclick="checkDrag()" disabled>Verificar →</button></div></div>`;
+  // Init drag events
+  document.querySelectorAll('.drag-piece').forEach(el=>{
+    el.addEventListener('dragstart',e=>{selectedPiece=el.dataset.id;el.style.opacity='.5';});
+    el.addEventListener('dragend',e=>{el.style.opacity='1';});
+  });
+  document.querySelectorAll('.drag-slot').forEach(slot=>{
+    slot.addEventListener('dragover',e=>{e.preventDefault();slot.classList.add('drag-over');});
+    slot.addEventListener('dragleave',()=>slot.classList.remove('drag-over'));
+    slot.addEventListener('drop',e=>{e.preventDefault();slot.classList.remove('drag-over');if(selectedPiece){placePiece(selectedPiece,slot.dataset.slot);selectedPiece=null;}});
+  });
+}
+function pieceClick(id){
+  if(selectedPiece===id){selectedPiece=null;document.querySelectorAll('.drag-piece').forEach(p=>p.classList.remove('dragging'));}
+  else{selectedPiece=id;document.querySelectorAll('.drag-piece').forEach(p=>p.classList.toggle('dragging',p.dataset.id===id));}
+}
+function slotClick(slotName){if(selectedPiece){placePiece(selectedPiece,slotName);selectedPiece=null;document.querySelectorAll('.drag-piece').forEach(p=>p.classList.remove('dragging'));}}
+function placePiece(pieceId,slotName){
+  const set=STAR_DRAG_SETS[dragIdx];
+  const piece=set.pieces.find(p=>p.id===pieceId);if(!piece)return;
+  // If piece is already in a slot, remove from that slot
+  Object.keys(slotAssignments).forEach(k=>{if(slotAssignments[k]===pieceId)delete slotAssignments[k];});
+  // If slot already occupied, return that piece to pool
+  const displaced=slotAssignments[slotName];
+  if(displaced){
+    const dpEl=document.getElementById('dp-'+displaced);
+    if(dpEl){dpEl.classList.remove('placed');document.getElementById('drag-pool').appendChild(dpEl);}
+  }
+  slotAssignments[slotName]=pieceId;
+  // Move piece to slot
+  const pieceEl=document.getElementById('dp-'+pieceId);
+  if(pieceEl){pieceEl.classList.add('placed');}
+  // Update slot display
+  const sc=document.getElementById('sc-'+slotName);
+  if(sc)sc.textContent=piece.text;
+  document.getElementById('slot-'+slotName).classList.add('filled');
+  // Enable check button if all 4 slots filled
+  const filled=Object.keys(slotAssignments).length;
+  document.getElementById('drag-check').disabled=filled<4;
+}
+function checkDrag(){
+  const set=STAR_DRAG_SETS[dragIdx];
+  let correct=0;
+  ['S','T','A','R'].forEach(slot=>{
+    const pieceId=slotAssignments[slot];
+    const piece=set.pieces.find(p=>p.id===pieceId);
+    const slotEl=document.getElementById('slot-'+slot);
+    if(piece&&piece.slot===slot){correct++;slotEl.classList.add('correct');}
+    else{slotEl.classList.add('wrong');}
+  });
+  const pct=Math.round(correct/4*100);
+  const card=document.querySelector('.dark-card');
+  const msg=correct===4?'Perfeito — você montou o STAR corretamente. Isso é o que o RH quer ver na sua resposta falada.':correct>=3?'Quase. Um elemento fora do lugar — mas a estrutura geral está certa.':correct>=2?'Metade certa. Revise: Situação é o contexto, Tarefa é seu papel, Ação é o que você fez, Resultado é o impacto.':'Vamos rever o método STAR juntos. Situação → Tarefa → Ação → Resultado. Tente de novo.';
+  card.insertAdjacentHTML('beforeend',`<div class="fb-box ${correct===4?'fb-correct':'fb-wrong'}" style="margin-top:10px"><strong>${correct}/4 corretos (${pct}%)</strong><br><br>${msg}</div><div class="btn-row" style="margin-top:8px"><button class="btn btn-main" onclick="simAdvance()">Próximo →</button>${correct<4?`<button class="btn" onclick="rStarDrag(${dragIdx})">Tentar novamente</button>`:''}</div>`);
+  document.getElementById('drag-check').style.display='none';
+}
+function simAdvance(){simQIdx++;rSimNext();}
+
+// ── SIM DONE ──────────────────────────────────────────────────────────────────
+function rSimDone(){
+  document.getElementById('main').innerHTML=`<div class="module-screen"><div class="dark-card" style="text-align:center;padding:32px 20px;margin-top:10px"><div class="done-circle">25'</div><div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--tx);margin-bottom:6px">Sessão concluída, ${userName}.</div><div style="font-size:13px;color:var(--tx2);line-height:1.7;margin-bottom:6px">Você passou por respiração, checklist, diagnóstico, identificação STAR, drag de histórias, perguntas comportamentais absurdas e gravações reais com feedback crítico.</div><div style="font-size:12px;color:var(--tx3);font-style:italic;margin-bottom:24px">A Purple Company vai ter que se esforçar muito para não te contratar. O cachorro analista sênior aprovou por unanimidade.</div><div class="btn-row" style="justify-content:center"><button class="btn btn-main" onclick="step=0;userName='';render();updatePills()">Recomeçar sessão</button><button class="btn" onclick="startSim()">Só o simulador</button></div></div></div>`;
+  document.querySelectorAll('.sp').forEach(p=>p.className='sp done');
+}
+
+step=0;render();updatePills();
+</script>
+</body>
+</html>

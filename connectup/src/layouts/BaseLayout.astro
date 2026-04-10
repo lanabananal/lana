@@ -12,25 +12,25 @@ interface Props {
 
 const { locale, title, description } = Astro.props;
 const t = getTranslations(locale);
-const siteUrl = 'https://tax.theconnectup.com';
+const siteUrl = 'https://theconnectup.com';
 
 const defaultTitles: Record<string, string> = {
-  'pt-br': 'Residência Fiscal no Paraguai para Brasileiros | ConnectUP',
-  'en':    'Paraguay Tax Residency for Brazilians | ConnectUP',
-  'es':    'Residencia Fiscal en Paraguay para Brasileños | ConnectUP',
-  'pl':    'Rezydencja Podatkowa w Paragwaju dla Brazylijczyków | ConnectUP',
+  'pt-br': 'ConnectUP — Mobilidade Profissional Global 360°',
+  'en':    'ConnectUP — 360° Global Professional Mobility',
+  'es':    'ConnectUP — Movilidad Profesional Global 360°',
+  'pl':    'ConnectUP — Globalna Mobilność Zawodowa 360°',
 };
 
 const defaultDescs: Record<string, string> = {
-  'pt-br': 'Residência fiscal legal no Paraguai. Zero imposto sobre renda do exterior. Processo completo com suporte jurídico. Consulta gratuita.',
-  'en':    'Legal Paraguay tax residency. 0% tax on foreign income. Full process with legal support. Free consultation.',
-  'es':    'Residencia fiscal legal en Paraguay. 0% de impuesto sobre ingresos del exterior. Proceso completo con soporte jurídico. Consulta gratuita.',
-  'pl':    'Legalna rezydencja podatkowa w Paragwaju. 0% podatku od dochodów zagranicznych. Pełny proces z obsługą prawną. Bezpłatna konsultacja.',
+  'pt-br': 'Comunicação profissional em inglês, adequação de CV & LinkedIn e planejamento fiscal no Paraguai. Tudo que você precisa para atuar com liberdade no mercado global.',
+  'en':    'Professional communication in English, CV & LinkedIn optimization, and Paraguay tax planning. Everything you need to work freely in the global market. ConnectUP.',
+  'es':    'Comunicación profesional en inglés, adecuación de CV y LinkedIn y planificación fiscal en Paraguay. ConnectUP — tu solución 360° para la movilidad global.',
+  'pl':    'Profesjonalna komunikacja po angielsku, optymalizacja CV i LinkedIn oraz planowanie podatkowe w Paragwaju. ConnectUP — Twoje rozwiązanie 360° dla globalnej mobilności.',
 };
 
 const pageTitle = title
   ? `${title} | ConnectUP`
-  : (defaultTitles[locale] ?? 'Paraguay Tax Residency | ConnectUP');
+  : (defaultTitles[locale] ?? 'ConnectUP — 360° Global Professional Mobility');
 
 const pageDesc = description
   ?? defaultDescs[locale]
@@ -73,12 +73,28 @@ const jsonLd = {
     },
     {
       '@type': 'Service',
-      '@id': `${siteUrl}/#service`,
+      '@id': `${siteUrl}/#service-tax`,
       name: 'Paraguay Tax Residency Consulting',
       provider: { '@id': `${siteUrl}/#organization` },
-      description: 'Legal Paraguay tax residency process for individuals and companies. Foreign income 0% taxed. Two trips to Asunción.',
+      description: 'Legal Paraguay tax residency process for individuals and companies. 0% tax on foreign income. Full legal support. Two trips to Asunción.',
       areaServed: { '@type': 'Country', name: 'Paraguay' },
-      serviceType: 'Tax Residency Consulting',
+      serviceType: 'Tax Planning & Residency Consulting',
+    },
+    {
+      '@type': 'Service',
+      '@id': `${siteUrl}/#service-communication`,
+      name: 'International Professional Communication',
+      provider: { '@id': `${siteUrl}/#organization` },
+      description: 'Corporate English, international meetings, professional presentations and STAR method coaching for global professionals.',
+      serviceType: 'Professional Communication Training',
+    },
+    {
+      '@type': 'Service',
+      '@id': `${siteUrl}/#service-cv`,
+      name: 'CV & LinkedIn Optimization for International Market',
+      provider: { '@id': `${siteUrl}/#organization` },
+      description: 'Resume restructuring and LinkedIn profile optimization aligned with international standards and ATS systems.',
+      serviceType: 'Career Positioning & Resume Consulting',
     },
   ],
 };

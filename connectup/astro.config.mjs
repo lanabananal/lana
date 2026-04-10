@@ -3,6 +3,6 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://tax.theconnectup.com',
+  site: 'https://theconnectup.com',
   integrations: [tailwind(), sitemap()],
 });

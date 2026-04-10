@@ -16,52 +16,164 @@ if (!isValidLocale(locale)) {
 const t = getTranslations(locale);
 
 const blogDescs: Record<string, string> = {
-  'pt-br': 'Artigos e guias completos sobre residência fiscal no Paraguai, abertura de empresa, regime de Maquila e planejamento tributário para brasileiros.',
-  'en':    'Guides and articles about Paraguay tax residency, company registration, Maquila regime and international tax planning.',
-  'es':    'Artículos y guías sobre residencia fiscal en Paraguay, apertura de empresa, régimen de Maquila y planificación tributaria internacional.',
-  'pl':    'Artykuły i poradniki o rezydencji podatkowej w Paragwaju, zakładaniu firm, reżimie Maquila i międzynarodowym planowaniu podatkowym.',
+  'pt-br': 'Artigos e guias sobre residência fiscal no Paraguai, comunicação profissional internacional e posicionamento para o mercado global.',
+  'en':    'Guides and articles about Paraguay tax residency, international professional communication and global career positioning.',
+  'es':    'Artículos y guías sobre residencia fiscal en Paraguay, comunicación profesional internacional y posicionamiento en el mercado global.',
+  'pl':    'Artykuły i poradniki o rezydencji podatkowej w Paragwaju, profesjonalnej komunikacji międzynarodowej i pozycjonowaniu na rynku globalnym.',
 };
+
+// Category labels per locale
+const categoryLabels: Record<string, Record<string, string>> = {
+  'pt-br': {
+    all:                 'Todos',
+    tax:                 'Residência Fiscal',
+    comunicacao:         'Comunicação Profissional',
+    cv:                  'CV & LinkedIn',
+  },
+  'en': {
+    all:                 'All',
+    tax:                 'Tax Residency',
+    comunicacao:         'Professional Communication',
+    cv:                  'CV & LinkedIn',
+  },
+  'es': {
+    all:                 'Todos',
+    tax:                 'Residencia Fiscal',
+    comunicacao:         'Comunicación Profesional',
+    cv:                  'CV & LinkedIn',
+  },
+  'pl': {
+    all:                 'Wszystkie',
+    tax:                 'Rezydencja Podatkowa',
+    comunicacao:         'Komunikacja Zawodowa',
+    cv:                  'CV & LinkedIn',
+  },
+};
+
+// Tag patterns per category (case-insensitive partial match)
+const categoryTagPatterns: Record<string, string[]> = {
+  tax:         ['residên', 'residencia', 'rezydencja', 'tax residency', 'paraguai', 'paraguay', 'paragwaj', 'maquila', 'saída fiscal', 'tributár', 'tributaci', 'podatkow', 'imposto', 'empresa', 'company', 'firma', 'llc', 'dubai'],
+  comunicacao: ['comunicação', 'comunicacion', 'komunikacja', 'professional communication', 'inglês', 'ingles', 'english', 'reunião', 'reunión', 'spotkanie', 'meeting', 'apresentação', 'presentación', 'oratória'],
+  cv:          ['cv', 'currículo', 'curriculum', 'linkedin', 'posicionamento', 'positioning', 'pozycjonowanie', 'recrutador', 'recruiter', 'carreira', 'career', 'mercado internacional'],
+};
+
+function getPostCategory(tags: string[]): string {
+  const normalized = tags.map(t => t.toLowerCase());
+  for (const [cat, patterns] of Object.entries(categoryTagPatterns)) {
+    if (patterns.some(p => normalized.some(tag => tag.includes(p) || p.includes(tag)))) {
+      return cat;
+    }
+  }
+  return 'other';
+}
 
 const allPosts = await getCollection('blog');
 const posts = allPosts
   .filter(p => p.data.lang === locale)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map(p => ({ ...p, category: getPostCategory(p.data.tags ?? []) }));
+
+const cl = categoryLabels[locale] ?? categoryLabels['en'];
+const hasComm = posts.some(p => p.category === 'comunicacao');
+const hasCv   = posts.some(p => p.category === 'cv');
 ---
+
 <BaseLayout locale={locale} title={t.blog.title} description={blogDescs[locale]}>
+
   <!-- Header -->
-  <section class="bg-gradient-to-br from-slate-900 to-slate-800 pt-20 pb-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="section-label border-brand-400/20 bg-brand-500/10 text-brand-300 mb-4 inline-flex">{t.blog.title}</span>
-      <h1 class="text-4xl sm:text-5xl font-black text-white mt-4 tracking-tight mb-3">{t.blog.title}</h1>
-      <p class="text-slate-300 text-lg max-w-2xl">{t.blog.subtitle}</p>
+  <section style="background:linear-gradient(165deg,#1A1A1AF0 0%,#1a0a2eE8 40%,#8417aaCC 100%);padding-top:120px;padding-bottom:4rem;padding-left:1.5rem;padding-right:1.5rem;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:25%;right:25%;width:350px;height:350px;border-radius:50%;background:#8417aa40;filter:blur(90px);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;opacity:0.04;background-image:radial-gradient(#e1a7f1 1px,transparent 1px);background-size:32px 32px;pointer-events:none;"></div>
+    <div style="max-width:1140px;margin:0 auto;position:relative;">
+      <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;margin-bottom:0.75rem;">ConnectUP</span>
+      <h1 style="font-family:'Poppins',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:600;color:white;line-height:1.15;margin-bottom:1rem;">{t.blog.title}</h1>
+      <p style="font-family:'Poppins',sans-serif;font-size:1.05rem;color:rgba(255,255,255,0.70);font-weight:300;max-width:600px;">{blogDescs[locale]}</p>
     </div>
   </section>
+
+  <!-- Category filter tabs -->
+  <section style="background:white;border-bottom:1px solid #eee;position:sticky;top:88px;z-index:30;">
+    <div style="max-width:1140px;margin:0 auto;padding:0 1.5rem;display:flex;gap:0.5rem;overflow-x:auto;scrollbar-width:none;" class="cat-tabs">
+      <button class="cat-tab active" data-cat="all">{cl.all}</button>
+      <button class="cat-tab" data-cat="tax">{cl.tax}</button>
+      {hasComm && <button class="cat-tab" data-cat="comunicacao">{cl.comunicacao}</button>}
+      {hasCv   && <button class="cat-tab" data-cat="cv">{cl.cv}</button>}
+    </div>
+  </section>
+
   <!-- Posts grid -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section style="padding:3rem 1.5rem 5rem;background:#f7f4fa;">
+    <div style="max-width:1140px;margin:0 auto;">
       {posts.length === 0 ? (
-        <p class="text-center text-slate-500 py-20 text-lg">
+        <p style="text-align:center;font-family:'Poppins',sans-serif;color:#795389;padding:5rem 0;">
           {locale === 'en' ? 'Posts coming soon...' :
            locale === 'pt-br' ? 'Posts em breve...' :
            locale === 'pl' ? 'Posty już wkrótce...' :
            'Posts próximamente...'}
         </p>
       ) : (
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="posts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map(post => (
-            <BlogCard
-              title={post.data.title}
-              description={post.data.description}
-              pubDate={post.data.pubDate}
-              postSlug={post.data.postSlug}
-              locale={locale}
-              author={post.data.author}
-              tags={post.data.tags}
-              readMore={t.blog.readMore}
-            />
+            <div class="post-item" data-cat={post.category}>
+              <BlogCard
+                title={post.data.title}
+                description={post.data.description}
+                pubDate={post.data.pubDate}
+                postSlug={post.data.postSlug}
+                locale={locale}
+                author={post.data.author}
+                tags={post.data.tags}
+                readMore={t.blog.readMore}
+              />
+            </div>
           ))}
         </div>
       )}
     </div>
   </section>
 </BaseLayout>
+
+<style>
+.cat-tabs::-webkit-scrollbar { display: none; }
+
+.cat-tab {
+  flex-shrink: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #795389;
+  background: transparent;
+  border: none;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.cat-tab:hover {
+  color: #8417aa;
+}
+.cat-tab.active {
+  color: #8417aa;
+  border-bottom-color: #8417aa;
+  font-weight: 600;
+}
+</style>
+
+<script>
+  const tabs  = document.querySelectorAll<HTMLButtonElement>('.cat-tab');
+  const items = document.querySelectorAll<HTMLElement>('.post-item');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const cat = tab.dataset.cat;
+      items.forEach(item => {
+        const show = cat === 'all' || item.dataset.cat === cat;
+        item.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>

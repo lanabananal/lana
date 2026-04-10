@@ -1,0 +1,336 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
+import { locales, isValidLocale } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return locales.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!isValidLocale(locale)) return Astro.redirect('/en/', 302);
+
+const content: Record<string, any> = {
+  'pt-br': {
+    seoTitle: 'Adequação de CV e LinkedIn para o Mercado Internacional | ConnectUP',
+    seoDesc: 'Otimize seu currículo e perfil LinkedIn para oportunidades globais. Posicionamento profissional alinhado ao padrão internacional para recrutadores.',
+    badge: 'Programa ConnectUP',
+    h1: 'Adequação de CV',
+    h1accent: 'e LinkedIn',
+    subtitle: 'Preparação de currículo e perfil profissional para oportunidades globais.',
+    desc: 'O foco é adaptar apresentação, estrutura e posicionamento para padrões usados por empresas internacionais. Não basta traduzir — é preciso reposicionar.',
+    servicesTag: 'O que fazemos',
+    servicesTitle: 'Três pilares do seu posicionamento',
+    services: [
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>`,
+        title: 'CV padrão internacional',
+        desc: 'Reestruturação do currículo para o formato usado por empresas globais, com foco em clareza, resultados e experiência relevante.',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>`,
+        title: 'Posicionamento profissional',
+        desc: 'Definição de como apresentar experiência, habilidades e resultados de forma objetiva e alinhada ao mercado internacional.',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>`,
+        title: 'Otimização de LinkedIn',
+        desc: 'Ajuste completo do perfil para recrutadores internacionais: headline profissional, resumo estratégico, descrição de experiências e palavras-chave relevantes.',
+      },
+    ],
+    detailsTag: 'LinkedIn em detalhes',
+    detailsTitle: 'O que otimizamos no seu perfil',
+    details: ['Headline profissional', 'Resumo estratégico', 'Descrição de experiências', 'Uso de palavras-chave relevantes', 'Posicionamento para recrutadores globais'],
+    resultTag: 'Resultado esperado',
+    resultTitle: 'O que você vai conquistar',
+    result: 'Perfil profissional claro, competitivo e alinhado ao padrão internacional, facilitando a identificação por recrutadores e aumentando as chances em processos seletivos globais.',
+    ctaTitle: 'Pronto para se posicionar no mercado global?',
+    ctaBtn: 'Agendar consultoria →',
+    ctaSecondary: 'Fale com a gente',
+    ctaNote: 'Consulta gratuita · Sem compromisso',
+  },
+  'en': {
+    seoTitle: 'CV & LinkedIn for the International Market | ConnectUP',
+    seoDesc: 'Optimize your resume and LinkedIn profile for global opportunities. Professional positioning aligned with international standards for recruiters.',
+    badge: 'ConnectUP Program',
+    h1: 'CV & LinkedIn',
+    h1accent: 'Optimization',
+    subtitle: 'Preparing your resume and professional profile for global opportunities.',
+    desc: 'The focus is on adapting presentation, structure and positioning to the standards used by international companies. Translation alone is not enough — repositioning is required.',
+    servicesTag: 'What we do',
+    servicesTitle: 'Three pillars of your positioning',
+    services: [
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>`,
+        title: 'International CV standard',
+        desc: 'Restructuring your resume to the format used by global companies, with a focus on clarity, results and relevant experience.',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>`,
+        title: 'Professional positioning',
+        desc: 'Defining how to present your experience, skills and results objectively and aligned with the international market.',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>`,
+        title: 'LinkedIn optimization',
+        desc: 'Full profile adjustment for international recruiters: professional headline, strategic summary, experience descriptions and relevant keywords.',
+      },
+    ],
+    detailsTag: 'LinkedIn in detail',
+    detailsTitle: 'What we optimize in your profile',
+    details: ['Professional headline', 'Strategic summary', 'Experience descriptions', 'Relevant keywords', 'Positioning for global recruiters'],
+    resultTag: 'Expected outcome',
+    resultTitle: 'What you will achieve',
+    result: 'A clear, competitive professional profile aligned with international standards, making it easier for recruiters to find you and increasing your chances in global selection processes.',
+    ctaTitle: 'Ready to position yourself in the global market?',
+    ctaBtn: 'Book a consultation →',
+    ctaSecondary: 'Get in Touch',
+    ctaNote: 'Free consultation · No commitment',
+  },
+  'es': {
+    seoTitle: 'CV y LinkedIn para el Mercado Internacional | ConnectUP',
+    seoDesc: 'Optimiza tu currículum y perfil de LinkedIn para oportunidades globales. Posicionamiento profesional alineado al estándar internacional para reclutadores.',
+    badge: 'Programa ConnectUP',
+    h1: 'Adecuación de CV',
+    h1accent: 'y LinkedIn',
+    subtitle: 'Preparación de currículum y perfil profesional para oportunidades globales.',
+    desc: 'El enfoque está en adaptar la presentación, estructura y posicionamiento a los estándares utilizados por empresas internacionales. No basta con traducir — es necesario reposicionarse.',
+    servicesTag: 'Qué hacemos',
+    servicesTitle: 'Tres pilares de tu posicionamiento',
+    services: [
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>`,
+        title: 'CV estándar internacional',
+        desc: 'Reestructuración del currículum al formato utilizado por empresas globales, con enfoque en claridad, resultados y experiencia relevante.',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>`,
+        title: 'Posicionamiento profesional',
+        desc: 'Definición de cómo presentar experiencia, habilidades y resultados de forma objetiva y alineada al mercado internacional.',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>`,
+        title: 'Optimización de LinkedIn',
+        desc: 'Ajuste completo del perfil para reclutadores internacionales: headline profesional, resumen estratégico, descripción de experiencias y palabras clave relevantes.',
+      },
+    ],
+    detailsTag: 'LinkedIn en detalle',
+    detailsTitle: 'Qué optimizamos en tu perfil',
+    details: ['Headline profesional', 'Resumen estratégico', 'Descripción de experiencias', 'Uso de palabras clave relevantes', 'Posicionamiento para reclutadores globales'],
+    resultTag: 'Resultado esperado',
+    resultTitle: 'Lo que vas a lograr',
+    result: 'Perfil profesional claro, competitivo y alineado al estándar internacional, facilitando la identificación por reclutadores y aumentando las posibilidades en procesos de selección globales.',
+    ctaTitle: '¿Listo para posicionarte en el mercado global?',
+    ctaBtn: 'Agendar consultoría →',
+    ctaSecondary: 'Contáctanos',
+    ctaNote: 'Consulta gratuita · Sin compromiso',
+  },
+  'pl': {
+    seoTitle: 'CV i LinkedIn na Rynek Międzynarodowy | ConnectUP',
+    seoDesc: 'Zoptymalizuj swoje CV i profil LinkedIn pod kątem globalnych możliwości. Profesjonalne pozycjonowanie zgodne z międzynarodowymi standardami dla rekruterów.',
+    badge: 'Program ConnectUP',
+    h1: 'Optymalizacja CV',
+    h1accent: 'i LinkedIn',
+    subtitle: 'Przygotowanie CV i profilu zawodowego na globalne możliwości.',
+    desc: 'Skupiamy się na dostosowaniu prezentacji, struktury i pozycjonowania do standardów stosowanych przez międzynarodowe firmy. Samo tłumaczenie nie wystarczy — potrzebne jest repozycjonowanie.',
+    servicesTag: 'Co robimy',
+    servicesTitle: 'Trzy filary Twojego pozycjonowania',
+    services: [
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>`,
+        title: 'Międzynarodowy standard CV',
+        desc: 'Restrukturyzacja CV do formatu stosowanego przez globalne firmy, z naciskiem na przejrzystość, wyniki i odpowiednie doświadczenie.',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>`,
+        title: 'Pozycjonowanie zawodowe',
+        desc: 'Określenie, jak obiektywnie i zgodnie z rynkiem międzynarodowym przedstawić swoje doświadczenie, umiejętności i wyniki.',
+      },
+      {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>`,
+        title: 'Optymalizacja LinkedIn',
+        desc: 'Pełna korekta profilu dla międzynarodowych rekruterów: profesjonalny nagłówek, strategiczne podsumowanie, opisy doświadczeń i odpowiednie słowa kluczowe.',
+      },
+    ],
+    detailsTag: 'LinkedIn w szczegółach',
+    detailsTitle: 'Co optymalizujemy w Twoim profilu',
+    details: ['Profesjonalny nagłówek', 'Strategiczne podsumowanie', 'Opisy doświadczeń', 'Odpowiednie słowa kluczowe', 'Pozycjonowanie dla globalnych rekruterów'],
+    resultTag: 'Oczekiwany rezultat',
+    resultTitle: 'Co osiągniesz',
+    result: 'Przejrzysty, konkurencyjny profil zawodowy zgodny z międzynarodowymi standardami, ułatwiający identyfikację przez rekruterów i zwiększający szanse w globalnych procesach rekrutacyjnych.',
+    ctaTitle: 'Gotowy, by zaistnieć na globalnym rynku?',
+    ctaBtn: 'Umów konsultację →',
+    ctaSecondary: 'Skontaktuj się',
+    ctaNote: 'Bezpłatna konsultacja · Bez zobowiązań',
+  },
+};
+
+const c = content[locale] ?? content['en'];
+---
+
+<BaseLayout locale={locale} title={c.seoTitle} description={c.seoDesc}>
+  <div style="padding-top:80px;">
+
+    <!-- HERO — dark gradient -->
+    <section class="relative overflow-hidden pt-20 pb-20" style="background:linear-gradient(165deg,#1A1A1AF0 0%,#1a0a2eE8 40%,#8417aaCC 100%);">
+      <div class="absolute top-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none" style="background:#8417aa40;filter:blur(100px);"></div>
+      <div class="absolute bottom-0 left-1/4 w-[300px] h-[300px] rounded-full pointer-events-none" style="background:#07ffd230;filter:blur(80px);"></div>
+      <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image:radial-gradient(#e1a7f1 1px,transparent 1px);background-size:32px 32px;"></div>
+
+      <div class="relative max-w-[1140px] mx-auto px-6">
+        <div class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-8" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.75);font-family:'Poppins',sans-serif;">
+          {c.badge}
+        </div>
+        <h1 style="font-family:'Poppins',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.1;color:white;" class="mb-4">
+          {c.h1}<br />
+          <span style="color:#e1a7f1;">{c.h1accent}</span>
+        </h1>
+        <p style="font-family:'Poppins',sans-serif;font-size:clamp(1rem,2vw,1.15rem);color:rgba(255,255,255,0.70);font-weight:300;max-width:640px;line-height:1.7;" class="mb-4">
+          {c.subtitle}
+        </p>
+        <p style="font-family:'Poppins',sans-serif;font-size:0.95rem;color:rgba(255,255,255,0.60);font-weight:300;max-width:680px;line-height:1.8;">
+          {c.desc}
+        </p>
+      </div>
+    </section>
+
+    <!-- SERVICES — B&W image + purple filter + glass cards -->
+    <section class="relative py-16 px-6">
+      <div class="absolute inset-0" style="background-image:url('/resume-laptop.jpg');background-size:cover;background-position:center;filter:grayscale(1) brightness(0.38);"></div>
+      <div class="absolute inset-0" style="background:rgba(100,10,140,0.30);"></div>
+      <div class="relative max-w-[1140px] mx-auto" style="z-index:2;">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;">{c.servicesTag}</span>
+          <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;color:white;margin-top:0.5rem;">{c.servicesTitle}</h2>
+        </div>
+        <div class="services-grid">
+          {c.services.map((svc: any) => (
+            <div class="glass-card">
+              <div style="display:flex;justify-content:center;margin-bottom:1rem;">
+                <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="#07ffd2" stroke-width="1.5" set:html={svc.icon}></svg>
+              </div>
+              <h3 style="font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;color:white;margin-bottom:0.5rem;">{svc.title}</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;">{svc.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAILS — light section -->
+    <section style="background:#f7f4fa;padding:4rem 1.5rem;">
+      <div style="max-width:800px;margin:0 auto;text-align:center;">
+        <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#795389;margin-bottom:0.5rem;">{c.detailsTag}</span>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:#1a1a1a;margin-bottom:2rem;">{c.detailsTitle}</h2>
+        <div class="details-grid">
+          {c.details.map((item: string, i: number) => (
+            <div style={`background:white;border:1px solid #dfdede;border-radius:10px;padding:1.25rem 1.5rem;border-left:4px solid ${i % 2 === 0 ? '#8417aa' : '#07ffd2'};text-align:left;`}>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:500;color:#1a1a1a;">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ATS EVALUATOR -->
+    <section style="background:#0a0010;padding:4rem 1.5rem;">
+      <div style="max-width:640px;margin:0 auto;text-align:center;">
+        <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;margin-bottom:0.75rem;">Ferramenta</span>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:white;margin-bottom:0.75rem;">Avaliador de CV ATS</h2>
+        <p style="font-family:'Poppins',sans-serif;font-size:0.92rem;font-weight:300;color:rgba(255,255,255,0.60);line-height:1.7;margin-bottom:2rem;">Descubra se o seu currículo passa pelos filtros automáticos das empresas. Cole o texto e receba uma avaliação com palavras-chave e pontos de melhoria.</p>
+        <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(196,0,255,0.25);box-shadow:0 0 60px rgba(196,0,255,0.15);">
+          <iframe
+            src="/ats-evaluator.html"
+            title="Avaliador ATS ConnectUP"
+            width="100%"
+            height="820"
+            style="display:block;border:none;background:#0a0010;"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULT — B&W image + purple overlay -->
+    <section class="relative py-20 px-6">
+      <div class="absolute inset-0" style="background-image:url('/professional-woman.jpg');background-size:cover;background-position:center top;filter:grayscale(1) brightness(0.38);"></div>
+      <div class="absolute inset-0" style="background:rgba(132,23,170,0.2);"></div>
+      <div class="relative max-w-[800px] mx-auto text-center" style="z-index:2;">
+        <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;margin-bottom:1rem;">{c.resultTag}</span>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:white;margin-bottom:1.5rem;">{c.resultTitle}</h2>
+        <p style="font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.85);line-height:1.8;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:1.75rem 2rem;backdrop-filter:blur(12px);">
+          {c.result}
+        </p>
+      </div>
+    </section>
+
+    <!-- RELATED CONTENT — blog posts filtered by relevant tags -->
+    <RelatedContent
+      locale={locale}
+      tags={['CV', 'currículo', 'curriculum', 'LinkedIn', 'posicionamento profissional', 'professional positioning', 'mercado internacional', 'international market', 'recrutador', 'recruiter', 'carreira', 'career']}
+      tagLabel="Conteúdo"
+    />
+
+    <!-- CTA — purple gradient -->
+    <section class="relative py-20 overflow-hidden" style="background:linear-gradient(135deg,#470050,#8417aa);">
+      <div class="absolute top-0 right-0 w-[350px] h-[350px] rounded-full pointer-events-none" style="background:rgba(231,167,241,0.2);filter:blur(80px);"></div>
+      <div class="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full pointer-events-none" style="background:rgba(7,255,210,0.1);filter:blur(80px);"></div>
+      <div class="relative max-w-[1140px] mx-auto px-6 text-center">
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.5rem,4vw,2rem);font-weight:600;color:white;margin-bottom:1rem;">{c.ctaTitle}</h2>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+          <a href="https://calendly.com/lana-theconnectup/connectup" target="_blank" rel="noopener noreferrer"
+            style="display:inline-flex;align-items:center;gap:8px;background:white;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;"
+            onmouseover="this.style.background='#e1a7f1'" onmouseout="this.style.background='white'">
+            {c.ctaBtn}
+          </a>
+          <a href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer"
+            style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid white;color:white;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;">
+            {c.ctaSecondary}
+          </a>
+        </div>
+        <p style="font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,0.55);font-weight:300;">{c.ctaNote}</p>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+.glass-card {
+  background: rgba(255,255,255,0.09);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 28px 22px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.glass-card:hover { transform: translateY(-3px); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.details-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  text-align: left;
+}
+.details-grid > div {
+  flex: 0 1 calc(50% - 0.375rem);
+  min-width: 220px;
+}
+
+@media (max-width: 768px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .details-grid  { grid-template-columns: 1fr; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
