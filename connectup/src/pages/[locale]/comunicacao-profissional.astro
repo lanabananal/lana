@@ -310,6 +310,7 @@ const c = content[locale] ?? content['en'];
         <p style="font-family:'Poppins',sans-serif;font-size:0.92rem;font-weight:300;color:rgba(255,255,255,0.60);line-height:1.7;margin-bottom:2rem;">Simule uma entrevista real em inglês corporativo. Receba feedback sobre estrutura, pausas e presença — antes de entrar na sala.</p>
         <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(196,0,255,0.25);box-shadow:0 0 60px rgba(196,0,255,0.15);">
           <iframe
+            id="sim-iframe"
             src="/simulador-entrevista.html"
             title="Simulador de Entrevista ConnectUP"
             width="100%"
@@ -318,6 +319,14 @@ const c = content[locale] ?? content['en'];
             loading="lazy"
           ></iframe>
         </div>
+        <script is:inline>
+          window.addEventListener('message', function(e) {
+            if (e.data && e.data.type === 'sim-height') {
+              var f = document.getElementById('sim-iframe');
+              if (f) f.height = Math.max(780, e.data.height + 32);
+            }
+          });
+        </script>
       </div>
     </section>
 
