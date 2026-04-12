@@ -48,6 +48,7 @@ const content: Record<string, any> = {
     assistaTag: 'Assista',
     assistaTitle: 'Advogada Paraguaia Responde',
     assistaSub: 'Dúvidas reais sobre residência fiscal respondidas por quem faz isso todos os dias.',
+    videoId: 'V20XZKEuJkg',
     pricingIncludes: [
       'Consultoria e estratégia tributária personalizada',
       'Preparação e revisão de todos os documentos',
@@ -98,6 +99,7 @@ const content: Record<string, any> = {
     assistaTag: 'Watch',
     assistaTitle: 'Paraguayan Lawyer Answers',
     assistaSub: 'Real questions about tax residency answered by someone who does this every day.',
+    videoId: 'DvoRPSaVbqg',
     pricingIncludes: [
       'Personalized tax strategy and consulting',
       'Preparation and review of all documents',
@@ -148,6 +150,7 @@ const content: Record<string, any> = {
     assistaTag: 'Mira',
     assistaTitle: 'Abogada Paraguaya Responde',
     assistaSub: 'Dudas reales sobre residencia fiscal respondidas por quien lo hace todos los días.',
+    videoId: 'DvoRPSaVbqg',
     pricingIncludes: [
       'Asesoría y estrategia tributaria personalizada',
       'Preparación y revisión de todos los documentos',
@@ -198,6 +201,7 @@ const content: Record<string, any> = {
     assistaTag: 'Obejrzyj',
     assistaTitle: 'Paragwajska Prawniczka Odpowiada',
     assistaSub: 'Prawdziwe pytania o rezydencję podatkową, na które odpowiada ktoś, kto robi to każdego dnia.',
+    videoId: 'DvoRPSaVbqg',
     pricingIncludes: [
       'Spersonalizowana strategia podatkowa i doradztwo',
       'Przygotowanie i weryfikacja wszystkich dokumentów',
@@ -269,10 +273,9 @@ const c = content[locale] ?? content['en'];
         <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:0.6rem;">{c.assistaTag}</span>
         <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:#fff;margin-bottom:0.75rem;">{c.assistaTitle}</h2>
         <p style="font-family:'Poppins',sans-serif;font-size:0.95rem;color:rgba(255,255,255,0.8);font-weight:300;max-width:560px;margin:0 auto 2rem;line-height:1.7;">{c.assistaSub}</p>
-        <!-- VIDEO: substitua VIDEO_ID pelo ID do seu vídeo no YouTube -->
         <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.3);background:#0a0010;">
           <iframe
-            src="https://www.youtube.com/embed/VIDEO_ID"
+            src={`https://www.youtube.com/embed/${c.videoId}`}
             title={c.assistaTitle}
             style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -143,7 +143,7 @@ const faqLd = {
             <details class="faq-item" style="background:white;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
               <summary style="font-family:'Poppins',sans-serif;font-size:0.97rem;font-weight:600;color:#1a1a1a;padding:1.25rem 1.5rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
                 {item.q}
-                <span class="faq-icon" style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:#07ffd2;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;color:#003830;">+</span>
+                <span class="faq-icon" style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:#07ffd2;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;color:#003830;"></span>
               </summary>
               <div style="padding:0 1.5rem 1.25rem;font-family:'Poppins',sans-serif;font-size:0.9rem;color:#555;line-height:1.75;border-top:1px solid #f0f0f0;margin-top:-1px;">
                 {item.a}
@@ -168,8 +168,8 @@ const faqLd = {
 </BaseLayout>
 
 <style>
-details[open] .faq-icon { content: '−'; background: #8417aa; color: white; }
-details[open] .faq-icon::after { content: '−'; }
 .faq-icon::after { content: '+'; }
+details[open] .faq-icon { background: #8417aa; color: white; }
+details[open] .faq-icon::after { content: '−'; }
 details summary::-webkit-details-marker { display: none; }
 </style>

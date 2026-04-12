@@ -722,7 +722,7 @@
         </div>
         <div class="comp-card">
           <div class="comp-label">Paraguai</div>
-          <div class="comp-value py">R$ 0</div>
+          <div class="comp-value py" id="py-value">R$ 0</div>
           <div class="comp-sub">com residência fiscal</div>
         </div>
       </div>
@@ -896,6 +896,7 @@
     document.getElementById('delta-value').textContent = fmt(d.symbol, annualTax);
     document.getElementById('origin-label').textContent = d.flag + ' ' + d.name;
     document.getElementById('origin-value').textContent = fmt(d.symbol, annualTax);
+    document.getElementById('py-value').textContent = fmt(d.symbol, 0);
 
     const y1 = Math.max(0, annualTax - SERVICE_FEE);
     document.getElementById('roi-y1').textContent = fmt(d.symbol, y1);

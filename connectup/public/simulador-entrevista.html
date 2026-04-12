@@ -407,7 +407,11 @@ function sStart(idx){
     window._rec.onerror=()=>{startSimulated(full);};
     window._rec.onend=()=>{if(!simPaused&&simCharIdx<9999)window._rec.start();};
     window._rec.start();
-  } else {startSimulated(full);}
+  } else {
+    const el=document.getElementById('s-tr');
+    if(el)el.innerHTML='<span style="color:#fbbf24;font-size:12px;">⚠ Reconhecimento de voz não suportado neste navegador (use Chrome ou Edge). Modo demonstração ativado.</span><span class="cursor"></span>';
+    startSimulated(full);
+  }
   simWInt=setInterval(()=>{if(!simPaused)document.querySelectorAll('.wbar').forEach(b=>{b.style.height=Math.round(3+Math.random()*24)+'px';});},80);
   simTInt=setInterval(()=>{if(!simPaused){simTimer--;const m=Math.floor(simTimer/60),s=simTimer%60;const te=document.getElementById('s-timer');if(te)te.textContent=m+':'+(s<10?'0':'')+s;const fe=document.getElementById('s-tfill');if(fe)fe.style.width=Math.round(simTimer/120*100)+'%';if(simTimer<=0)sStop(idx);}},1000);
 }
@@ -424,7 +428,7 @@ function sStop(idx){
 }
 function sShowFb(idx){
   const q=SIM_RECORD_QS[idx];
-  const tx=q.t;
+  const tx=(document.getElementById('s-tr')?.innerText?.replace(/\n/g,' ')?.trim())||q.t;
   // Harsh scoring
   const hS=/situação|projeto|cliente|prazo|empresa|time|problema|contexto/i.test(tx);
   const hT=/responsável|meu papel|precisava|tarefa|objetivo|garantir|minha área/i.test(tx);
