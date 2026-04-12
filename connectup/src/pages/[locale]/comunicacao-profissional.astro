@@ -60,6 +60,12 @@ const content: Record<string, any> = {
       'Reduzir o tempo de adaptação em equipes e clientes internacionais',
       'Transformar nervosismo em presença — dentro e fora da câmera',
     ],
+    simTag: 'Prática',
+    simTitle: 'Simulador de Entrevista',
+    simDesc: 'Simule uma entrevista real em inglês corporativo. Receba feedback sobre estrutura, pausas e presença — antes de entrar na sala.',
+    simMobileTitle: 'Disponível no computador',
+    simMobileDesc: 'O simulador usa microfone e interações avançadas. Acesse pelo computador para a experiência completa.',
+    simMobileBtn: 'Abrir em tela cheia →',
     ctaTitle: 'Pronto para se comunicar com confiança no mundo?',
     ctaBtn: 'Agendar agora →',
     ctaSecondary: 'Fale com a gente',
@@ -114,6 +120,12 @@ const content: Record<string, any> = {
       'Reduce adaptation time with international teams and clients',
       'Turn nervousness into presence — on and off camera',
     ],
+    simTag: 'Practice',
+    simTitle: 'Interview Simulator',
+    simDesc: 'Simulate a real corporate English interview. Get feedback on structure, pauses and presence — before entering the room.',
+    simMobileTitle: 'Available on desktop',
+    simMobileDesc: 'The simulator requires a microphone and advanced interactions. Open on desktop for the full experience.',
+    simMobileBtn: 'Open fullscreen →',
     ctaTitle: 'Ready to communicate with confidence worldwide?',
     ctaBtn: 'Book now →',
     ctaSecondary: 'Get in Touch',
@@ -168,6 +180,12 @@ const content: Record<string, any> = {
       'Reducir el tiempo de adaptación con equipos y clientes internacionales',
       'Transformar los nervios en presencia — dentro y fuera de cámara',
     ],
+    simTag: 'Práctica',
+    simTitle: 'Simulador de Entrevista',
+    simDesc: 'Simula una entrevista real en inglés corporativo. Recibe retroalimentación sobre estructura, pausas y presencia — antes de entrar a la sala.',
+    simMobileTitle: 'Disponible en escritorio',
+    simMobileDesc: 'El simulador requiere micrófono e interacciones avanzadas. Ábrelo en el ordenador para la experiencia completa.',
+    simMobileBtn: 'Abrir en pantalla completa →',
     ctaTitle: '¿Listo para comunicarte con confianza en el mundo?',
     ctaBtn: 'Agendar ahora →',
     ctaSecondary: 'Contáctanos',
@@ -222,6 +240,12 @@ const content: Record<string, any> = {
       'Skrócić czas adaptacji z międzynarodowymi zespołami i klientami',
       'Zamienić tremę w obecność — przed kamerą i poza nią',
     ],
+    simTag: 'Ćwiczenia',
+    simTitle: 'Symulator Rozmowy Kwalifikacyjnej',
+    simDesc: 'Symuluj prawdziwą rozmowę kwalifikacyjną po angielsku. Otrzymaj informację zwrotną na temat struktury, pauz i prezencji — zanim wejdziesz do sali.',
+    simMobileTitle: 'Dostępne na komputerze',
+    simMobileDesc: 'Symulator wymaga mikrofonu i zaawansowanych interakcji. Otwórz na komputerze, aby uzyskać pełne doświadczenie.',
+    simMobileBtn: 'Otwórz pełnoekranowo →',
     ctaTitle: 'Gotowy, by komunikować się pewnie na całym świecie?',
     ctaBtn: 'Zarezerwuj teraz →',
     ctaSecondary: 'Skontaktuj się',
@@ -305,14 +329,24 @@ const c = content[locale] ?? content['en'];
     <!-- SIMULADOR DE ENTREVISTA -->
     <section style="background:#0a0010;padding:4rem 1.5rem;">
       <div style="max-width:640px;margin:0 auto;text-align:center;">
-        <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;margin-bottom:0.75rem;">Prática</span>
-        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:white;margin-bottom:0.75rem;">Simulador de Entrevista</h2>
-        <p style="font-family:'Poppins',sans-serif;font-size:0.92rem;font-weight:300;color:rgba(255,255,255,0.60);line-height:1.7;margin-bottom:2rem;">Simule uma entrevista real em inglês corporativo. Receba feedback sobre estrutura, pausas e presença — antes de entrar na sala.</p>
-        <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(196,0,255,0.25);box-shadow:0 0 60px rgba(196,0,255,0.15);">
+        <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;margin-bottom:0.75rem;">{c.simTag}</span>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:white;margin-bottom:0.75rem;">{c.simTitle}</h2>
+        <p style="font-family:'Poppins',sans-serif;font-size:0.92rem;font-weight:300;color:rgba(255,255,255,0.60);line-height:1.7;margin-bottom:2rem;">{c.simDesc}</p>
+
+        <!-- Mobile: tool not available -->
+        <div class="sim-mobile" style="background:rgba(196,0,255,0.06);border:1px solid rgba(196,0,255,0.2);border-radius:16px;padding:2rem 1.5rem;">
+          <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="rgba(196,0,255,0.7)" stroke-width="1.5" style="margin:0 auto 1rem;display:block;"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 20h8M12 18v2"/></svg>
+          <p style="font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:600;color:white;margin-bottom:0.5rem;">{c.simMobileTitle}</p>
+          <p style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:1.25rem;">{c.simMobileDesc}</p>
+          <a href="/simulador-entrevista.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:500;color:#c400ff;border:1px solid rgba(196,0,255,0.35);padding:10px 20px;border-radius:8px;">{c.simMobileBtn}</a>
+        </div>
+
+        <!-- Desktop: full iframe -->
+        <div class="sim-desktop" style="border-radius:16px;overflow:hidden;border:1px solid rgba(196,0,255,0.25);box-shadow:0 0 60px rgba(196,0,255,0.15);">
           <iframe
             id="sim-iframe"
             src="/simulador-entrevista.html"
-            title="Simulador de Entrevista ConnectUP"
+            title={c.simTitle}
             width="100%"
             height="780"
             style="display:block;border:none;background:#0a0010;"
@@ -329,6 +363,15 @@ const c = content[locale] ?? content['en'];
         </script>
       </div>
     </section>
+
+    <style>
+      .sim-mobile  { display: none; }
+      .sim-desktop { display: block; }
+      @media (max-width: 768px) {
+        .sim-mobile  { display: block; }
+        .sim-desktop { display: none; }
+      }
+    </style>
 
     <!-- RESULT — person looking into distance -->
     <section class="relative py-24 px-6">
