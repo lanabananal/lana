@@ -10,6 +10,8 @@ export function getStaticPaths() {
 const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect('/en/', 302);
 
+const simUrl = locale === 'pt-br' ? '/simulador-entrevista.html' : '/interview-simulator.html';
+
 const content: Record<string, any> = {
   'pt-br': {
     seoTitle: 'Comunicação Profissional Internacional | ConnectUP',
@@ -338,18 +340,19 @@ const c = content[locale] ?? content['en'];
           <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="rgba(196,0,255,0.7)" stroke-width="1.5" style="margin:0 auto 1rem;display:block;"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 20h8M12 18v2"/></svg>
           <p style="font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:600;color:white;margin-bottom:0.5rem;">{c.simMobileTitle}</p>
           <p style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:1.25rem;">{c.simMobileDesc}</p>
-          <a href="/simulador-entrevista.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:500;color:#c400ff;border:1px solid rgba(196,0,255,0.35);padding:10px 20px;border-radius:8px;">{c.simMobileBtn}</a>
+          <a href={simUrl} target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:500;color:#c400ff;border:1px solid rgba(196,0,255,0.35);padding:10px 20px;border-radius:8px;">{c.simMobileBtn}</a>
         </div>
 
         <!-- Desktop: full iframe -->
         <div class="sim-desktop" style="border-radius:16px;overflow:hidden;border:1px solid rgba(196,0,255,0.25);box-shadow:0 0 60px rgba(196,0,255,0.15);">
           <iframe
             id="sim-iframe"
-            src="/simulador-entrevista.html"
+            src={simUrl}
             title={c.simTitle}
             width="100%"
             height="780"
             style="display:block;border:none;background:#0a0010;"
+            allow="microphone"
             loading="lazy"
           ></iframe>
         </div>

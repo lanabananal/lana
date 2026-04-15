@@ -57,3 +57,24 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Allow tool pages to be embedded as iframes on the same domain
+[[headers]]
+  for = "/simulador-entrevista.html"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/ats-evaluator.html"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/interview-simulator.html"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/ats-evaluator-en.html"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"

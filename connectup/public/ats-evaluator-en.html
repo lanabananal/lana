@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ATS Resume Evaluator — ConnectUP</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #8417aa;
+    --teal:   #07ffd2;
+    --bg:     #0a0010;
+    --card:   rgba(255,255,255,0.07);
+    --border: rgba(255,255,255,0.12);
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1.25rem;
+  }
+
+  .wrapper { width: 100%; max-width: 680px; }
+
+  .header { text-align: center; margin-bottom: 2rem; }
+  .header .badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--teal);
+    border: 1px solid rgba(7,255,210,0.3);
+    border-radius: 99px; padding: 4px 14px; margin-bottom: 0.75rem;
+  }
+  .header h1 { font-size: clamp(1.35rem, 4vw, 1.9rem); font-weight: 600; line-height: 1.2; }
+  .header h1 span { color: var(--teal); }
+  .header p { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.55); margin-top: 0.6rem; line-height: 1.7; }
+
+  .input-area {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem;
+  }
+  .input-area label {
+    display: block; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); margin-bottom: 0.6rem;
+  }
+  textarea {
+    width: 100%; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); border-radius: 8px;
+    color: white; font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem; line-height: 1.7;
+    padding: 0.85rem 1rem; resize: vertical; min-height: 220px;
+    outline: none; transition: border-color 0.2s;
+  }
+  textarea:focus { border-color: rgba(132,23,170,0.6); }
+  textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+  .upload-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+  .upload-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.7);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 7px 14px; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+  }
+  .upload-label:hover { border-color: var(--purple); color: white; }
+  .upload-label svg { flex-shrink: 0; }
+  #file-name { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+  #cv-file { display: none; }
+
+  .divider {
+    text-align: center; font-size: 10px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin: 0.6rem 0;
+  }
+
+  .btn-analyze {
+    width: 100%; padding: 13px;
+    background: linear-gradient(135deg, var(--purple), #470050);
+    color: white; font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em;
+    border: none; border-radius: 10px; cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s; margin-bottom: 1.5rem;
+  }
+  .btn-analyze:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-analyze:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .score-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem; margin-bottom: 1rem; display: none;
+  }
+  .score-card.visible { display: block; }
+
+  .score-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+  .score-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .score-number { font-size: 3rem; font-weight: 700; line-height: 1; }
+  .score-number.green { color: #4ade80; }
+  .score-number.yellow { color: #fbbf24; }
+  .score-number.red { color: #f87171; }
+
+  .score-bar-bg { background: rgba(255,255,255,0.08); border-radius: 99px; height: 8px; overflow: hidden; margin-bottom: 1.25rem; }
+  .score-bar-fill { height: 100%; border-radius: 99px; transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .score-bar-fill.green  { background: linear-gradient(90deg, #22c55e, #4ade80); }
+  .score-bar-fill.yellow { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .score-bar-fill.red    { background: linear-gradient(90deg, #dc2626, #f87171); }
+
+  .score-summary { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 1.25rem; }
+
+  .breakdown-title { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+  .breakdown-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .breakdown-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; line-height: 1.5; }
+  .bi-icon { flex-shrink: 0; font-size: 0.95rem; margin-top: 0px; }
+  .bi-ok   { color: #4ade80; }
+  .bi-warn { color: #fbbf24; }
+  .bi-miss { color: #f87171; }
+  .bi-text { color: rgba(255,255,255,0.8); }
+  .bi-kw   { color: var(--teal); font-weight: 500; }
+
+  .kw-section { margin-top: 1.25rem; }
+  .kw-title { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.6rem; }
+  .kw-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .kw-chip { font-size: 0.72rem; font-weight: 500; padding: 3px 10px; border-radius: 99px; border: 1px solid; }
+  .kw-chip.found  { background: rgba(7,255,210,0.1); border-color: rgba(7,255,210,0.35); color: var(--teal); }
+  .kw-chip.missing { background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.35); color: #f87171; }
+
+  .cta-block {
+    background: linear-gradient(135deg, rgba(132,23,170,0.35), rgba(7,255,210,0.08));
+    border: 1px solid rgba(132,23,170,0.4);
+    border-radius: 14px; padding: 1.5rem; text-align: center; display: none; margin-bottom: 1rem;
+  }
+  .cta-block.visible { display: block; }
+  .cta-block p { font-size: 0.88rem; font-weight: 300; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 1rem; }
+  .cta-block strong { color: white; font-weight: 600; }
+  .btn-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal); color: #0a0010;
+    font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600;
+    padding: 11px 24px; border-radius: 8px; text-decoration: none; transition: opacity 0.2s;
+  }
+  .btn-cta:hover { opacity: 0.85; }
+
+  .btn-reset {
+    width: 100%; padding: 10px; background: transparent; border: 1px solid var(--border);
+    color: rgba(255,255,255,0.45); font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: none;
+  }
+  .btn-reset.visible { display: block; }
+  .btn-reset:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="badge">ConnectUP Tool</div>
+    <h1>ATS Resume <span>Evaluator</span></h1>
+    <p>Paste your resume text and get your ATS score — which keywords are present, what's missing, and how to improve before applying to international roles.</p>
+  </div>
+
+  <div class="input-area">
+    <label>Your resume</label>
+    <div class="upload-row">
+      <label class="upload-label" for="cv-file">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+        Upload file (.txt / .pdf text)
+      </label>
+      <span id="file-name">no file selected</span>
+    </div>
+    <input type="file" id="cv-file" accept=".txt,.pdf" />
+    <div class="divider">— or paste below —</div>
+    <textarea id="cv-text" placeholder="Paste the full text of your resume here...&#10;&#10;Example:&#10;Project Manager with 8 years of experience leading multicultural teams, stakeholder management, and delivering results in agile environments. PMP certified. Experience with Scrum, Kanban, and OKRs. Fluent in English and Portuguese..."></textarea>
+  </div>
+
+  <button class="btn-analyze" id="btn-analyze" onclick="analyzeCV()">Evaluate my resume →</button>
+
+  <div class="score-card" id="score-card">
+    <div class="score-header">
+      <div>
+        <div class="score-label">ATS Score</div>
+        <div class="score-number" id="score-display">0</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="score-label">Keyword coverage</div>
+        <div style="font-size:1.4rem;font-weight:600;color:rgba(255,255,255,0.7);" id="kw-coverage">0 / 0</div>
+      </div>
+    </div>
+    <div class="score-bar-bg">
+      <div class="score-bar-fill" id="score-bar" style="width:0%"></div>
+    </div>
+    <p class="score-summary" id="score-summary"></p>
+    <div class="breakdown-title">Detailed analysis</div>
+    <ul class="breakdown-list" id="breakdown-list"></ul>
+    <div class="kw-section">
+      <div class="kw-title">Keywords found</div>
+      <div class="kw-chips" id="kw-found"></div>
+    </div>
+    <div class="kw-section" style="margin-top:0.75rem;">
+      <div class="kw-title">Missing keywords</div>
+      <div class="kw-chips" id="kw-missing"></div>
+    </div>
+  </div>
+
+  <div class="cta-block" id="cta-block">
+    <p><strong>Want a resume that passes ATS filters and impresses the recruiter?</strong><br/>
+    Our team rewrites, repositions, and adapts your CV to international standards — with the right keywords, clear structure, and real impact.</p>
+    <a class="btn-cta" href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.523 5.855L.057 23.197a1 1 0 001.234 1.22l5.428-1.442A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.8a9.8 9.8 0 01-4.998-1.374l-.358-.213-3.718.987.998-3.63-.234-.374A9.793 9.793 0 012.2 12C2.2 6.588 6.588 2.2 12 2.2S21.8 6.588 21.8 12 17.412 21.8 12 21.8z"/></svg>
+      Talk to ConnectUP
+    </a>
+  </div>
+
+  <button class="btn-reset" id="btn-reset" onclick="resetTool()">↺ Evaluate another resume</button>
+
+</div>
+
+<script>
+const KEYWORD_GROUPS = [
+  {
+    label: 'Leadership & management',
+    keywords: ['leadership', 'management', 'team lead', 'manager', 'director', 'coordinator', 'supervisor', 'head of', 'managed', 'led', 'oversaw', 'executive'],
+    weight: 2,
+  },
+  {
+    label: 'Results & metrics',
+    keywords: ['results', 'kpi', 'target', 'growth', 'revenue', 'cost reduction', 'roi', 'performance', 'impact', 'delivery', 'achievement', 'increased', 'reduced', 'improved', 'saved'],
+    weight: 2,
+  },
+  {
+    label: 'Agile methodologies',
+    keywords: ['agile', 'scrum', 'kanban', 'sprint', 'backlog', 'lean', 'six sigma', 'okr', 'okrs', 'devops', 'ci/cd'],
+    weight: 1.5,
+  },
+  {
+    label: 'Communication & presentation',
+    keywords: ['communication', 'presentation', 'negotiation', 'stakeholder', 'report', 'fluent', 'bilingual', 'cross-functional', 'collaboration', 'client-facing'],
+    weight: 1.5,
+  },
+  {
+    label: 'Experience & achievements',
+    keywords: ['years of experience', 'implementation', 'project', 'program', 'initiative', 'strategy', 'planning', 'launched', 'delivered', 'transformed', 'scaled'],
+    weight: 1,
+  },
+  {
+    label: 'Technology & tools',
+    keywords: ['excel', 'powerpoint', 'power bi', 'tableau', 'salesforce', 'sap', 'erp', 'crm', 'sql', 'data analysis', 'automation', 'python', 'cloud', 'aws', 'azure'],
+    weight: 1,
+  },
+  {
+    label: 'Education & certifications',
+    keywords: ['bachelor', 'mba', 'master', 'certification', 'certified', 'pmp', 'cfa', 'cpa', 'degree', 'university', 'diploma'],
+    weight: 1,
+  },
+  {
+    label: 'Format & structure',
+    keywords: [],
+    weight: 0,
+  },
+];
+
+const STRUCTURAL_CHECKS = [
+  { id: 'length',   label: 'Adequate resume length',                check: (t) => t.split(/\s+/).length >= 200,                         tip: 'Your resume has fewer than 200 words — too short for ATS systems.' },
+  { id: 'bullets',  label: 'Use of bullet points / lists',          check: (t) => /[-•·▪▸→]/.test(t),                                  tip: 'No bullet points detected. Lists are essential for ATS readability.' },
+  { id: 'numbers',  label: 'Quantified results (numbers)',          check: (t) => /\d+\s*(%|k|m\b|million|billion|years?|months?|usd|€|£|\$)/.test(t.toLowerCase()), tip: 'No quantified results found. Add metrics: "increased revenue by 30%", "managed team of 12".' },
+  { id: 'contact',  label: 'Contact information present',           check: (t) => /@|linkedin|github|tel|phone|whatsapp|\+\d{2}/.test(t.toLowerCase()), tip: 'No email, LinkedIn, or phone number detected. Make sure they are included in the pasted text.' },
+  { id: 'sections', label: 'Clear section headings identified',     check: (t) => /(experience|education|skills|objective|summary|profile|certifications|achievements)/i.test(t), tip: 'Section headings not detected. Use clear labels: "Experience", "Education", "Skills".' },
+  { id: 'action',   label: 'Action verbs at the start of bullets',  check: (t) => /(led|managed|developed|implemented|created|built|coordinated|negotiated|reduced|increased|optimized|delivered|supervised|launched|designed|drove)/i.test(t), tip: 'Start bullet points with action verbs: "Led", "Implemented", "Reduced".' },
+];
+
+document.getElementById('cv-file').addEventListener('change', function() {
+  const file = this.files[0];
+  if (!file) return;
+  document.getElementById('file-name').textContent = file.name;
+  const reader = new FileReader();
+  reader.onload = (e) => { document.getElementById('cv-text').value = e.target.result; };
+  reader.readAsText(file, 'UTF-8');
+});
+
+function analyzeCV() {
+  const rawText = document.getElementById('cv-text').value.trim();
+  if (!rawText) { alert('Please paste your resume text before evaluating.'); return; }
+
+  const text = rawText.toLowerCase();
+  let totalWeight = 0, foundWeight = 0;
+  const foundKws = [], missingKws = [];
+
+  for (const group of KEYWORD_GROUPS) {
+    if (!group.keywords.length) continue;
+    for (const kw of group.keywords) {
+      totalWeight += group.weight;
+      if (text.includes(kw.toLowerCase())) { foundWeight += group.weight; foundKws.push(kw); }
+      else { missingKws.push(kw); }
+    }
+  }
+
+  const structResults = STRUCTURAL_CHECKS.map(c => ({ ...c, passed: c.check(rawText) }));
+  const structPassed = structResults.filter(r => r.passed).length;
+  const kwScore = totalWeight > 0 ? (foundWeight / totalWeight) * 70 : 0;
+  const structScore = (structPassed / structResults.length) * 30;
+  const score = Math.round(kwScore + structScore);
+  const kwTotal = KEYWORD_GROUPS.reduce((acc, g) => acc + g.keywords.length, 0);
+  const cls = score >= 75 ? 'green' : score >= 50 ? 'yellow' : 'red';
+
+  const summaries = {
+    green:  'Your resume has strong keyword coverage and is well-structured for ATS systems. A few positioning tweaks will push it even further.',
+    yellow: 'Your resume passes some ATS filters but is missing important keywords and structural elements. There is significant room to improve before applying to international roles.',
+    red:    'Your resume is likely being automatically rejected by ATS systems before reaching a recruiter. It needs restructuring and strategic keyword additions.',
+  };
+
+  document.getElementById('score-display').textContent  = score + '/100';
+  document.getElementById('score-display').className    = 'score-number ' + cls;
+  document.getElementById('kw-coverage').textContent    = foundKws.length + ' / ' + kwTotal;
+  document.getElementById('score-bar').style.width      = score + '%';
+  document.getElementById('score-bar').className        = 'score-bar-fill ' + cls;
+  document.getElementById('score-summary').textContent  = summaries[cls];
+
+  const bl = document.getElementById('breakdown-list');
+  bl.innerHTML = '';
+  for (const sr of structResults) {
+    const li = document.createElement('li');
+    li.className = 'breakdown-item';
+    li.innerHTML = `<span class="bi-icon ${sr.passed ? 'bi-ok' : 'bi-miss'}">${sr.passed ? '✓' : '✗'}</span>
+      <span class="bi-text">${sr.label}${sr.passed ? '' : '<br/><small style="color:rgba(255,255,255,0.45);font-weight:300;">' + sr.tip + '</small>'}</span>`;
+    bl.appendChild(li);
+  }
+
+  document.getElementById('kw-found').innerHTML   = foundKws.slice(0, 30).map(k => `<span class="kw-chip found">${k}</span>`).join('');
+  document.getElementById('kw-missing').innerHTML = missingKws.slice(0, 20).map(k => `<span class="kw-chip missing">${k}</span>`).join('');
+
+  document.getElementById('score-card').classList.add('visible');
+  document.getElementById('cta-block').classList.add('visible');
+  document.getElementById('btn-reset').classList.add('visible');
+  document.getElementById('btn-analyze').disabled = true;
+
+  requestAnimationFrame(() => { document.getElementById('score-bar').style.width = score + '%'; });
+}
+
+function resetTool() {
+  document.getElementById('cv-text').value = '';
+  document.getElementById('file-name').textContent = 'no file selected';
+  document.getElementById('cv-file').value = '';
+  document.getElementById('score-card').classList.remove('visible');
+  document.getElementById('cta-block').classList.remove('visible');
+  document.getElementById('btn-reset').classList.remove('visible');
+  document.getElementById('btn-analyze').disabled = false;
+  document.getElementById('score-bar').style.width = '0%';
+}
+</script>
+</body>
+</html>
