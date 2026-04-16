@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Avaliador ATS — ConnectUP</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -25,36 +27,74 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 1.25rem;
+    padding: 2rem 1.25rem 4rem;
   }
 
   .wrapper { width: 100%; max-width: 680px; }
 
+  /* ── Settings gear ── */
+  .gear-btn {
+    position: fixed; top: 14px; right: 16px; z-index: 90;
+    background: rgba(255,255,255,0.07); border: 1px solid var(--border);
+    border-radius: 8px; padding: 7px 9px; cursor: pointer;
+    color: rgba(255,255,255,0.4); font-size: 15px; line-height: 1;
+    transition: all 0.2s;
+  }
+  .gear-btn:hover { color: white; border-color: rgba(255,255,255,0.3); }
+
+  /* ── Modal ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #150020; border: 1px solid rgba(132,23,170,0.4);
+    border-radius: 16px; padding: 1.75rem; width: 100%; max-width: 440px;
+  }
+  .modal h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .modal p  { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 1.25rem; }
+  .modal-row { display: flex; gap: 0.6rem; align-items: center; }
+  .modal-input {
+    flex: 1; background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+    border-radius: 8px; color: white; font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem; padding: 9px 12px; outline: none;
+  }
+  .modal-input:focus { border-color: rgba(132,23,170,0.6); }
+  .modal-save {
+    background: var(--purple); border: none; border-radius: 8px;
+    color: white; font-family: 'Poppins', sans-serif; font-size: 0.82rem;
+    font-weight: 600; padding: 9px 18px; cursor: pointer; white-space: nowrap;
+  }
+  .modal-close {
+    display: block; margin-top: 1rem; text-align: center;
+    font-size: 0.78rem; color: rgba(255,255,255,0.35); cursor: pointer;
+  }
+  .modal-close:hover { color: rgba(255,255,255,0.6); }
+  .modal-status { font-size: 0.75rem; margin-top: 0.75rem; }
+  .modal-status.ok  { color: var(--teal); }
+  .modal-status.err { color: #f87171; }
+
   /* ── Header ── */
   .header { text-align: center; margin-bottom: 2rem; }
   .header .badge {
-    display: inline-block;
-    font-size: 10px; font-weight: 500; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--teal);
-    border: 1px solid rgba(7,255,210,0.3);
-    border-radius: 99px; padding: 4px 14px; margin-bottom: 0.75rem;
+    display: inline-block; font-size: 10px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal);
+    border: 1px solid rgba(7,255,210,0.3); border-radius: 99px;
+    padding: 4px 14px; margin-bottom: 0.75rem;
   }
-  .header h1 {
-    font-size: clamp(1.35rem, 4vw, 1.9rem);
-    font-weight: 600; line-height: 1.2;
-  }
+  .header h1 { font-size: clamp(1.35rem, 4vw, 1.9rem); font-weight: 600; line-height: 1.2; }
   .header h1 span { color: var(--teal); }
-  .header p {
+  .header p  {
     font-size: 0.85rem; font-weight: 300;
     color: rgba(255,255,255,0.55); margin-top: 0.6rem; line-height: 1.7;
   }
 
-  /* ── Textarea ── */
+  /* ── Input area ── */
   .input-area {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px; padding: 1.25rem;
-    margin-bottom: 1rem;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.25rem; margin-bottom: 0.75rem;
   }
   .input-area label {
     display: block; font-size: 11px; font-weight: 500;
@@ -65,400 +105,744 @@
     width: 100%; background: rgba(255,255,255,0.04);
     border: 1px solid var(--border); border-radius: 8px;
     color: white; font-family: 'Poppins', sans-serif;
-    font-size: 0.82rem; line-height: 1.7;
-    padding: 0.85rem 1rem; resize: vertical; min-height: 220px;
-    outline: none; transition: border-color 0.2s;
+    font-size: 0.82rem; line-height: 1.7; padding: 0.85rem 1rem;
+    resize: vertical; outline: none; transition: border-color 0.2s;
   }
   textarea:focus { border-color: rgba(132,23,170,0.6); }
-  textarea::placeholder { color: rgba(255,255,255,0.25); }
+  textarea::placeholder { color: rgba(255,255,255,0.22); }
+  #cv-text    { min-height: 220px; }
+  #job-text   { min-height: 80px;  }
 
-  /* ── File upload ── */
-  .upload-row {
-    display: flex; align-items: center; gap: 0.75rem;
-    margin-bottom: 0.5rem;
-  }
+  .upload-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
   .upload-label {
     display: inline-flex; align-items: center; gap: 6px;
     font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.7);
     border: 1px solid var(--border); border-radius: 8px;
-    padding: 7px 14px; cursor: pointer; transition: all 0.2s;
-    white-space: nowrap;
+    padding: 7px 14px; cursor: pointer; transition: all 0.2s; white-space: nowrap;
   }
   .upload-label:hover { border-color: var(--purple); color: white; }
-  .upload-label svg { flex-shrink: 0; }
   #file-name { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
-  #cv-file { display: none; }
+  #cv-file   { display: none; }
 
+  .drop-zone {
+    border: 2px dashed var(--border); border-radius: 10px;
+    padding: 1.25rem; text-align: center; cursor: pointer;
+    transition: all 0.2s; margin-bottom: 0.5rem;
+  }
+  .drop-zone:hover, .drop-zone.drag-over {
+    border-color: var(--purple);
+    background: rgba(132,23,170,0.08);
+  }
+  .drop-zone.drag-over { border-color: var(--teal); background: rgba(7,255,210,0.06); }
+  .drop-zone-text { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+  .drop-zone-text strong { color: rgba(255,255,255,0.7); }
   .divider {
     text-align: center; font-size: 10px; font-weight: 500;
     letter-spacing: 0.12em; text-transform: uppercase;
     color: rgba(255,255,255,0.3); margin: 0.6rem 0;
   }
 
-  /* ── Analyze button ── */
+  /* ── Buttons ── */
   .btn-analyze {
     width: 100%; padding: 13px;
     background: linear-gradient(135deg, var(--purple), #470050);
     color: white; font-family: 'Poppins', sans-serif;
     font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em;
     border: none; border-radius: 10px; cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s;
-    margin-bottom: 1.5rem;
+    transition: opacity 0.2s, transform 0.15s; margin-bottom: 1.5rem;
   }
-  .btn-analyze:hover { opacity: 0.9; transform: translateY(-1px); }
-  .btn-analyze:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .btn-analyze:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+  .btn-analyze:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* ── Score card ── */
-  .score-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px; padding: 1.5rem;
+  /* ── Loading ── */
+  .loading {
+    display: none; text-align: center; padding: 2.5rem 1rem;
     margin-bottom: 1rem;
-    display: none;
   }
-  .score-card.visible { display: block; }
+  .loading.visible { display: block; }
+  .spinner {
+    width: 40px; height: 40px; border-radius: 50%; margin: 0 auto 1rem;
+    border: 3px solid rgba(132,23,170,0.25);
+    border-top-color: var(--purple);
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading p { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+  .loading strong { color: var(--teal); }
 
-  .score-header {
+  /* ── Results ── */
+  .results { display: none; }
+  .results.visible { display: block; }
+
+  /* Score bar */
+  .score-header-row {
     display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.75rem;
   }
-  .score-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
-  .score-number {
-    font-size: 3rem; font-weight: 700; line-height: 1;
-  }
-  .score-number.green { color: #4ade80; }
+  .score-label-sm { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+  .score-number   { font-size: 2.8rem; font-weight: 700; line-height: 1; }
+  .score-number.green  { color: #4ade80; }
   .score-number.yellow { color: #fbbf24; }
-  .score-number.red { color: #f87171; }
+  .score-number.red    { color: #f87171; }
+  .compat-pill {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 99px;
+  }
+  .compat-pill.high   { background: rgba(74,222,128,0.15); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
+  .compat-pill.medium { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+  .compat-pill.low    { background: rgba(248,113,113,0.15); color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
 
   .score-bar-bg {
     background: rgba(255,255,255,0.08); border-radius: 99px;
-    height: 8px; overflow: hidden; margin-bottom: 1.25rem;
+    height: 6px; overflow: hidden; margin-bottom: 1.5rem;
   }
   .score-bar-fill {
     height: 100%; border-radius: 99px;
-    transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: width 1s cubic-bezier(0.34,1.56,0.64,1);
   }
-  .score-bar-fill.green  { background: linear-gradient(90deg, #22c55e, #4ade80); }
-  .score-bar-fill.yellow { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-  .score-bar-fill.red    { background: linear-gradient(90deg, #dc2626, #f87171); }
+  .score-bar-fill.green  { background: linear-gradient(90deg,#22c55e,#4ade80); }
+  .score-bar-fill.yellow { background: linear-gradient(90deg,#f59e0b,#fbbf24); }
+  .score-bar-fill.red    { background: linear-gradient(90deg,#dc2626,#f87171); }
 
-  .score-summary {
-    font-size: 0.85rem; color: rgba(255,255,255,0.7);
-    line-height: 1.6; margin-bottom: 1.25rem;
+  /* Metric cards */
+  .metric-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .metric-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 1rem 0.75rem; text-align: center;
+  }
+  .metric-num  { font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: 0.3rem; }
+  .metric-num.red    { color: #f87171; }
+  .metric-num.yellow { color: #fbbf24; }
+  .metric-num.purple { color: #c084fc; }
+  .metric-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.4); line-height: 1.4; }
+
+  /* Message */
+  .result-message {
+    background: rgba(132,23,170,0.12); border: 1px solid rgba(132,23,170,0.25);
+    border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 1rem;
+    font-size: 0.88rem; line-height: 1.75; color: rgba(255,255,255,0.82);
   }
 
-  /* ── Breakdown ── */
-  .breakdown-title {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: rgba(255,255,255,0.4);
-    margin-bottom: 0.75rem;
+  .teaser-block {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.5rem;
   }
-  .breakdown-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-  .breakdown-item {
-    display: flex; align-items: flex-start; gap: 0.6rem;
-    font-size: 0.82rem; line-height: 1.5;
+  .teaser-block p {
+    font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.65;
+    font-style: italic;
   }
-  .bi-icon { flex-shrink: 0; font-size: 0.95rem; margin-top: 0px; }
-  .bi-ok   { color: #4ade80; }
-  .bi-warn { color: #fbbf24; }
-  .bi-miss { color: #f87171; }
-  .bi-text { color: rgba(255,255,255,0.8); }
-  .bi-kw   { color: var(--teal); font-weight: 500; }
-
-  /* ── Found keywords ── */
-  .kw-section { margin-top: 1.25rem; }
-  .kw-title {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.6rem;
-  }
-  .kw-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .kw-chip {
-    font-size: 0.72rem; font-weight: 500; padding: 3px 10px;
-    border-radius: 99px; border: 1px solid;
-  }
-  .kw-chip.found  { background: rgba(7,255,210,0.1); border-color: rgba(7,255,210,0.35); color: var(--teal); }
-  .kw-chip.missing { background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.35); color: #f87171; }
+  .teaser-block p strong { color: rgba(255,255,255,0.6); font-style: normal; }
 
   /* ── CTA ── */
   .cta-block {
     background: linear-gradient(135deg, rgba(132,23,170,0.35), rgba(7,255,210,0.08));
     border: 1px solid rgba(132,23,170,0.4);
-    border-radius: 14px; padding: 1.5rem;
-    text-align: center; display: none;
-    margin-bottom: 1rem;
+    border-radius: 14px; padding: 1.5rem; text-align: center;
+    margin-bottom: 1rem; display: none;
   }
   .cta-block.visible { display: block; }
-  .cta-block p {
-    font-size: 0.88rem; font-weight: 300;
-    color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 1rem;
-  }
+  .cta-block p { font-size: 0.88rem; font-weight: 300; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 1rem; }
   .cta-block strong { color: white; font-weight: 600; }
   .btn-cta {
     display: inline-flex; align-items: center; gap: 8px;
     background: var(--teal); color: #0a0010;
     font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600;
-    padding: 11px 24px; border-radius: 8px; text-decoration: none;
-    transition: opacity 0.2s;
+    padding: 11px 24px; border-radius: 8px; text-decoration: none; transition: opacity 0.2s;
   }
   .btn-cta:hover { opacity: 0.85; }
 
-  /* ── Reset ── */
   .btn-reset {
-    width: 100%; padding: 10px;
-    background: transparent; border: 1px solid var(--border);
-    color: rgba(255,255,255,0.45); font-family: 'Poppins', sans-serif;
-    font-size: 0.8rem; border-radius: 8px; cursor: pointer;
-    transition: all 0.2s; display: none;
+    width: 100%; padding: 10px; background: transparent;
+    border: 1px solid var(--border); color: rgba(255,255,255,0.4);
+    font-family: 'Poppins', sans-serif; font-size: 0.8rem; border-radius: 8px;
+    cursor: pointer; transition: all 0.2s; display: none;
   }
   .btn-reset.visible { display: block; }
   .btn-reset:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+
+  /* ── Consultant Panel ── */
+  .consultant-panel {
+    display: none; position: fixed; inset: 0; z-index: 300;
+    background: #08000f; overflow-y: auto; padding: 2rem 1.5rem 4rem;
+  }
+  .consultant-panel.open { display: block; }
+  .cp-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 2rem; padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(132,23,170,0.3);
+  }
+  .cp-header h2 { font-size: 1.1rem; font-weight: 600; }
+  .cp-header .cp-badge {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--teal); background: rgba(7,255,210,0.1);
+    border: 1px solid rgba(7,255,210,0.25); border-radius: 99px; padding: 3px 10px;
+  }
+  .cp-close {
+    background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+    border-radius: 8px; color: rgba(255,255,255,0.5); cursor: pointer;
+    font-size: 1rem; padding: 6px 12px; transition: all 0.2s;
+  }
+  .cp-close:hover { background: rgba(255,255,255,0.1); color: white; }
+
+  .cp-section { margin-bottom: 2rem; }
+  .cp-section-title {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); margin-bottom: 0.85rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .kw-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .kw-chip {
+    font-size: 0.72rem; font-weight: 500; padding: 3px 10px;
+    border-radius: 99px; border: 1px solid;
+  }
+  .kw-chip.missing { background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.3); color: #f87171; }
+
+  .bullet-card {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem; margin-bottom: 0.6rem;
+  }
+  .bullet-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .bullet-label.orig { color: rgba(248,113,113,0.7); }
+  .bullet-label.sugg { color: rgba(74,222,128,0.7); }
+  .bullet-text { font-size: 0.82rem; line-height: 1.6; }
+  .bullet-text.orig { color: rgba(255,255,255,0.5); }
+  .bullet-text.sugg { color: rgba(255,255,255,0.85); }
+  .bullet-arrow { text-align: center; color: rgba(255,255,255,0.2); margin: 0.4rem 0; font-size: 0.9rem; }
+
+  .fmt-item {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.82rem; color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;
+  }
+  .fmt-icon { color: #fbbf24; flex-shrink: 0; }
+
+  .rec-item {
+    background: rgba(7,255,210,0.05); border-left: 2px solid rgba(7,255,210,0.3);
+    padding: 0.6rem 0.85rem; border-radius: 0 6px 6px 0;
+    font-size: 0.82rem; color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 0.5rem;
+  }
+
+  .positioning-box {
+    background: rgba(132,23,170,0.1); border: 1px solid rgba(132,23,170,0.25);
+    border-radius: 10px; padding: 1rem; font-size: 0.83rem; line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .cp-copy-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.07); border: 1px solid var(--border);
+    color: rgba(255,255,255,0.6); font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem; padding: 6px 14px; border-radius: 7px;
+    cursor: pointer; transition: all 0.2s; margin-top: 1rem;
+  }
+  .cp-copy-btn:hover { background: rgba(255,255,255,0.12); color: white; }
 </style>
 </head>
 <body>
+
+<!-- Gear / settings -->
+<button class="gear-btn" onclick="openSettings()" title="Configurar chave de API">⚙</button>
+
+<!-- Settings modal -->
+<div class="modal-overlay" id="settings-modal">
+  <div class="modal">
+    <h3>Chave de API Anthropic</h3>
+    <p>Necessária para análise com IA. A chave fica salva localmente no seu navegador e nunca é enviada a terceiros.<br>Obtenha em <strong>console.anthropic.com</strong></p>
+    <div class="modal-row">
+      <input class="modal-input" type="password" id="api-key-input" placeholder="sk-ant-..." />
+      <button class="modal-save" onclick="saveKey()">Salvar</button>
+    </div>
+    <div class="modal-status" id="key-status"></div>
+    <span class="modal-close" onclick="closeSettings()">Fechar</span>
+  </div>
+</div>
+
 <div class="wrapper">
 
   <!-- Header -->
   <div class="header">
     <div class="badge">Ferramenta ConnectUP</div>
     <h1>Avaliador de CV <span>ATS</span></h1>
-    <p>Cole o texto do seu currículo e descubra sua nota ATS — quantas palavras-chave estão presentes, o que está faltando e como melhorar.</p>
+    <p>Análise completa com IA — descubra o que está impedindo seu CV de passar pelos filtros automáticos.</p>
   </div>
 
-  <!-- Input -->
+  <!-- CV input -->
   <div class="input-area">
     <label>Seu currículo</label>
 
-    <!-- File upload -->
-    <div class="upload-row">
-      <label class="upload-label" for="cv-file">
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-        Subir arquivo (.txt / .pdf text)
-      </label>
-      <span id="file-name">nenhum arquivo selecionado</span>
+    <div class="drop-zone" id="drop-zone" onclick="document.getElementById('cv-file').click()">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 0.5rem;display:block;color:rgba(255,255,255,0.3)"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
+      <div class="drop-zone-text">
+        <strong>Clique ou arraste o arquivo aqui</strong><br/>
+        .pdf · .docx · .txt
+      </div>
+      <div id="file-name" style="margin-top:0.4rem;font-size:0.75rem;color:var(--teal);display:none;"></div>
     </div>
-    <input type="file" id="cv-file" accept=".txt,.pdf" />
+    <input type="file" id="cv-file" accept=".txt,.pdf,.docx" style="display:none" />
 
     <div class="divider">— ou cole abaixo —</div>
-
-    <textarea id="cv-text" placeholder="Cole aqui o texto completo do seu currículo...&#10;&#10;Exemplo:&#10;Gerente de Projetos com 8 anos de experiência em gestão de equipes multiculturais, liderança de stakeholders e entrega de resultados em ambientes ágeis. Certificação PMP. Experiência com Scrum, Kanban e OKRs. Fluente em inglês..."></textarea>
+    <textarea id="cv-text" placeholder="Cole aqui o texto completo do seu currículo..."></textarea>
   </div>
 
-  <button class="btn-analyze" id="btn-analyze" onclick="analyzeCV()">Avaliar meu CV →</button>
-
-  <!-- Score card -->
-  <div class="score-card" id="score-card">
-    <div class="score-header">
-      <div>
-        <div class="score-label">Pontuação ATS</div>
-        <div class="score-number" id="score-display">0</div>
-      </div>
-      <div style="text-align:right;">
-        <div class="score-label">Cobertura de palavras-chave</div>
-        <div style="font-size:1.4rem;font-weight:600;color:rgba(255,255,255,0.7);" id="kw-coverage">0 / 0</div>
-      </div>
-    </div>
-    <div class="score-bar-bg">
-      <div class="score-bar-fill" id="score-bar" style="width:0%"></div>
-    </div>
-    <p class="score-summary" id="score-summary"></p>
-
-    <div class="breakdown-title">Análise detalhada</div>
-    <ul class="breakdown-list" id="breakdown-list"></ul>
-
-    <div class="kw-section">
-      <div class="kw-title">Palavras-chave encontradas</div>
-      <div class="kw-chips" id="kw-found"></div>
-    </div>
-    <div class="kw-section" style="margin-top:0.75rem;">
-      <div class="kw-title">Palavras-chave ausentes</div>
-      <div class="kw-chips" id="kw-missing"></div>
-    </div>
+  <!-- Job description (optional) -->
+  <div class="input-area" style="margin-bottom:1rem;">
+    <label>Descrição da vaga (opcional)</label>
+    <textarea id="job-text" placeholder="Cole a descrição da vaga para uma análise de aderência mais precisa..."></textarea>
   </div>
+
+  <button class="btn-analyze" id="btn-analyze" onclick="analyzeCV()">Analisar meu CV com IA →</button>
+
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p><strong>Analisando seu currículo...</strong><br/>A IA está identificando pontos críticos.<br/>Isso leva alguns segundos.</p>
+  </div>
+
+  <!-- Results -->
+  <div class="results" id="results">
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1rem;">
+      <div class="score-header-row">
+        <div>
+          <div class="score-label-sm">Pontuação ATS</div>
+          <div class="score-number" id="score-display">—</div>
+        </div>
+        <div id="compat-pill"></div>
+      </div>
+      <div class="score-bar-bg">
+        <div class="score-bar-fill" id="score-bar" style="width:0%"></div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-num red" id="m-keywords">—</div>
+          <div class="metric-label">Palavras-chave<br/>Ausentes</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num yellow" id="m-bullets">—</div>
+          <div class="metric-label">Pontos<br/>Fracos</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num purple" id="m-format">—</div>
+          <div class="metric-label">Problemas<br/>de Formato</div>
+        </div>
+      </div>
+
+      <div class="result-message" id="result-message"></div>
+
+      <div class="teaser-block">
+        <p><strong>O que foi identificado:</strong> palavras-chave específicas por área, pontos de experiência que precisam ser reescritos com impacto mensurável, problemas de formato que eliminam o CV antes de um humano ler — e um plano de reposicionamento personalizado. <strong>Esses detalhes estão disponíveis na sessão de consultoria.</strong></p>
+      </div>
+    </div>
+
+  </div><!-- /results -->
 
   <!-- CTA -->
   <div class="cta-block" id="cta-block">
-    <p><strong>Quer um CV que passa pelo ATS e conquista o recrutador?</strong><br/>
-    Nossa equipe revisa, reposiciona e adapta seu currículo ao padrão internacional — com as palavras-chave certas, estrutura clara e impacto real.</p>
+    <p><strong>Sua análise está pronta.</strong><br/>
+    Em uma sessão de 60 minutos, nossa consultora revisa cada ponto encontrado, reescreve os bullets com você e adapta seu CV ao padrão internacional — com as palavras-chave certas para sua área.</p>
     <a class="btn-cta" href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer">
       <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.523 5.855L.057 23.197a1 1 0 001.234 1.22l5.428-1.442A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.8a9.8 9.8 0 01-4.998-1.374l-.358-.213-3.718.987.998-3.63-.234-.374A9.793 9.793 0 012.2 12C2.2 6.588 6.588 2.2 12 2.2S21.8 6.588 21.8 12 17.412 21.8 12 21.8z"/></svg>
-      Falar com ConnectUP
+      Agendar sessão de consultoria
     </a>
   </div>
 
   <button class="btn-reset" id="btn-reset" onclick="resetTool()">↺ Avaliar outro CV</button>
 
+</div><!-- /wrapper -->
+
+<!-- Consultant Panel -->
+<div class="consultant-panel" id="consultant-panel">
+  <div style="max-width:780px;margin:0 auto;">
+    <div class="cp-header">
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <h2>Notas da Consultora</h2>
+        <span class="cp-badge">Uso Interno</span>
+      </div>
+      <button class="cp-close" onclick="toggleConsultant()">✕ Fechar</button>
+    </div>
+
+    <div class="cp-section">
+      <div class="cp-section-title">Palavras-chave ausentes</div>
+      <div class="kw-chips" id="cp-keywords"></div>
+    </div>
+
+    <div class="cp-section">
+      <div class="cp-section-title">Bullets fracos → sugestões de reescrita</div>
+      <div id="cp-bullets"></div>
+    </div>
+
+    <div class="cp-section">
+      <div class="cp-section-title">Problemas de formatação</div>
+      <div id="cp-format"></div>
+    </div>
+
+    <div class="cp-section">
+      <div class="cp-section-title">Recomendações específicas</div>
+      <div id="cp-recs"></div>
+    </div>
+
+    <div class="cp-section">
+      <div class="cp-section-title">Posicionamento e estratégia</div>
+      <div class="positioning-box" id="cp-positioning"></div>
+    </div>
+
+    <button class="cp-copy-btn" onclick="copyNotes()">
+      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar notas completas
+    </button>
+  </div>
 </div>
 
 <script>
-// ── ATS keyword bank ──
-const KEYWORD_GROUPS = [
-  {
-    label: 'Liderança e gestão',
-    keywords: ['liderança', 'leadership', 'gestão', 'management', 'gerenciamento', 'coordenação', 'coordination', 'supervisão', 'supervision', 'team lead', 'lider', 'gestor', 'manager', 'diretor', 'director'],
-    weight: 2,
-  },
-  {
-    label: 'Resultados e métricas',
-    keywords: ['resultado', 'result', 'kpi', 'meta', 'target', 'crescimento', 'growth', 'receita', 'revenue', 'redução de custos', 'cost reduction', 'roi', 'performance', 'desempenho', 'impacto', 'impact', 'entrega', 'delivery'],
-    weight: 2,
-  },
-  {
-    label: 'Metodologias ágeis',
-    keywords: ['agile', 'scrum', 'kanban', 'sprint', 'backlog', 'ágil', 'lean', 'six sigma', 'okr', 'okrs'],
-    weight: 1.5,
-  },
-  {
-    label: 'Comunicação e apresentação',
-    keywords: ['comunicação', 'communication', 'apresentação', 'presentation', 'negociação', 'negotiation', 'stakeholder', 'relatório', 'report', 'fluente', 'fluent', 'inglês', 'english', 'bilíngue', 'bilingual'],
-    weight: 1.5,
-  },
-  {
-    label: 'Experiência e conquistas',
-    keywords: ['anos de experiência', 'years of experience', 'implementação', 'implementation', 'projeto', 'project', 'programa', 'program', 'iniciativa', 'initiative', 'estratégia', 'strategy', 'planejamento', 'planning'],
-    weight: 1,
-  },
-  {
-    label: 'Tecnologia e ferramentas',
-    keywords: ['excel', 'powerpoint', 'power bi', 'tableau', 'salesforce', 'sap', 'erp', 'crm', 'sql', 'data', 'análise de dados', 'data analysis', 'automação', 'automation'],
-    weight: 1,
-  },
-  {
-    label: 'Formação e certificações',
-    keywords: ['graduação', 'bachelor', 'mba', 'pós-graduação', 'master', 'certificação', 'certification', 'certificado', 'certified', 'pmp', 'cfa', 'cpa'],
-    weight: 1,
-  },
-  {
-    label: 'Formato e estrutura',
-    keywords: [],  // checked structurally below
-    weight: 0,
-  },
-];
+// ─────────────────────────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────────────────────────
+let lastConsultantNotes = null;
 
-const STRUCTURAL_CHECKS = [
-  { id: 'length',    label: 'Comprimento adequado do currículo',     check: (t) => t.split(/\s+/).length >= 200,                         tip: 'Seu CV tem menos de 200 palavras — muito curto para passar por um ATS.' },
-  { id: 'bullets',   label: 'Uso de listas / bullet points',         check: (t) => /[-•·▪▸→]/.test(t),                                  tip: 'Sem marcadores detectados. Listas são essenciais para rastreadores ATS.' },
-  { id: 'numbers',   label: 'Resultados quantificados (números)',     check: (t) => /\d+\s*(%|mil|k|bi|mi|M\b|reais|usd|€|anos?|meses?)/.test(t.toLowerCase()), tip: 'Sem resultados com números. Acrescente: "aumentei receita em 30%", "gerenciei equipe de 12 pessoas".' },
-  { id: 'contact',   label: 'Informações de contato presentes',      check: (t) => /@|linkedin|github|tel|fone|whatsapp|\+\d{2}/.test(t.toLowerCase()), tip: 'Não encontramos e-mail, LinkedIn ou telefone. Verifique se estão no texto colado.' },
-  { id: 'sections',  label: 'Seções claras identificadas',           check: (t) => /(experiência|experience|educação|education|formação|habilidades|skills|objetivo|objective)/i.test(t), tip: 'Título de seções não detectados. Certifique-se de usar cabeçalhos como "Experiência", "Educação", "Habilidades".' },
-  { id: 'action',    label: 'Verbos de ação no início das frases',   check: (t) => /(lider|gerenci|desenvolv|implement|criou|criamos|coorden|negoci|reduzi|aument|otimiz|entregu|superv|condu|geri)/i.test(t), tip: 'Comece frases com verbos de ação: "Liderou", "Implementou", "Reduziu".' },
-];
+const SYSTEM_PROMPT = `Você é um especialista em análise de CVs para o mercado internacional. Analise o CV fornecido e retorne DOIS conjuntos de dados em JSON válido.
 
-// ── File reader ──
-document.getElementById('cv-file').addEventListener('change', function() {
-  const file = this.files[0];
-  if (!file) return;
-  document.getElementById('file-name').textContent = file.name;
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    document.getElementById('cv-text').value = e.target.result;
-  };
-  reader.readAsText(file, 'UTF-8');
-});
+IMPORTANTE: Retorne APENAS JSON válido, sem texto antes ou depois.
 
-// ── Main analysis ──
-function analyzeCV() {
-  const rawText = document.getElementById('cv-text').value.trim();
-  if (!rawText) {
-    alert('Cole o texto do seu currículo antes de avaliar.');
+{
+  "public_summary": {
+    "overall_score": <número 0-100>,
+    "missing_keywords_count": <número de palavras-chave profissionais importantes ausentes>,
+    "weak_bullets_count": <número de bullets/pontos de experiência que estão fracos ou sem impacto mensurável>,
+    "formatting_issues_count": <número de problemas de formatação que prejudicam leitura por ATS>,
+    "ats_compatibility": "<low|medium|high>",
+    "message": "<1-2 frases em português que criam urgência sem revelar especificidades. Mencione os números mas não o que são. Ex: 'Identificamos X palavras-chave críticas ausentes e Y pontos de experiência que não estão comunicando seu impacto real.'>"
+  },
+  "consultant_notes": {
+    "missing_keywords": ["<palavra-chave 1>", "<palavra-chave 2>", ...],
+    "weak_bullets": [
+      {
+        "original": "<texto original do bullet>",
+        "suggestion": "<versão melhorada com verbo de ação, número/resultado, contexto>"
+      }
+    ],
+    "formatting_issues": ["<problema 1>", "<problema 2>"],
+    "specific_recommendations": ["<recomendação específica e acionável 1>", ...],
+    "positioning_notes": "<análise de posicionamento: perfil atual vs. mercado-alvo, gaps estratégicos, oportunidades de diferenciação>"
+  }
+}`;
+
+// ─────────────────────────────────────────────────────────────
+//  API KEY
+// ─────────────────────────────────────────────────────────────
+function getKey()   { return localStorage.getItem('cu_api_key') || ''; }
+function saveKey()  {
+  const k = document.getElementById('api-key-input').value.trim();
+  if (!k.startsWith('sk-ant-')) {
+    setKeyStatus('Chave inválida. Deve começar com sk-ant-', false);
+    return;
+  }
+  localStorage.setItem('cu_api_key', k);
+  setKeyStatus('✓ Chave salva', true);
+  setTimeout(closeSettings, 800);
+}
+function setKeyStatus(msg, ok) {
+  const el = document.getElementById('key-status');
+  el.textContent = msg;
+  el.className = 'modal-status ' + (ok ? 'ok' : 'err');
+}
+function openSettings() {
+  document.getElementById('api-key-input').value = getKey();
+  document.getElementById('key-status').textContent = '';
+  document.getElementById('settings-modal').classList.add('open');
+}
+function closeSettings() {
+  document.getElementById('settings-modal').classList.remove('open');
+}
+
+// ─────────────────────────────────────────────────────────────
+//  MAIN ANALYSIS
+// ─────────────────────────────────────────────────────────────
+async function analyzeCV() {
+  const apiKey = getKey();
+  if (!apiKey) {
+    openSettings();
     return;
   }
 
-  const text = rawText.toLowerCase();
+  const cvText  = document.getElementById('cv-text').value.trim();
+  const jobText = document.getElementById('job-text').value.trim();
+  if (!cvText) { alert('Cole o texto do seu currículo antes de avaliar.'); return; }
 
-  // Collect keyword matches
-  let totalWeight = 0;
-  let foundWeight = 0;
-  const foundKws   = [];
-  const missingKws = [];
+  // UI → loading state
+  document.getElementById('btn-analyze').disabled = true;
+  document.getElementById('loading').classList.add('visible');
+  document.getElementById('results').classList.remove('visible');
+  document.getElementById('cta-block').classList.remove('visible');
+  document.getElementById('btn-reset').classList.remove('visible');
 
-  for (const group of KEYWORD_GROUPS) {
-    if (!group.keywords.length) continue;
-    for (const kw of group.keywords) {
-      totalWeight += group.weight;
-      if (text.includes(kw.toLowerCase())) {
-        foundWeight += group.weight;
-        foundKws.push(kw);
-      } else {
-        missingKws.push(kw);
-      }
+  let userMsg = `CV:\n${cvText}`;
+  if (jobText) userMsg += `\n\nDescrição da Vaga:\n${jobText}`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 2500,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: userMsg }],
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err?.error?.message || `API error ${res.status}`);
     }
+
+    const data   = await res.json();
+    const raw    = data.content[0].text.trim();
+
+    // Strip markdown code fences if present
+    const jsonStr = raw.replace(/^```json\s*/,'').replace(/```\s*$/,'').trim();
+    const parsed  = JSON.parse(jsonStr);
+
+    renderResults(parsed.public_summary, parsed.consultant_notes);
+
+  } catch (err) {
+    document.getElementById('loading').classList.remove('visible');
+    document.getElementById('btn-analyze').disabled = false;
+    alert('Erro na análise: ' + err.message + '\n\nVerifique sua chave de API.');
   }
+}
 
-  // Structural checks
-  const structResults = STRUCTURAL_CHECKS.map(c => ({ ...c, passed: c.check(rawText) }));
-  const structPassed  = structResults.filter(r => r.passed).length;
-  const structTotal   = structResults.length;
-  const structWeight  = 30; // structural = 30% of total score
-  const kwWeight      = 70; // keyword coverage = 70%
+// ─────────────────────────────────────────────────────────────
+//  RENDER PUBLIC RESULTS
+// ─────────────────────────────────────────────────────────────
+function renderResults(pub, notes) {
+  lastConsultantNotes = notes;
 
-  const kwScore     = totalWeight > 0 ? (foundWeight / totalWeight) * kwWeight : 0;
-  const structScore = (structPassed / structTotal) * structWeight;
-  const score       = Math.round(kwScore + structScore);
+  const score = Math.max(0, Math.min(100, pub.overall_score || 0));
+  const cls   = score >= 75 ? 'green' : score >= 45 ? 'yellow' : 'red';
+  const compat = (pub.ats_compatibility || 'low').toLowerCase();
 
-  const kwTotal    = KEYWORD_GROUPS.reduce((acc, g) => acc + g.keywords.length, 0);
-  const kwFoundCnt = foundKws.length;
+  const compatLabels = { high: 'Alta compatibilidade', medium: 'Compatibilidade média', low: 'Baixa compatibilidade' };
 
-  // Color class
-  const cls = score >= 75 ? 'green' : score >= 50 ? 'yellow' : 'red';
+  document.getElementById('score-display').textContent = score + '/100';
+  document.getElementById('score-display').className   = 'score-number ' + cls;
+  document.getElementById('compat-pill').innerHTML     =
+    `<span class="compat-pill ${compat}">${compatLabels[compat] || compat}</span>`;
 
-  // Summary text
-  const summaries = {
-    green:  'Seu CV tem uma boa cobertura de palavras-chave e está bem estruturado para sistemas ATS. Com alguns ajustes finos de posicionamento, as suas chances aumentam ainda mais.',
-    yellow: 'Seu CV passa por alguns filtros ATS, mas está perdendo palavras-chave importantes e pontos de estrutura. Há espaço significativo para melhoria antes de enviar para vagas internacionais.',
-    red:    'Seu CV provavelmente está sendo rejeitado automaticamente por sistemas ATS antes de chegar a um recrutador. É necessário reestruturar e adicionar palavras-chave estratégicas.',
-  };
+  const bar = document.getElementById('score-bar');
+  bar.className = 'score-bar-fill ' + cls;
+  setTimeout(() => { bar.style.width = score + '%'; }, 50);
 
-  // Render
-  const card   = document.getElementById('score-card');
-  const ctaEl  = document.getElementById('cta-block');
-  const resetEl = document.getElementById('btn-reset');
-  const analyzeBtn = document.getElementById('btn-analyze');
+  document.getElementById('m-keywords').textContent = pub.missing_keywords_count ?? '—';
+  document.getElementById('m-bullets').textContent  = pub.weak_bullets_count ?? '—';
+  document.getElementById('m-format').textContent   = pub.formatting_issues_count ?? '—';
+  document.getElementById('result-message').textContent = pub.message || '';
 
-  document.getElementById('score-display').textContent  = score + '/100';
-  document.getElementById('score-display').className    = 'score-number ' + cls;
-  document.getElementById('kw-coverage').textContent    = kwFoundCnt + ' / ' + kwTotal;
-  document.getElementById('score-bar').style.width      = score + '%';
-  document.getElementById('score-bar').className        = 'score-bar-fill ' + cls;
-  document.getElementById('score-summary').textContent  = summaries[cls];
+  // Render consultant panel (hidden)
+  renderConsultantPanel(notes);
 
-  // Breakdown
-  const bl = document.getElementById('breakdown-list');
-  bl.innerHTML = '';
-  for (const sr of structResults) {
-    const li = document.createElement('li');
-    li.className = 'breakdown-item';
-    li.innerHTML = `<span class="bi-icon ${sr.passed ? 'bi-ok' : 'bi-miss'}">${sr.passed ? '✓' : '✗'}</span>
-      <span class="bi-text">${sr.label}${sr.passed ? '' : '<br/><small style="color:rgba(255,255,255,0.45);font-weight:300;">' + sr.tip + '</small>'}</span>`;
-    bl.appendChild(li);
+  // Show UI
+  document.getElementById('loading').classList.remove('visible');
+  document.getElementById('results').classList.add('visible');
+  document.getElementById('cta-block').classList.add('visible');
+  document.getElementById('btn-reset').classList.add('visible');
+}
+
+// ─────────────────────────────────────────────────────────────
+//  RENDER CONSULTANT PANEL
+// ─────────────────────────────────────────────────────────────
+function renderConsultantPanel(notes) {
+  // Keywords
+  const kwEl = document.getElementById('cp-keywords');
+  kwEl.innerHTML = (notes.missing_keywords || [])
+    .map(k => `<span class="kw-chip missing">${k}</span>`).join('');
+
+  // Bullets
+  const bEl = document.getElementById('cp-bullets');
+  bEl.innerHTML = (notes.weak_bullets || []).map(b => `
+    <div class="bullet-card">
+      <div class="bullet-label orig">Original</div>
+      <div class="bullet-text orig">${esc(b.original)}</div>
+      <div class="bullet-arrow">↓</div>
+      <div class="bullet-label sugg">Sugestão</div>
+      <div class="bullet-text sugg">${esc(b.suggestion)}</div>
+    </div>
+  `).join('');
+
+  // Formatting
+  const fEl = document.getElementById('cp-format');
+  fEl.innerHTML = (notes.formatting_issues || []).map(i =>
+    `<div class="fmt-item"><span class="fmt-icon">⚠</span><span>${esc(i)}</span></div>`
+  ).join('');
+
+  // Recommendations
+  const rEl = document.getElementById('cp-recs');
+  rEl.innerHTML = (notes.specific_recommendations || []).map(r =>
+    `<div class="rec-item">${esc(r)}</div>`
+  ).join('');
+
+  // Positioning
+  document.getElementById('cp-positioning').textContent =
+    notes.positioning_notes || '—';
+}
+
+// ─────────────────────────────────────────────────────────────
+//  CONSULTANT PANEL TOGGLE  (Ctrl+Shift+L)
+// ─────────────────────────────────────────────────────────────
+function toggleConsultant() {
+  if (!lastConsultantNotes) return;
+  document.getElementById('consultant-panel').classList.toggle('open');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.shiftKey && e.key === 'L') {
+    e.preventDefault();
+    toggleConsultant();
   }
+});
 
-  // Keyword chips
-  const kwFoundEl   = document.getElementById('kw-found');
-  const kwMissingEl = document.getElementById('kw-missing');
-  kwFoundEl.innerHTML   = foundKws.slice(0, 30).map(k => `<span class="kw-chip found">${k}</span>`).join('');
-  kwMissingEl.innerHTML = missingKws.slice(0, 20).map(k => `<span class="kw-chip missing">${k}</span>`).join('');
-
-  card.classList.add('visible');
-  ctaEl.classList.add('visible');
-  resetEl.classList.add('visible');
-  analyzeBtn.disabled = true;
-
-  // Animate bar
-  requestAnimationFrame(() => {
-    document.getElementById('score-bar').style.width = score + '%';
+function copyNotes() {
+  if (!lastConsultantNotes) return;
+  const txt = JSON.stringify(lastConsultantNotes, null, 2);
+  navigator.clipboard.writeText(txt).then(() => {
+    const btn = document.querySelector('.cp-copy-btn');
+    btn.textContent = '✓ Copiado!';
+    setTimeout(() => { btn.innerHTML = `<svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copiar notas completas`; }, 2000);
   });
 }
 
+// ─────────────────────────────────────────────────────────────
+//  UTILS
+// ─────────────────────────────────────────────────────────────
+function esc(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 function resetTool() {
-  document.getElementById('cv-text').value = '';
-  document.getElementById('file-name').textContent = 'nenhum arquivo selecionado';
-  document.getElementById('cv-file').value = '';
-  document.getElementById('score-card').classList.remove('visible');
+  document.getElementById('cv-text').value   = '';
+  document.getElementById('job-text').value  = '';
+  const fn = document.getElementById('file-name');
+  fn.textContent = ''; fn.style.display = 'none';
+  document.getElementById('cv-file').value   = '';
+  document.getElementById('results').classList.remove('visible');
   document.getElementById('cta-block').classList.remove('visible');
   document.getElementById('btn-reset').classList.remove('visible');
   document.getElementById('btn-analyze').disabled = false;
   document.getElementById('score-bar').style.width = '0%';
+  lastConsultantNotes = null;
 }
+
+async function loadFile(file) {
+  if (!file) return;
+
+  const nameEl = document.getElementById('file-name');
+  nameEl.style.display = 'block';
+
+  const ext = file.name.split('.').pop().toLowerCase();
+
+  try {
+    nameEl.textContent = `⏳ Lendo ${file.name}…`;
+
+    let text = '';
+
+    if (ext === 'pdf') {
+      text = await extractPDF(file);
+    } else if (ext === 'docx') {
+      text = await extractDOCX(file);
+    } else {
+      // .txt or anything else — read as text, try common encodings
+      text = await readAsText(file);
+    }
+
+    if (!text.trim()) throw new Error('Nenhum texto encontrado no arquivo.');
+
+    document.getElementById('cv-text').value = text;
+    nameEl.textContent = `✓ ${file.name}`;
+    nameEl.style.color = 'var(--teal)';
+
+  } catch (err) {
+    nameEl.textContent = `✗ Erro: ${err.message}`;
+    nameEl.style.color = '#f87171';
+  }
+}
+
+function readAsText(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload  = (e) => resolve(e.target.result);
+    reader.onerror = ()  => reject(new Error('Falha ao ler o arquivo.'));
+    reader.readAsText(file, 'UTF-8');
+  });
+}
+
+async function extractPDF(file) {
+  // Configure pdf.js worker
+  if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  } else {
+    throw new Error('pdf.js não carregou. Verifique sua conexão e tente novamente.');
+  }
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf         = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+  const pages       = [];
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page    = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    // Join items, preserving line breaks based on vertical position
+    let lastY = null;
+    const lines = [];
+    for (const item of content.items) {
+      if ('str' in item) {
+        if (lastY !== null && Math.abs(item.transform[5] - lastY) > 5) {
+          lines.push('\n');
+        }
+        lines.push(item.str);
+        lastY = item.transform[5];
+      }
+    }
+    pages.push(lines.join(' ').replace(/ {2,}/g, ' '));
+  }
+
+  return pages.join('\n\n');
+}
+
+async function extractDOCX(file) {
+  if (!window.mammoth) {
+    throw new Error('mammoth.js não carregou. Verifique sua conexão e tente novamente.');
+  }
+  const arrayBuffer = await file.arrayBuffer();
+  const result      = await mammoth.extractRawText({ arrayBuffer });
+  return result.value;
+}
+
+document.getElementById('cv-file').addEventListener('change', function () {
+  loadFile(this.files[0]);
+});
+
+// Drag and drop
+const dropZone = document.getElementById('drop-zone');
+
+dropZone.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  dropZone.classList.add('drag-over');
+});
+dropZone.addEventListener('dragleave', (e) => {
+  if (!dropZone.contains(e.relatedTarget)) dropZone.classList.remove('drag-over');
+});
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) loadFile(file);
+});
 </script>
 </body>
 </html>
