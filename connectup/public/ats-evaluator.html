@@ -6,6 +6,7 @@
 <title>Avaliador ATS — ConnectUP</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -384,6 +385,19 @@
     <textarea id="cv-text" placeholder="Cole aqui o texto completo do seu currículo..."></textarea>
   </div>
 
+  <!-- Email -->
+  <div class="input-area" style="margin-bottom:0.75rem;">
+    <label>Seu e-mail</label>
+    <input type="email" id="user-email"
+      placeholder="voce@email.com — para receber seu relatório"
+      style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);
+             border-radius:8px;color:white;font-family:'Poppins',sans-serif;
+             font-size:0.82rem;padding:0.85rem 1rem;outline:none;transition:border-color 0.2s;"
+      onfocus="this.style.borderColor='rgba(132,23,170,0.6)'"
+      onblur="this.style.borderColor='var(--border)'"
+    />
+  </div>
+
   <!-- Job description (optional) -->
   <div class="input-area" style="margin-bottom:1rem;">
     <label>Descrição da vaga (opcional)</label>
@@ -495,6 +509,60 @@
 </div>
 
 <script>
+// ─────────────────────────────────────────────────────────────
+//  EMAILJS
+// ─────────────────────────────────────────────────────────────
+const EJS = {
+  publicKey:          'XTZfO3C8QQj3ecRCi',
+  serviceId:          'service_4s3v3m9',
+  templateUser:       'template_pxknm8i',   // report sent to the candidate
+  templateConsultant: 'template_eam6a3o',   // full notes sent to Lana
+  consultantEmail:    'lana@theconnectup.com',
+};
+emailjs.init({ publicKey: EJS.publicKey });
+
+async function sendEmails(pub, notes, userEmail) {
+  const missing  = (notes.missing_keywords || []).join(', ');
+  const bullets  = (notes.weak_bullets || [])
+    .map((b, i) => `${i+1}. ORIGINAL: ${b.original}\n   SUGESTÃO: ${b.suggestion}`)
+    .join('\n\n');
+  const format   = (notes.formatting_issues || []).map((f,i) => `${i+1}. ${f}`).join('\n');
+  const recs     = (notes.specific_recommendations || []).map((r,i) => `${i+1}. ${r}`).join('\n');
+
+  const sends = [];
+
+  // Email 1 → candidate
+  if (userEmail) {
+    sends.push(
+      emailjs.send(EJS.serviceId, EJS.templateUser, {
+        to_email:       userEmail,
+        score:          pub.overall_score,
+        compat:         pub.ats_compatibility,
+        message:        pub.message,
+        keywords_count: pub.missing_keywords_count,
+        bullets_count:  pub.weak_bullets_count,
+        format_count:   pub.formatting_issues_count,
+      })
+    );
+  }
+
+  // Email 2 → Lana (consultant notes)
+  sends.push(
+    emailjs.send(EJS.serviceId, EJS.templateConsultant, {
+      to_email:        EJS.consultantEmail,
+      user_email:      userEmail || 'não informado',
+      score:           pub.overall_score,
+      missing_keywords: missing,
+      weak_bullets:    bullets,
+      formatting_issues: format,
+      recommendations: recs,
+      positioning:     notes.positioning_notes || '—',
+    })
+  );
+
+  await Promise.all(sends);
+}
+
 // ─────────────────────────────────────────────────────────────
 //  STATE
 // ─────────────────────────────────────────────────────────────
@@ -608,7 +676,12 @@ async function analyzeCV() {
     const jsonStr = raw.replace(/^```json\s*/,'').replace(/```\s*$/,'').trim();
     const parsed  = JSON.parse(jsonStr);
 
+    const userEmail = document.getElementById('user-email').value.trim();
     renderResults(parsed.public_summary, parsed.consultant_notes);
+
+    // Send emails in background — don't block the UI
+    sendEmails(parsed.public_summary, parsed.consultant_notes, userEmail)
+      .catch(err => console.warn('Email send failed:', err));
 
   } catch (err) {
     document.getElementById('loading').classList.remove('visible');
@@ -724,8 +797,9 @@ function esc(str) {
 }
 
 function resetTool() {
-  document.getElementById('cv-text').value   = '';
+  document.getElementById('cv-text').value    = '';
   document.getElementById('job-text').value  = '';
+  document.getElementById('user-email').value = '';
   const fn = document.getElementById('file-name');
   fn.textContent = ''; fn.style.display = 'none';
   document.getElementById('cv-file').value   = '';
