@@ -293,6 +293,7 @@ const c = content[locale] ?? content['en'];
         <p style="font-family:'Poppins',sans-serif;font-size:0.92rem;font-weight:300;color:rgba(255,255,255,0.60);line-height:1.7;margin-bottom:2rem;">{c.calcDesc}</p>
         <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(7,255,210,0.2);box-shadow:0 0 60px rgba(7,255,210,0.08);">
           <iframe
+            id="calc-iframe"
             src="/calculadora-fiscal.html"
             title="Tax Savings Calculator — ConnectUP"
             width="100%"
@@ -301,6 +302,14 @@ const c = content[locale] ?? content['en'];
             loading="lazy"
           ></iframe>
         </div>
+        <script is:inline>
+          window.addEventListener('message', function(e) {
+            if (e.data && e.data.type === 'calc-height') {
+              var f = document.getElementById('calc-iframe');
+              if (f) f.height = Math.max(680, e.data.height + 32);
+            }
+          });
+        </script>
       </div>
     </section>
 

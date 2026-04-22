@@ -59,13 +59,14 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
 
 # Allow tool pages to be embedded as iframes on the same domain
+# Both .html and pretty-URL paths covered — Netlify may serve either
 [[headers]]
   for = "/simulador-entrevista.html"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
 
 [[headers]]
-  for = "/ats-evaluator.html"
+  for = "/simulador-entrevista"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
 
@@ -75,6 +76,36 @@
     X-Frame-Options = "SAMEORIGIN"
 
 [[headers]]
+  for = "/interview-simulator"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/calculadora-fiscal.html"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/calculadora-fiscal"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/ats-evaluator.html"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/ats-evaluator"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
   for = "/ats-evaluator-en.html"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/ats-evaluator-en"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"

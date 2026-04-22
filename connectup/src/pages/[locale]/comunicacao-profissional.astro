@@ -367,15 +367,6 @@ const c = content[locale] ?? content['en'];
       </div>
     </section>
 
-    <style>
-      .sim-mobile  { display: none; }
-      .sim-desktop { display: block; }
-      @media (max-width: 768px) {
-        .sim-mobile  { display: block; }
-        .sim-desktop { display: none; }
-      }
-    </style>
-
     <!-- RESULT — person looking into distance -->
     <section class="relative py-24 px-6">
       <div class="absolute inset-0" style="background-image:url('/horizon-person.jpg');background-size:cover;background-position:center 30%;filter:grayscale(1) brightness(0.32);"></div>
@@ -463,7 +454,12 @@ const c = content[locale] ?? content['en'];
   gap: 0.9rem;
 }
 
+.sim-mobile  { display: none; }
+.sim-desktop { display: block; }
+
 @media (max-width: 768px) {
+  .sim-mobile  { display: block; }
+  .sim-desktop { display: none; }
   .audience-grid .glass-card { flex: 1 1 100%; }
   .modules-grid { grid-template-columns: 1fr; }
   .results-grid { grid-template-columns: 1fr; }

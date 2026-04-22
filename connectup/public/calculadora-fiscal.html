@@ -935,7 +935,20 @@
   function goTo(step) {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById('step-' + step).classList.add('active');
+    reportHeight();
   }
+
+  function reportHeight() {
+    var h = document.body.scrollHeight;
+    if (window.parent !== window) {
+      window.parent.postMessage({ type: 'calc-height', height: h }, '*');
+    }
+  }
+
+  var _ro = new MutationObserver(reportHeight);
+  _ro.observe(document.querySelector('.card'), { childList: true, subtree: true, characterData: true });
+  window.addEventListener('resize', reportHeight);
+  reportHeight();
 </script>
 
 </body>
