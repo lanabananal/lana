@@ -946,8 +946,8 @@
   }
 
   var _ro = new MutationObserver(reportHeight);
-  _ro.observe(document.querySelector('.card'), { childList: true, subtree: true, characterData: true });
-  window.addEventListener('resize', reportHeight);
+  _ro.observe(document.querySelector('.card'), { childList: true, subtree: true, characterData: true, attributes: true });
+  window.addEventListener('load', reportHeight);
   reportHeight();
 </script>
 

@@ -416,7 +416,7 @@ function sStart(idx){
     let final='';
     window._rec.onresult=e=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)final+=e.results[i][0].transcript+' ';else interim+=e.results[i][0].transcript;}const el=document.getElementById('s-tr');if(el)el.innerHTML=final+(interim?`<span class="interim">${interim}</span>`:'')+`<span class="cursor"></span>`;};
     window._rec.onerror=()=>{startSimulated(full);};
-    window._rec.onend=()=>{if(!simPaused&&simCharIdx<9999)window._rec.start();};
+    window._rec.onend=()=>{if(!simPaused&&simCharIdx<9999&&window._rec)window._rec.start();};
     window._rec.start();
   } else {
     const el=document.getElementById('s-tr');
@@ -569,12 +569,14 @@ step=0;render();updatePills();
 
 // Reporta altura ao pai para resize responsivo do iframe
 function reportHeight(){
-  var h=document.body.scrollHeight;
+  var main=document.getElementById('main');
+  // .app tem overflow:hidden então body.scrollHeight não cresce — mede o conteúdo real
+  var h=main?main.scrollHeight+57:document.body.scrollHeight; // 57px = topbar
   if(window.parent!==window)window.parent.postMessage({type:'sim-height',height:h},'*');
 }
 var _ro=new MutationObserver(reportHeight);
 _ro.observe(document.getElementById('main'),{childList:true,subtree:true,characterData:true});
-window.addEventListener('resize',reportHeight);
+window.addEventListener('load',reportHeight);
 reportHeight();
 </script>
 </body>

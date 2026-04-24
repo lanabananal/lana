@@ -5,8 +5,6 @@ interface Props { locale: string; }
 const { locale } = Astro.props;
 const t = getTranslations(locale);
 
-// ── Add/replace video IDs here ──────────────────────────────────────────────
-// Replace VIDEO_ID_2 and VIDEO_ID_3 with real IDs from @Connectupbr
 const videos: Record<string, { id: string; title: string }[]> = {
   'pt-br': [
     { id: 'V20XZKEuJkg', title: 'Como funciona o imposto zero no Paraguai?' },
@@ -39,10 +37,11 @@ const labels: Record<string, { tag: string; title: string; cta: string }> = {
 
 const list   = videos[locale]  ?? videos['en'];
 const label  = labels[locale]  ?? labels['en'];
+const uid    = `ytc-${Math.random().toString(36).slice(2,8)}`;
 ---
 
 <section style="background:#111118; padding:4rem 1.5rem;">
-  <div class="max-w-[1140px] mx-auto">
+  <div style="max-width:860px;margin:0 auto;">
 
     <!-- Header -->
     <div class="text-center mb-10">
@@ -54,34 +53,60 @@ const label  = labels[locale]  ?? labels['en'];
       </h2>
     </div>
 
-    <!-- Video grid -->
-    <div class="yt-grid">
-      {list.map((v) => (
-        <div class="yt-card" data-id={v.id}>
-          <!-- Thumbnail -->
-          <div class="yt-thumb-wrap" onclick={`loadVideo(this,'${v.id}')`} style="cursor:pointer;">
-            <img
-              src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`}
-              alt={v.title}
-              loading="lazy"
-              class="yt-thumb"
-              onerror="this.src=`https://img.youtube.com/vi/${this.dataset.id}/hqdefault.jpg`"
-              data-id={v.id}
-            />
-            <!-- Play button overlay -->
-            <div class="yt-play">
-              <svg width="52" height="52" viewBox="0 0 68 48" fill="none">
-                <rect width="68" height="48" rx="10" fill="rgba(0,0,0,0.75)"/>
-                <polygon points="26,14 26,34 46,24" fill="white"/>
-              </svg>
+    <!-- Carousel -->
+    <div class="ytc-wrap" id={uid}>
+      <div class="ytc-track" id={`${uid}-track`}>
+        {list.map((v, i) => (
+          <div class="ytc-slide" data-idx={i}>
+            <div class="ytc-thumb-wrap" id={`${uid}-tw-${i}`} data-id={v.id} data-idx={i}>
+              <img
+                src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`}
+                alt={v.title}
+                loading="lazy"
+                class="ytc-thumb"
+                data-id={v.id}
+                onerror={`this.onerror=null;this.src='https://img.youtube.com/vi/${v.id}/hqdefault.jpg'`}
+              />
+              <button class="ytc-play-btn" aria-label="Assistir no YouTube">
+                <svg width="56" height="56" viewBox="0 0 68 48" fill="none">
+                  <rect width="68" height="48" rx="10" fill="rgba(0,0,0,0.75)"/>
+                  <polygon points="26,14 26,34 46,24" fill="white"/>
+                </svg>
+              </button>
             </div>
+            <p class="ytc-title">{v.title}</p>
           </div>
-          <!-- Title -->
-          <p style="font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:500;color:rgba(255,255,255,0.80);padding:0.75rem 0 0;line-height:1.4;">
-            {v.title}
-          </p>
+        ))}
+      </div>
+
+      <!-- Prev / Next arrows -->
+      {list.length > 1 && (
+        <>
+          <button class="ytc-arrow ytc-prev" id={`${uid}-prev`} aria-label="Anterior">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+          <button class="ytc-arrow ytc-next" id={`${uid}-next`} aria-label="Próximo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+        </>
+      )}
+
+      <!-- Dot indicators -->
+      {list.length > 1 && (
+        <div class="ytc-dots" id={`${uid}-dots`}>
+          {list.map((_, i) => (
+            <button
+              class={`ytc-dot${i === 0 ? ' active' : ''}`}
+              data-idx={i}
+              aria-label={`Slide ${i + 1}`}
+            ></button>
+          ))}
         </div>
-      ))}
+      )}
     </div>
 
     <!-- Channel link -->
@@ -104,61 +129,178 @@ const label  = labels[locale]  ?? labels['en'];
 </section>
 
 <style>
-.yt-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-}
-@media (max-width: 768px) {
-  .yt-grid { grid-template-columns: 1fr; }
-}
-@media (min-width: 769px) and (max-width: 1024px) {
-  .yt-grid { grid-template-columns: repeat(2, 1fr); }
+.ytc-wrap {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
-.yt-thumb-wrap {
+.ytc-track {
+  display: flex;
+  overflow: hidden;
+}
+
+.ytc-slide {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+.ytc-thumb-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   background: #1a1a2e;
+  cursor: pointer;
 }
-.yt-thumb {
+
+.ytc-thumb {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s;
+  transition: transform 0.35s;
 }
-.yt-thumb-wrap:hover .yt-thumb { transform: scale(1.03); }
 
-.yt-play {
+.ytc-thumb-wrap:hover .ytc-thumb { transform: scale(1.03); }
+
+.ytc-play-btn {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.85;
   transition: opacity 0.2s;
 }
-.yt-thumb-wrap:hover .yt-play { opacity: 0.85; }
 
-.yt-card iframe {
+.ytc-thumb-wrap:hover .ytc-play-btn { opacity: 1; }
+
+.ytc-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  padding: 0.9rem 0.25rem 0;
+  line-height: 1.45;
+  text-align: center;
+  margin: 0;
+}
+
+/* Arrows */
+.ytc-arrow {
+  position: absolute;
+  top: calc(50% - 1.6rem); /* vertically centered on the image area */
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(7,255,210,0.3);
+  background: rgba(17,17,24,0.85);
+  color: #07ffd2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  z-index: 2;
+}
+.ytc-arrow:hover { background: rgba(7,255,210,0.12); border-color: rgba(7,255,210,0.7); }
+.ytc-prev { left: -52px; }
+.ytc-next { right: -52px; }
+
+/* Dots */
+.ytc-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1.1rem;
+}
+.ytc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+  padding: 0;
+}
+.ytc-dot.active {
+  background: #07ffd2;
+  transform: scale(1.25);
+}
+
+/* iframe inside slide */
+.ytc-slide iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 10px;
+  border-radius: 12px;
   border: none;
   display: block;
 }
+
+/* Responsive: hide arrows on narrow screens, show dots for navigation */
+@media (max-width: 780px) {
+  .ytc-prev { left: -4px; }
+  .ytc-next { right: -4px; }
+  .ytc-arrow { background: rgba(17,17,24,0.92); }
+}
 </style>
 
-<script is:inline>
-function loadVideo(wrapper, id) {
-  var iframe = document.createElement('iframe');
-  iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
-  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-  iframe.allowFullscreen = true;
-  iframe.style.cssText = 'width:100%;aspect-ratio:16/9;border-radius:10px;border:none;display:block;';
-  wrapper.replaceWith(iframe);
-}
+<script is:inline define:vars={{ uid, total: list.length, videos: list }}>
+(function() {
+  var cur = 0;
+
+  var track  = document.getElementById(uid + '-track');
+  var prev   = document.getElementById(uid + '-prev');
+  var next   = document.getElementById(uid + '-next');
+  var dotsEl = document.getElementById(uid + '-dots');
+
+  function goTo(idx) {
+    cur = (idx + total) % total;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    track.style.transition = 'transform 0.4s cubic-bezier(.4,0,.2,1)';
+    // update dots
+    if (dotsEl) {
+      dotsEl.querySelectorAll('.ytc-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === cur);
+      });
+    }
+  }
+
+  if (prev) prev.addEventListener('click', function() { goTo(cur - 1); });
+  if (next) next.addEventListener('click', function() { goTo(cur + 1); });
+
+  if (dotsEl) {
+    dotsEl.querySelectorAll('.ytc-dot').forEach(function(d) {
+      d.addEventListener('click', function() { goTo(parseInt(d.dataset.idx)); });
+    });
+  }
+
+  // Click thumbnail → play inline
+  document.querySelectorAll('[id^="' + uid + '-tw-"]').forEach(function(tw) {
+    tw.addEventListener('click', function() {
+      var id = tw.dataset.id;
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'width:100%;aspect-ratio:16/9;border-radius:12px;border:none;display:block;';
+      tw.replaceWith(iframe);
+    });
+  });
+
+  // Touch swipe support
+  var touchStartX = 0;
+  track.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
+  });
+})();
 </script>
