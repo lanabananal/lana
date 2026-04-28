@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como Receber do Exterior: O Guia Completo — ConnectUP</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #F7F7F9;
+    color: #1A1A1A;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(145deg, #C400FF, #8B00B3);
+    padding: 80px 24px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://img.freepik.com/premium-vector/connected-dots-abstract-connection-design_689723-1060.jpg?semt=ais_hybrid&w=740&q=80') center/cover no-repeat;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; max-width: 760px; margin: 0 auto; }
+  .hero-logo { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 32px; }
+  .hero-logo img { height: 28px; object-fit: contain; }
+  .hero-logo span { font-size: 15px; font-weight: 600; color: #fff; letter-spacing: -0.01em; }
+  .hero-logo em { color: #17D6B9; font-style: normal; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 9999px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 18px;
+  }
+  .hero p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.75;
+    max-width: 580px;
+    margin: 0 auto 28px;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── ARTICLE ── */
+  .article { padding: 64px 0 80px; }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 600;
+    color: #1A1A1A;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-top: 56px;
+    margin-bottom: 20px;
+  }
+  h2:first-child { margin-top: 0; }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1A1A1A;
+    letter-spacing: -0.01em;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  p { margin-bottom: 18px; color: #2E2E2E; }
+  p:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 600; color: #1A1A1A; }
+
+  ul, ol { padding-left: 20px; margin-bottom: 18px; }
+  li { margin-bottom: 8px; color: #2E2E2E; }
+
+  /* ── SECTION DIVIDER ── */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #C400FF;
+    margin-bottom: 10px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #C400FF;
+    border-radius: 2px;
+  }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+  .callout-purple { background: #F7E5FF; border-left: 4px solid #C400FF; }
+  .callout-teal   { background: #E5FBF7; border-left: 4px solid #17D6B9; }
+  .callout-warn   { background: #FFF8E6; border-left: 4px solid #F5A623; }
+  .callout-red    { background: #FFF0F0; border-left: 4px solid #E53030; }
+  .callout-dark   { background: #1A1A1A; color: #fff; border-left: 4px solid #C400FF; }
+
+  .callout-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .callout-purple .callout-title { color: #C400FF; }
+  .callout-teal   .callout-title { color: #009E81; }
+  .callout-warn   .callout-title { color: #A06200; }
+  .callout-red    .callout-title { color: #B00020; }
+  .callout-dark   .callout-title { color: #17D6B9; }
+
+  .callout p { margin-bottom: 0; font-size: 14.5px; }
+  .callout-red p   { color: #7A0015; }
+  .callout-warn p  { color: #6B4100; }
+  .callout-teal p  { color: #005C49; }
+  .callout-purple p { color: #5A0080; }
+  .callout-dark p  { color: rgba(255,255,255,0.8); }
+
+  /* ── COMPARISON TABLE ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 28px 0;
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 13.5px;
+    min-width: 560px;
+  }
+  thead th {
+    background: #1A1A1A;
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 13px 16px;
+    text-align: left;
+  }
+  thead th:first-child { border-radius: 14px 0 0 0; }
+  thead th:last-child  { border-radius: 0 14px 0 0; }
+  tbody tr { border-bottom: 1px solid #F0F0F0; transition: background 0.15s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #FAFAFA; }
+  td { padding: 13px 16px; color: #2E2E2E; vertical-align: top; }
+  td:first-child { font-weight: 600; color: #1A1A1A; white-space: nowrap; }
+  .badge {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 9999px;
+  }
+  .badge-green  { background: #E5FBF7; color: #009E81; }
+  .badge-yellow { background: #FFF8E6; color: #A06200; }
+  .badge-red    { background: #FFF0F0; color: #B00020; }
+  .badge-purple { background: #F7E5FF; color: #C400FF; }
+
+  /* ── OPTION CARDS ── */
+  .cards { display: flex; flex-direction: column; gap: 16px; margin: 24px 0; }
+
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 12px rgba(0,0,0,0.04);
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .card-rank {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .rank-1 { background: #C400FF; color: #fff; }
+  .rank-2 { background: #8B00B3; color: #fff; }
+  .rank-3 { background: #F7E5FF; color: #C400FF; }
+  .rank-4 { background: #F0F0F0; color: #555; }
+  .rank-5 { background: #F0F0F0; color: #555; }
+
+  .card-body { flex: 1; }
+  .card-title { font-size: 15px; font-weight: 600; color: #1A1A1A; margin-bottom: 4px; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .tag {
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 9999px;
+  }
+  .tag-purple { background: #F7E5FF; color: #C400FF; }
+  .tag-teal   { background: #E5FBF7; color: #009E81; }
+  .tag-gray   { background: #F0F0F0; color: #555; }
+  .tag-warn   { background: #FFF8E6; color: #A06200; }
+  .tag-red    { background: #FFF0F0; color: #B00020; }
+
+  .card-desc { font-size: 13.5px; color: #444; line-height: 1.65; margin-bottom: 0; }
+
+  .card-pros-cons { display: flex; gap: 20px; margin-top: 12px; }
+  .card-pros, .card-cons { flex: 1; }
+  .card-pros-title { font-size: 11px; font-weight: 600; color: #009E81; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+  .card-cons-title { font-size: 11px; font-weight: 600; color: #B00020; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+  .pro-item, .con-item { font-size: 12.5px; color: #444; display: flex; gap: 6px; margin-bottom: 4px; }
+  .pro-item::before { content: '→'; color: #17D6B9; font-weight: 600; flex-shrink: 0; }
+  .con-item::before { content: '✕'; color: #E53030; font-weight: 600; flex-shrink: 0; }
+
+  /* ── SECTION BLOCK: funcionário vs cliente ── */
+  .section-block {
+    background: #fff;
+    border-radius: 18px;
+    padding: 36px;
+    margin: 32px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .section-block-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .section-block-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .icon-purple { background: #F7E5FF; }
+  .icon-teal   { background: #E5FBF7; }
+
+  .section-block-header-text h2 { margin: 0 0 4px; font-size: 20px; }
+  .section-block-header-text p  { margin: 0; font-size: 13px; color: #666; }
+
+  .avoid-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .avoid-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 18px;
+    background: #FFF0F0;
+    border-radius: 10px;
+    border-left: 3px solid #E53030;
+  }
+  .avoid-x { color: #E53030; font-weight: 600; flex-shrink: 0; font-size: 15px; }
+  .avoid-text { font-size: 13.5px; color: #7A0015; line-height: 1.55; }
+  .avoid-text strong { color: #5A0010; }
+
+  /* ── IOF BOX ── */
+  .iof-box {
+    background: linear-gradient(135deg, #1A1A1A, #2D0044);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 32px 0;
+    color: #fff;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .iof-number {
+    font-size: 42px;
+    font-weight: 600;
+    color: #C400FF;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .iof-box h3 { color: #fff; margin: 0 0 8px; font-size: 16px; }
+  .iof-box p  { color: rgba(255,255,255,0.65); font-size: 13.5px; margin: 0; }
+
+  /* ── EXAMPLE BOX ── */
+  .example-box {
+    background: #F7F7F9;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .example-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #888; margin-bottom: 14px; }
+  .example-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #EBEBEB; font-size: 13.5px; }
+  .example-row:last-child { border-bottom: none; }
+  .example-bank { color: #444; }
+  .example-loss { font-weight: 600; }
+  .loss-bad  { color: #B00020; }
+  .loss-ok   { color: #A06200; }
+  .loss-good { color: #009E81; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(145deg, #C400FF, #8B00B3);
+    border-radius: 20px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://img.freepik.com/premium-vector/connected-dots-abstract-connection-design_689723-1060.jpg?semt=ais_hybrid&w=740&q=80') center/cover no-repeat;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+  .cta-section > * { position: relative; }
+  .cta-section h2 { color: #fff; font-size: 26px; margin-top: 0; margin-bottom: 14px; }
+  .cta-section p  { color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto 28px; }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #17D6B9;
+    color: #1A1A1A;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px 28px;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .cta-btn:hover { opacity: 0.9; }
+  .cta-sub { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 14px; }
+
+  /* ── DIVIDER ── */
+  hr { border: none; border-top: 1px solid #EBEBEB; margin: 48px 0; }
+
+  /* ── FOOTER ── */
+  .footer { text-align: center; padding: 32px 24px; font-size: 12px; color: #aaa; }
+
+  @media (max-width: 600px) {
+    .iof-box { flex-direction: column; gap: 12px; }
+    .card-pros-cons { flex-direction: column; gap: 12px; }
+    .section-block { padding: 24px 20px; }
+    .cta-section { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-logo">
+      <img src="C_COLORIDO.png" alt="ConnectUP"/>
+      <span>Connect<em>UP</em></span>
+    </div>
+    <div class="hero-tag">Guia Completo · Finanças Internacionais</div>
+    <h1>Como Receber Dinheiro do Exterior sem Perder na Conversão</h1>
+    <p>Bancos brasileiros, fintechs internacionais, taxas reais e a estrutura ideal — dependendo se você recebe de um empregador ou de clientes.</p>
+    <div class="hero-meta">
+      <span>Leitura: ~12 min</span>
+      <span>·</span>
+      <span>Atualizado: abril 2025</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── ARTICLE ── -->
+<main class="article">
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="section-label">Introdução</div>
+  <h2>O problema que ninguém te conta</h2>
+
+  <p>Você fecha um contrato de <strong>USD 3.000</strong> com um cliente no exterior, o dinheiro chega na sua conta brasileira e, quando vai ver, recebeu o equivalente a uns USD 2.700. Onde foram os outros USD 300?</p>
+
+  <p>A resposta está em uma combinação de taxas que a maioria dos brasileiros nunca param para calcular: o <strong>spread cambial</strong> do banco, o <strong>IOF</strong> obrigatório, a <strong>tarifa de recebimento de ordem de pagamento</strong>, e eventualmente os custos do banco emissor (SWIFT). Tudo isso junto pode representar de <strong>1% a 6% do valor bruto</strong> — dependendo de onde você recebe.</p>
+
+  <p>Este guia explica cada custo, compara os principais bancos e opções disponíveis para brasileiros, e apresenta a melhor estratégia dependendo do <strong>seu perfil</strong>: se você recebe de um empregador no exterior ou de clientes internacionais.</p>
+
+  <!-- IOF BOX -->
+  <div class="iof-box">
+    <div class="iof-number">0,38%</div>
+    <div>
+      <h3>O IOF é inevitável — mas é só o começo</h3>
+      <p>Todo câmbio de moeda estrangeira para reais no Brasil tem IOF de 0,38%. Esse é o mínimo que você vai pagar por lei. O que varia e faz toda a diferença é o spread cambial — a diferença entre a taxa real do mercado e a taxa que o banco te aplica. Em bancos tradicionais, esse spread é de 3% a 5%. Em fintechs, pode ser menos de 1%.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- BANCOS BRASILEIROS -->
+  <div class="section-label">Comparativo</div>
+  <h2>Bancos brasileiros: quanto cobram para receber do exterior</h2>
+
+  <p>Quando um cliente ou empregador no exterior faz uma transferência para sua conta brasileira via <strong>wire transfer (SWIFT/TED internacional)</strong>, o banco no Brasil recebe o valor em moeda estrangeira e converte para reais. Esse processo envolve três custos principais:</p>
+
+  <ul>
+    <li><strong>Spread cambial:</strong> a diferença entre a taxa de câmbio real (interbancária) e a taxa que o banco aplica na conversão. É o maior custo.</li>
+    <li><strong>IOF (0,38%):</strong> imposto federal obrigatório sobre qualquer operação de câmbio.</li>
+    <li><strong>Tarifa de recebimento:</strong> taxa fixa que o banco cobra para processar a ordem de pagamento do exterior (alguns bancos não cobram).</li>
+  </ul>
+
+  <div class="callout callout-warn">
+    <div class="callout-title">Atenção: dois lados da conta SWIFT</div>
+    <p>Além do que o banco brasileiro cobra, o banco emissor (quem envia) também cobra uma tarifa de SWIFT, geralmente de USD 15 a USD 50. Essa tarifa normalmente é paga por quem envia. Certifique-se de que seu cliente/empregador envia em modalidade <strong>SHA</strong> (custos compartilhados) ou <strong>OUR</strong> (ele paga tudo).</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Banco / Fintech</th>
+          <th>Spread câmbio</th>
+          <th>IOF</th>
+          <th>Tarifa recebimento</th>
+          <th>Avaliação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Banco do Brasil</td>
+          <td>3,0–4,5%</td>
+          <td>0,38%</td>
+          <td>R$ 80–130</td>
+          <td><span class="badge badge-red">Caro</span></td>
+        </tr>
+        <tr>
+          <td>Itaú</td>
+          <td>3,0–4,0%</td>
+          <td>0,38%</td>
+          <td>R$ 60–100</td>
+          <td><span class="badge badge-red">Caro</span></td>
+        </tr>
+        <tr>
+          <td>Bradesco</td>
+          <td>3,0–4,5%</td>
+          <td>0,38%</td>
+          <td>R$ 70–110</td>
+          <td><span class="badge badge-red">Caro</span></td>
+        </tr>
+        <tr>
+          <td>Santander</td>
+          <td>3,0–4,0%</td>
+          <td>0,38%</td>
+          <td>R$ 60–90</td>
+          <td><span class="badge badge-red">Caro</span></td>
+        </tr>
+        <tr>
+          <td>Caixa Econômica</td>
+          <td>3,5–5,0%</td>
+          <td>0,38%</td>
+          <td>R$ 70–100</td>
+          <td><span class="badge badge-red">Caro</span></td>
+        </tr>
+        <tr>
+          <td>Nubank (via Wise)</td>
+          <td>~1,0%</td>
+          <td>0,38%</td>
+          <td>Sem tarifa</td>
+          <td><span class="badge badge-yellow">Razoável</span></td>
+        </tr>
+        <tr>
+          <td>Inter Global</td>
+          <td>~1,0–1,5%</td>
+          <td>0,38%</td>
+          <td>Sem tarifa</td>
+          <td><span class="badge badge-yellow">Razoável</span></td>
+        </tr>
+        <tr>
+          <td>C6 Global</td>
+          <td>~1,5%</td>
+          <td>0,38%</td>
+          <td>Sem tarifa</td>
+          <td><span class="badge badge-yellow">Razoável</span></td>
+        </tr>
+        <tr>
+          <td>Nomad</td>
+          <td>~1,5%</td>
+          <td>0,38%*</td>
+          <td>Sem tarifa</td>
+          <td><span class="badge badge-green">Bom</span></td>
+        </tr>
+        <tr>
+          <td>Remessa Online</td>
+          <td>~0,9–1,3%</td>
+          <td>0,38%</td>
+          <td>Sem tarifa</td>
+          <td><span class="badge badge-green">Bom</span></td>
+        </tr>
+        <tr>
+          <td>Wise (Personal)</td>
+          <td>~0,4–0,9%</td>
+          <td>0,38%*</td>
+          <td>Sem tarifa</td>
+          <td><span class="badge badge-green">Melhor</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:12.5px;color:#888;margin-top:-12px;">* O IOF incide sobre a conversão para BRL. Se você mantiver o saldo em moeda estrangeira (USD, EUR etc.) dentro da plataforma, o IOF só é cobrado no momento da conversão. Isso permite escolher o melhor momento para converter.</p>
+
+  <h3>Por que os bancos tradicionais são tão caros?</h3>
+
+  <p>Bancos como Itaú, Bradesco e Banco do Brasil operam com <strong>spread cambial alto por design</strong>: é uma das formas mais lucrativas e menos visíveis de ganhar dinheiro do cliente. A taxa que te oferecem é chamada de "dólar comercial do banco", que nada mais é do que a taxa interbancária real (PTAX do Banco Central) acrescida de uma margem de 3% a 4%.</p>
+
+  <p>Além do spread, cobram uma tarifa fixa de recebimento (chamada de "tarifa de ordem de pagamento do exterior" ou similar) que varia por banco e pode chegar a R$ 130 por operação. Em transferências pequenas (abaixo de USD 1.000), essa taxa fixa pode representar um percentual gigante do valor.</p>
+
+  <h3>Simulação real: recebendo USD 3.000</h3>
+
+  <div class="example-box">
+    <div class="example-title">Quanto você perde ao receber USD 3.000 do exterior (dólar a R$ 5,80)</div>
+    <div class="example-row">
+      <span class="example-bank">Banco do Brasil / Itaú / Bradesco</span>
+      <span class="example-loss loss-bad">Perda: ~USD 160–200 + R$ 90</span>
+    </div>
+    <div class="example-row">
+      <span class="example-bank">Nubank / Inter Global</span>
+      <span class="example-loss loss-ok">Perda: ~USD 42</span>
+    </div>
+    <div class="example-row">
+      <span class="example-bank">Remessa Online</span>
+      <span class="example-loss loss-ok">Perda: ~USD 38</span>
+    </div>
+    <div class="example-row">
+      <span class="example-bank">Wise (Personal)</span>
+      <span class="example-loss loss-good">Perda: ~USD 20–27</span>
+    </div>
+    <div class="example-row">
+      <span class="example-bank">LLC + Mercury (mantém em USD)</span>
+      <span class="example-loss loss-good">Perda: zero na conversão — converte quando quiser</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- AS 5 MODALIDADES -->
+  <div class="section-label">As Modalidades</div>
+  <h2>Os 5 tipos de conta para receber do exterior</h2>
+
+  <p>Independente do seu perfil, existem cinco categorias de ferramentas disponíveis para receber dinheiro do exterior. Entender o papel de cada uma é o primeiro passo para montar a estrutura certa.</p>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-rank rank-1">1</div>
+      <div class="card-body">
+        <div class="card-title">Conta Empresarial Internacional (LLC)</div>
+        <div class="card-tags">
+          <span class="tag tag-purple">Mercury</span>
+          <span class="tag tag-purple">Relay Financial</span>
+          <span class="tag tag-purple">Wise Business</span>
+        </div>
+        <p class="card-desc">O núcleo de qualquer estrutura profissional. Uma LLC (empresa nos EUA) com conta bancária americana permite receber wire transfers, ACH e SEPA diretamente em dólar ou euro, sem conversão imediata. Você mantém o dinheiro na moeda forte e converte para reais apenas quando e quanto quiser — eliminando o risco cambial e otimizando o momento da conversão.</p>
+        <div class="card-pros-cons">
+          <div class="card-pros">
+            <div class="card-pros-title">Vantagens</div>
+            <div class="pro-item">Aceita wire, ACH, SEPA e cartão</div>
+            <div class="pro-item">Sem conversão forçada — você escolhe quando converter</div>
+            <div class="pro-item">Melhor credibilidade com clientes internacionais</div>
+            <div class="pro-item">Mercury e Relay: gratuitos para manter</div>
+          </div>
+          <div class="card-cons">
+            <div class="card-cons-title">Atenção</div>
+            <div class="con-item">Precisa de LLC ativa e endereço nos EUA</div>
+            <div class="con-item">Requer compliance fiscal no Brasil (declaração de bens no exterior)</div>
+            <div class="con-item">Tempo de abertura: 2–6 semanas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-rank rank-2">2</div>
+      <div class="card-body">
+        <div class="card-title">Conta Pessoal Internacional</div>
+        <div class="card-tags">
+          <span class="tag tag-teal">Wise</span>
+          <span class="tag tag-teal">Nomad</span>
+          <span class="tag tag-teal">Payoneer</span>
+          <span class="tag tag-teal">Dukascopy</span>
+        </div>
+        <p class="card-desc">Contas abertas em nome de pessoa física fora do Brasil. Funcionam como carteiras multi-moeda: você recebe em USD, EUR ou GBP, mantém o saldo em moeda estrangeira e converte quando quiser. Ideal tanto para quem recebe salário de empresa no exterior quanto para quem distribui lucros da sua própria empresa para uso pessoal.</p>
+        <div class="card-pros-cons">
+          <div class="card-pros">
+            <div class="card-pros-title">Vantagens</div>
+            <div class="pro-item">Abertura 100% remota, sem LLC</div>
+            <div class="pro-item">Cartão internacional para uso no dia a dia</div>
+            <div class="pro-item">Conversão eficiente (especialmente Wise)</div>
+            <div class="pro-item">Multi-moeda: USD, EUR, GBP e mais</div>
+          </div>
+          <div class="card-cons">
+            <div class="card-cons-title">Atenção</div>
+            <div class="con-item">Limites mais baixos que conta empresarial</div>
+            <div class="con-item">Alguns clientes preferem pagar para empresa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-rank rank-3">3</div>
+      <div class="card-body">
+        <div class="card-title">Contas Offshore e Alternativas</div>
+        <div class="card-tags">
+          <span class="tag tag-gray">Zenus Bank</span>
+          <span class="tag tag-gray">Xapo Bank</span>
+          <span class="tag tag-gray">Meru</span>
+          <span class="tag tag-gray">Brex (PJ)</span>
+        </div>
+        <p class="card-desc">Bancos digitais que aceitam não-residentes dos EUA, às vezes sem exigir LLC, ou bancos offshore em Gibraltar, Cayman e similares. Oferecem mais flexibilidade em alguns casos, integrações com cripto, e processos de abertura mais simples. Porém, estabilidade e limites variam muito — não são opção para estrutura principal.</p>
+        <div class="card-pros-cons">
+          <div class="card-pros">
+            <div class="card-pros-title">Vantagens</div>
+            <div class="pro-item">Abertura remota sem LLC em alguns casos</div>
+            <div class="pro-item">Aceita não-residentes dos EUA</div>
+            <div class="pro-item">Integração com cripto (Xapo)</div>
+          </div>
+          <div class="card-cons">
+            <div class="card-cons-title">Atenção</div>
+            <div class="con-item">Estabilidade menor — contas bloqueadas sem aviso</div>
+            <div class="con-item">Limites e compliance variam muito</div>
+            <div class="con-item">Não usar como estrutura principal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-rank rank-4">4</div>
+      <div class="card-body">
+        <div class="card-title">Gateways de Pagamento</div>
+        <div class="card-tags">
+          <span class="tag tag-gray">Stripe</span>
+          <span class="tag tag-gray">PayPal</span>
+          <span class="tag tag-gray">Paddle</span>
+        </div>
+        <p class="card-desc">Plataformas que permitem cobrar do cliente via cartão de crédito ou débito. Essenciais para quem vende produtos digitais, serviços de assinatura ou precisa de checkout integrado. Taxas mais altas (2–4% por transação), mas são o único caminho para cobrar de quem prefere pagar com cartão. Não servem como estrutura de recebimento principal.</p>
+        <div class="card-pros-cons">
+          <div class="card-pros">
+            <div class="card-pros-title">Vantagens</div>
+            <div class="pro-item">Cobrança por cartão de qualquer cliente</div>
+            <div class="pro-item">Pagamentos recorrentes automatizados</div>
+            <div class="pro-item">Checkout profissional integrado</div>
+          </div>
+          <div class="card-cons">
+            <div class="card-cons-title">Atenção</div>
+            <div class="con-item">Taxas de 2–4% por transação</div>
+            <div class="con-item">Stripe e PayPal bloqueiam contas sem aviso</div>
+            <div class="con-item">PayPal: taxas abusivas de conversão para BRL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-rank rank-1">★</div>
+      <div class="card-body">
+        <div class="card-title">Marketplaces de Freelance</div>
+        <div class="card-tags">
+          <span class="tag tag-purple">Upwork</span>
+          <span class="tag tag-purple">Toptal</span>
+          <span class="tag tag-purple">Fiverr</span>
+          <span class="tag tag-gray">Contra</span>
+        </div>
+        <p class="card-desc">Plataformas que intermediam o contrato e o pagamento. Você recebe pelo marketplace e saca via Payoneer, Wise ou conta bancária. Útil para quem está começando e precisa de credibilidade, mas as taxas da plataforma (5–20% dependendo do volume) tornam a saída direta — com contratos próprios — mais vantajosa a longo prazo.</p>
+        <div class="card-pros-cons">
+          <div class="card-pros">
+            <div class="card-pros-title">Vantagens</div>
+            <div class="pro-item">Contrato e cobrança intermediados pela plataforma</div>
+            <div class="pro-item">Ideal para quem está construindo portfolio</div>
+          </div>
+          <div class="card-cons">
+            <div class="card-cons-title">Atenção</div>
+            <div class="con-item">Taxa da plataforma: 5–20% do faturamento</div>
+            <div class="con-item">Dependência da plataforma — conta pode ser bloqueada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cards -->
+
+  <hr>
+
+  <!-- FUNCIONÁRIO -->
+  <div class="section-label">Perfil 1</div>
+  <h2>Se você recebe como funcionário de empresa no exterior</h2>
+
+  <p>Esse perfil abrange <strong>trabalhadores remotos contratados por empresas estrangeiras</strong> — seja como empregado formal (CLT equivalente americano/europeu), seja como contratado independente (PJ) com contrato de prestação de serviços fixo. O que une esses casos: você recebe um valor mensal relativamente fixo, de uma única fonte, e precisa de uma forma eficiente e segura de converter esse salário para reais.</p>
+
+  <div class="callout callout-purple">
+    <div class="callout-title">O que caracteriza esse perfil</div>
+    <p>Pagamento mensal previsível · Fonte única (a empresa) · Preferência do empregador por wire transfer ou ACH · Necessidade de comprovação de renda para fins fiscais brasileiros</p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-header">
+      <div class="section-block-icon icon-purple">💼</div>
+      <div class="section-block-header-text">
+        <h2>Melhores opções para quem recebe como funcionário</h2>
+        <p>Ranqueadas por custo-benefício real</p>
+      </div>
+    </div>
+
+    <div class="cards">
+
+      <div class="card" style="box-shadow:none;background:#F7F7F9;border:1px solid #EBEBEB;">
+        <div class="card-rank rank-1">1</div>
+        <div class="card-body">
+          <div class="card-title">Wise Personal — melhor custo-benefício</div>
+          <div class="card-tags">
+            <span class="tag tag-purple">Spread ~0,5%</span>
+            <span class="tag tag-teal">Abertura remota</span>
+            <span class="tag tag-gray">Sem tarifa fixa</span>
+          </div>
+          <p class="card-desc">A Wise oferece a taxa de câmbio mais próxima da taxa interbancária real disponível para pessoa física. Você abre uma conta com número de roteamento americano (ABA/routing number) e IBAN europeu, e recebe seu salário diretamente nela em USD ou EUR. Pode manter o dinheiro em moeda estrangeira e converter para BRL apenas quando quiser — ou pagar contas internacionais diretamente. O app é transparente: mostra exatamente quanto você vai pagar antes de confirmar qualquer operação.</p>
+          <div class="card-pros-cons">
+            <div class="card-pros">
+              <div class="card-pros-title">Por que funciona</div>
+              <div class="pro-item">Taxa de câmbio real, sem spread escondido</div>
+              <div class="pro-item">Saldo multi-moeda: USD, EUR, GBP, AUD e mais</div>
+              <div class="pro-item">Cartão Wise para gastos no exterior ou online</div>
+              <div class="pro-item">Extrato em PDF aceito por contadores</div>
+            </div>
+            <div class="card-cons">
+              <div class="card-cons-title">Limitações</div>
+              <div class="con-item">Não é conta bancária no sentido jurídico brasileiro</div>
+              <div class="con-item">Limite de recebimento pode exigir verificação adicional</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none;background:#F7F7F9;border:1px solid #EBEBEB;">
+        <div class="card-rank rank-2">2</div>
+        <div class="card-body">
+          <div class="card-title">Nomad — projetado para o brasileiro que recebe do exterior</div>
+          <div class="card-tags">
+            <span class="tag tag-purple">Fintech brasileira</span>
+            <span class="tag tag-teal">Conta em USD</span>
+            <span class="tag tag-gray">Spread ~1,5%</span>
+          </div>
+          <p class="card-desc">O Nomad é uma fintech brasileira que oferece uma conta corrente americana (parceria com bancos nos EUA) com número de roteamento próprio. O diferencial é a experiência: tudo em português, suporte dedicado, e integração pensada para o fluxo de quem recebe salário em dólar. O spread é um pouco maior que o Wise, mas a experiência é mais fluida para quem não tem familiaridade com plataformas internacionais.</p>
+          <div class="card-pros-cons">
+            <div class="card-pros">
+              <div class="card-pros-title">Por que funciona</div>
+              <div class="pro-item">Interface em português, suporte brasileiro</div>
+              <div class="pro-item">Conta americana real (número de roteamento ACH)</div>
+              <div class="pro-item">Cartão de débito internacional Visa</div>
+              <div class="pro-item">Investimentos em ETFs e ações americanas</div>
+            </div>
+            <div class="card-cons">
+              <div class="card-cons-title">Limitações</div>
+              <div class="con-item">Spread um pouco maior que Wise</div>
+              <div class="con-item">Limites menores para transferências SWIFT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none;background:#F7F7F9;border:1px solid #EBEBEB;">
+        <div class="card-rank rank-3">3</div>
+        <div class="card-body">
+          <div class="card-title">Remessa Online — para quem quer o dinheiro rápido em reais</div>
+          <div class="card-tags">
+            <span class="tag tag-gray">Plataforma brasileira</span>
+            <span class="tag tag-gray">Spread ~0,9–1,3%</span>
+            <span class="tag tag-gray">IOF incluso</span>
+          </div>
+          <p class="card-desc">A Remessa Online é uma plataforma brasileira regulamentada pelo Banco Central para câmbio. Ela não te dá uma conta no exterior — mas seu empregador envia de fora e você recebe em reais diretamente na sua conta no Brasil. O processo é simples: você fornece seus dados e os do remetente, e o dinheiro entra como TED na sua conta brasileira em 1–3 dias úteis. Spread baixo e sem tarifa fixa de recebimento.</p>
+          <div class="card-pros-cons">
+            <div class="card-pros">
+              <div class="card-pros-title">Por que funciona</div>
+              <div class="pro-item">Dinheiro cai direto na conta brasileira</div>
+              <div class="pro-item">Spread baixo comparado a bancos tradicionais</div>
+              <div class="pro-item">Regulamentado pelo Banco Central</div>
+            </div>
+            <div class="card-cons">
+              <div class="card-cons-title">Limitações</div>
+              <div class="con-item">Não te dá conta no exterior — só converte</div>
+              <div class="con-item">Menos flexibilidade para manter em USD</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none;background:#F7F7F9;border:1px solid #EBEBEB;">
+        <div class="card-rank rank-4">4</div>
+        <div class="card-body">
+          <div class="card-title">Inter Global / Nubank — para quem quer simplicidade bancária</div>
+          <div class="card-tags">
+            <span class="tag tag-gray">Bancos digitais BR</span>
+            <span class="tag tag-gray">Spread ~1%</span>
+            <span class="tag tag-gray">Sem tarifa</span>
+          </div>
+          <p class="card-desc">O Inter Global oferece uma conta em dólar integrada ao seu Inter brasileiro, e o Nubank tem parceria com a Wise para recebimentos do exterior. São opções razoáveis se você já usa esses bancos e quer centralizar tudo. O spread é bem menor que bancos tradicionais, mas ainda maior que Wise puro. Indicados para quem valoriza a integração com a conta brasileira acima de tudo.</p>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none;background:#1A1A1A;border:none;">
+        <div class="card-rank rank-1" style="background:#C400FF;">★</div>
+        <div class="card-body">
+          <div class="card-title" style="color:#fff;">Estrutura ideal para funcionário: Wise + conversão estratégica</div>
+          <div class="card-tags">
+            <span class="tag" style="background:rgba(196,0,255,0.2);color:#E1A7F1;">Wise Personal</span>
+            <span class="tag" style="background:rgba(23,214,185,0.15);color:#17D6B9;">Saldo em USD</span>
+            <span class="tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);">TED para BR quando precisar</span>
+          </div>
+          <p class="card-desc" style="color:rgba(255,255,255,0.7);">Receba seu salário em USD na Wise. Mantenha o saldo em dólar. Converta para reais apenas o necessário para cobrir despesas no Brasil — e apenas quando o câmbio estiver favorável. Isso elimina o problema de converter toda a renda no dia do pagamento, quando o câmbio pode estar ruim. Com o cartão Wise, você consegue pagar despesas internacionais diretamente sem conversão desnecessária.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="callout callout-teal">
+    <div class="callout-title">Declaração obrigatória para funcionários remotos</div>
+    <p>Se você recebe como PJ prestando serviços para empresa no exterior, o valor deve ser declarado como <strong>rendimento de serviços prestados no exterior</strong> no Imposto de Renda. Se você tem conta no exterior com saldo acima de USD 1.000, precisa declarar no <strong>BACEN (DCBE)</strong> anualmente. Converse com um contador que entenda de receita em moeda estrangeira.</p>
+  </div>
+
+  <hr>
+
+  <!-- CLIENTES -->
+  <div class="section-label">Perfil 2</div>
+  <h2>Se você recebe de clientes no exterior</h2>
+
+  <p>Esse perfil abrange <strong>freelancers, consultores, agências e prestadores de serviços</strong> que têm múltiplos clientes internacionais, pagamentos variáveis e precisam de flexibilidade para emitir notas, cobrar de formas diferentes e lidar com pagamentos de qualquer parte do mundo.</p>
+
+  <p>A diferença principal em relação ao perfil de funcionário: o cliente pode querer pagar de formas diferentes (wire, cartão, plataforma de marketplace), o valor varia por projeto, e você precisa de uma estrutura que transmita credibilidade e facilite o processo de cobrança para o cliente.</p>
+
+  <div class="callout callout-purple">
+    <div class="callout-title">O que caracteriza esse perfil</div>
+    <p>Múltiplos clientes · Valores variáveis por projeto · Clientes podem preferir pagar por cartão ou wire · Necessidade de invoicing profissional · Credibilidade como empresa</p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-header">
+      <div class="section-block-icon icon-teal">🌐</div>
+      <div class="section-block-header-text">
+        <h2>Melhores opções para quem recebe de clientes</h2>
+        <p>Ranqueadas por profissionalismo e custo</p>
+      </div>
+    </div>
+
+    <div class="cards">
+
+      <div class="card" style="box-shadow:none;background:#F7F7F9;border:1px solid #EBEBEB;">
+        <div class="card-rank rank-1">1</div>
+        <div class="card-body">
+          <div class="card-title">LLC nos EUA + Mercury Business — a estrutura mais profissional</div>
+          <div class="card-tags">
+            <span class="tag tag-purple">Wire grátis</span>
+            <span class="tag tag-purple">ACH grátis</span>
+            <span class="tag tag-teal">Sem limite de recebimento</span>
+            <span class="tag tag-gray">Requer LLC</span>
+          </div>
+          <p class="card-desc">Uma LLC (Limited Liability Company) americana com conta no Mercury é o padrão de quem leva o freelance internacional a sério. O Mercury é um banco digital para startups e pequenas empresas nos EUA — sem tarifas mensais, sem limite de transações, recebimento de wire ilimitado e API para integração com ferramentas de invoicing. Para clientes americanos e europeus, pagar para uma LLC americana é mais fácil, mais confortável juridicamente, e muitas vezes exigido por departamentos financeiros de grandes empresas.</p>
+          <div class="card-pros-cons">
+            <div class="card-pros">
+              <div class="card-pros-title">Por que funciona</div>
+              <div class="pro-item">Recebe wire, ACH, SEPA — sem taxa</div>
+              <div class="pro-item">Credibilidade máxima com clientes enterprise</div>
+              <div class="pro-item">Mantém o dinheiro em USD — converte quando quiser</div>
+              <div class="pro-item">Integra com Stripe, Wise, QuickBooks</div>
+              <div class="pro-item">Relay Financial é alternativa sólida ao Mercury</div>
+            </div>
+            <div class="card-cons">
+              <div class="card-cons-title">Atenção</div>
+              <div class="con-item">Exige LLC ativa nos EUA</div>
+              <div class="con-item">Processo: 3–8 semanas para abrir LLC + conta</div>
+              <div class="con-item">Exige compliance fiscal brasileiro (DARF, Simples ou PJ)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none;background:#F7F7F9;border:1px solid #EBEBEB;">
+        <div class="card-rank rank-2">2</div>
+        <div class="card-body">
+          <div class="card-title">Stripe — para cobrar com cartão diretamente</div>
+          <div class="card-tags">
+            <span class="tag tag-gray">2,9% + USD 0,30</span>
+            <span class="tag tag-gray">Checkout integrado</span>
+            <span class="tag tag-gray">Requer LLC</span>
+          </div>
+          <p class="card-desc">Quando o cliente quer pagar com cartão de crédito, o Stripe é a melhor opção do mercado. Com uma LLC americana e conta no Mercury, você conecta o Stripe ao seu banco americano e cria um link de pagamento ou checkout personalizado. O cliente paga com Visa, Mastercard, Amex ou Apple Pay — e o dinheiro cai na sua conta Mercury em 2–7 dias. Fundamental para quem vende serviços de forma recorrente (assinaturas, retainers mensais) ou produtos digitais.</p>
+          <div class="card-pros-cons">
+            <div class="card-pros">
+              <div class="card-pros-title">Por que funciona</div>
+              <div class="pro-item">Checkout mais fluido do mercado</div>
+              <div class="pro-item">Pagamentos recorrentes automáticos</div>
+              <div class="pro-item">Aceita cartões de qualquer país</div>
+              <div class="pro-item">API robusta para integrações</div>
+            </div>
+            <div class="card-cons">
+              <div class="card-cons-title">Atenção</div>
+              <div class="con-item">Taxa de 2,9% + USD 0,30 por transação (+ 1,5% para cartões internacionais)</div>
+              <div class="con-item">Contas bloqueadas sem aviso em casos de chargebacks</div>
+              <div class="con-item">Reserve um fundo de contingência para disputas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none;background:#F7F7F9;border:1px solid #EBEBEB;">
+        <div class="card-rank rank-3">3</div>
+        <div class="card-body">
+          <div class="card-title">Wise Business — recebimento via wire com spread mínimo</div>
+          <div class="card-tags">
+            <span class="tag tag-teal">Sem LLC obrigatória</span>
+            <span class="tag tag-teal">Spread ~0,5%</span>
+            <span class="tag tag-gray">Invoicing incluso</span>
+          </div>
+          <p class="card-desc">O Wise Business oferece uma conta para pessoa jurídica (ou em alguns países, pessoa física) com número de roteamento americano e IBAN europeu. Você consegue receber wire transfers de clientes no mundo inteiro, emitir invoices diretamente na plataforma, e converter para reais com o spread mais baixo do mercado. Para quem ainda não tem LLC ou quer uma solução mais rápida de montar, o Wise Business é excelente alternativa como conta principal de recebimento.</p>
+          <div class="card-pros-cons">
+            <div class="card-pros">
+              <div class="card-pros-title">Por que funciona</div>
+              <div class="pro-item">Melhor taxa de câmbio disponível</div>
+              <div class="pro-item">Invoicing integrado na plataforma</div>
+              <div class="pro-item">Recebe em USD, EUR, GBP e mais</div>
+              <div class="pro-item">Mais rápido de abrir que LLC + Mercury</div>
+            </div>
+            <div class="card-cons">
+              <div class="card-cons-title">Atenção</div>
+              <div class="con-item">Menos credibilidade que conta bancária americana real</div>
+              <div class="con-item">Alguns clientes enterprise não aceitam contas Wise como beneficiário</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none;background:#F7F7F9;border:1px solid #EBEBEB;">
+        <div class="card-rank rank-4">4</div>
+        <div class="card-body">
+          <div class="card-title">Payoneer — essencial para marketplaces</div>
+          <div class="card-tags">
+            <span class="tag tag-gray">Taxa: 1–2%</span>
+            <span class="tag tag-gray">Upwork / Fiverr</span>
+            <span class="tag tag-gray">Amazon / Airbnb</span>
+          </div>
+          <p class="card-desc">Se você trabalha em plataformas como Upwork, Fiverr, Toptal, Amazon Associates, Airbnb ou similares, o Payoneer é frequentemente o método de saque preferido ou obrigatório. Para pagamentos diretos entre empresas, a Payoneer cobra 2% quando o pagador usa saldo Payoneer, e valores maiores para cartão. É razoável para volumes medianos, mas não é a melhor opção fora do contexto de marketplaces.</p>
+          <div class="card-pros-cons">
+            <div class="card-pros">
+              <div class="card-pros-title">Por que funciona</div>
+              <div class="pro-item">Integração nativa com grandes marketplaces</div>
+              <div class="pro-item">Aceito por clientes que já têm conta Payoneer</div>
+              <div class="pro-item">Cartão para uso internacional</div>
+            </div>
+            <div class="card-cons">
+              <div class="card-cons-title">Atenção</div>
+              <div class="con-item">Taxa de 2% para pagamentos diretos</div>
+              <div class="con-item">Taxa de câmbio pior que Wise</div>
+              <div class="con-item">Interface e suporte deixam a desejar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none;background:#F7F7F9;border:1px solid #EBEBEB;">
+        <div class="card-rank rank-4">5</div>
+        <div class="card-body">
+          <div class="card-title">PayPal — último recurso</div>
+          <div class="card-tags">
+            <span class="tag tag-red">Taxa: 4,4% + fixo</span>
+            <span class="tag tag-warn">Câmbio péssimo</span>
+          </div>
+          <p class="card-desc">Evite usar o PayPal como estrutura principal. A taxa de recebimento de pagamentos internacionais é de 4,4% + uma taxa fixa, e quando você converte de USD para BRL dentro do PayPal, o câmbio aplicado é ruim — podendo representar uma perda total de 5–7% do valor. Use apenas se o cliente insistir e não houver outra alternativa, e transfira o saldo imediatamente para outra plataforma sem converter dentro do PayPal.</p>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none;background:#1A1A1A;border:none;">
+        <div class="card-rank rank-1" style="background:#17D6B9;color:#1A1A1A;">★</div>
+        <div class="card-body">
+          <div class="card-title" style="color:#fff;">Estrutura ideal para clientes: LLC → Mercury + Stripe → Wise pessoal</div>
+          <div class="card-tags">
+            <span class="tag" style="background:rgba(196,0,255,0.2);color:#E1A7F1;">LLC nos EUA</span>
+            <span class="tag" style="background:rgba(23,214,185,0.15);color:#17D6B9;">Mercury Business</span>
+            <span class="tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);">Stripe para cartão</span>
+            <span class="tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);">Wise para retirada pessoal</span>
+          </div>
+          <p class="card-desc" style="color:rgba(255,255,255,0.7);">1. Abra uma LLC nos EUA e vincule ao Mercury Business — aqui entra tudo: wires, ACH, Stripe. 2. Para clientes que querem pagar com cartão, use Stripe apontando para o Mercury. 3. Para retirada pessoal (pró-labore ou distribuição de lucro), transfira do Mercury para sua conta Wise pessoal, e converta para BRL com a melhor taxa disponível. Resultado: máxima profissionalidade para o cliente, custo mínimo de câmbio para você.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- O QUE EVITAR -->
+  <div class="section-label">Cuidados</div>
+  <h2>O que evitar a todo custo</h2>
+
+  <p>Esses são os erros mais comuns — e os mais caros — que brasileiros cometem ao estruturar o recebimento de moeda estrangeira.</p>
+
+  <div class="avoid-list">
+    <div class="avoid-item">
+      <div class="avoid-x">✕</div>
+      <div class="avoid-text"><strong>Receber direto em conta bancária brasileira tradicional sem pensar nas taxas.</strong> Converter USD no Itaú, Bradesco ou Banco do Brasil pode custar entre R$ 200 e R$ 500 por operação de USD 3.000. Em 12 meses de salário, você perde entre R$ 2.400 e R$ 6.000 sem perceber.</div>
+    </div>
+    <div class="avoid-item">
+      <div class="avoid-x">✕</div>
+      <div class="avoid-text"><strong>Misturar pessoa física com faturamento internacional alto.</strong> Acima de certo volume, receber como pessoa física cria problemas fiscais — o Fisco pode questionar a origem, e você perde acesso a estruturas de planejamento tributário que são legítimas via PJ ou LLC.</div>
+    </div>
+    <div class="avoid-item">
+      <div class="avoid-x">✕</div>
+      <div class="avoid-text"><strong>Usar PayPal como estrutura principal de recebimento.</strong> Além das taxas altas (4,4%+), o PayPal é conhecido por bloquear contas de brasileiros sem aviso, especialmente em volumes crescentes. Nunca acumule saldo grande no PayPal.</div>
+    </div>
+    <div class="avoid-item">
+      <div class="avoid-x">✕</div>
+      <div class="avoid-text"><strong>Fazer saída fiscal do Brasil antes de ter as contas abertas no exterior.</strong> Fechar a residência fiscal brasileira sem ter conta bancária no novo país, sem LLC ativa e sem estrutura pronta é o caminho mais rápido para um caos financeiro. A sequência correta é: abrir as estruturas → comprovar residência → declarar saída.</div>
+    </div>
+    <div class="avoid-item">
+      <div class="avoid-x">✕</div>
+      <div class="avoid-text"><strong>Converter tudo para reais no dia que o dinheiro cai.</strong> Se você precisa de reais mas recebe em dólar, converta aos poucos — o suficiente para as despesas do mês. Manter saldo em USD é uma proteção natural contra a desvalorização do real.</div>
+    </div>
+    <div class="avoid-item">
+      <div class="avoid-x">✕</div>
+      <div class="avoid-text"><strong>Depender de uma única plataforma sem backup.</strong> Contas Wise, Mercury e Payoneer podem ser bloqueadas por compliance sem aviso. Tenha sempre pelo menos duas opções ativas — se uma trava, você não para de receber.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Quer montar a estrutura certa para o seu perfil?</h2>
+    <p>A ConnectUP cuida de LLC, conta no exterior e residência fiscal no Paraguai — do início ao fim. Primeira análise gratuita.</p>
+    <a href="https://wa.me/5511913062315" class="cta-btn">Falar com especialista →</a>
+    <div class="cta-sub">wa.me/5511913062315</div>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer">
+  © 2025 ConnectUP · @connectupbr
+</footer>
+
+</body>
+</html>
