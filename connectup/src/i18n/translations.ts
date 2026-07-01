@@ -20,12 +20,12 @@ const translations = {
       language: 'Idioma',
     },
     hero: {
-      badge: 'Mobilidade Profissional 360°',
-      headline: 'Global minds',
-      headline2: 'connect.',
+      badge: 'Residência Fiscal no Paraguai',
+      headline: 'Pare de pagar',
+      headline2: 'impostos em excesso.',
       subheadline:
-        'Transformamos o potencial técnico em autoridade global. A ConnectUP oferece uma solução 360° para a mobilidade profissional, removendo as barreiras da comunicação, da burocracia fiscal e do posicionamento de mercado, abrindo caminho para uma atuação verdadeiramente global e financeiramente independente.',
-      cta: 'Comece sua jornada global',
+        'A ConnectUP cuida de todo o processo para você se tornar residente fiscal no Paraguai — 0% de imposto sobre renda do exterior, legal e com suporte jurídico completo do início ao fim.',
+      cta: 'Comece sua residência fiscal',
       ctaSecondary: 'Nossos serviços',
     },
     services: {

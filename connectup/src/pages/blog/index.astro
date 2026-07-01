@@ -6,41 +6,12 @@ import { getCollection } from 'astro:content';
 
 const t = getTranslations('pt-br');
 
-const blogDesc = 'Artigos e guias sobre residência fiscal no Paraguai, comunicação profissional internacional e posicionamento para o mercado global.';
-
-const categoryLabels = {
-  all:         'Todos',
-  tax:         'Residência Fiscal',
-  comunicacao: 'Comunicação Profissional',
-  cv:          'CV & LinkedIn',
-};
-
-// Tag patterns per category (case-insensitive partial match)
-const categoryTagPatterns: Record<string, string[]> = {
-  tax:         ['residên', 'residencia', 'rezydencja', 'tax residency', 'paraguai', 'paraguay', 'paragwaj', 'maquila', 'saída fiscal', 'tributár', 'tributaci', 'podatkow', 'imposto', 'empresa', 'company', 'firma', 'llc', 'dubai'],
-  comunicacao: ['comunicação', 'comunicacion', 'komunikacja', 'professional communication', 'inglês', 'ingles', 'english', 'reunião', 'reunión', 'spotkanie', 'meeting', 'apresentação', 'presentación', 'oratória'],
-  cv:          ['cv', 'currículo', 'curriculum', 'linkedin', 'posicionamento', 'positioning', 'pozycjonowanie', 'recrutador', 'recruiter', 'carreira', 'career', 'mercado internacional'],
-};
-
-function getPostCategory(tags: string[]): string {
-  const normalized = tags.map(t => t.toLowerCase());
-  for (const [cat, patterns] of Object.entries(categoryTagPatterns)) {
-    if (patterns.some(p => normalized.some(tag => tag.includes(p) || p.includes(tag)))) {
-      return cat;
-    }
-  }
-  return 'other';
-}
+const blogDesc = 'Artigos e guias sobre residência fiscal, abertura de empresa e planejamento fiscal no Paraguai.';
 
 const allPosts = await getCollection('blog');
 const posts = allPosts
   .filter(p => p.data.lang === 'pt-br')
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .map(p => ({ ...p, category: getPostCategory(p.data.tags ?? []) }));
-
-const cl = categoryLabels;
-const hasComm = posts.some(p => p.category === 'comunicacao');
-const hasCv   = posts.some(p => p.category === 'cv');
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <BaseLayout locale="pt-br" title={t.blog.title} description={blogDesc}>
@@ -56,16 +27,6 @@ const hasCv   = posts.some(p => p.category === 'cv');
     </div>
   </section>
 
-  <!-- Category filter tabs -->
-  <section style="background:white;border-bottom:1px solid #eee;position:sticky;top:88px;z-index:30;">
-    <div style="max-width:1140px;margin:0 auto;padding:0 1.5rem;display:flex;gap:0.5rem;overflow-x:auto;scrollbar-width:none;" class="cat-tabs">
-      <button class="cat-tab active" data-cat="all">{cl.all}</button>
-      <button class="cat-tab" data-cat="tax">{cl.tax}</button>
-      {hasComm && <button class="cat-tab" data-cat="comunicacao">{cl.comunicacao}</button>}
-      {hasCv   && <button class="cat-tab" data-cat="cv">{cl.cv}</button>}
-    </div>
-  </section>
-
   <!-- Posts grid -->
   <section style="padding:3rem 1.5rem 5rem;background:#f7f4fa;">
     <div style="max-width:1140px;margin:0 auto;">
@@ -74,68 +35,21 @@ const hasCv   = posts.some(p => p.category === 'cv');
           Posts em breve...
         </p>
       ) : (
-        <div id="posts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map(post => (
-            <div class="post-item" data-cat={post.category}>
-              <BlogCard
-                title={post.data.title}
-                description={post.data.description}
-                pubDate={post.data.pubDate}
-                postSlug={post.data.postSlug}
-                locale="pt-br"
-                author={post.data.author}
-                tags={post.data.tags}
-                readMore={t.blog.readMore}
-              />
-            </div>
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              postSlug={post.data.postSlug}
+              locale="pt-br"
+              author={post.data.author}
+              tags={post.data.tags}
+              readMore={t.blog.readMore}
+            />
           ))}
         </div>
       )}
     </div>
   </section>
 </BaseLayout>
-
-<style>
-.cat-tabs::-webkit-scrollbar { display: none; }
-
-.cat-tab {
-  flex-shrink: 0;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: #795389;
-  background: transparent;
-  border: none;
-  padding: 1rem 1.25rem;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-.cat-tab:hover {
-  color: #8417aa;
-}
-.cat-tab.active {
-  color: #8417aa;
-  border-bottom-color: #8417aa;
-  font-weight: 600;
-}
-</style>
-
-<script>
-  const tabs  = document.querySelectorAll<HTMLButtonElement>('.cat-tab');
-  const items = document.querySelectorAll<HTMLElement>('.post-item');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      const cat = tab.dataset.cat;
-      items.forEach(item => {
-        const show = cat === 'all' || item.dataset.cat === cat;
-        item.style.display = show ? '' : 'none';
-      });
-    });
-  });
-</script>

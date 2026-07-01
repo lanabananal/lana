@@ -17,13 +17,13 @@ const { locale, title, description, ogType = 'website', pubDate, postAuthor } = 
 const t = getTranslations(locale);
 const siteUrl = 'https://theconnectup.com';
 
-const defaultTitle = 'ConnectUP — Mobilidade Profissional Global 360°';
-const defaultDesc = 'Comunicação profissional em inglês, adequação de CV & LinkedIn e planejamento fiscal no Paraguai. Tudo que você precisa para atuar com liberdade no mercado global.';
+const defaultTitle = 'ConnectUP — Residência Fiscal no Paraguai';
+const defaultDesc = 'Residência fiscal, abertura de empresa e planejamento fiscal no Paraguai. Suporte jurídico completo para brasileiros que querem 0% de imposto sobre renda do exterior.';
 
 const pageTitle = title ? `${title} | ConnectUP` : defaultTitle;
 const pageDesc = description ?? defaultDesc ?? t.hero.subheadline;
 
-const pageKeywords = 'residência fiscal Paraguai, cédula paraguaia, planejamento fiscal, imposto renda exterior, mobilidade profissional, CV LinkedIn internacional, abertura empresa Paraguai';
+const pageKeywords = 'residência fiscal Paraguai, cédula paraguaia, planejamento fiscal, imposto renda exterior, abertura empresa Paraguai, regime de maquila';
 
 const canonicalPath = Astro.url.pathname;
 const canonicalUrl = `${siteUrl}${canonicalPath}`;
@@ -42,7 +42,7 @@ const jsonLd = {
         url: `${siteUrl}/C_COLORIDO.png`,
       },
       image: `${siteUrl}/C_COLORIDO.png`,
-      description: 'Paraguay tax residency and international professional mobility services. Full legal support for cedula, RUC, company formation, CV & LinkedIn optimization and professional communication.',
+      description: 'Paraguay tax residency services. Full legal support for cedula, RUC, company formation and tax planning for foreign income.',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Edificio Atrium',
@@ -76,8 +76,7 @@ const jsonLd = {
         itemListElement: [
           { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Paraguay Tax Residency', description: 'Complete legal Paraguay tax residency including cedula, RUC and SET certificate. 0% tax on foreign income.' } },
           { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Paraguay Company Formation', description: 'Full company registration in Paraguay — SAE, SRL or SA — with legal support.' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'CV & LinkedIn Optimization', description: 'Resume and LinkedIn profile restructured for international ATS standards.' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Professional Communication', description: 'Corporate English, STAR method coaching and international presentation training.' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Maquila Regime Services', description: 'Setup and compliance under Paraguay’s Maquila law for manufacturing and export companies.' } },
         ],
       },
     },
@@ -96,22 +95,6 @@ const jsonLd = {
       description: 'Legal Paraguay tax residency process for individuals and companies. 0% tax on foreign income. Full legal support. Two trips to Asunción.',
       areaServed: { '@type': 'Country', name: 'Paraguay' },
       serviceType: 'Tax Planning & Residency Consulting',
-    },
-    {
-      '@type': 'Service',
-      '@id': `${siteUrl}/#service-communication`,
-      name: 'International Professional Communication',
-      provider: { '@id': `${siteUrl}/#organization` },
-      description: 'Corporate English, international meetings, professional presentations and STAR method coaching for global professionals.',
-      serviceType: 'Professional Communication Training',
-    },
-    {
-      '@type': 'Service',
-      '@id': `${siteUrl}/#service-cv`,
-      name: 'CV & LinkedIn Optimization for International Market',
-      provider: { '@id': `${siteUrl}/#organization` },
-      description: 'Resume restructuring and LinkedIn profile optimization aligned with international standards and ATS systems.',
-      serviceType: 'Career Positioning & Resume Consulting',
     },
   ],
 };
