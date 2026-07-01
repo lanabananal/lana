@@ -11,37 +11,14 @@ interface Props {
 }
 
 const {
-  locale,
   tags,
   title,
   tagLabel    = 'Conteúdo',
-  viewAllLabel = 'Ver todos os artigos',
-  readMoreLabel = 'Ler',
 } = Astro.props;
 
-const sectionTitles: Record<string, string> = {
-  'pt-br': title ?? 'Artigos relacionados',
-  'en':    title ?? 'Related articles',
-  'es':    title ?? 'Artículos relacionados',
-  'pl':    title ?? 'Powiązane artykuły',
-};
-const viewAllLabels: Record<string, string> = {
-  'pt-br': 'Ver todos os artigos',
-  'en':    'View all articles',
-  'es':    'Ver todos los artículos',
-  'pl':    'Zobacz wszystkie artykuły',
-};
-const readMoreLabels: Record<string, string> = {
-  'pt-br': 'Ler',
-  'en':    'Read',
-  'es':    'Leer',
-  'pl':    'Czytaj',
-};
-
-const langMap: Record<string, string> = {
-  'pt-br': 'pt-br', 'en': 'en', 'es': 'es', 'pl': 'pl',
-};
-const lang = langMap[locale] ?? 'en';
+const sectionTitle = title ?? 'Artigos relacionados';
+const viewAll = 'Ver todos os artigos';
+const readMore = 'Ler';
 
 // Normalise tags for case-insensitive matching
 const normalised = tags.map(t => t.toLowerCase().trim());
@@ -51,8 +28,7 @@ try {
   const all = await getCollection('blog');
   posts = all
     .filter((p: any) => {
-      const isLang = p.id.startsWith(lang + '-') || p.data.lang === lang;
-      if (!isLang) return false;
+      if (p.data.lang !== 'pt-br') return false;
       const postTags: string[] = (p.data.tags ?? []).map((t: string) => t.toLowerCase().trim());
       return postTags.some(pt => normalised.some(nt => pt.includes(nt) || nt.includes(pt)));
     })
@@ -63,10 +39,6 @@ try {
 } catch (e) {
   posts = [];
 }
-
-const sectionTitle = sectionTitles[locale] ?? sectionTitles['en'];
-const viewAll      = viewAllLabels[locale]  ?? viewAllLabels['en'];
-const readMore     = readMoreLabels[locale] ?? readMoreLabels['en'];
 ---
 
 {posts.length > 0 && (
@@ -79,7 +51,7 @@ const readMore     = readMoreLabels[locale] ?? readMoreLabels['en'];
 
       <div class="rc-grid">
         {posts.slice(0, 6).map((post: any) => (
-          <a href={`/${locale}/blog/${post.data.postSlug}`} class="rc-card">
+          <a href={`/blog/${post.data.postSlug}`} class="rc-card">
             {post.data.tags?.[0] && (
               <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#07ffd2;margin-bottom:8px;">{post.data.tags[0]}</span>
             )}
@@ -93,7 +65,7 @@ const readMore     = readMoreLabels[locale] ?? readMoreLabels['en'];
       </div>
 
       <div style="text-align:center;margin-top:2rem;">
-        <a href={`/${locale}/blog`} style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #8417aa;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:500;padding:12px 24px;border-radius:8px;transition:all 0.2s;" onmouseover="this.style.background='#f7f4fa'" onmouseout="this.style.background='transparent'">
+        <a href="/blog" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #8417aa;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:500;padding:12px 24px;border-radius:8px;transition:all 0.2s;" onmouseover="this.style.background='#f7f4fa'" onmouseout="this.style.background='transparent'">
           {viewAll}
         </a>
       </div>

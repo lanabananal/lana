@@ -1,3 +1,26 @@
 ---
-return Astro.redirect('/en/', 301);
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import GlobalServicesSection from '../components/GlobalServicesSection.astro';
+import VideoSection from '../components/VideoSection.astro';
+import Services from '../components/Services.astro';
+import TaxComparison from '../components/TaxComparison.astro';
+import HowItWorksPtBr from '../components/HowItWorksPtBr.astro';
+import FAQ from '../components/FAQ.astro';
+import BlogCarousel from '../components/BlogCarousel.astro';
+import YouTubeGallery from '../components/YouTubeGallery.astro';
+import CTA from '../components/CTA.astro';
 ---
+
+<BaseLayout locale="pt-br">
+  <Hero locale="pt-br" />
+  <GlobalServicesSection locale="pt-br" />
+  <VideoSection locale="pt-br" />
+  <Services locale="pt-br" />
+  <TaxComparison />
+  <HowItWorksPtBr />
+  <FAQ />
+  <BlogCarousel locale="pt-br" />
+  <YouTubeGallery locale="pt-br" />
+  <CTA locale="pt-br" />
+</BaseLayout>

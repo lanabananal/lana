@@ -1,55 +1,17 @@
 ---
 interface Props { locale: string; }
-const { locale } = Astro.props;
 
-const content: Record<string, any> = {
-  'pt-br': {
-    h2: 'A ponte entre você e o sistema que vai te libertar.',
-    bio: 'Vim até o Paraguai para entender o sistema por dentro. Construí relacionamentos com advogados, contadores e especialistas locais; mapeei cada etapa do processo; e me tornei o elo que faltava para empreendedores e empresários que querem fazer isso com segurança. Hoje a ConnectUP atende pessoas do Brasil, Polônia, Espanha e de todo o mundo, com clareza, método e profissionais de confiança do início ao fim.',
-    quote: 'Minha missão é simples: ajudar você a guardar mais do que ganha, de onde quer que você esteja.',
-    bridgeCaption: 'ConnectUP — Estratégia e acompanhamento',
-    stats: [{ n:'3+', l:'Continentes atendidos' }, { n:'100%', l:'Legal e seguro' }, { n:'1', l:'Ponto de contato para tudo' }],
-    servicesTitle: 'O que fazemos',
-    services: ['Residência fiscal no Paraguai', 'Abertura de empresa e Maquila', 'Planejamento tributário internacional', 'Consultoria estratégica personalizada'],
-    valuesTitle: 'Nossos valores',
-    values: ['Clareza antes de tudo', 'Só o que é legal', 'Estrutura própria, não improviso'],
-  },
-  'en': {
-    h2: 'The bridge between you and the system that will set you free.',
-    bio: 'I came to Paraguay to understand the system from the inside. I built relationships with local lawyers, accountants and specialists; mapped every step of the process; and became the missing link for entrepreneurs and business owners who want to do this safely. Today ConnectUP serves people from Brazil, Poland, Spain and around the world, with clarity, method and trusted professionals from start to finish.',
-    quote: 'My mission is simple: help you keep more of what you earn, wherever you are.',
-    bridgeCaption: 'ConnectUP — Strategy and guidance',
-    stats: [{ n:'3+', l:'Continents served' }, { n:'100%', l:'Legal and safe' }, { n:'1', l:'Single point of contact' }],
-    servicesTitle: 'What we do',
-    services: ['Tax residency in Paraguay', 'Company setup and Maquila', 'International tax planning', 'Personalized strategic consulting'],
-    valuesTitle: 'Our values',
-    values: ['Clarity first', 'Only what is legal', 'Proper structure, not improvisation'],
-  },
-  'es': {
-    h2: 'El puente entre tú y el sistema que te va a liberar.',
-    bio: 'Vine a Paraguay para entender el sistema desde adentro. Construí relaciones con abogados, contadores y especialistas locales; mapeé cada etapa del proceso; y me convertí en el eslabón que faltaba para emprendedores y empresarios que quieren hacer esto con seguridad. Hoy ConnectUP atiende personas de Brasil, Polonia, España y de todo el mundo, con claridad, método y profesionales de confianza de principio a fin.',
-    quote: 'Mi misión es simple: ayudarte a conservar más de lo que ganas, desde donde estés.',
-    bridgeCaption: 'ConnectUP — Estrategia y acompañamiento',
-    stats: [{ n:'3+', l:'Continentes atendidos' }, { n:'100%', l:'Legal y seguro' }, { n:'1', l:'Un solo punto de contacto' }],
-    servicesTitle: 'Qué hacemos',
-    services: ['Residencia fiscal en Paraguay', 'Apertura de empresa y Maquila', 'Planificación tributaria internacional', 'Consultoría estratégica personalizada'],
-    valuesTitle: 'Nuestros valores',
-    values: ['Claridad ante todo', 'Solo lo que es legal', 'Estructura propia, no improvisación'],
-  },
-  'pl': {
-    h2: 'Most między Tobą a systemem, który Cię wyzwoli.',
-    bio: 'Przyjechałam do Paragwaju, aby zrozumieć system od środka. Zbudowałam relacje z lokalnymi prawnikami, księgowymi i specjalistami; zmapowałam każdy etap procesu; i stałam się brakującym ogniwem dla przedsiębiorców, którzy chcą to zrobić bezpiecznie. Dziś ConnectUP obsługuje osoby z Brazylii, Polski, Hiszpanii i całego świata, z jasnością, metodą i zaufanymi profesjonalistami od początku do końca.',
-    quote: 'Moja misja jest prosta: pomóc Ci zachować więcej z tego, co zarabiasz, gdziekolwiek jesteś.',
-    bridgeCaption: 'ConnectUP — Strategia i wsparcie',
-    stats: [{ n:'3+', l:'Obsługiwane kontynenty' }, { n:'100%', l:'Legalnie i bezpiecznie' }, { n:'1', l:'Jeden punkt kontaktu' }],
-    servicesTitle: 'Co robimy',
-    services: ['Rezydencja podatkowa w Paragwaju', 'Zakładanie firm i Maquila', 'Międzynarodowe planowanie podatkowe', 'Spersonalizowane doradztwo strategiczne'],
-    valuesTitle: 'Nasze wartości',
-    values: ['Przejrzystość przede wszystkim', 'Tylko to, co jest legalne', 'Własna struktura, nie improwizacja'],
-  },
+const c = {
+  h2: 'A ponte entre você e o sistema que vai te libertar.',
+  bio: 'Vim até o Paraguai para entender o sistema por dentro. Construí relacionamentos com advogados, contadores e especialistas locais; mapeei cada etapa do processo; e me tornei o elo que faltava para empreendedores e empresários que querem fazer isso com segurança. Hoje a ConnectUP atende pessoas do Brasil, Polônia, Espanha e de todo o mundo, com clareza, método e profissionais de confiança do início ao fim.',
+  quote: 'Minha missão é simples: ajudar você a guardar mais do que ganha, de onde quer que você esteja.',
+  bridgeCaption: 'ConnectUP — Estratégia e acompanhamento',
+  stats: [{ n:'3+', l:'Continentes atendidos' }, { n:'100%', l:'Legal e seguro' }, { n:'1', l:'Ponto de contato para tudo' }],
+  servicesTitle: 'O que fazemos',
+  services: ['Residência fiscal no Paraguai', 'Abertura de empresa e Maquila', 'Planejamento tributário internacional', 'Consultoria estratégica personalizada'],
+  valuesTitle: 'Nossos valores',
+  values: ['Clareza antes de tudo', 'Só o que é legal', 'Estrutura própria, não improviso'],
 };
-
-const c = content[locale] ?? content['en'];
 ---
 
 <section style="background:#f7f4fa;padding:5rem 1.5rem;">

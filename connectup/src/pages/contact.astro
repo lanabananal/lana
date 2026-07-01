@@ -1,26 +1,15 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import AboutSection from '../../components/AboutSection.astro';
-import { locales, isValidLocale, getTranslations } from '../../i18n/translations';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AboutSection from '../components/AboutSection.astro';
+import { getTranslations } from '../i18n/translations';
 
-export function getStaticPaths() {
-  return locales.map(locale => ({ params: { locale } }));
-}
-
-const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect('/en/contact', 302);
-const t = getTranslations(locale);
-const ct = (t as any).contact ?? {
-  tag: 'Contact', title: 'Get in touch', subtitle: 'We respond within 24 hours.',
-  namePlaceholder: 'Your name', phonePlaceholder: 'Your phone',
-  emailPlaceholder: 'your@email.com', messagePlaceholder: 'How can we help?',
-  submit: 'Send message',
-};
+const t = getTranslations('pt-br');
+const ct = t.contact;
 ---
 
-<BaseLayout locale={locale} title={ct.title}>
+<BaseLayout locale="pt-br" title={ct.title}>
   <div style="padding-top:80px;">
-    <AboutSection locale={locale} />
+    <AboutSection locale="pt-br" />
   </div>
   <div style="min-height:100vh;background:#f7f4fa;">
     <div style="max-width:960px;margin:0 auto;padding:4rem 1.5rem;">
@@ -62,7 +51,7 @@ const ct = (t as any).contact ?? {
         </div>
 
         <!-- Form -->
-        <form name="contato" method="POST" data-netlify="true" netlify-honeypot="bot-field" action={`/${locale}/obrigado`} style="padding:2rem;">
+        <form name="contato" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/obrigado" style="padding:2rem;">
           <input type="hidden" name="form-name" value="contato" />
           <p style="display:none;"><input name="bot-field" /></p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;" class="form-row">

@@ -1,0 +1,28 @@
+---
+import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const ptBrPosts = posts.filter(post => post.data.lang === 'pt-br');
+
+  return ptBrPosts.map(post => ({
+    params: { slug: post.data.postSlug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BlogPostLayout
+  locale="pt-br"
+  title={post.data.title}
+  description={post.data.description}
+  pubDate={post.data.pubDate}
+  author={post.data.author}
+  tags={post.data.tags}
+>
+  <Content />
+</BlogPostLayout>

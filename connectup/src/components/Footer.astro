@@ -1,5 +1,5 @@
 ---
-import { getTranslations, locales, languageLabels } from '../i18n/translations';
+import { getTranslations } from '../i18n/translations';
 
 interface Props {
   locale: string;
@@ -12,11 +12,11 @@ const year = new Date().getFullYear();
 
 <footer style="background: #1A1A1A; color: #9A95A3;">
   <div class="max-w-[1140px] mx-auto px-6 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
 
       <!-- Brand -->
       <div class="md:col-span-2">
-        <a href={`/${locale}`} class="inline-block mb-4">
+        <a href="/" class="inline-block mb-4">
           <img src="/C_COLORIDO.png" alt="ConnectUP" class="h-10 w-auto" />
         </a>
         <p class="text-sm leading-relaxed max-w-xs" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.tagline}</p>
@@ -44,30 +44,12 @@ const year = new Date().getFullYear();
       <div>
         <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4" style="font-family: 'Poppins', sans-serif;">{t.footer.linksTitle}</h3>
         <ul class="space-y-2.5">
-          <li><a href={`/${locale}`}              class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.home}</a></li>
-          <li><a href={`/${locale}/about`}        class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.about}</a></li>
-          <li><a href={`/${locale}/blog`}         class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.blog}</a></li>
-          <li><a href={`/${locale}/contact`}      class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.contact}</a></li>
-          <li><a href={`/${locale}/faq`}          class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.faq}</a></li>
-          <li><a href={`/${locale}/testimonials`} class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.testimonials}</a></li>
-        </ul>
-      </div>
-
-      <!-- Languages -->
-      <div>
-        <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4" style="font-family: 'Poppins', sans-serif;">{t.footer.languagesTitle}</h3>
-        <ul class="space-y-2.5">
-          {locales.map(l => (
-            <li>
-              <a
-                href={`/${l}`}
-                class={`text-sm transition-colors ${l === locale ? 'font-semibold' : 'hover:text-white'}`}
-                style={`color: ${l === locale ? '#07ffd2' : 'rgba(255,255,255,0.56)'}; font-family: 'Poppins', sans-serif;`}
-              >
-                {languageLabels[l]}
-              </a>
-            </li>
-          ))}
+          <li><a href="/"              class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.home}</a></li>
+          <li><a href="/about"         class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.about}</a></li>
+          <li><a href="/blog"          class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.blog}</a></li>
+          <li><a href="/contact"       class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.contact}</a></li>
+          <li><a href="/faq"           class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.faq}</a></li>
+          <li><a href="/testimonials"  class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.56); font-family: 'Poppins', sans-serif;">{t.footer.links.testimonials}</a></li>
         </ul>
       </div>
     </div>

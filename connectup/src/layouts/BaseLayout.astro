@@ -11,56 +11,23 @@ interface Props {
   ogType?: 'website' | 'article';
   pubDate?: Date;
   postAuthor?: string;
-  hreflangUrls?: Record<string, string>;
 }
 
-const { locale, title, description, ogType = 'website', pubDate, postAuthor, hreflangUrls } = Astro.props;
+const { locale, title, description, ogType = 'website', pubDate, postAuthor } = Astro.props;
 const t = getTranslations(locale);
 const siteUrl = 'https://theconnectup.com';
 
-const defaultTitles: Record<string, string> = {
-  'pt-br': 'ConnectUP — Mobilidade Profissional Global 360°',
-  'en':    'ConnectUP — 360° Global Professional Mobility',
-  'es':    'ConnectUP — Movilidad Profesional Global 360°',
-  'pl':    'ConnectUP — Globalna Mobilność Zawodowa 360°',
-};
+const defaultTitle = 'ConnectUP — Mobilidade Profissional Global 360°';
+const defaultDesc = 'Comunicação profissional em inglês, adequação de CV & LinkedIn e planejamento fiscal no Paraguai. Tudo que você precisa para atuar com liberdade no mercado global.';
 
-const defaultDescs: Record<string, string> = {
-  'pt-br': 'Comunicação profissional em inglês, adequação de CV & LinkedIn e planejamento fiscal no Paraguai. Tudo que você precisa para atuar com liberdade no mercado global.',
-  'en':    'Professional communication in English, CV & LinkedIn optimization, and Paraguay tax planning. Everything you need to work freely in the global market. ConnectUP.',
-  'es':    'Comunicación profesional en inglés, adecuación de CV y LinkedIn y planificación fiscal en Paraguay. ConnectUP — tu solución 360° para la movilidad global.',
-  'pl':    'Profesjonalna komunikacja po angielsku, optymalizacja CV i LinkedIn oraz planowanie podatkowe w Paragwaju. ConnectUP — Twoje rozwiązanie 360° dla globalnej mobilności.',
-};
+const pageTitle = title ? `${title} | ConnectUP` : defaultTitle;
+const pageDesc = description ?? defaultDesc ?? t.hero.subheadline;
 
-const pageTitle = title
-  ? `${title} | ConnectUP`
-  : (defaultTitles[locale] ?? 'ConnectUP — 360° Global Professional Mobility');
-
-const pageDesc = description
-  ?? defaultDescs[locale]
-  ?? t.hero.subheadline;
-
-const pageKeywords: Record<string, string> = {
-  'en':    'Paraguay tax residency, Paraguay cedula, territorial tax system, 0% foreign income tax, professional mobility, CV LinkedIn international, company formation Paraguay',
-  'pt-br': 'residência fiscal Paraguai, cédula paraguaia, planejamento fiscal, imposto renda exterior, mobilidade profissional, CV LinkedIn internacional, abertura empresa Paraguai',
-  'es':    'residencia fiscal Paraguay, cédula paraguaya, planificación fiscal, impuesto renta extranjera, movilidad profesional, CV LinkedIn internacional, empresa Paraguay',
-  'pl':    'rezydencja podatkowa Paragwaj, cédula paragwajska, planowanie podatkowe, podatek dochód zagraniczny, mobilność zawodowa, CV LinkedIn internationale',
-};
+const pageKeywords = 'residência fiscal Paraguai, cédula paraguaia, planejamento fiscal, imposto renda exterior, mobilidade profissional, CV LinkedIn internacional, abertura empresa Paraguai';
 
 const canonicalPath = Astro.url.pathname;
 const canonicalUrl = `${siteUrl}${canonicalPath}`;
 const ogImage = `${siteUrl}/C_COLORIDO.png`;
-const localePath = canonicalPath.replace(/^\/(en|pt-br|pl|es)/, '');
-
-const defaultHreflangUrls: Record<string, string> = {
-  'en':       `${siteUrl}/en${localePath}`,
-  'pt-BR':    `${siteUrl}/pt-br${localePath}`,
-  'pl':       `${siteUrl}/pl${localePath}`,
-  'es':       `${siteUrl}/es${localePath}`,
-  'x-default': `${siteUrl}/en${localePath}`,
-};
-
-const resolvedHreflangUrls = hreflangUrls ?? defaultHreflangUrls;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -150,12 +117,12 @@ const jsonLd = {
 };
 ---
 <!doctype html>
-<html lang={locale} class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={pageDesc} />
-    <meta name="keywords" content={pageKeywords[locale] ?? pageKeywords['en']} />
+    <meta name="keywords" content={pageKeywords} />
     <meta name="robots" content="index, follow" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -168,7 +135,7 @@ const jsonLd = {
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content="ConnectUP" />
-    <meta property="og:locale" content={locale === 'pt-br' ? 'pt_BR' : locale === 'pl' ? 'pl_PL' : locale === 'es' ? 'es_ES' : 'en_US'} />
+    <meta property="og:locale" content="pt_BR" />
     {ogType === 'article' && pubDate && (
       <meta property="article:published_time" content={pubDate.toISOString()} />
     )}
@@ -180,10 +147,6 @@ const jsonLd = {
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDesc} />
     <meta name="twitter:image" content={ogImage} />
-    <!-- Alternate language links -->
-    {Object.entries(resolvedHreflangUrls).map(([lang, url]) => (
-      <link rel="alternate" hreflang={lang} href={url} />
-    ))}
     <link rel="icon" type="image/png" href="/C_COLORIDO.png" />
     <title>{pageTitle}</title>
     <!-- JSON-LD Structured Data -->

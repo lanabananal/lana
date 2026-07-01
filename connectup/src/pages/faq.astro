@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const c = {
+  seoTitle: 'FAQ — Residência Fiscal no Paraguai | ConnectUP',
+  seoDesc: 'Respostas às perguntas mais frequentes sobre residência fiscal no Paraguai, cédula, RUC, abertura de empresa e saída fiscal do Brasil.',
+  badge: 'FAQ',
+  h1: 'Perguntas',
+  h1accent: 'Frequentes',
+  subtitle: 'Tudo que você precisa saber sobre a residência fiscal no Paraguai.',
+  items: [
+    { q: 'Quanto tempo leva o processo de residência fiscal no Paraguai?', a: 'O processo completo leva em média 60 dias. São necessárias duas viagens a Assunção de aproximadamente 5 dias úteis cada. A ConnectUP coordena tudo — da preparação dos documentos até o acompanhamento nas duas viagens.' },
+    { q: 'Preciso morar no Paraguai para manter a residência fiscal?', a: 'Não. A residência temporária exige apenas uma visita por ano. A permanente exige uma visita a cada 36 meses. Não existe exigência de dias mínimos no país.' },
+    { q: 'O Paraguai vai tributar minha renda do exterior?', a: 'Não. O Paraguai adota o sistema de tributação territorial. Apenas a renda gerada dentro do Paraguai é tributada à alíquota de 10%. Toda renda do exterior — trabalho remoto, freelance, dividendos, ganhos de capital — é 100% isenta.' },
+    { q: 'Quanto custa a residência fiscal no Paraguai com a ConnectUP?', a: 'Nossos pacotes começam a partir de R$ 12.000, incluindo taxas governamentais e consulares, preparação de documentos, acompanhamento nas duas viagens, abertura de empresa e RUC, e 30 dias de suporte pós-residência. Solicite uma proposta personalizada.' },
+    { q: 'O que é o RUC e por que eu preciso dele?', a: 'O RUC (Registro Único del Contribuyente) é o número de identificação fiscal do Paraguai. É necessário para abrir conta bancária, emitir notas fiscais e obter o certificado SET de residência fiscal. A ConnectUP inclui o registro do RUC no processo.' },
+    { q: 'O que é o certificado SET e por que ele é importante?', a: 'O certificado SET é o documento oficial de residência fiscal emitido pelo fisco paraguaio. É exigido por bancos, corretoras e exchanges de criptomoedas para comprovar o domicílio fiscal. Requer RUC ativo e declarações em dia.' },
+    { q: 'Posso manter meus bens e investimentos no Brasil?', a: 'Sim. Ações, imóveis, contas bancárias e investimentos no Brasil continuam sendo seus. Você passa a operar como não-residente fiscal no Brasil, seguindo as regras de saída fiscal aplicáveis.' },
+    { q: 'Preciso fechar meu MEI ou empresa no Brasil?', a: 'MEI e firmas individuais geralmente precisam ser encerradas ou convertidas. Ltda., S.A. e sociedades podem ser mantidas na maioria dos casos. A ConnectUP e seus parceiros jurídicos orientam conforme sua estrutura específica.' },
+    { q: 'A residência fiscal no Paraguai é legal?', a: 'Sim. A residência fiscal no Paraguai é um mecanismo legal, reconhecido internacionalmente e compatível com tratados. Baseia-se no sistema tributário territorial do Paraguai, vigente há décadas. A ConnectUP trabalha com advogados paraguaios licenciados em todo o processo.' },
+    { q: 'Posso abrir conta bancária no Paraguai?', a: 'Sim. Com a cédula em mãos, é possível abrir contas em bancos paraguaios em dólares e guaranis. A ConnectUP auxilia na abertura de conta como parte do suporte pós-residência.' },
+  ],
+  ctaTitle: 'Ainda tem dúvidas?',
+  ctaBtn: 'Agendar consulta gratuita →',
+  ctaNote: 'Gratuita · Sem compromisso',
+};
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: c.items.map((item: any) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<BaseLayout locale="pt-br" title={c.seoTitle} description={c.seoDesc}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} slot="head" />
+
+  <div style="padding-top:80px;">
+
+    <!-- HERO -->
+    <section class="py-20 px-6" style="background:linear-gradient(165deg,#1A1A1AF0 0%,#1a0a2eE8 100%);">
+      <div class="max-w-[860px] mx-auto text-center">
+        <div class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-6" style="background:rgba(7,255,210,0.08);border:1px solid rgba(7,255,210,0.2);color:rgba(7,255,210,0.85);font-family:'Poppins',sans-serif;">
+          {c.badge}
+        </div>
+        <h1 style="font-family:'Poppins',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:600;color:white;line-height:1.15;margin-bottom:1rem;">
+          {c.h1}<br/><span style="color:#07ffd2;">{c.h1accent}</span>
+        </h1>
+        <p style="font-family:'Poppins',sans-serif;font-size:1.05rem;color:rgba(255,255,255,0.65);font-weight:300;max-width:560px;margin:0 auto;">
+          {c.subtitle}
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ ACCORDION -->
+    <section class="py-16 px-6" style="background:#fafafa;">
+      <div class="max-w-[860px] mx-auto">
+        <div class="space-y-3">
+          {c.items.map((item: any, i: number) => (
+            <details class="faq-item" style="background:white;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+              <summary style="font-family:'Poppins',sans-serif;font-size:0.97rem;font-weight:600;color:#1a1a1a;padding:1.25rem 1.5rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+                {item.q}
+                <span class="faq-icon" style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:#07ffd2;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;color:#003830;"></span>
+              </summary>
+              <div style="padding:0 1.5rem 1.25rem;font-family:'Poppins',sans-serif;font-size:0.9rem;color:#555;line-height:1.75;border-top:1px solid #f0f0f0;margin-top:-1px;">
+                {item.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-6 text-center" style="background:linear-gradient(135deg,#003830,#006655);">
+      <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:white;margin-bottom:1.5rem;">{c.ctaTitle}</h2>
+      <a href="https://calendly.com/lana-theconnectup/connectup" target="_blank" rel="noopener noreferrer"
+        style="display:inline-flex;align-items:center;gap:8px;background:#07ffd2;color:#003830;font-family:'Poppins',sans-serif;font-weight:600;padding:14px 28px;border-radius:8px;">
+        {c.ctaBtn}
+      </a>
+      <p style="font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,0.45);margin-top:1rem;">{c.ctaNote}</p>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+.faq-icon::after { content: '+'; }
+details[open] .faq-icon { background: #8417aa; color: white; }
+details[open] .faq-icon::after { content: '−'; }
+details summary::-webkit-details-marker { display: none; }
+</style>

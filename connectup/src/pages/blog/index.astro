@@ -1,53 +1,18 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import BlogCard from '../../../components/BlogCard.astro';
-import { getTranslations, locales, isValidLocale } from '../../../i18n/translations';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getTranslations } from '../../i18n/translations';
 import { getCollection } from 'astro:content';
 
-export async function getStaticPaths() {
-  return locales.map(locale => ({ params: { locale } }));
-}
+const t = getTranslations('pt-br');
 
-const { locale } = Astro.params;
-if (!isValidLocale(locale)) {
-  return Astro.redirect('/en/blog', 302);
-}
+const blogDesc = 'Artigos e guias sobre residência fiscal no Paraguai, comunicação profissional internacional e posicionamento para o mercado global.';
 
-const t = getTranslations(locale);
-
-const blogDescs: Record<string, string> = {
-  'pt-br': 'Artigos e guias sobre residência fiscal no Paraguai, comunicação profissional internacional e posicionamento para o mercado global.',
-  'en':    'Guides and articles about Paraguay tax residency, international professional communication and global career positioning.',
-  'es':    'Artículos y guías sobre residencia fiscal en Paraguay, comunicación profesional internacional y posicionamiento en el mercado global.',
-  'pl':    'Artykuły i poradniki o rezydencji podatkowej w Paragwaju, profesjonalnej komunikacji międzynarodowej i pozycjonowaniu na rynku globalnym.',
-};
-
-// Category labels per locale
-const categoryLabels: Record<string, Record<string, string>> = {
-  'pt-br': {
-    all:                 'Todos',
-    tax:                 'Residência Fiscal',
-    comunicacao:         'Comunicação Profissional',
-    cv:                  'CV & LinkedIn',
-  },
-  'en': {
-    all:                 'All',
-    tax:                 'Tax Residency',
-    comunicacao:         'Professional Communication',
-    cv:                  'CV & LinkedIn',
-  },
-  'es': {
-    all:                 'Todos',
-    tax:                 'Residencia Fiscal',
-    comunicacao:         'Comunicación Profesional',
-    cv:                  'CV & LinkedIn',
-  },
-  'pl': {
-    all:                 'Wszystkie',
-    tax:                 'Rezydencja Podatkowa',
-    comunicacao:         'Komunikacja Zawodowa',
-    cv:                  'CV & LinkedIn',
-  },
+const categoryLabels = {
+  all:         'Todos',
+  tax:         'Residência Fiscal',
+  comunicacao: 'Comunicação Profissional',
+  cv:          'CV & LinkedIn',
 };
 
 // Tag patterns per category (case-insensitive partial match)
@@ -69,16 +34,16 @@ function getPostCategory(tags: string[]): string {
 
 const allPosts = await getCollection('blog');
 const posts = allPosts
-  .filter(p => p.data.lang === locale)
+  .filter(p => p.data.lang === 'pt-br')
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .map(p => ({ ...p, category: getPostCategory(p.data.tags ?? []) }));
 
-const cl = categoryLabels[locale] ?? categoryLabels['en'];
+const cl = categoryLabels;
 const hasComm = posts.some(p => p.category === 'comunicacao');
 const hasCv   = posts.some(p => p.category === 'cv');
 ---
 
-<BaseLayout locale={locale} title={t.blog.title} description={blogDescs[locale]}>
+<BaseLayout locale="pt-br" title={t.blog.title} description={blogDesc}>
 
   <!-- Header -->
   <section style="background:linear-gradient(165deg,#1A1A1AF0 0%,#1a0a2eE8 40%,#8417aaCC 100%);padding-top:120px;padding-bottom:4rem;padding-left:1.5rem;padding-right:1.5rem;position:relative;overflow:hidden;">
@@ -87,7 +52,7 @@ const hasCv   = posts.some(p => p.category === 'cv');
     <div style="max-width:1140px;margin:0 auto;position:relative;">
       <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;margin-bottom:0.75rem;">ConnectUP</span>
       <h1 style="font-family:'Poppins',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:600;color:white;line-height:1.15;margin-bottom:1rem;">{t.blog.title}</h1>
-      <p style="font-family:'Poppins',sans-serif;font-size:1.05rem;color:rgba(255,255,255,0.70);font-weight:300;max-width:600px;">{blogDescs[locale]}</p>
+      <p style="font-family:'Poppins',sans-serif;font-size:1.05rem;color:rgba(255,255,255,0.70);font-weight:300;max-width:600px;">{blogDesc}</p>
     </div>
   </section>
 
@@ -106,10 +71,7 @@ const hasCv   = posts.some(p => p.category === 'cv');
     <div style="max-width:1140px;margin:0 auto;">
       {posts.length === 0 ? (
         <p style="text-align:center;font-family:'Poppins',sans-serif;color:#795389;padding:5rem 0;">
-          {locale === 'en' ? 'Posts coming soon...' :
-           locale === 'pt-br' ? 'Posts em breve...' :
-           locale === 'pl' ? 'Posty już wkrótce...' :
-           'Posts próximamente...'}
+          Posts em breve...
         </p>
       ) : (
         <div id="posts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -120,7 +82,7 @@ const hasCv   = posts.some(p => p.category === 'cv');
                 description={post.data.description}
                 pubDate={post.data.pubDate}
                 postSlug={post.data.postSlug}
-                locale={locale}
+                locale="pt-br"
                 author={post.data.author}
                 tags={post.data.tags}
                 readMore={t.blog.readMore}

@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RelatedContent from '../components/RelatedContent.astro';
+
+const c = {
+  seoTitle: 'Planejamento Financeiro Internacional | Renda em Dólar e Euro | ConnectUP',
+  seoDesc: 'Você recebe em dólar, euro ou libra e não sabe como otimizar sua carga tributária? Planejamento financeiro para profissionais com renda em múltiplas moedas.',
+  badge: 'ConnectUP',
+  h1: 'Planejamento Financeiro',
+  h1accent: 'Internacional',
+  subtitle: 'Para profissionais que recebem em múltiplas moedas e precisam pagar menos imposto — de forma legal.',
+  desc: 'Receber em dólar, euro ou libra é uma conquista. Mas sem planejamento, você paga impostos como se fosse um profissional local — e perde uma parte significativa disso que veio de fora. Existe uma forma melhor.',
+  challengeTag: 'O problema',
+  challengeTitle: 'Por que renda em múltiplas moedas exige planejamento específico',
+  challenges: [
+    {
+      n: '01',
+      title: 'Câmbio e tributação simultâneos',
+      desc: 'Quando você converte dólares para reais, não é só câmbio — é um evento fiscal. Dependendo de como está estruturado, você pode estar pagando imposto duas vezes sobre o mesmo valor.',
+    },
+    {
+      n: '02',
+      title: 'Regras diferentes para cada fonte',
+      desc: 'Rendimento de cliente americano, dividendo de empresa estrangeira, salário de empresa europeia — cada um tem tratamento fiscal diferente. Confundir isso custa caro.',
+    },
+    {
+      n: '03',
+      title: 'Falta de estrutura jurídica adequada',
+      desc: 'Receber como pessoa física quando deveria receber como empresa (ou vice-versa) pode triplicar sua carga tributária sem que você perceba.',
+    },
+    {
+      n: '04',
+      title: 'Variação cambial não planejada',
+      desc: 'O câmbio sobe — e com ele o imposto. Sem hedge financeiro ou estrutura adequada, você paga mais imposto exatamente quando mais precisa de liquidez.',
+    },
+  ],
+  solutionTag: 'O que fazemos',
+  solutionTitle: 'Como estruturamos seu planejamento',
+  solutions: [
+    {
+      icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"/>`,
+      title: 'Diagnóstico da situação atual',
+      desc: 'Mapeamos todas as suas fontes de renda em moeda estrangeira, estruturas jurídicas existentes e carga tributária real — não estimada.',
+    },
+    {
+      icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>`,
+      title: 'Estratégia de estruturação',
+      desc: 'Definimos a melhor estrutura para receber — empresa paraguaia, holding internacional, conta não-residente — com base no seu perfil e volume.',
+    },
+    {
+      icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>`,
+      title: 'Planejamento fiscal integrado',
+      desc: 'Integramos o planejamento financeiro com o fiscal — incluindo residência no Paraguai quando aplicável — para uma visão completa e coerente.',
+    },
+  ],
+  whoTag: 'Para quem',
+  whoTitle: 'Esse serviço é para você se',
+  who: [
+    { n: '01', text: 'Recebe pagamentos em dólar, euro, libra ou outra moeda estrangeira' },
+    { n: '02', text: 'Tem clientes ou empregadores em mais de um país' },
+    { n: '03', text: 'Está considerando abertura de empresa fora do Brasil' },
+    { n: '04', text: 'Quer entender o impacto fiscal de mudar de residência fiscal' },
+    { n: '05', text: 'Investe em ativos no exterior (ações, ETFs, crypto, fundos)' },
+  ],
+  ctaTitle: 'Vamos mapear sua situação sem compromisso?',
+  ctaBtn: 'Agendar diagnóstico gratuito →',
+  ctaSecondary: 'Fale pelo WhatsApp',
+  ctaNote: 'Consulta gratuita · 30 minutos · Sem compromisso',
+};
+---
+
+<BaseLayout locale="pt-br" title={c.seoTitle} description={c.seoDesc}>
+  <div style="padding-top:80px;">
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden pt-20 pb-20" style="background:linear-gradient(165deg,#1A1A1AF0 0%,#0a1e2eE8 40%,#07ffd215 100%);">
+      <div class="absolute top-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none" style="background:#07ffd210;filter:blur(100px);"></div>
+      <div class="absolute bottom-0 left-1/4 w-[300px] h-[300px] rounded-full pointer-events-none" style="background:#8417aa25;filter:blur(80px);"></div>
+      <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image:radial-gradient(#07ffd2 1px,transparent 1px);background-size:32px 32px;"></div>
+
+      <div class="relative max-w-[1140px] mx-auto px-6">
+        <div class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-8" style="background:rgba(7,255,210,0.08);border:1px solid rgba(7,255,210,0.2);color:rgba(7,255,210,0.85);font-family:'Poppins',sans-serif;">
+          {c.badge}
+        </div>
+        <h1 style="font-family:'Poppins',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.1;color:white;" class="mb-4">
+          {c.h1}<br/><span style="color:#07ffd2;">{c.h1accent}</span>
+        </h1>
+        <p style="font-family:'Poppins',sans-serif;font-size:clamp(1rem,2vw,1.15rem);color:rgba(255,255,255,0.70);font-weight:300;max-width:640px;line-height:1.7;" class="mb-4">{c.subtitle}</p>
+        <p style="font-family:'Poppins',sans-serif;font-size:0.95rem;color:rgba(255,255,255,0.60);font-weight:300;max-width:680px;line-height:1.8;">{c.desc}</p>
+      </div>
+    </section>
+
+    <!-- CHALLENGES — B&W image + overlay -->
+    <section class="relative py-16 px-6">
+      <div class="absolute inset-0" style="background-image:url('/professional-woman.jpg');background-size:cover;background-position:center;filter:grayscale(1) brightness(0.35);"></div>
+      <div class="absolute inset-0" style="background:rgba(10,30,46,0.72);"></div>
+      <div class="relative max-w-[1140px] mx-auto" style="z-index:2;">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;">{c.challengeTag}</span>
+          <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;color:white;margin-top:0.5rem;">{c.challengeTitle}</h2>
+        </div>
+        <div class="challenge-grid">
+          {c.challenges.map((item: any) => (
+            <div class="glass-card">
+              <div style="font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:700;color:#07ffd2;margin-bottom:0.5rem;line-height:1;">{item.n}</div>
+              <h3 style="font-family:'Poppins',sans-serif;font-size:0.92rem;font-weight:600;color:white;margin-bottom:0.4rem;">{item.title}</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTIONS — light section -->
+    <section style="background:#f7f4fa;padding:4rem 1.5rem;">
+      <div style="max-width:1100px;margin:0 auto;">
+        <div style="text-align:center;margin-bottom:2.5rem;">
+          <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#795389;margin-bottom:0.5rem;">{c.solutionTag}</span>
+          <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:#1a1a1a;">{c.solutionTitle}</h2>
+        </div>
+        <div class="solutions-grid">
+          {c.solutions.map((svc: any) => (
+            <div class="solution-card">
+              <div style="width:48px;height:48px;border-radius:12px;background:#07ffd215;border:1px solid rgba(7,255,210,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;flex-shrink:0;">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#07ffd2" stroke-width="1.5" set:html={svc.icon}></svg>
+              </div>
+              <h3 style="font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;color:#1a1a1a;margin-bottom:0.5rem;">{svc.title}</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:300;color:#555;line-height:1.7;flex:1;">{svc.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO — dark + B&W -->
+    <section class="relative py-16 px-6">
+      <div class="absolute inset-0" style="background-image:url('/horizon-person.jpg');background-size:cover;background-position:center 30%;filter:grayscale(1) brightness(0.30);"></div>
+      <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(10,30,46,0.55),rgba(10,0,16,0.80));"></div>
+      <div class="relative max-w-[900px] mx-auto" style="z-index:2;">
+        <div style="text-align:center;margin-bottom:2.5rem;">
+          <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;margin-bottom:0.75rem;">{c.whoTag}</span>
+          <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;color:white;">{c.whoTitle}</h2>
+        </div>
+        <div class="who-grid">
+          {c.who.map((item: any) => (
+            <div style="background:rgba(255,255,255,0.07);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:0.75rem;">
+              <span style="color:#07ffd2;font-weight:700;font-size:0.85rem;flex-shrink:0;font-family:'Poppins',sans-serif;">{item.n}</span>
+              <p style="font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:400;color:rgba(255,255,255,0.88);line-height:1.6;margin:0;">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED -->
+    <RelatedContent
+      locale="pt-br"
+      tags={['planejamento financeiro', 'financial planning', 'moeda estrangeira', 'dólar', 'euro', 'imposto', 'tax', 'internacional', 'internacional', 'investimento', 'investment']}
+      tagLabel="Conteúdo"
+    />
+
+    <!-- CTA -->
+    <section class="relative py-20 overflow-hidden" style="background:linear-gradient(135deg,#0a1e2e,#07ffd215 80%,#0a1e2e);">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,#470050,#8417aa);"></div>
+      <div class="absolute top-0 right-0 w-[350px] h-[350px] rounded-full pointer-events-none" style="background:rgba(231,167,241,0.2);filter:blur(80px);"></div>
+      <div class="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full pointer-events-none" style="background:rgba(7,255,210,0.1);filter:blur(80px);"></div>
+      <div class="relative max-w-[1140px] mx-auto px-6 text-center">
+        <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.5rem,4vw,2rem);font-weight:600;color:white;margin-bottom:1rem;">{c.ctaTitle}</h2>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+          <a href="https://calendly.com/lana-theconnectup/connectup" target="_blank" rel="noopener noreferrer"
+            style="display:inline-flex;align-items:center;gap:8px;background:white;color:#8417aa;font-family:'Poppins',sans-serif;font-weight:600;padding:14px 28px;border-radius:8px;transition:all 0.2s;"
+            onmouseover="this.style.background='#e1a7f1'" onmouseout="this.style.background='white'">
+            {c.ctaBtn}
+          </a>
+          <a href="https://wa.me/5511913062315" target="_blank" rel="noopener noreferrer"
+            style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid white;color:white;font-family:'Poppins',sans-serif;font-weight:500;padding:14px 28px;border-radius:8px;">
+            {c.ctaSecondary}
+          </a>
+        </div>
+        <p style="font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,0.45);font-weight:300;">{c.ctaNote}</p>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+.glass-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  padding: 22px 20px;
+  transition: transform 0.2s;
+}
+.glass-card:hover { transform: translateY(-3px); }
+
+.challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.solution-card {
+  background: white;
+  border: 1px solid #e8e4ed;
+  border-radius: 14px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  border-top: 3px solid #07ffd2;
+}
+
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+  align-items: stretch;
+}
+.who-grid > div:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  .challenge-grid  { grid-template-columns: 1fr; }
+  .solutions-grid  { grid-template-columns: 1fr; }
+  .who-grid        { grid-template-columns: 1fr; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
