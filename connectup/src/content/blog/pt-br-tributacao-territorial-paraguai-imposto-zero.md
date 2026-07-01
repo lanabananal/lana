@@ -112,4 +112,4 @@ Se você tem renda gerada fora do Brasil e está pagando imposto de renda sobre 
 
 A ConnectUP faz essa análise gratuitamente — e se fizer sentido, cuida de todo o processo.
 
-[Simular minha economia fiscal →](/pt-br/planejamento-fiscal)
+[Simular minha economia fiscal →](/contact)

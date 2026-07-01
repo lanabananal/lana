@@ -120,4 +120,4 @@ Depende do tempo de apostilamento dos documentos no Brasil (pode levar de 2 a 8 
 
 A ConnectUP conduz esse processo de ponta a ponta: da documentação paraguaia à orientação sobre a Declaração de Saída Definitiva no Brasil. Se você está pensando em dar esse passo, comece com uma conversa — a análise da sua situação é gratuita.
 
-[Falar com a ConnectUP →](/pt-br/planejamento-fiscal)
+[Falar com a ConnectUP →](/contact)

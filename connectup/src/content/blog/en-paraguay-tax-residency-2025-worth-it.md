@@ -81,4 +81,4 @@ What's changed in 2025: more countries are tightening their fiscal exit rules an
 
 If you're in the right profile, the question isn't whether it's worth it. It's how soon you start.
 
-[Calculate your estimated savings](https://theconnectup.com/pt-br/planejamento-fiscal) or [book a free call with ConnectUP](https://calendly.com/lana-theconnectup/connectup).
+[Book a free call with ConnectUP](https://calendly.com/lana-theconnectup/connectup).

@@ -117,4 +117,4 @@ Em geral, os custos fixos incluem: contador local (R$ 400–800/mês equivalente
 
 A ConnectUP acompanha o processo completo: da documentação para a residência paraguaia à abertura da empresa e saída definitiva do Brasil. Se você está pronto para dar esse passo, o ponto de partida é uma conversa — sem custo e sem compromisso.
 
-[Falar com a ConnectUP →](/pt-br/planejamento-fiscal)
+[Falar com a ConnectUP →](/contact)

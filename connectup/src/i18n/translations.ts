@@ -18,12 +18,6 @@ const translations = {
       contact: 'Contato',
       getStarted: 'Começar',
       language: 'Idioma',
-      services: 'Carreira',
-      comunicacaoProfissional: 'Comunicação Profissional',
-      cvLinkedin: 'CV & LinkedIn',
-      financeiro: 'Planejamento Financeiro',
-      planejamentoInternacional: 'Planejamento Financeiro Internacional',
-      planejamentoFiscal: 'Planejamento Fiscal no Paraguai',
     },
     hero: {
       badge: 'Mobilidade Profissional 360°',
