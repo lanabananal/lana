@@ -1,0 +1,108 @@
+---
+const label = { tag: 'Instagram', title: 'Últimos posts do Instagram', cta: 'Ver mais no Instagram →' };
+const profileUrl = 'https://www.instagram.com/connectupbr/';
+
+const posts = [
+  { caption: 'Bastidores da residência fiscal no Paraguai' },
+  { caption: 'Dicas rápidas sobre tributação territorial' },
+  { caption: 'Perguntas e respostas com nossos clientes' },
+];
+---
+
+<section style="background:#111118; padding:4rem 1.5rem;">
+  <div style="max-width:860px;margin:0 auto;">
+
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <span style="display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#07ffd2;margin-bottom:0.5rem;">
+        {label.tag}
+      </span>
+      <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:white;">
+        {label.title}
+      </h2>
+    </div>
+
+    <!-- Placeholder notice -->
+    <p style="text-align:center;font-family:'Poppins',sans-serif;font-size:0.78rem;color:rgba(255,196,7,0.85);margin-bottom:2rem;">
+      ⚠️ Posts provisórios — substitua pelos posts reais do Instagram.
+    </p>
+
+    <!-- Grid -->
+    <div class="ig-grid">
+      {posts.map((p) => (
+        <a href={profileUrl} target="_blank" rel="noopener noreferrer" class="ig-card">
+          <div class="ig-thumb">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#e1a7f1" stroke-width="1.5">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4.5" />
+              <circle cx="17.2" cy="6.8" r="1.1" fill="#e1a7f1" stroke="none" />
+            </svg>
+          </div>
+          <p class="ig-caption">{p.caption}</p>
+        </a>
+      ))}
+    </div>
+
+    <!-- Profile link -->
+    <div class="text-center mt-10">
+      <a
+        href={profileUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style="display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:500;color:#07ffd2;border:1px solid rgba(7,255,210,0.35);padding:10px 22px;border-radius:8px;transition:background 0.2s;"
+        onmouseover="this.style.background='rgba(7,255,210,0.08)'"
+        onmouseout="this.style.background='transparent'"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#07ffd2">
+          <path d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.22.6 1.77 1.15.55.55.89 1.11 1.15 1.77.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 01-1.15 1.77 4.9 4.9 0 01-1.77 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 01-1.77-1.15 4.9 4.9 0 01-1.15-1.77c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.22 1.15-1.77A4.9 4.9 0 015.45 2.53c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm0 8.25A3.25 3.25 0 1112 8.5a3.25 3.25 0 010 6.5zm5.4-8.51a1.17 1.17 0 11-2.34 0 1.17 1.17 0 012.34 0z"/>
+        </svg>
+        {label.cta}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.ig-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-decoration: none;
+  background: #1a1a2e;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.ig-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(225,167,241,0.4);
+}
+.ig-thumb {
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2a1a3a, #1a1a2e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ig-caption {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  line-height: 1.4;
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .ig-grid { grid-template-columns: 1fr; max-width: 280px; }
+}
+</style>
