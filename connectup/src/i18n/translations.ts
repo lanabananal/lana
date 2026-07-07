@@ -21,11 +21,11 @@ const translations = {
     },
     hero: {
       badge: 'Residência Fiscal no Paraguai',
-      headline: 'Pare de pagar',
-      headline2: 'impostos em excesso.',
+      headline: 'Planejamento fiscal',
+      headline2: 'no Paraguai.',
       subheadline:
-        'A ConnectUP cuida de todo o processo para você se tornar residente fiscal no Paraguai — 0% de imposto sobre renda do exterior, legal e com suporte jurídico completo do início ao fim.',
-      cta: 'Comece sua residência fiscal',
+        'A ConnectUP cuida de todo o processo para você se tornar residente fiscal no Paraguai — 0% de imposto sobre renda do exterior, com suporte jurídico completo do início ao fim.',
+      cta: 'Comece seu planejamento fiscal',
       ctaSecondary: 'Nossos serviços',
     },
     services: {
@@ -68,19 +68,19 @@ const translations = {
     },
 
     about: {
-      title: 'Sobre Mim',
-      badge: 'Minha História',
+      title: 'Sobre Nós',
+      badge: 'Nossa História',
       story: [
-        "Cresci no Brasil, construí minha carreira lá e amava meu país — mas não conseguia mais ver meu dinheiro suado desaparecer num sistema tributário que não devolvia nada.",
-        'Em 2021, dei o salto. Me mudei para o Paraguai, estabeleci minha residência fiscal e abri minha empresa no regime de Maquila. A diferença foi transformadora. Mais dinheiro, mais liberdade, mais clareza.',
-        'Criei a ConnectUp porque continuava recebendo perguntas de empreendedores brasileiros, nômades digitais e empresários de todo o mundo que queriam a mesma liberdade, mas não sabiam por onde começar.',
-        'Hoje, ajudo pessoas do Brasil, Polônia, Espanha e de todo o mundo a trilharem o caminho para o Paraguai — de forma legal, segura e eficiente.',
+        "A ConnectUP nasceu da experiência de quem viveu na pele a saída do Brasil para o Paraguai — e viu de perto como um sistema tributário que não devolve nada pode consumir anos de trabalho duro.",
+        'Depois de estabelecer residência fiscal e abrir empresa no regime de Maquila no Paraguai, a diferença foi transformadora: mais dinheiro, mais liberdade, mais clareza.',
+        'Foi dessa experiência que a ConnectUP surgiu — para responder às dúvidas de empreendedores brasileiros, nômades digitais e empresários de todo o mundo que buscavam a mesma liberdade, mas não sabiam por onde começar.',
+        'Hoje, ajudamos pessoas do Brasil, Polônia, Espanha e de todo o mundo a trilharem o caminho para o Paraguai — de forma legal, segura e eficiente.',
       ],
-      mission: 'Minha missão é simples: ajudar você a guardar mais do que ganha.',
+      mission: 'Nossa missão é simples: ajudar você a guardar mais do que ganha.',
       values: [
         { title: 'Transparência', description: 'Sem taxas ocultas. Sem surpresas. Preços claros e conselhos honestos.' },
         { title: 'Expertise', description: 'Anos de experiência prática com a legislação fiscal e os processos de residência no Paraguai.' },
-        { title: 'Toque Pessoal', description: 'Passei por isso. Sei exatamente o que você precisa.' },
+        { title: 'Toque Pessoal', description: 'Vivemos isso na pele. Sabemos exatamente o que você precisa.' },
       ],
     },
     blog: {
@@ -95,7 +95,7 @@ const translations = {
       rights: 'Todos os direitos reservados.',
       linksTitle: 'Links',
       languagesTitle: 'Idiomas',
-      links: { home: 'Início', about: 'Sobre', blog: 'Blog', contact: 'Contato', faq: 'FAQ', testimonials: 'Depoimentos' },
+      links: { home: 'Início', about: 'Sobre', blog: 'Blog', contact: 'Contato', faq: 'FAQ' },
     },
     video: {
       label: 'ASSISTA — ADVOGADA PARAGUAIA RESPONDE',
@@ -148,7 +148,7 @@ const translations = {
       title: 'Entre em contato',
       subtitle: 'Respondemos em até 24 horas.',
       founderRole: 'Fundadora & Consultora',
-      founderBio: 'Vim ao Paraguai para entender o sistema por dentro e me tornei o elo que faltava.',
+      founderBio: 'Viemos ao Paraguai para entender o sistema por dentro e nos tornamos o elo que faltava.',
       scheduleBtn: 'Agendar reunião',
       namePlaceholder: 'Seu nome',
       phonePlaceholder: 'Seu telefone',
