@@ -719,7 +719,7 @@ function plate(p) {
   const bill = events.filter(e => placeFor(e) === p && evDay(e) >= today && evDay(e) <= ymd(until)).sort((x, y) => (evDay(x) + x._time < evDay(y) + y._time ? -1 : 1));
   const dname = d => new Date(2024, 0, 7 + d).toLocaleDateString(loc(), { weekday: 'long' });
   const dealDays = p._deal ? (p._deal.days.size === 7 ? '' : [...p._deal.days].sort().map(dname).join(', ')) : '';
-  const yes = v => has(v) ? String(v).replace(/^(yes|sí|si)\s*[:(]\s*/i, '').replace(/\)$/, '').replace(/^(yes|sí|si)$/i, '') : '';
+  const yes = v => { if (!has(v)) return ''; const x = String(v), m = x.match(/^(yes|sí|si)\s*\((.*)\)$/i); return m ? m[2] : x.replace(/^(yes|sí|si)\s*:\s*/i, '').replace(/^(yes|sí|si)$/i, ''); };
   const w = lang === 'es' ? { in: 'en', music: 'Música', food: 'Cocina', bar: 'Barra' } : { in: 'in', music: 'Music', food: 'Kitchen', bar: 'Bar' };
   const story = [[p['Type / style'] || t(p._cat), p._hood].filter(has).join(' ' + w.in + ' '), yes(p['Live music']) && w.music + ': ' + yes(p['Live music']),
     yes(p.Food) && w.food + ': ' + yes(p.Food), yes(p.Cocktails) && w.bar + ': ' + yes(p.Cocktails)].filter(Boolean).map(x => x.replace(/[.\s]+$/, '')).join('. ') + '.';
