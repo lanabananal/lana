@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/citybanana/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1E0836">
+<title>City Banana</title>
+<link rel="icon" href="symbol.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script>/* follow the system theme; .dk also forces dark on the map and detail screens */
+(()=>{const q=matchMedia('(prefers-color-scheme: dark)'),f=()=>document.documentElement.classList.toggle('dk',q.matches);f();q.addEventListener('change',f)})();</script>
+<style>
+:root{--night:#1E0836;--ame:#3D0F6B;--vio:#6A1FA8;--orc:#C47CE8;--gold:#E4A826;--ogold:#B07D12;--cream:#FFF5DA;--mist:#E9DDF5;
+ --bg:var(--cream);--card:#fff;--line:var(--mist);--chipbg:#fff;--chipline:var(--mist);--daybg:var(--mist);--tb:var(--ame);--tx:var(--night);--tx2:#4B3A63;
+ --nav:var(--cream);--navtx:#6B5683;--navon:var(--ame);--navline:var(--mist);--acc:var(--ame);--app:min(100vw,430px);--ttl:'Cinzel',Georgia,serif;color-scheme:light}
+.dk{--bg:#2A0A4A;--card:#3D0F6B;--line:rgba(228,168,38,.22);--chipbg:#3D0F6B;--chipline:rgba(228,168,38,.4);--daybg:#3D0F6B;--tb:var(--night);--tx:var(--cream);--tx2:#CDB8E6;
+ --nav:var(--night);--navtx:#CDB8E6;--navon:var(--gold);--navline:rgba(228,168,38,.25);--acc:var(--gold);color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--night)}
+body{font:16px/1.5 'Lora',Georgia,serif;color:var(--tx)}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+#app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);color:var(--tx);padding:0 16px calc(104px + env(safe-area-inset-bottom))}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* header */
+header{position:sticky;top:0;z-index:5;background:var(--bg);margin:0 -16px;padding:calc(16px + env(safe-area-inset-top)) 16px 12px;display:flex;align-items:center;gap:10px}
+header .ht{flex:1;min-width:0}
+header h1{margin:0;font:600 26px/1.18 var(--ttl);letter-spacing:.02em;text-wrap:balance}
+header .sub{color:var(--tx2)}
+.hicon{width:48px;height:48px;flex:none;object-fit:contain}
+.lang{width:44px;height:44px;flex:none;border-radius:22px;border:1.5px solid var(--chipline);background:var(--chipbg);font:700 13px var(--ttl);letter-spacing:.08em}
+h2{font:700 13px 'Lora',Georgia,serif;letter-spacing:.06em;text-transform:uppercase;color:var(--acc);margin:22px 4px 10px}
+.joke{text-align:center;color:var(--tx2);font-style:italic;margin:24px 0 8px}
+.empty{text-align:center;padding:24px 12px;color:var(--tx2);font-size:18px}
+/* day strip */
+.days{display:flex;gap:8px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none}
+.day{flex:0 0 48px;height:68px;border-radius:18px;background:var(--daybg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:var(--ttl);color:var(--tx)}
+.day small{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.day b{font-size:20px;font-weight:700;line-height:1}
+.day.on{background:var(--gold);color:var(--night)}
+/* search + chips */
+.search{position:relative;margin:8px 0 10px}
+.search svg{position:absolute;left:18px;top:15px;width:22px;height:22px;color:var(--gold)}
+.search input{width:100%;height:52px;border-radius:26px;border:1.5px solid var(--gold);background:var(--chipbg);color:var(--tx);padding:0 18px 0 52px;font-size:16px;outline:none}
+.search input::placeholder{color:var(--tx2);opacity:1}
+.chips{display:flex;gap:8px;overflow-x:auto;margin:0 -16px;padding:2px 16px 8px;scrollbar-width:none}
+.chip{flex:none;height:44px;padding:0 18px;border-radius:22px;border:1px solid var(--chipline);background:var(--chipbg);color:var(--tx);font:600 15px 'Lora',Georgia,serif;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.chip.on{background:var(--gold);border-color:var(--gold);color:var(--night);font-weight:700}
+.chip svg{width:18px;height:18px}
+/* cards */
+.card{display:flex;gap:14px;align-items:center;padding:14px;margin-bottom:12px;border-radius:24px;background:var(--card);border:2px solid var(--line);width:100%;text-align:left;color:var(--tx)}
+.tb{flex:0 0 68px;height:68px;border-radius:18px;background:var(--tb);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--ttl)}
+.tb b{color:var(--gold);font-size:20px;font-weight:700;line-height:1.15}.tb b.sm{font-size:14px}
+.tb small{color:var(--cream);font-size:12px;font-weight:600;letter-spacing:.06em}
+.tb svg{width:30px;height:30px;color:var(--gold)}
+.cb{min-width:0;flex:1;display:flex;flex-direction:column;gap:4px}
+.cb .ct{font-weight:700;font-size:17px;line-height:1.3;overflow-wrap:anywhere}
+.cb p{margin:0;color:var(--tx2);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:13px;font:700 12px 'Lora',Georgia,serif;border:1.5px solid var(--chipline);color:var(--tx2)}
+.pill.free{background:var(--gold);border-color:var(--gold);color:var(--night)}
+.pill.live{background:var(--orc);border-color:var(--orc);color:var(--night)}
+.pill.live:before{content:'';width:6px;height:6px;border-radius:3px;background:var(--night)}
+.pill.tix{background:var(--vio);border-color:var(--vio);color:var(--cream)}
+.pill.new{background:var(--mist);border-color:var(--mist);color:var(--ame)}
+.pill.out{border-color:var(--tx);color:var(--tx)}
+/* nav */
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:var(--app);height:calc(80px + env(safe-area-inset-bottom));padding:6px 8px env(safe-area-inset-bottom);background:var(--nav);display:flex;z-index:20;border-top:1px solid var(--navline)}
+.nav button{flex:1;height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--navtx);font:500 12px 'Lora',Georgia,serif}
+.nav svg{width:24px;height:24px}
+.nav .on{color:var(--navon);font-weight:700}
+/* filter sheet */
+.veil{position:fixed;inset:0;background:#1E083699;z-index:40;display:flex;align-items:flex-end;justify-content:center}
+.sheet{width:var(--app);max-height:85vh;overflow:auto;background:var(--bg);color:var(--tx);border-radius:24px 24px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom))}
+.sheet label{display:block;font:700 13px 'Lora',Georgia,serif;letter-spacing:.06em;text-transform:uppercase;color:var(--tx2);margin:14px 4px 6px}
+.sheet select{width:100%;height:48px;border-radius:24px;border:1.5px solid var(--chipline);background:var(--chipbg);padding:0 16px;font-size:16px}
+.sheet .tog{display:flex;align-items:center;gap:12px;min-height:44px;text-transform:none;letter-spacing:0;font:400 16px 'Lora',Georgia,serif;color:var(--tx)}
+.tog input{width:24px;height:24px;accent-color:var(--gold)}
+.row2{display:flex;gap:10px;margin-top:20px}.row2 .btn{flex:1}
+.btn{min-height:56px;padding:0 24px;border-radius:28px;font:700 18px var(--ttl);letter-spacing:.06em;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn.sm{min-height:44px;padding:0 20px;border-radius:22px;font:700 15px 'Lora',Georgia,serif;letter-spacing:0;text-transform:none}
+.btn.gold{background:var(--gold);color:var(--night)}
+.btn.ghost{border:1.5px solid var(--chipline);color:var(--tx)}
+/* detail (always dark, like the brand board) */
+.detail{position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:var(--app);background:var(--bg);color:var(--tx);z-index:30;overflow:auto;display:flex;flex-direction:column}
+.hero{position:relative;flex:none;height:340px;display:flex;align-items:center;justify-content:center;
+ background:repeating-conic-gradient(from -90deg at 50% 100%,rgba(228,168,38,.16) 0deg 4deg,rgba(228,168,38,0) 4deg 12deg),radial-gradient(ellipse at 50% 100%,#6A1FA8 0%,#3D0F6B 55%,#2A0A4A 100%)}
+.hero img{width:290px;max-width:76%;height:auto}
+.back{position:absolute;left:16px;top:calc(20px + env(safe-area-inset-top));width:48px;height:48px;border-radius:24px;border:1px solid rgba(228,168,38,.4);background:rgba(30,8,54,.7);color:var(--gold);display:grid;place-items:center}
+.back svg{width:24px;height:24px}
+.dbody{padding:24px 24px 28px;display:flex;flex-direction:column;gap:14px;flex:1}
+.dbody .pill{height:30px;padding:0 14px;border-radius:15px;font-size:13px}
+.dbody h1{margin:0;font:600 34px/1.1 var(--ttl);color:var(--cream);overflow-wrap:anywhere}
+.lead{margin:0;color:var(--tx2);line-height:1.55}
+.fact{display:flex;align-items:center;gap:14px}.fact svg{width:24px;height:24px;color:var(--gold)}
+.more{margin-top:8px;border-top:1px solid var(--line)}
+.r{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}.r svg{width:24px;height:24px;color:var(--gold);margin-top:2px}
+.r small,dt{display:block;font:700 13px 'Lora',Georgia,serif;letter-spacing:.06em;text-transform:uppercase;color:var(--tx2)}
+.r a{color:var(--orc)}
+details{margin-top:6px}summary{font:700 13px 'Lora',Georgia,serif;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);min-height:44px;display:flex;align-items:center;cursor:pointer}
+dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
+.foot{position:sticky;bottom:0;display:flex;align-items:center;gap:18px;padding:16px 20px calc(16px + env(safe-area-inset-bottom));background:var(--night);border-top:1px solid rgba(228,168,38,.25)}
+.foot small{display:block;font-size:13px;color:var(--tx2)}
+.foot b{display:block;font:700 24px var(--ttl);color:var(--gold);max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.foot .btn{flex:1}
+/* map (always dark) */
+#mapwrap{overflow:hidden;position:fixed;top:0;bottom:calc(80px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:var(--app);z-index:10;color:var(--tx)}
+#map{position:absolute;inset:0;background:#2A0A4A}
+.lbl{background:none;border:0;white-space:nowrap;font:600 11px 'Lora',Georgia,serif;letter-spacing:.08em;text-transform:uppercase;color:#9F86C0;text-shadow:0 0 4px #2A0A4A,0 0 4px #2A0A4A}
+.lbl span{display:block;transform:translate(-50%,-50%)}
+.lbl.big{font:600 13px var(--ttl);color:#CDB8E6;letter-spacing:.1em}
+/* bell, actions, "For you" */
+.bell{position:relative;width:44px;height:44px;flex:none;border-radius:22px;border:1.5px solid var(--chipline);background:var(--chipbg);color:var(--acc);display:grid;place-items:center}
+.bell svg{width:22px;height:22px}
+.bell b{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--gold);color:var(--night);font:700 12px/20px 'Lora',Georgia,serif;text-align:center}
+.acts{display:flex;gap:10px;flex-wrap:wrap}
+.act{flex:1;min-width:140px;min-height:48px;padding:0 16px;border-radius:24px;border:1.5px solid rgba(228,168,38,.5);color:var(--cream);display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 15px 'Lora',Georgia,serif}
+.act svg{width:22px;height:22px;color:var(--gold)}
+.act.on{background:var(--gold);border-color:var(--gold);color:var(--night)}.act.on svg{color:var(--night)}
+.pill.gb{border-color:var(--gold);color:var(--acc)}
+.you{position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:var(--app);background:var(--bg);color:var(--tx);z-index:30;overflow:auto;padding:0 16px 32px}
+.you .who{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:24px;background:var(--card);border:2px solid var(--line)}
+.you .who svg{width:28px;height:28px;color:var(--gold)}.you .sub{color:var(--tx2)}
+.you .hint{color:var(--tx2);margin:0 4px 12px}
+.mtop{position:absolute;top:0;left:0;right:0;z-index:1000;padding:calc(20px + env(safe-area-inset-top)) 16px 0;background:linear-gradient(rgba(42,10,74,.92) 55%,transparent)}
+.mtop .bar{display:flex;gap:10px;align-items:center}.mtop .search{flex:1;margin:0}
+.mtop .search input{border:1.5px solid var(--gold)}
+.mtop .search{max-width:none}
+.mtop .chips{margin:12px -16px 0}
+.sym{width:44px;height:44px;object-fit:contain;flex:none}
+.sugg{margin:8px 0 0 54px;background:var(--card);border-radius:20px;border:1px solid rgba(228,168,38,.4);overflow:hidden}
+.sugg button{display:block;width:100%;text-align:left;padding:10px 16px;min-height:44px;border-bottom:1px solid var(--line)}
+.sugg small{color:var(--tx2)}
+.mcard{position:absolute;left:12px;right:12px;bottom:12px;z-index:1000;padding:14px 14px 14px 16px;border-radius:26px;background:var(--ame);border:1px solid rgba(228,168,38,.35);box-shadow:0 10px 30px rgba(30,8,54,.5)}
+.mc{display:flex;align-items:center;gap:14px}
+.mi{width:56px;height:56px;flex:none;border-radius:16px;background:var(--gold);color:var(--night);display:grid;place-items:center}.mi svg{width:28px;height:28px}
+.mt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.mt b{font:600 20px/1.2 var(--ttl);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mt span{font-size:14px;color:var(--tx2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gm{display:block;margin-top:10px;color:var(--orc)}
+.pinw{background:none;border:0}
+.pin{position:relative}.pin svg{display:block;width:100%;height:100%;position:relative}
+.pin i{position:absolute;left:50%;transform:translateX(-50%);border-radius:50%;bottom:-3px;width:24px;height:8px;background:rgba(30,8,54,.65)}
+.pin.sel i{bottom:-8px;width:70px;height:20px;background:none;border:2px solid rgba(228,168,38,.55)}
+.pin.live i{bottom:-6px;width:64px;height:18px;background:none;border:2px solid rgba(196,124,232,.5)}
+.clu{width:62px;height:62px;border-radius:31px;background:rgba(228,168,38,.28);display:grid;place-items:center}
+.clu b{width:44px;height:44px;border-radius:22px;background:var(--gold);color:var(--night);display:grid;place-items:center;font:700 18px var(--ttl)}
+.leaflet-control-attribution{font-size:10px}.leaflet-container{font:inherit}
+/* responsive: phone stays as designed; tablets and computers get room */
+.grid{display:grid;grid-template-columns:1fr;gap:12px}.grid .card{margin:0;height:100%}
+@media (min-width:760px){
+ :root{--app:min(100vw,1180px)}
+ body{font-size:17px}
+ #app{max-width:var(--app);padding:0 32px calc(120px + env(safe-area-inset-bottom))}
+ header{margin:0 -32px;padding:calc(28px + env(safe-area-inset-top)) 32px 16px;gap:14px}
+ header h1{font-size:40px}
+ .grid{grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+ .chips{margin:0 -32px;padding:2px 32px 10px}
+ .search{max-width:640px}
+ .cb .ct{font-size:18px}
+ h2{font-size:14px;margin:30px 4px 14px}
+ .nav{width:min(620px,calc(100vw - 32px));bottom:calc(16px + env(safe-area-inset-bottom));height:76px;padding:6px 10px;border-radius:38px;border:1px solid var(--navline);box-shadow:0 12px 40px rgba(30,8,54,.35)}
+ .nav button{font-size:13px}
+ .detail{width:min(100vw,760px);box-shadow:0 0 0 100vmax rgba(30,8,54,.6)}
+ .hero{height:400px}.hero img{width:330px}
+ .dbody{padding:32px 40px}.dbody h1{font-size:44px}
+ .you{width:min(100vw,1000px);padding:0 32px 40px;box-shadow:0 0 0 100vmax rgba(30,8,54,.6)}
+ .you header{margin:0 -32px}
+ .veil{align-items:center}.sheet{width:min(560px,calc(100vw - 32px));border-radius:24px}
+ #mapwrap{width:100vw;bottom:0}
+ .mtop{padding:calc(24px + env(safe-area-inset-top)) 32px 0}.mtop .bar{max-width:720px}.mtop .chips{margin:12px -32px 0}
+ .mcard{left:32px;right:auto;width:440px;bottom:116px}
+}
+@media (min-width:1280px){header h1{font-size:46px}}
+/* splash */
+#splash{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 30%,#4A1680,#1E0836 70%);z-index:99;display:flex;flex-direction:column;gap:22px;align-items:center;justify-content:center;transition:opacity .5s}
+#splash img{max-width:62%;max-height:46vh;width:auto;height:auto}
+#splash p{margin:0;font:600 18px var(--ttl);letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+#splash.out{opacity:0;pointer-events:none}
+
+/* ================= Art Deco catalogue =================
+   A printed weekly catalogue: dark masthead band with the logo, numbered entries in gold double-rule frames
+   with corner blocks, octagonal medallions, ticket-cut tags, chapter ornaments, dotted-leader spec lists. */
+:root{--rule:var(--ogold);--fan:rgba(176,125,18,.10);--card:#FFFBEE;--tagbg:#F3E5BF;--deco:'Cinzel Decorative','Cinzel',Georgia,serif;
+ --goldbar:linear-gradient(180deg,#F4CB5C 0%,#E4A826 48%,#B07D12 100%)}
+.dk{--rule:var(--gold);--fan:rgba(228,168,38,.07);--card:#3D0F6B;--tagbg:rgba(228,168,38,.14)}
+#app{background-color:var(--bg);
+ background-image:radial-gradient(circle at 50% 100%,transparent 0 7px,var(--fan) 7px 8px,transparent 8px 12px,var(--fan) 12px 13px,transparent 13px 17px,var(--fan) 17px 18px,transparent 18px),
+  radial-gradient(circle at 50% 100%,transparent 0 7px,var(--fan) 7px 8px,transparent 8px 12px,var(--fan) 12px 13px,transparent 13px 17px,var(--fan) 17px 18px,transparent 18px);
+ background-size:36px 18px;background-position:0 0,18px 9px}
+:focus-visible{outline:2px solid var(--orc);outline-offset:2px}
+/* masthead */
+.mast{position:relative;top:auto;display:block;margin:0 -16px 26px;padding:calc(12px + env(safe-area-inset-top)) 20px 26px;text-align:center;color:var(--cream);
+ background:repeating-conic-gradient(from -90deg at 50% 100%,rgba(228,168,38,.13) 0 3deg,transparent 3deg 9deg),radial-gradient(ellipse at 50% 100%,#6A1FA8 0%,#3D0F6B 50%,#1E0836 100%);
+ border-bottom:4px double var(--gold)}
+.mast::before{content:'';position:absolute;inset:8px 8px 10px;border:1px solid rgba(228,168,38,.35);pointer-events:none}
+.mast::after{content:'';position:absolute;left:50%;bottom:-13px;width:18px;height:18px;transform:translateX(-50%) rotate(45deg);background:var(--gold);box-shadow:0 0 0 4px var(--bg)}
+.mtools{position:relative;display:flex;justify-content:space-between;align-items:center;z-index:1}
+.mast .lang,.mast .bell{border-radius:0;border:1px solid rgba(228,168,38,.55);background-color:rgba(30,8,54,.55);color:var(--gold);background-image:linear-gradient(var(--rule),var(--rule)),linear-gradient(var(--rule),var(--rule));background-size:6px 6px;background-repeat:no-repeat;background-position:0 0,100% 100%}
+.mast .bell b{border-radius:0;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);min-width:22px;height:22px;line-height:22px;top:0;right:0;font-family:var(--ttl)}
+.mlogo{display:block;height:128px;width:auto;max-width:70%;margin:-30px auto 6px}
+.msym{display:block;height:58px;width:auto;margin:-34px auto 6px}
+.eyebrow{display:flex;align-items:center;justify-content:center;gap:10px;font:600 11px var(--ttl);letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before,.eyebrow::after{content:'';flex:0 1 44px;height:4px;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}
+.mast h1{margin:8px 0 6px;font:700 30px/1.12 var(--deco);color:var(--cream);letter-spacing:.02em;text-wrap:balance;text-shadow:0 2px 0 #1E0836}
+.issue{font:italic 15px 'Lora',Georgia,serif;color:#CDB8E6}
+.issue b{font:600 12px var(--ttl);font-style:normal;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+/* chapter ornaments */
+h2.orn{display:flex;align-items:center;gap:12px;margin:30px 0 16px;font:600 13px var(--ttl);letter-spacing:.24em;text-transform:uppercase;color:var(--acc);text-align:center}
+h2.orn::before,h2.orn::after{content:'';flex:1;height:5px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:' ◆';color:var(--rule)}
+.joke{font-size:17px}.joke::before{content:'◆';display:block;color:var(--rule);font-style:normal;margin-bottom:6px}
+.empty{font-style:italic}
+/* day strip: stepped tabs */
+.days{gap:6px;padding-top:4px}
+.day{flex:0 0 50px;height:74px;border-radius:0;background-color:var(--card);border:1px solid var(--rule);border-top-width:4px;border-top-style:double;padding-top:4px}
+.day small{font-size:10px;letter-spacing:.14em}.day b{font-size:22px}
+.day.on{background:var(--goldbar);border-color:var(--gold)}
+/* search + chips */
+.search input{border-radius:0;border:3px double var(--rule);background:var(--card);font-style:italic}
+.chip{border-radius:0;border:1px solid var(--rule);background-color:var(--card);font:600 12px var(--ttl);letter-spacing:.14em;text-transform:uppercase;padding:0 18px;background-image:linear-gradient(var(--rule),var(--rule)),linear-gradient(var(--rule),var(--rule));background-size:6px 6px;background-repeat:no-repeat;background-position:0 0,100% 100%}
+.chip.on{background:var(--goldbar);border-color:var(--gold);color:var(--night)}
+/* catalogue entries */
+.card{position:relative;border-radius:0;border:1px solid var(--rule);padding:20px 18px;gap:16px;align-items:flex-start;background-color:var(--card);
+ box-shadow:inset 0 0 0 5px var(--card),inset 0 0 0 6px var(--rule);
+ background-image:linear-gradient(var(--rule),var(--rule)),linear-gradient(var(--rule),var(--rule)),linear-gradient(var(--rule),var(--rule)),linear-gradient(var(--rule),var(--rule));
+ background-size:8px 8px;background-repeat:no-repeat;background-position:3px 3px,calc(100% - 3px) 3px,3px calc(100% - 3px),calc(100% - 3px) calc(100% - 3px);transition:transform .15s}
+.card:hover{transform:translateY(-2px)}
+.no{font:600 11px var(--ttl);letter-spacing:.22em;color:var(--rule)}
+.cb .ct{font:600 17px/1.25 var(--ttl);letter-spacing:.03em}
+.cb p{font-style:italic}
+/* octagonal medallion with sun rays */
+.tb{position:relative;flex:0 0 74px;height:74px;border-radius:0;background:var(--goldbar);box-shadow:none;
+ clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%)}
+.tb::before{content:'';position:absolute;inset:2px;clip-path:inherit;background:repeating-conic-gradient(from 0deg,rgba(228,168,38,.16) 0 6deg,transparent 6deg 18deg),#3D0F6B}
+.dk .tb::before{background:repeating-conic-gradient(from 0deg,rgba(228,168,38,.16) 0 6deg,transparent 6deg 18deg),#1E0836}
+.tb>*{position:relative}
+/* ticket-cut tags */
+.pill{height:24px;padding:0 12px;border-radius:0;border:0;background:var(--tagbg);color:var(--tx);font:600 10.5px var(--ttl);letter-spacing:.12em;text-transform:uppercase;
+ clip-path:polygon(7px 0,calc(100% - 7px) 0,100% 50%,calc(100% - 7px) 100%,7px 100%,0 50%)}
+.pill.free{background:var(--goldbar);color:var(--night)}
+.pill.live{background:var(--orc)}.pill.tix{background:var(--vio);color:var(--cream)}
+.pill.new{background:var(--mist);color:var(--ame)}.pill.out{background:var(--night);color:var(--cream)}
+.pill.gb{background:var(--night);color:var(--gold)}
+/* buttons */
+.btn{border-radius:0;clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,14px 100%,0 50%);letter-spacing:.14em}
+.btn.gold{background:var(--goldbar)}
+.btn.sm{font:700 13px var(--ttl);letter-spacing:.14em;text-transform:uppercase}
+.btn.ghost{border:0;background:var(--tagbg)}
+.act{--rule:var(--gold);border-radius:0;border:1px solid rgba(228,168,38,.6);background-color:rgba(228,168,38,.08);font:600 12px var(--ttl);letter-spacing:.14em;text-transform:uppercase;background-image:linear-gradient(var(--rule),var(--rule)),linear-gradient(var(--rule),var(--rule));background-size:6px 6px;background-repeat:no-repeat;background-position:0 0,100% 100%}
+.act.on{background:var(--goldbar)}
+/* nav: the dark spine */
+.nav{border-top:4px double var(--gold)}
+.nav button{position:relative;font:600 10.5px var(--ttl);letter-spacing:.12em;text-transform:uppercase}
+.nav .on::before{content:'';position:absolute;top:3px;width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+/* sheet, For you */
+.sheet{border-radius:0;border-top:4px double var(--gold)}
+.sheet label{font:600 12px var(--ttl);letter-spacing:.16em}
+.sheet select{border-radius:0;border:3px double var(--rule);background:var(--card)}
+.you{background-color:var(--bg)}
+.you .mast{margin:0 -16px 20px}
+.you .who{border-radius:0;border:1px solid var(--rule);box-shadow:inset 0 0 0 4px var(--card),inset 0 0 0 5px var(--rule);padding:18px}
+.you .who b{font:600 15px var(--ttl);letter-spacing:.06em}
+/* detail: catalogue plate */
+.hero::after{content:'';position:absolute;inset:14px;border:1px solid rgba(228,168,38,.6);outline:1px solid rgba(228,168,38,.3);outline-offset:5px;pointer-events:none}
+.hero{border-bottom:4px double var(--gold)}
+.back{--rule:var(--gold);border-radius:0;z-index:1;background-image:linear-gradient(var(--rule),var(--rule)),linear-gradient(var(--rule),var(--rule));background-size:6px 6px;background-repeat:no-repeat;background-position:0 0,100% 100%;top:calc(26px + env(safe-area-inset-top));left:26px}
+.dbody{text-align:center}
+.dbody .pills,.acts{justify-content:center}
+.dbody .pill{height:28px;border-radius:0;font-size:11px}
+.dbody h1{font:700 32px/1.12 var(--deco);letter-spacing:.01em;text-wrap:balance}
+.dv{display:flex;align-items:center;gap:12px;color:var(--gold);font-size:13px}
+.dv::before,.dv::after{content:'';flex:1;height:5px;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}
+.lead{font-style:italic;font-size:17px}
+.fact{justify-content:center;font:600 14px var(--ttl);letter-spacing:.06em}
+.more{text-align:left;border-top:4px double var(--rule);margin-top:10px;padding-top:4px}
+.r{align-items:baseline;gap:8px;padding:11px 0;border-bottom:0}
+.r small{flex:none;font:600 12px var(--ttl);letter-spacing:.14em}
+.r .dots{flex:1;min-width:20px;border-bottom:1px dotted var(--rule);transform:translateY(-4px)}
+.r .v{max-width:64%;text-align:right;overflow-wrap:anywhere}
+.foot{border-top:4px double var(--gold)}
+.foot small{font:600 11px var(--ttl);letter-spacing:.18em;text-transform:uppercase}
+/* map: framed engraving */
+#mapwrap::after{content:'';position:absolute;inset:8px;border:1px solid rgba(228,168,38,.55);outline:1px solid rgba(228,168,38,.25);outline-offset:4px;pointer-events:none;z-index:999}
+.lbl,.lbl.big{font-family:var(--ttl)}
+.mcard{border-radius:0;border:1px solid var(--gold);box-shadow:inset 0 0 0 5px var(--ame),inset 0 0 0 6px rgba(228,168,38,.6),0 10px 30px rgba(30,8,54,.5);padding:18px}
+.mi{border-radius:0;background:var(--goldbar);clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%)}
+.sugg{border-radius:0}
+.clu b{font-family:var(--deco)}
+/* splash */
+#splash::after{content:'';position:absolute;inset:18px;border:1px solid rgba(228,168,38,.55);outline:1px solid rgba(228,168,38,.25);outline-offset:6px;pointer-events:none}
+@media (min-width:760px){
+ .mast{margin:0 -32px 34px;padding:calc(20px + env(safe-area-inset-top)) 40px 36px}
+ .mast::before{inset:12px 12px 14px}
+ .mlogo{height:190px;margin-top:-34px}.msym{height:76px}
+ .mast h1{font-size:54px}.eyebrow{font-size:12px}.eyebrow::before,.eyebrow::after{flex-basis:90px}
+ .issue{font-size:17px}
+ h2.orn{font-size:14px;margin:40px 0 20px}
+ .nav{border-radius:0;border:1px solid var(--gold);box-shadow:inset 0 0 0 4px var(--nav),inset 0 0 0 5px rgba(228,168,38,.5),0 12px 40px rgba(30,8,54,.45)}
+ .dbody h1{font-size:44px}
+ .you .mast{margin:0 -32px 24px}
+}
+@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+<div id="splash"><img src="logo.png" alt="City Banana"><p id="tagline">Your city, just ripe.</p></div>
+<div id="app"></div>
+<nav class="nav" id="nav"></nav>
+<script src="data.js"></script>
+<script src="basemap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+const has = v => !!v && !/^(not found|not stated|no\b|n\/a|-|$)/i.test(String(v).trim());
+const store = (k, v) => { try { v === undefined ? (v = localStorage[k]) : (localStorage[k] = v); } catch (e) {} return v; };
+
+/* ---------- copy ---------- */
+const T = {
+ en:{feedTitle:'This week in Asunción',tagline:'Your city, just ripe.',nav:['Events','Food','Bars','Coffee','Map'],feed:'Events',rest:'Restaurants',bars:'Bars',cafes:'Cafés',map:'Map',events:'Events',deals:'Food & drink deals',
+  empty:'Nothing on tonight. Try tomorrow?',none:'No matches. Loosen a filter?',free:'Free',live:'Live now',tix:'Tickets',new:'New',search:'Search places and events',
+  filters:'Filters',wifi:'WiFi',food:'Food',music:'Live music',cocktails:'Cocktails',wine:'Wine',beer:'Beer',hood:'Neighborhood',price:'Price',genre:'Music / genre',
+  cat:'Category',langF:'Language',any:'Any',showClosed:'Show permanently closed places',clear:'Clear',done:'Done',details:'Details',getTicket:'Get ticket',
+  directions:'Directions',entry:'Entry',seeYou:'See you there.',notOnMap:'Not on our map yet. Open in Google Maps',tapPin:'Tap a pin to see the place.',all:'All',
+  chips:{rest:'Food',bars:'Bars',cafes:'Coffee',music:'Music'},closed:'Closed',yourList:'Your list',style:'Style',status:'Status',drinks:'Drinks',goodFor:'Good for',insta:'Instagram',
+  artist:'Artist',language:'Language',deal:'Deal',count:n=>`${n} establishments catalogued`,weekly:'The Weekly Catalogue of Asunción',chap:n=>`Chapter ${n}`,
+  readTat:'Read it on The Asunción Times',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'New at your Golden Bananas',myBananas:'Your Golden Bananas',mySaved:'Saved',
+  noNews:'Nothing new yet. We’ll list new events and deals here.',noBananas:'Give a place the Golden Banana to hear about its new events and deals.',noSaved:'Tap Save on any place or event to keep it here.',
+  signedIn:n=>`Signed in as ${n}`,acct:'Your saves follow your account on every device.',local:'Saved on this device',localHint:'Open City Banana from its link to keep your list on every device.',
+  bell:n=>n?`For you, ${n} new`:'For you',
+  joke:{feed:'That’s the whole bunch for today.',rest:'Hungry? Let’s split. Banana optional.',bars:'Go bananas. Responsibly.',cafes:'Don’t slip on the way to coffee.',map:'Peel the city, one pin at a time.'}},
+ es:{feedTitle:'Esta semana en Asunción',tagline:'Tu ciudad, en su punto.',nav:['Eventos','Comida','Bares','Café','Mapa'],feed:'Eventos',rest:'Restaurantes',bars:'Bares',cafes:'Cafés',map:'Mapa',events:'Eventos',deals:'Promos de comida y tragos',
+  empty:'Nada esta noche. ¿Probamos mañana?',none:'Sin resultados. ¿Aflojamos un filtro?',free:'Gratis',live:'En vivo',tix:'Entradas',new:'Nuevo',search:'Buscá lugares y eventos',
+  filters:'Filtros',wifi:'WiFi',food:'Comida',music:'Música en vivo',cocktails:'Cócteles',wine:'Vino',beer:'Cerveza',hood:'Barrio',price:'Precio',genre:'Música / género',
+  cat:'Categoría',langF:'Idioma',any:'Todos',showClosed:'Mostrar lugares cerrados definitivamente',clear:'Limpiar',done:'Listo',details:'Detalles',getTicket:'Comprar entrada',
+  directions:'Cómo llegar',entry:'Entrada',seeYou:'Nos vemos ahí.',notOnMap:'Todavía no está en el mapa. Abrir en Google Maps',tapPin:'Tocá un pin para ver el lugar.',all:'Todos',
+  chips:{rest:'Comida',bars:'Bares',cafes:'Café',music:'Música'},closed:'Cerrado',yourList:'Tu lista',style:'Estilo',status:'Estado',drinks:'Bebidas',goodFor:'Ideal para',insta:'Instagram',
+  artist:'Artista',language:'Idioma',deal:'Promo',count:n=>`${n} establecimientos catalogados`,weekly:'El catálogo semanal de Asunción',chap:n=>`Capítulo ${n}`,
+  readTat:'Ver en The Asunción Times',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Novedades de tus Bananas de Oro',myBananas:'Tus Bananas de Oro',mySaved:'Guardados',
+  noNews:'Todavía nada nuevo. Acá vas a ver eventos y promos nuevas.',noBananas:'Dale la Banana de Oro a un lugar para enterarte de sus eventos y promos.',noSaved:'Tocá Guardar en un lugar o evento para tenerlo acá.',
+  signedIn:n=>`Sesión iniciada como ${n}`,acct:'Lo que guardás te sigue en todos tus dispositivos.',local:'Guardado en este dispositivo',localHint:'Abrí City Banana desde su enlace para tener tu lista en todos tus dispositivos.',
+  bell:n=>n?`Para vos, ${n} nuevos`:'Para vos',
+  joke:{feed:'Ese es todo el racimo de hoy.',rest:'¿Hambre? Banana split opcional.',bars:'Volvete banana. Con moderación.',cafes:'No te resbales camino al café.',map:'Pelá la ciudad, un pin a la vez.'}}};
+let lang = store('lang') || (navigator.language.startsWith('es') ? 'es' : 'en');
+const t = k => T[lang][k];
+
+/* ---------- icons: brand set, 24px grid, stroke 1.75 ---------- */
+const P = {
+ feed:'<path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4M12 12.5l1.1 2.2 2.4.35-1.75 1.7.4 2.4L12 18l-2.15 1.15.4-2.4-1.75-1.7 2.4-.35z"/>',
+ rest:'<path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M17 3c-2 2-3 4.5-3 7 0 1.5 1 2.5 3 2.5V21"/>',
+ bars:'<path d="M5 4h14l-7 8zM12 12v8M8 20h8"/>',
+ cafes:'<path d="M5 8h11v6a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4zM16 9h2a2 2 0 0 1 0 4h-2M8 3v2M12 3v2"/>',
+ music:'<path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM19 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>',
+ people:'<path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M17 11a2.5 2.5 0 1 0 0-5M16 14.2c2.8.3 5 2.6 5 5.8"/>',
+ map:'<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+ search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+ filter:'<path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/>',
+ back:'<path d="M15 5l-7 7 7 7"/>',
+ wifi:'<path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.8 16a4.8 4.8 0 0 1 6.4 0"/><circle cx="12" cy="19.5" r=".6"/>',
+ star:'<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3z"/>',
+ info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.1"/>',
+ ticket:'<path d="M3 7.5h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4v-3z"/>',
+ camera:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/>',
+ banana:'<path d="M4 14.5c3.5 3.5 10 3 13.5-1.5 2-2.6 2.6-5.8 1.9-8.5l-1.6.4c.2 3-1 5.8-3.4 7.6-2.9 2.2-6.6 2.6-10.4 2z"/><path d="M19.4 4.5 20 3"/>',
+ heart:'<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"/>',
+ bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0"/>',
+ globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/>'};
+const ic = k => `<svg class="i" viewBox="0 0 24 24">${P[k]}</svg>`;
+
+/* ---------- data ---------- */
+const D = window.DATA || { places: [], events: [] };
+const places = D.places, events = D.events, BY = new Map([...places, ...events].map(x => [x._id, x]));
+const catKey = p => /restaur/i.test(p.Category) ? 'rest' : /caf/i.test(p.Category) ? 'cafes' : 'bars';
+const tier = v => { const m = String(v || '').match(/^(?:likely\s*)?(\${1,4})/i); return m ? m[1] : ''; };
+const isFree = v => v === 0 || /\b(free|gratis|sin costo|no cover|entrada libre)\b/i.test(v || '');
+const genres = v => has(v) ? String(v).split(/[,/;+]| and | y /).map(s => s.trim()).filter(s => s && s.length < 30).map(s => s[0].toUpperCase() + s.slice(1).toLowerCase()) : [];
+const placeFor = e => { if (e._p !== undefined) return e._p; const v = norm(e._venue).split(' (')[0].trim();   // cached venue -> place match
+  return e._p = v.length > 3 && !/^tbc|^tba|online/.test(v) ? places.find(p => { const n = norm(p.Name).split(' (')[0]; return n.length > 3 && (v.includes(n) || n.includes(v)); }) || null : null; };
+
+// Deals: scan Notes first, then the other text columns
+const DEALRE = /2\s?x\s?1|2 por 1|happy hour|after.?office|ladies|girls|chicas|\d+\s?% ?(off|desc)|corrid[ao]s?|\blibre\b|\bpromo/i;
+const DN = {sunday:0,sun:0,domingo:0,monday:1,mon:1,lunes:1,tuesday:2,tues:2,tue:2,martes:2,wednesday:3,wed:3,miercoles:3,thursday:4,thurs:4,thu:4,jueves:4,friday:5,fri:5,viernes:5,saturday:6,sat:6,sabado:6};
+const DK = Object.keys(DN).sort((a, b) => b.length - a.length).join('|');
+function dealDays(txt) {
+  const s = norm(txt), set = new Set();
+  for (const m of s.matchAll(new RegExp(`\\b(${DK})s?\\s*(?:-|–|to|a|al|through)\\s*(${DK})s?\\b`, 'g')))
+    for (let d = DN[m[1]], n = 0; n < 7; d = (d + 1) % 7, n++) { set.add(d); if (d === DN[m[2]]) break; }
+  for (const m of s.matchAll(new RegExp(`\\b(${DK})s?\\b`, 'g'))) set.add(DN[m[1]]);
+  return set.size ? set : new Set([0, 1, 2, 3, 4, 5, 6]);
+}
+for (const p of places) {
+  p._cat = catKey(p);
+  for (const k of ['Notes', 'Price range', 'Cocktails', 'Beer type', 'Wine', 'Food', 'Live music', 'Food quality mentions', 'Type / style']) {
+    const v = String(p[k] || ''); if (!DEALRE.test(v)) continue;
+    const snip = (v.match(/\(([^)]*)\)/g) || []).map(s => s.slice(1, -1)).find(s => DEALRE.test(s)) || v;
+    const m = v.toLowerCase(), pct = v.match(/\d+\s?%/);   // label by priority, not first match
+    const [big, small] = /2\s?x\s?1|2 por 1/.test(m) ? ['2x1', 'DEAL'] : /ladies|girls|chicas/.test(m) ? ['LADIES', 'NIGHT'] : /happy hour|after.?office/.test(m) ? ['HAPPY', 'HOUR']
+      : pct ? [pct[0].replace(/\s/, ''), 'OFF'] : /corrid|\blibre\b/.test(m) ? ['LIBRE', '∞'] : ['PROMO', 'DEAL'];
+    p._deal = { big, small, snip: snip.slice(0, 110), days: dealDays(v) }; break;
+  }
+}
+function attrs(x) {
+  if (x._title !== undefined) { const p = placeFor(x) || {}, a = p._id ? attrs(p) : {};
+    return { ...a, hood: has(x._hood) && !/^tbc/i.test(x._hood) ? x._hood : a.hood || '', price: tier(x._entry) || '', free: x._free, genres: genres(x._genre).concat(a.genres || []),
+      lang: String(x._lang || ''), cat: x._cat || '', closed: false, text: Object.values(x).filter(v => typeof v !== 'object').join(' ') + ' ' + (a.text || '') }; }
+  return { hood: x._hood, price: tier(x['Price range']), wifi: has(x['WiFi / co-working']), food: has(x.Food), music: has(x['Live music']), cocktails: has(x.Cocktails),
+    wine: has(x.Wine), beer: has(x['Beer type']), free: isFree(x['Price range']), genres: genres(x['Music genre / style']), lang: '', cat: x['Type / style'] || '',
+    closed: x._closed, text: Object.values(x).filter(v => typeof v !== 'object').join(' ') };
+}
+
+/* ---------- filters ---------- */
+const BOOL = ['wifi', 'food', 'music', 'cocktails', 'wine', 'beer', 'free'];
+const SEL = ['hood', 'price', 'genre', 'cat', 'langF'];
+let F = { q: '', closed: false };
+const match = x => { const a = attrs(x);
+  if (a.closed && !F.closed) return false;
+  if (F.q && !norm(a.text).includes(norm(F.q))) return false;
+  if (F.hood && a.hood !== F.hood) return false; if (F.price && a.price !== F.price) return false;
+  if (F.genre && !a.genres.includes(F.genre)) return false; if (F.cat && a.cat !== F.cat) return false;
+  if (F.langF && !norm(a.lang).includes(norm(F.langF))) return false;
+  return BOOL.every(k => !F[k] || a[k]); };
+function options(base) {
+  const o = { hood: {}, price: {}, genre: {}, cat: {}, langF: {} }, inc = (k, v) => { if (v) o[k][v] = (o[k][v] || 0) + 1; };
+  for (const x of base) { const a = attrs(x); inc('hood', a.hood); inc('price', a.price); inc('cat', a.cat); a.genres.forEach(g => inc('genre', g));
+    String(a.lang).split(/[,/]/).forEach(l => inc('langF', l.trim())); }
+  for (const k in o) o[k] = Object.entries(o[k]).sort((a, b) => k === 'price' ? a[0].length - b[0].length : b[1] - a[1]).slice(0, 30).map(e => e[0]);
+  return o;
+}
+const LANGN = { es: 'Español', en: 'English' };
+
+/* ---------- you: saves, Golden Bananas, seen alerts ----------
+   One record per person. With the link (claude.ai) it lives in the account store, private to that person;
+   opened as a local file it stays on this device. */
+let ME = { saved: [], bananas: [], seen: [] }, WHO = null, meRef = null, writing = Promise.resolve();
+try { Object.assign(ME, JSON.parse(localStorage['cb.me'] || '{}')); } catch (e) {}
+const persist = () => { store('cb.me', JSON.stringify(ME)); if (meRef) writing = writing.then(() => meRef.set(ME)).catch(() => {}); };
+const toggle = (list, id) => { const a = ME[list], i = a.indexOf(id); i < 0 ? a.push(id) : a.splice(i, 1); persist(); };
+const isSaved = id => ME.saved.includes(id), isBanana = id => ME.bananas.includes(id);
+function alerts() {   // upcoming events + current deals at Golden Banana places
+  const today = ymd(new Date()), out = [];
+  for (const id of ME.bananas) { const p = BY.get(id); if (!p) continue;
+    if (p._deal) out.push({ id: 'deal:' + p._id, x: p, deal: true });
+    for (const e of events) if (placeFor(e) === p && evDay(e) >= today) out.push({ id: e._id, x: e }); }
+  return out;
+}
+const unseen = () => alerts().filter(a => !ME.seen.includes(a.id)).length;
+async function account() {
+  if (!window.claude?.use) return;
+  const [user, db] = await Promise.all([claude.use('user'), claude.use('db')]);
+  if (!user || !db) return;
+  const id = await user.id(); if (!id) return;
+  WHO = await user.me(); meRef = db.collection('data/users/' + id).doc('me');
+  const timer = new Promise((_, no) => setTimeout(() => no('timeout'), 10000));
+  try { const s = await Promise.race([meRef.get(), timer]);
+    if (s.exists) { const d = s.data(); for (const k of ['saved', 'bananas', 'seen']) ME[k] = [...new Set([...(d[k] || []), ...ME[k]])]; }
+    if (!s.exists && (ME.saved.length || ME.bananas.length)) persist();
+  } catch (e) { meRef = null; }
+  if (!document.querySelector('.detail,.veil,.you')) draw(); else document.querySelector('.you') && you();
+}
+
+/* ---------- dates ---------- */
+const ymd = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const evDay = e => { const s = String(e._date || ''), m = s.match(/^(\d{4})-(\d\d)-(\d\d)/) || s.match(/^(\d{1,2})[/.](\d{1,2})[/.](\d{2,4})/);
+  if (!m) { const d = new Date(s); return isNaN(d) ? '' : ymd(d); }
+  return s[4] === '-' ? m[0] : `${m[3].length === 2 ? '20' + m[3] : m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`; };
+const hm = v => { const m = String(v || '').match(/(\d{1,2})(?:[:h.](\d{2}))?\s*(am|pm|a\.?m\.?|p\.?m\.?)?/i); if (!m) return null;
+  let h = +m[1]; const pm = m[3] && /p/i.test(m[3]); if (pm && h < 12) h += 12; if (m[3] && !pm && h === 12) h = 0; return { h, m: +(m[2] || 0) }; };
+const fmtT = v => { const x = hm(v); return x ? { t: `${x.h % 12 || 12}:${String(x.m).padStart(2, '0')}`, ap: x.h < 12 ? 'AM' : 'PM' } : { t: '—', ap: '' }; };
+const liveNow = e => { const x = hm(e._time); if (!x || evDay(e) !== ymd(new Date())) return false;
+  const s = new Date(); s.setHours(x.h, x.m, 0); const n = Date.now(); return n >= s && n < +s + 3 * 36e5; };
+const week = [...Array(7)].map((_, i) => { const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() + i); return d; });
+const loc = () => lang === 'es' ? 'es-PY' : 'en-US';
+
+/* ---------- UI pieces ---------- */
+let tab = ['feed','rest','bars','cafes','map'].find(k => '#' + k === location.hash) || store('tab') || 'feed', day = 0, sel = null, mapCat = 'all', map, layer;
+const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
+const isoWeek = d => { const x = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())); x.setUTCDate(x.getUTCDate() + 4 - (x.getUTCDay() || 7)); return Math.ceil(((x - Date.UTC(x.getUTCFullYear(), 0, 1)) / 864e5 + 1) / 7); };
+const issue = () => { const a = week[0], b = week[6], f = (d, o) => d.toLocaleDateString(loc(), o);
+  return `<b>Nº ${isoWeek(a)}</b> · ${f(a, { day: 'numeric' })}${a.getMonth() === b.getMonth() ? '' : ' ' + f(a, { month: 'long' })} – ${f(b, { day: 'numeric', month: 'long', year: 'numeric' })}`; };
+// Catalogue masthead: always on the dark band, as the brand asks for the logo
+const head = (title, eyebrow, line, cover) => `<header class="mast dk${cover ? ' cover' : ''}"><div class="mtools">
+  <button class="lang" onclick="setLang()" aria-label="Español / English">${lang === 'en' ? 'ES' : 'EN'}</button>
+  <button class="bell" onclick="you()" aria-label="${t('bell')(unseen())}">${ic('bell')}${unseen() ? `<b>${unseen()}</b>` : ''}</button></div>
+  <img class="${cover ? 'mlogo' : 'msym'}" src="${cover ? 'logo.png' : 'symbol.png'}" alt="City Banana">
+  <div class="eyebrow">${esc(eyebrow)}</div><h1>${esc(title)}</h1>${line ? `<div class="issue">${line}</div>` : ''}</header>`;
+const sec = (n, txt) => `<h2 class="orn"><span>${n ? n + '. ' : ''}${esc(txt)}</span></h2>`;
+const no = i => i === undefined || typeof i !== 'number' ? '' : `<span class="no">Nº ${String(i + 1).padStart(3, '0')}</span>`;
+const pill = (txt, cls = '') => `<span class="pill ${cls}">${esc(txt)}</span>`;
+const evPills = e => (liveNow(e) ? pill(t('live'), 'live') : '') + (e._free ? pill(t('free'), 'free') : '') + (/^https?:/i.test(e._ticket) ? pill(t('tix'), 'tix') : '')
+  + (e._tat ? pill('Asunción Times') : '') + (/sold out|agotad/i.test(e._status) ? pill(e._status, 'out') : has(e._status) && !/confirm/i.test(e._status) ? pill(e._status, 'new') : '');
+const nActive = () => SEL.filter(k => F[k]).length + (F.closed ? 1 : 0);
+const searchBox = () => `<div class="search">${ic('search')}<input id="q" type="search" placeholder="${t('search')}" aria-label="${t('search')}" value="${esc(F.q)}" oninput="F.q=this.value;draw(true)"></div>`;
+// Only offer filters this tab can actually satisfy
+const avail = () => { const base = baseFor(), as = base.map(attrs), o = options(base);
+  return { bool: BOOL.filter(k => F[k] || as.some(a => a[k])), sel: SEL.filter(k => o[k].length > 1 || F[k]), closed: as.some(a => a.closed), o }; };
+const filterBar = () => { const A = avail(), more = A.sel.length || A.closed;
+  return searchBox() + `<div class="chips">${more ? `<button class="chip ${nActive() ? 'on' : ''}" onclick="sheet()">${ic('filter')}${t('filters')}${nActive() ? ' · ' + nActive() : ''}</button>` : ''}
+ ${A.bool.map(k => `<button class="chip ${F[k] ? 'on' : ''}" onclick="F.${k}=!F.${k};draw()">${t(k)}</button>`).join('')}</div>`; };
+function eventCard(e, i) { const x = fmtT(e._time), p = placeFor(e);
+  return `<button class="card" onclick="detail('${e._id}')"><div class="tb"><b>${x.t}</b><small>${x.ap}</small></div><div class="cb">
+  ${no(i)}<span class="ct">${esc(e._title)}</span><p>${esc(e._venue || p?.Name || '')}</p><div class="pills">${evPills(e)}</div></div></button>`; }
+function dealCard(p, i) { const d = p._deal;
+  return `<button class="card" onclick="detail('${p._id}')"><div class="tb"><b class="${d.big.length > 3 ? 'sm' : ''}">${esc(d.big)}</b><small>${esc(d.small === 'DEAL' ? t('deal').toUpperCase() : d.small)}</small></div>
+  <div class="cb">${no(i)}<span class="ct">${esc(p.Name)}</span><p>${esc(d.snip)}</p><div class="pills">${pill(p._hood)}${isFree(p['Price range']) ? pill(t('free'), 'free') : ''}</div></div></button>`; }
+const placePills = (p, a = attrs(p)) => (isBanana(p._id) ? pill(t('banana'), 'gb') : '') + (p['On your list'] === 'Yes' ? pill('★ ' + t('yourList'), 'new') : '') + (a.free ? pill(t('free'), 'free') : '') + (a.music ? pill(t('music'), 'tix') : '')
+  + (a.wifi ? pill('WiFi') : '') + (a.cocktails ? pill(t('cocktails')) : '') + (p._deal ? pill(t('deal')) : '') + (p._closed ? pill(t('closed'), 'out') : '');
+function placeCard(p, i) { const a = attrs(p);
+  return `<button class="card" onclick="detail('${p._id}')"><div class="tb">${ic(p._cat)}${a.price ? `<small>${esc(a.price)}</small>` : ''}</div><div class="cb">${no(i)}<span class="ct">${esc(p.Name)}</span>
+  <p>${esc([p['Type / style'], p._hood].filter(has).join(' · '))}</p><div class="pills">${placePills(p, a)}</div></div></button>`; }
+
+/* ---------- screens ---------- */
+function feed() {
+  const d = week[day], key = ymd(d);
+  const evs = events.filter(e => evDay(e) === key && match(e)).sort((a, b) => { const x = hm(a._time), y = hm(b._time); return (x ? x.h * 60 + x.m : 1e4) - (y ? y.h * 60 + y.m : 1e4); });
+  const deals = places.filter(p => p._deal && p._deal.days.has(d.getDay()) && match(p));
+  return head(t('feedTitle'), t('weekly'), issue(), true) + `<div class="days">${week.map((w, i) => `<button class="day ${i === day ? 'on' : ''}" onclick="day=${i};draw()" aria-pressed="${i === day}">
+    <small>${w.toLocaleDateString(loc(), { weekday: 'short' }).replace('.', '')}</small><b>${w.getDate()}</b></button>`).join('')}</div>` + filterBar()
+   + sec('I', t('events')) + (evs.length ? '<div class="grid">' + evs.map(eventCard).join('') + '</div>' : `<div class="empty">${t('empty')}</div>`)
+   + (deals.length ? sec('II', t('deals')) + `<div class="grid">` + deals.map(dealCard).join('') + '</div>' : '') + `<p class="joke">${t('joke').feed}</p>`;
+}
+function list(cat) {
+  const ps = places.filter(p => p._cat === cat && match(p));
+  return head(t(cat), t('chap')(ROMAN[['feed', 'rest', 'bars', 'cafes', 'map'].indexOf(cat)]), `<b>${t('count')(ps.length)}</b>`) + filterBar() + (ps.length ? '<div class="grid" style="margin-top:8px">' + ps.map(placeCard).join('') + '</div>' : `<div class="empty">${t('none')}</div>`)
+   + `<p class="joke">${t('joke')[cat]}</p>`;
+}
+const baseFor = () => tab === 'feed' ? events.filter(e => evDay(e) === ymd(week[day])).concat(places.filter(p => p._deal))
+  : places.filter(p => tab === 'map' ? mapCat === 'all' || mapCat === 'music' || p._cat === mapCat : p._cat === tab);
+
+function draw(keepFocus) {
+  store('tab', tab); document.documentElement.lang = lang; const tg = $('#tagline'); if (tg) tg.textContent = t('tagline');
+  $('#nav').innerHTML = ['feed', 'rest', 'bars', 'cafes', 'map'].map((k, i) => `<button class="${k === tab ? 'on' : ''}" onclick="go('${k}')" aria-current="${k === tab}">${ic(k)}${t('nav')[i]}</button>`).join('');
+  $('#nav').classList.add('dk');
+  if (tab === 'map') { $('#app').innerHTML = ''; return drawMap(keepFocus); }
+  $('#mapwrap')?.remove(); map = null;
+  const pos = keepFocus && $('#q')?.selectionStart;
+  $('#app').innerHTML = tab === 'feed' ? feed() : list(tab);
+  if (keepFocus) { const q = $('#q'); q.focus(); q.setSelectionRange(pos, pos); }
+}
+const go = k => { tab = k; sel = null; draw(); scrollTo(0, 0); };
+const setLang = () => { lang = lang === 'en' ? 'es' : 'en'; store('lang', lang); draw(); };
+
+function sheet() {
+  const A = avail(), o = A.o, v = document.createElement('div');
+  v.className = 'veil'; v.onclick = e => { if (e.target === v) v.remove(); };
+  v.innerHTML = `<div class="sheet"><h2 style="margin-top:0">${t('filters')}</h2>${A.sel.map(k => `<label for="f-${k}">${t(k)}</label>
+   <select id="f-${k}" onchange="F.${k}=this.value;draw()"><option value="">${t('any')}</option>${o[k].map(x => `<option value="${esc(x)}" ${F[k] === x ? 'selected' : ''}>${esc(k === 'langF' ? LANGN[x] || x : x)}</option>`).join('')}</select>`).join('')}
+   ${A.closed ? `<label class="tog"><input id="f-closed" type="checkbox" ${F.closed ? 'checked' : ''} onchange="F.closed=this.checked;draw()">${t('showClosed')}</label>` : ''}
+   <div class="row2"><button class="btn sm ghost" onclick="F={q:'',closed:false};draw();this.closest('.veil').remove()">${t('clear')}</button>
+   <button class="btn sm gold" onclick="this.closest('.veil').remove();draw()">${t('done')}</button></div></div>`;
+  document.body.appendChild(v);
+}
+
+/* ---------- detail ---------- */
+const gmaps = p => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p?._lat ? `${p._lat},${p._lon}` : `${p?.Name || ''} Asunción`);
+const fact = (k, txt) => has(txt) ? `<div class="fact">${ic(k)}<span>${esc(txt)}</span></div>` : '';
+const row = (k, label, val, html) => has(val) || html ? `<div class="r"><small>${esc(label)}</small><i class="dots"></i><span class="v">${html || esc(val)}</span></div>` : '';
+// Save (this item) and Golden Banana (the place, or the event's venue)
+const acts = (id, pid) => `<button class="act ${isSaved(id) ? 'on' : ''}" aria-pressed="${isSaved(id)}" onclick="act(this,'saved','${id}','${pid || ''}')">${ic('heart')}${t(isSaved(id) ? 'saved' : 'save')}</button>`
+  + (pid ? `<button class="act ${isBanana(pid) ? 'on' : ''}" aria-pressed="${isBanana(pid)}" onclick="act(this,'bananas','${pid}','${pid}','${id}')">${ic('banana')}${t(isBanana(pid) ? 'bananaOn' : 'banana')}</button>` : '');
+function act(btn, list, id, pid, self) {
+  toggle(list, id); const box = btn.closest('.acts'); box.innerHTML = acts(self || id, pid);
+  if (document.querySelector('.you')) you(); draw();
+}
+function detail(id) {
+  const x = BY.get(id), ev = x._title !== undefined, p = ev ? placeFor(x) : x, el = document.createElement('div');
+  const ig = (p && (has(p.Instagram) ? p.Instagram : (String(p.Evidence || '').match(/IG (@[\w.]+)/) || [])[1])) || '';
+  const tm = fmtT(x._time), dd = ev && evDay(x) ? new Date(evDay(x) + 'T12:00').toLocaleDateString(loc(), { weekday: 'short', day: 'numeric', month: 'short' }) : '';
+  const entry = ev ? (x._free ? t('free') : x._entry || '—') : (tier(x['Price range']) || (isFree(x['Price range']) ? t('free') : '—'));
+  const cta = ev && /^https?:/i.test(x._ticket) ? `<a class="btn gold" href="${esc(x._ticket)}" target="_blank" rel="noopener">${t('getTicket')}</a>`
+    : `<a class="btn gold" href="${gmaps(p || { Name: x._venue })}" target="_blank" rel="noopener">${t('directions')}</a>`;
+  const lead = ev ? (has(x.Notes) ? x.Notes : has(x.Description) ? x.Description : t('seeYou')) : x._deal ? `${x._deal.big} ${x._deal.small === 'DEAL' ? t('deal') : x._deal.small}: ${x._deal.snip}` : [x['Type / style'], x._hood].filter(has).join(' · ');
+  el.className = 'detail dk';
+  el.innerHTML = `<div class="hero"><img src="symbol.png" alt=""><button class="back" onclick="this.closest('.detail').remove()" aria-label="Back">${ic('back')}</button></div>
+   <div class="dbody"><div class="pills">${ev ? evPills(x) : placePills(x)}</div><h1>${esc(ev ? x._title : x.Name)}</h1><div class="dv" aria-hidden="true">◆</div><p class="lead">${esc(lead)}</p><div class="acts">${acts(x._id, p?._id)}</div>
+   ${ev ? fact('feed', `${dd} · ${tm.t} ${tm.ap}`) + fact('map', [x._venue, x._hood].filter(v => has(v) && !/^tbc/i.test(v)).join(', ') || x._venue)
+        : fact('map', x['Neighborhood / address']) + fact('clock', x['Activity status'])}
+   <div class="more">${ev ? row('music', t('artist'), x['Artist / Performer']) + row('people', t('status'), [x._status, x.Recurring].filter(has).join(' · '))
+        + row('globe', t('language'), String(x._lang || '').split(/,\s*/).map(l => LANGN[l] || l).join(' · ')) + row('star', t('cat'), [x._cat, x._genre].filter(has).join(' · ')) : ''}
+   ${p ? (ev ? '' : row('info', t('style'), p['Type / style'])) + row('music', t('music'), [p['Live music'], p['Music genre / style']].filter(has).join(' · '))
+     + row('bars', t('drinks'), [['Cocktails', p.Cocktails], ['Wine', p.Wine], ['Beer', p['Beer type']]].filter(a => has(a[1])).map(a => `${a[0]}: ${a[1]}`).join(' · '))
+     + row('rest', t('food'), [p.Food, p['Food quality mentions']].filter(has).join(' · ')) + row('wifi', 'WiFi', p['WiFi / co-working'])
+     + row('people', t('goodFor'), [p['Good for (date / friends / family)'], p['Seated or standing'], p['Vibe (dance / talk / flirt)']].filter(has).join(' · ')) : ''}
+   ${ev && x._tat ? row('feed', 'What’s On', '', `<a href="${esc(x._tat)}" target="_blank" rel="noopener">${t('readTat')}</a>`) : ''}
+   ${ig ? row('camera', t('insta'), ig, `<a href="https://instagram.com/${esc(ig.replace('@', ''))}" target="_blank" rel="noopener">${esc(ig)}</a>`) : ''}</div>
+   </div>
+   <div class="foot"><div><small>${t('entry')}</small><b>${esc(entry)}</b></div>${cta}</div>`;
+  document.body.appendChild(el);
+}
+addEventListener('keydown', e => { if (e.key === 'Escape') [...document.querySelectorAll('.detail,.veil,.you')].pop()?.remove(); });
+
+/* ---------- For you ---------- */
+function you() {
+  let el = $('.you'); if (!el) { el = document.createElement('div'); el.className = 'you'; document.body.appendChild(el); }
+  const al = alerts(), isNew = a => !ME.seen.includes(a.id);
+  const tagNew = (html, on) => on ? html.replace('<div class="pills">', '<div class="pills">' + pill(t('new'), 'new')) : html;
+  const items = al.sort((a, b) => isNew(b) - isNew(a)).map(a => tagNew(a.deal ? dealCard(a.x) : eventCard(a.x), isNew(a))).join('');
+  const bananas = ME.bananas.map(id => BY.get(id)).filter(Boolean), saved = ME.saved.map(id => BY.get(id)).filter(Boolean);
+  el.innerHTML = `<header class="mast dk"><div class="mtools"><button class="bell" onclick="this.closest('.you').remove()" aria-label="Back">${ic('back')}</button></div>
+     <img class="msym" src="symbol.png" alt="City Banana"><div class="eyebrow">City Banana</div><h1>${t('forYou')}</h1></header>
+   <div class="who">${ic('heart')}<div><b>${esc(WHO ? t('signedIn')(WHO.name || 'you') : t('local'))}</b><div class="sub">${esc(WHO ? t('acct') : t('localHint'))}</div></div></div>
+   ${sec('I', t('newAt'))}${items ? `<div class="grid">${items}</div>` : `<p class="hint">${t(ME.bananas.length ? 'noNews' : 'noBananas')}</p>`}
+   ${sec('II', t('myBananas'))}${bananas.length ? `<div class="grid">${bananas.map(placeCard).join('')}</div>` : `<p class="hint">${t('noBananas')}</p>`}
+   ${sec('III', t('mySaved'))}${saved.length ? `<div class="grid">${saved.map(x => x._title !== undefined ? eventCard(x) : placeCard(x)).join('')}</div>` : `<p class="hint">${t('noSaved')}</p>`}`;
+  const ids = al.map(a => a.id).filter(id => !ME.seen.includes(id));
+  if (ids.length) { ME.seen.push(...ids); persist(); draw(); }   // opening the inbox marks alerts as read
+}
+
+/* ---------- map ---------- */
+const PIN = 'M24 2C12.4 2 4 10.6 4 21.5 4 35 24 58 24 58s20-23 20-36.5C44 10.6 35.6 2 24 2z';
+const isLive = p => has(p['Live music']);
+const pinHtml = (p, on) => `<div class="pin ${on ? 'sel' : isLive(p) ? 'live' : ''}" style="width:${on ? 62 : 40}px;height:${on ? 78 : 50}px"><i></i><svg viewBox="0 0 48 60">
+  <path d="${PIN}" fill="${isLive(p) ? '#C47CE8' : '#E4A826'}" stroke="${on ? '#FFF5DA' : '#1E0836'}" stroke-width="2"/>
+  <g transform="translate(12 10)" fill="none" stroke="#1E0836" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${P[p._cat]}</g></svg></div>`;
+const mapPlaces = () => places.filter(p => (mapCat === 'all' || (mapCat === 'music' ? isLive(p) : p._cat === mapCat)) && match(p));
+function drawMap(keepFocus) {
+  let w = $('#mapwrap');
+  if (!w) { w = document.createElement('div'); w.id = 'mapwrap'; w.className = 'dk'; document.body.appendChild(w);
+    w.innerHTML = `<div id="map"></div><div class="mtop"></div><div class="mcard"></div>`; }
+  const pos = keepFocus && $('#q')?.selectionStart;
+  w.querySelector('.mtop').innerHTML = `<div class="bar"><img class="sym" src="symbol.png" alt="City Banana">${searchBox()}</div>
+   ${F.q && keepFocus ? `<div class="sugg">${places.filter(match).slice(0, 5).map(p => `<button onclick="pick('${p._id}')">${esc(p.Name)}<br><small>${esc(p._hood)}${p._lat ? '' : ' · ' + t('notOnMap')}</small></button>`).join('')}</div>` : ''}
+   <div class="chips">${['all', 'rest', 'bars', 'cafes', 'music'].map(c => `<button class="chip ${mapCat === c ? 'on' : ''}" onclick="mapCat='${c}';sel=null;draw()">${c === 'all' ? t('all') : t('chips')[c]}</button>`).join('')}
+   <button class="chip ${nActive() || BOOL.some(k => F[k]) ? 'on' : ''}" onclick="sheet()">${ic('filter')}${t('filters')}</button></div>`;
+  if (keepFocus) { const q = $('#q'); q.focus(); q.setSelectionRange(pos, pos); }
+  const s = sel && BY.get(sel);
+  w.querySelector('.mcard').innerHTML = s ? `<div class="mc"><div class="mi">${ic(s._cat)}</div><div class="mt"><b>${esc(s.Name)}</b><span>${esc([s['Type / style'], s._hood].filter(has).join(' · '))}</span></div>
+    <button class="btn sm gold" onclick="detail('${s._id}')">${t('details')}</button></div>${s._lat ? '' : `<a class="gm" href="${gmaps(s)}" target="_blank" rel="noopener">${t('notOnMap')}</a>`}`
+    : `<div style="text-align:center;color:var(--tx2)">${t('tapPin')}<br><i>${t('joke').map}</i></div>`;
+  if (!window.L) return;
+  if (!map) { map = L.map('map', { zoomControl: false, minZoom: 12, maxZoom: 18 }).setView([-25.29, -57.60], 13);
+    basemap();
+    layer = L.layerGroup().addTo(map); map.on('click', () => { sel = null; draw(); }); map.on('zoomend', pins); }
+  pins(); setTimeout(() => map?.invalidateSize(), 0);
+}
+// Asunción drawn from bundled OpenStreetMap data (basemap.js): works offline and inside the published page
+function basemap() {
+  const B = window.BASEMAP; map.attributionControl.addAttribution('© OpenStreetMap contributors');
+  if (!B) return L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+  const dec = a => { const r = []; for (let i = 0, y = 0, x = 0; i < a.length; i += 2) { y += a[i]; x += a[i + 1]; r.push([B.o[0] + y / B.s, B.o[1] + x / B.s]); } return r; };
+  const cv = L.canvas({ padding: .5 }), opt = { renderer: cv, interactive: false };
+  map.setMaxBounds([[B.o[0] - .02, B.o[1] - .02], [B.o[0] + .16, B.o[1] + .21]]);
+  L.polygon(B.park.map(dec), { ...opt, stroke: false, fillColor: '#34105C', fillOpacity: 1 }).addTo(map);
+  L.polygon(B.water.map(dec), { ...opt, stroke: false, fillColor: '#170530', fillOpacity: 1 }).addTo(map);
+  const roads = [['minor', '#43196F', 1.4], ['mid', '#5A2A8C', 2.6], ['major', 'rgba(228,168,38,.55)', 3.6]].map(([k, c, w]) => [L.polyline(B[k].map(dec), { ...opt, color: c, weight: w, lineCap: 'round', lineJoin: 'round' }).addTo(map), w]);
+  const big = L.layerGroup(), small = L.layerGroup();
+  for (const [s, name, y, x] of B.label) (s ? big : small).addLayer(L.marker([B.o[0] + y / B.s, B.o[1] + x / B.s],
+    { interactive: false, keyboard: false, icon: L.divIcon({ className: 'lbl' + (s ? ' big' : ''), html: '<span>' + esc(name) + '</span>', iconSize: null }) }));
+  const zoom = () => { const z = map.getZoom(); roads.forEach(([l, w]) => l.setStyle({ weight: w * Math.max(.6, (z - 11) / 3) }));
+    z >= 12 ? big.addTo(map) : big.remove(); z >= 14 ? small.addTo(map) : small.remove(); };
+  map.on('zoomend', zoom); zoom();
+}
+function pins() {   // group pins closer than 56px into a gold cluster; the selected pin always stands alone
+  layer.clearLayers(); const z = map.getZoom(), cells = new Map();
+  for (const p of mapPlaces().filter(p => p._lat)) {
+    const pt = map.project([p._lat, p._lon], z), k = p._id === sel || z >= 17 ? p._id : `${Math.floor(pt.x / 56)}:${Math.floor(pt.y / 56)}`;
+    (cells.get(k) || cells.set(k, []).get(k)).push(p);
+  }
+  for (const g of cells.values()) {
+    if (g.length === 1) { const p = g[0], on = p._id === sel, wh = on ? [62, 78] : [40, 50];
+      layer.addLayer(L.marker([p._lat, p._lon], { icon: L.divIcon({ className: 'pinw', html: pinHtml(p, on), iconSize: wh, iconAnchor: [wh[0] / 2, wh[1]] }),
+        zIndexOffset: on ? 1000 : 0, title: p.Name, keyboard: true }).on('click', e => { L.DomEvent.stop(e); sel = p._id; draw(); }));
+    } else { const b = L.latLngBounds(g.map(p => [p._lat, p._lon]));
+      layer.addLayer(L.marker(b.getCenter(), { icon: L.divIcon({ className: 'pinw', html: `<div class="clu"><b>${g.length}</b></div>`, iconSize: [62, 62], iconAnchor: [31, 31] }),
+        title: g.length + ' places' }).on('click', e => { L.DomEvent.stop(e); b.getNorthEast().equals(b.getSouthWest()) ? map.setView(b.getCenter(), z + 2) : map.fitBounds(b.pad(.4)); }));
+    }
+  }
+}
+function pick(id) { const p = BY.get(id); sel = id; F.q = ''; draw(); if (p._lat) map?.setView([p._lat, p._lon], 17); }
+
+/* ---------- boot ---------- */
+draw();
+account();
+setTimeout(() => $('#splash')?.classList.add('out'), 1200);
+setInterval(() => tab === 'feed' && !document.querySelector('.detail,.veil') && draw(), 60000); // refresh "Live now"
+</script>
+</body>
+</html>
