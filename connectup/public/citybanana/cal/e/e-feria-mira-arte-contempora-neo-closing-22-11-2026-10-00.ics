@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Feria MIRA - Arte Contemporáneo (closing)
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-closing-22-11-2026-10-00@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261122T130000Z
+DTEND:20261122T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo (closing)
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Closing day.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo (closing)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Digital Nomads & Expats Social (Christmas Eve)
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-digital-nomads-expats-social-christmas-eve-24-12-2026-19-30@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261224T223000Z
+DTEND:20261225T003000Z
+SUMMARY:Digital Nomads & Expats Social (Christmas Eve)
+LOCATION:TBC
+DESCRIPTION:Not listed anywhere yet. Weekly pattern says Thursday\, but it may not run on Christmas Eve.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social (Christmas Eve)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Spanglish Social (Spanish/English exchange)
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-spanglish-social-spanish-english-exchange-19-12-2026-tbc@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261219T150000Z
+DTEND:20261219T170000Z
+SUMMARY:Spanglish Social (Spanish/English exchange)
+LOCATION:Rotating coffee shop
+DESCRIPTION:Date carried over from earlier sheet and NOT confirmed. Check @spanglishsocialpy.\ntheconnectup.com/citybanana
+URL:https://www.instagram.com/spanglishsocialpy
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Spanglish Social (Spanish/English exchange)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

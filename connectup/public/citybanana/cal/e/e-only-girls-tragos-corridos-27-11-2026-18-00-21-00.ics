@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Only Girls: tragos corridos
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-27-11-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261127T210000Z
+DTEND:20261127T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

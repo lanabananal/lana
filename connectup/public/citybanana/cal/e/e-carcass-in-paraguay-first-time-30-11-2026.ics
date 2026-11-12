@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Carcass in Paraguay (first time)
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-carcass-in-paraguay-first-time-30-11-2026@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261130T150000Z
+DTEND:20261130T170000Z
+SUMMARY:Carcass in Paraguay (first time)
+LOCATION:Absoluto Rock Bar (Herrera 163 c/ Yegros)
+DESCRIPTION:Caption in post\, 2 days old. Collab with @paridosporelrock and @clandestineprodspy.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Carcass in Paraguay (first time)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Gorillaz - The Mountain Tour
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-gorillaz-the-mountain-tour-01-12-2026-20-00@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261201T230000Z
+DTEND:20261202T010000Z
+SUMMARY:Gorillaz - The Mountain Tour
+LOCATION:Jockey Club del Paraguay
+DESCRIPTION:First time in Paraguay. Prices from Gs. 360\,000 (General). Part of South American tour.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Gorillaz - The Mountain Tour
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

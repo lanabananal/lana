@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Muestra de Cine Mercosur-UE (closing)
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-muestra-de-cine-mercosur-ue-closing-13-11-2026-19-30@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261113T223000Z
+DTEND:20261114T003000Z
+SUMMARY:Muestra de Cine Mercosur-UE (closing)
+LOCATION:Centro Cultural de España Juan de Salazar
+DESCRIPTION:EU-Mercosur film showcase. Runs Nov 3-13\, this is closing night.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Muestra de Cine Mercosur-UE (closing)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

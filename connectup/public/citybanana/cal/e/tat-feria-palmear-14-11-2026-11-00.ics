@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Feria Palmear
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:tat-feria-palmear-14-11-2026-11-00@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261114T140000Z
+DTEND:20261114T160000Z
+SUMMARY:Feria Palmear
+LOCATION:Venue to be announced
+DESCRIPTION:Every Saturday in season\, Asunción’s grandest old street shuts to traffic and turns into a party. Feria Palmear fills Calle Palma between Independencia Nacional and 14 de Mayo from late morning until eleven at night\, and it is free to walk straight into. There are makers and artisans selling along the pavements\, street food in every direction\, live music and dancing\, and a different theme each wee\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/feria-palmear-7/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria Palmear
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

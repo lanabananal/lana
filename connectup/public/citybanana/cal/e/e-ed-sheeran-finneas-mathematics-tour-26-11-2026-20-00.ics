@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Ed Sheeran + FINNEAS - Mathematics Tour
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-ed-sheeran-finneas-mathematics-tour-26-11-2026-20-00@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261126T230000Z
+DTEND:20261127T010000Z
+SUMMARY:Ed Sheeran + FINNEAS - Mathematics Tour
+LOCATION:Estadio ueno La Nueva Olla
+DESCRIPTION:First time in Paraguay. Prices from Gs. 336\,000 (Popular) up to VIP. Massive event.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Ed Sheeran + FINNEAS - Mathematics Tour
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

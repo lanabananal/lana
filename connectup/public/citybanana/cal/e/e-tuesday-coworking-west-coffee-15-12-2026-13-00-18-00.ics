@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Tuesday Coworking @ West Coffee
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-tuesday-coworking-west-coffee-15-12-2026-13-00-18-00@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261215T160000Z
+DTEND:20261215T180000Z
+SUMMARY:Tuesday Coworking @ West Coffee
+LOCATION:West Coffee\, Paseo Miraflores (Julio Correa)
+DESCRIPTION:Listing says it repeats every Tuesday\, but only shows dates through 27/10. Buy something to support the cafe.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://nomads.com/meetups/asuncion/tuesday-coworking-west-coffee-1860
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Tuesday Coworking @ West Coffee
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

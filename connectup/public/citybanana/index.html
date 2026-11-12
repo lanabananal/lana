@@ -292,6 +292,10 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 .sheet input,.sheet select{width:100%;height:46px;border-radius:0;border:3px double var(--rule);background:var(--card);color:var(--tx);padding:0 14px;font-size:16px}
 .sheet .yn{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:4px 10px}
 .sheet .hint{color:var(--tx2);font-style:italic}
+.hint.center,.center{text-align:center}.narrow{max-width:520px;margin:0 auto}
+.calrow{display:flex;flex-direction:column;gap:8px}.calrow small{font:600 11px var(--ttl);letter-spacing:.18em;text-transform:uppercase;color:var(--tx2)}
+.nav button .badge{position:absolute;top:4px;left:calc(50% + 6px);min-width:18px;height:18px;padding:0 4px;background:var(--gold);color:var(--night);font:700 11px/18px var(--ttl);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.nav button{min-width:0}
 /* map: framed engraving */
 #mapwrap::after{content:'';position:absolute;inset:8px;border:1px solid rgba(228,168,38,.55);outline:1px solid rgba(228,168,38,.25);outline-offset:4px;pointer-events:none;z-index:999}
 .lbl,.lbl.big{font-family:var(--ttl)}
@@ -332,27 +336,27 @@ const store = (k, v) => { try { v === undefined ? (v = localStorage[k]) : (local
 
 /* ---------- copy ---------- */
 const T = {
- en:{feedTitle:'This week in Asunción',tagline:'Your city, just ripe.',nav:['Events','Food','Bars','Coffee','Map'],feed:'Events',rest:'Restaurants',bars:'Bars',cafes:'Cafés',map:'Map',events:'Events',deals:'Food & drink deals',
+ en:{feedTitle:'This week in Asunción',tagline:'Your city, just ripe.',nav:['Home','Events','Food','Bars','Coffee','Map'],feed:'Events',rest:'Restaurants',bars:'Bars',cafes:'Cafés',map:'Map',events:'Events',deals:'Food & drink deals',
   empty:'Nothing on tonight. Try tomorrow?',none:'No matches. Loosen a filter?',free:'Free',live:'Live now',tix:'Tickets',new:'New',search:'Search places and events',
   filters:'Filters',wifi:'WiFi',food:'Food',music:'Live music',cocktails:'Cocktails',wine:'Wine',beer:'Beer',hood:'Neighborhood',price:'Price',genre:'Music / genre',
   cat:'Category',langF:'Language',any:'Any',showClosed:'Show permanently closed places',clear:'Clear',done:'Done',details:'Details',getTicket:'Get ticket',
   directions:'Directions',entry:'Entry',seeYou:'See you there.',notOnMap:'Not on our map yet. Open in Google Maps',tapPin:'Tap a pin to see the place.',all:'All',
   chips:{rest:'Food',bars:'Bars',cafes:'Coffee',music:'Music'},closed:'Closed',yourList:'Your list',style:'Style',status:'Status',drinks:'Drinks',goodFor:'Good for',insta:'Instagram',
   artist:'Artist',language:'Language',deal:'Deal',count:n=>`${n} establishments catalogued`,weekly:'The Weekly Catalogue of Asunción',chap:n=>`Chapter ${n}`,
-  readTat:'Read the full listing',moreInfo:'More information',by:o=>`By ${o}`,home:'Home',homeSub:'Your Golden Bananas, saved events and calendar alerts',alertsHint:'Subscribe once. New events at this place appear in your calendar with a reminder 3 hours before.',gcal:'Google Calendar',acal:'Apple Calendar',allCal:'Every City Banana event',addPlace:'Add a place',addSub:'Know a spot we’re missing? Send it to Lana. She checks every suggestion before it goes live.',send:'Send to Lana',sent:'Thank you. Lana will check it before it goes live.',sendFail:'That didn’t send. Check your connection and try again.',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'New at your Golden Bananas',myBananas:'Your Golden Bananas',mySaved:'Saved',
-  noNews:'Nothing new yet. We’ll list new events and deals here.',noBananas:'Give a place the Golden Banana to hear about its new events and deals.',noSaved:'Tap Save on any place or event to keep it here.',
+  readTat:'Read the full listing',moreInfo:'More information',by:o=>`By ${o}`,home:'Home',homeSub:'Everything you gave the Golden Banana',alertsHint:'Subscribe once. New events at this place appear in your calendar with a reminder 3 hours before.',gcal:'Google Calendar',acal:'Apple Calendar',allCal:'Every City Banana event',addPlace:'Add a place',addSub:'Know a spot we’re missing? Send it to Lana. She checks every suggestion before it goes live.',send:'Send to Lana',sent:'Thank you. Lana will check it before it goes live.',sendFail:'That didn’t send. Check your connection and try again.',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'Coming up at your Golden Bananas',startHere:'Busy this week: tap the Golden Banana',addToCal:'Add to calendar',myBananas:'Your Golden Bananas',mySaved:'Saved',
+  noNews:'Nothing new yet. We’ll list new events and deals here.',noBananas:'Tap the Golden Banana on any place or event. Everything you banana shows up here, in date order.',noSaved:'Tap Save on any place or event to keep it here.',
   signedIn:n=>`Signed in as ${n}`,acct:'Your saves follow your account on every device.',local:'Saved on this device',localHint:'Open City Banana from its link to keep your list on every device.',
   bell:n=>n?`For you, ${n} new`:'For you',
   joke:{feed:'That’s the whole bunch for today.',rest:'Hungry? Let’s split. Banana optional.',bars:'Go bananas. Responsibly.',cafes:'Don’t slip on the way to coffee.',map:'Peel the city, one pin at a time.'}},
- es:{feedTitle:'Esta semana en Asunción',tagline:'Tu ciudad, en su punto.',nav:['Eventos','Comida','Bares','Café','Mapa'],feed:'Eventos',rest:'Restaurantes',bars:'Bares',cafes:'Cafés',map:'Mapa',events:'Eventos',deals:'Promos de comida y tragos',
+ es:{feedTitle:'Esta semana en Asunción',tagline:'Tu ciudad, en su punto.',nav:['Inicio','Eventos','Comida','Bares','Café','Mapa'],feed:'Eventos',rest:'Restaurantes',bars:'Bares',cafes:'Cafés',map:'Mapa',events:'Eventos',deals:'Promos de comida y tragos',
   empty:'Nada esta noche. ¿Probamos mañana?',none:'Sin resultados. ¿Aflojamos un filtro?',free:'Gratis',live:'En vivo',tix:'Entradas',new:'Nuevo',search:'Buscá lugares y eventos',
   filters:'Filtros',wifi:'WiFi',food:'Comida',music:'Música en vivo',cocktails:'Cócteles',wine:'Vino',beer:'Cerveza',hood:'Barrio',price:'Precio',genre:'Música / género',
   cat:'Categoría',langF:'Idioma',any:'Todos',showClosed:'Mostrar lugares cerrados definitivamente',clear:'Limpiar',done:'Listo',details:'Detalles',getTicket:'Comprar entrada',
   directions:'Cómo llegar',entry:'Entrada',seeYou:'Nos vemos ahí.',notOnMap:'Todavía no está en el mapa. Abrir en Google Maps',tapPin:'Tocá un pin para ver el lugar.',all:'Todos',
   chips:{rest:'Comida',bars:'Bares',cafes:'Café',music:'Música'},closed:'Cerrado',yourList:'Tu lista',style:'Estilo',status:'Estado',drinks:'Bebidas',goodFor:'Ideal para',insta:'Instagram',
   artist:'Artista',language:'Idioma',deal:'Promo',count:n=>`${n} establecimientos catalogados`,weekly:'El catálogo semanal de Asunción',chap:n=>`Capítulo ${n}`,
-  readTat:'Ver la publicación completa',moreInfo:'Más información',by:o=>`Por ${o}`,home:'Inicio',homeSub:'Tus Bananas de Oro, eventos guardados y alertas en tu calendario',alertsHint:'Suscribite una vez. Los eventos nuevos de este lugar aparecen en tu calendario con aviso 3 horas antes.',gcal:'Google Calendar',acal:'Calendario de Apple',allCal:'Todos los eventos de City Banana',addPlace:'Sugerir un lugar',addSub:'¿Conocés un lugar que falta? Mandáselo a Lana. Ella revisa cada sugerencia antes de publicarla.',send:'Enviar a Lana',sent:'¡Gracias! Lana lo revisa antes de publicarlo.',sendFail:'No se pudo enviar. Revisá tu conexión e intentá de nuevo.',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Novedades de tus Bananas de Oro',myBananas:'Tus Bananas de Oro',mySaved:'Guardados',
-  noNews:'Todavía nada nuevo. Acá vas a ver eventos y promos nuevas.',noBananas:'Dale la Banana de Oro a un lugar para enterarte de sus eventos y promos.',noSaved:'Tocá Guardar en un lugar o evento para tenerlo acá.',
+  readTat:'Ver la publicación completa',moreInfo:'Más información',by:o=>`Por ${o}`,home:'Inicio',homeSub:'Todo lo que marcaste con la Banana de Oro',alertsHint:'Suscribite una vez. Los eventos nuevos de este lugar aparecen en tu calendario con aviso 3 horas antes.',gcal:'Google Calendar',acal:'Calendario de Apple',allCal:'Todos los eventos de City Banana',addPlace:'Sugerir un lugar',addSub:'¿Conocés un lugar que falta? Mandáselo a Lana. Ella revisa cada sugerencia antes de publicarla.',send:'Enviar a Lana',sent:'¡Gracias! Lana lo revisa antes de publicarlo.',sendFail:'No se pudo enviar. Revisá tu conexión e intentá de nuevo.',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Lo próximo en tus Bananas de Oro',startHere:'Con movimiento esta semana: tocá la Banana de Oro',addToCal:'Agregar al calendario',myBananas:'Tus Bananas de Oro',mySaved:'Guardados',
+  noNews:'Todavía nada nuevo. Acá vas a ver eventos y promos nuevas.',noBananas:'Tocá la Banana de Oro en cualquier lugar o evento. Todo lo que marques aparece acá, por fecha.',noSaved:'Tocá Guardar en un lugar o evento para tenerlo acá.',
   signedIn:n=>`Sesión iniciada como ${n}`,acct:'Lo que guardás te sigue en todos tus dispositivos.',local:'Guardado en este dispositivo',localHint:'Abrí City Banana desde su enlace para tener tu lista en todos tus dispositivos.',
   bell:n=>n?`Para vos, ${n} nuevos`:'Para vos',
   joke:{feed:'Ese es todo el racimo de hoy.',rest:'¿Hambre? Banana split opcional.',bars:'Volvete banana. Con moderación.',cafes:'No te resbales camino al café.',map:'Pelá la ciudad, un pin a la vez.'}}};
@@ -455,15 +459,19 @@ const hoodQ = () => { const q = norm(F.q).trim(); return q.length > 3 ? HP[q] ||
    opened as a local file it stays on this device. */
 let ME = { saved: [], bananas: [], seen: [] }, WHO = null, meRef = null, writing = Promise.resolve();
 try { Object.assign(ME, JSON.parse(localStorage['cb.me'] || '{}')); } catch (e) {}
+ME.bananas = [...new Set([...ME.bananas, ...ME.saved])]; ME.saved = [];
 const persist = () => { store('cb.me', JSON.stringify(ME)); if (meRef) writing = writing.then(() => meRef.set(ME)).catch(() => {}); };
 const toggle = (list, id) => { const a = ME[list], i = a.indexOf(id); i < 0 ? a.push(id) : a.splice(i, 1); persist(); };
 const isSaved = id => ME.saved.includes(id), isBanana = id => ME.bananas.includes(id);
 function alerts() {   // upcoming events + current deals at Golden Banana places
   const today = ymd(new Date()), out = [];
-  for (const id of ME.bananas) { const p = BY.get(id); if (!p) continue;
-    if (p._deal) out.push({ id: 'deal:' + p._id, x: p, deal: true });
-    for (const e of events) if (placeFor(e) === p && evDay(e) >= today) out.push({ id: e._id, x: e }); }
-  return out;
+  const ids = new Set();
+  for (const id of ME.bananas) { const x = BY.get(id); if (!x) continue;
+    if (x._title !== undefined) { if (evDay(x) >= today && !ids.has(x._id)) { ids.add(x._id); out.push({ id: x._id, x }); } continue; }
+    if (x._deal) out.push({ id: 'deal:' + x._id, x, deal: true });
+    for (const e of events) if (placeFor(e) === x && evDay(e) >= today && !ids.has(e._id)) { ids.add(e._id); out.push({ id: e._id, x: e }); } }
+  const key = a => a.deal ? '9' : evDay(a.x) + String((hm(a.x._time) || { h: 99 }).h).padStart(2, '0');
+  return out.sort((a, b) => key(a) < key(b) ? -1 : 1);
 }
 const unseen = () => alerts().filter(a => !ME.seen.includes(a.id)).length;
 async function account() {
@@ -474,10 +482,10 @@ async function account() {
   WHO = await user.me(); meRef = db.collection('data/users/' + id).doc('me');
   const timer = new Promise((_, no) => setTimeout(() => no('timeout'), 10000));
   try { const s = await Promise.race([meRef.get(), timer]);
-    if (s.exists) { const d = s.data(); for (const k of ['saved', 'bananas', 'seen']) ME[k] = [...new Set([...(d[k] || []), ...ME[k]])]; }
+    if (s.exists) { const d = s.data(); for (const k of ['saved', 'bananas', 'seen']) ME[k] = [...new Set([...(d[k] || []), ...ME[k]])]; ME.bananas = [...new Set([...ME.bananas, ...ME.saved])]; ME.saved = []; }
     if (!s.exists && (ME.saved.length || ME.bananas.length)) persist();
   } catch (e) { meRef = null; }
-  if (!document.querySelector('.detail,.veil,.you')) draw(); else document.querySelector('.you') && you();
+  if (!document.querySelector('.detail,.veil')) draw();
 }
 
 /* ---------- dates ---------- */
@@ -494,7 +502,7 @@ const week = [...Array(7)].map((_, i) => { const d = new Date(); d.setHours(0, 0
 const loc = () => lang === 'es' ? 'es-PY' : 'en-US';
 
 /* ---------- UI pieces ---------- */
-let tab = ['feed','rest','bars','cafes','map'].find(k => '#' + k === location.hash) || store('tab') || 'feed', day = 0, sel = null, mapCat = 'all', map, layer, flown = '';
+let tab = ['home','feed','rest','bars','cafes','map'].find(k => '#' + k === location.hash) || 'home', day = 0, sel = null, mapCat = 'all', map, layer, flown = '';
 const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
 const isoWeek = d => { const x = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())); x.setUTCDate(x.getUTCDate() + 4 - (x.getUTCDay() || 7)); return Math.ceil(((x - Date.UTC(x.getUTCFullYear(), 0, 1)) / 864e5 + 1) / 7); };
 const issue = () => { const a = week[0], b = week[6], f = (d, o) => d.toLocaleDateString(loc(), o);
@@ -502,8 +510,8 @@ const issue = () => { const a = week[0], b = week[6], f = (d, o) => d.toLocaleDa
 // Catalogue masthead: always on the dark band, as the brand asks for the logo
 const head = (title, eyebrow, line, cover) => `<header class="mast dk${cover ? ' cover' : ''}"><div class="mtools">
   <button class="lang" onclick="setLang()" aria-label="Español / English">${lang === 'en' ? 'ES' : 'EN'}</button>
-  <button class="bell" onclick="you()" aria-label="${t('bell')(unseen())}">${ic('bell')}${unseen() ? `<b>${unseen()}</b>` : ''}</button></div>
-  <button class="homebtn" onclick="you()" aria-label="${t('home')}"><img class="${cover ? 'mlogo' : 'msym'}" src="${cover ? 'logo.png' : 'symbol.png'}" alt="City Banana"></button>
+  <span></span></div>
+  <button class="homebtn" onclick="go('home')" aria-label="${t('home')}"><img class="${cover ? 'mlogo' : 'msym'}" src="${cover ? 'logo.png' : 'symbol.png'}" alt="City Banana"></button>
   <div class="eyebrow">${esc(eyebrow)}</div><h1>${esc(title)}</h1>${line ? `<div class="issue">${line}</div>` : ''}</header>`;
 const sec = (n, txt) => `<h2 class="orn"><span>${n ? n + '. ' : ''}${esc(txt)}</span></h2>`;
 const no = i => i === undefined || typeof i !== 'number' ? '' : `<span class="no">Nº ${String(i + 1).padStart(3, '0')}</span>`;
@@ -524,7 +532,7 @@ function eventCard(e, i) { const x = fmtT(e._time), p = placeFor(e);
 function dealCard(p, i) { const d = p._deal;
   return `<button class="card" onclick="detail('${p._id}')"><div class="tb"><b class="${d.big.length > 3 ? 'sm' : ''}">${esc(d.big)}</b><small>${esc(d.small === 'DEAL' ? t('deal').toUpperCase() : d.small)}</small></div>
   <div class="cb">${no(i)}<span class="ct">${esc(p.Name)}</span><p>${esc(d.snip)}</p><div class="pills">${pill(p._hood)}${isFree(p['Price range']) ? pill(t('free'), 'free') : ''}</div></div></button>`; }
-const placePills = (p, a = attrs(p)) => (isBanana(p._id) ? pill(t('banana'), 'gb') : '') + (p['On your list'] === 'Yes' ? pill('★ ' + t('yourList'), 'new') : '') + (a.free ? pill(t('free'), 'free') : '') + (a.music ? pill(t('music'), 'tix') : '')
+const placePills = (p, a = attrs(p)) => (isBanana(p._id) ? pill(t('banana'), 'gb') : '') + (a.free ? pill(t('free'), 'free') : '') + (a.music ? pill(t('music'), 'tix') : '')
   + (a.wifi ? pill('WiFi') : '') + (a.cocktails ? pill(t('cocktails')) : '') + (p._deal ? pill(t('deal')) : '') + (p._closed ? pill(t('closed'), 'out') : '');
 function placeCard(p, i) { const a = attrs(p);
   return `<button class="card" onclick="detail('${p._id}')"><div class="tb">${ic(p._cat)}${a.price ? `<small>${esc(a.price)}</small>` : ''}</div><div class="cb">${no(i)}<span class="ct">${esc(p.Name)}</span>
@@ -535,7 +543,7 @@ function feed() {
   const d = week[day], key = ymd(d);
   const evs = events.filter(e => evDay(e) === key && match(e)).sort((a, b) => { const x = hm(a._time), y = hm(b._time); return (x ? x.h * 60 + x.m : 1e4) - (y ? y.h * 60 + y.m : 1e4); });
   const deals = places.filter(p => p._deal && p._deal.days.has(d.getDay()) && match(p));
-  return head(t('feedTitle'), t('weekly'), issue(), true) + `<div class="days">${week.map((w, i) => `<button class="day ${i === day ? 'on' : ''}" onclick="day=${i};draw()" aria-pressed="${i === day}">
+  return head(t('feedTitle'), t('chap')('I'), issue()) + `<div class="days">${week.map((w, i) => `<button class="day ${i === day ? 'on' : ''}" onclick="day=${i};draw()" aria-pressed="${i === day}">
     <small>${w.toLocaleDateString(loc(), { weekday: 'short' }).replace('.', '')}</small><b>${w.getDate()}</b></button>`).join('')}</div>` + filterBar()
    + sec('I', t('events')) + (evs.length ? '<div class="grid">' + evs.map(eventCard).join('') + '</div>' : `<div class="empty">${t('empty')}</div>`)
    + (deals.length ? sec('II', t('deals')) + `<div class="grid">` + deals.map(dealCard).join('') + '</div>' : '') + `<p class="joke">${t('joke').feed}</p>`;
@@ -550,12 +558,12 @@ const baseFor = () => tab === 'feed' ? events.filter(e => evDay(e) === ymd(week[
 
 function draw(keepFocus) {
   store('tab', tab); document.documentElement.lang = lang; const tg = $('#tagline'); if (tg) tg.textContent = t('tagline');
-  $('#nav').innerHTML = ['feed', 'rest', 'bars', 'cafes', 'map'].map((k, i) => `<button class="${k === tab ? 'on' : ''}" onclick="go('${k}')" aria-current="${k === tab}">${ic(k)}${t('nav')[i]}</button>`).join('');
+  const n = unseen(); $('#nav').innerHTML = ['home', 'feed', 'rest', 'bars', 'cafes', 'map'].map((k, i) => `<button class="${k === tab ? 'on' : ''}" onclick="go('${k}')" aria-current="${k === tab}">${ic(k === 'home' ? 'banana' : k)}${k === 'home' && n ? `<b class="badge">${n}</b>` : ''}${t('nav')[i]}</button>`).join('');
   $('#nav').classList.add('dk');
   if (tab === 'map') { $('#app').innerHTML = ''; return drawMap(keepFocus); }
   $('#mapwrap')?.remove(); map = null;
   const pos = keepFocus && $('#q')?.selectionStart;
-  $('#app').innerHTML = tab === 'feed' ? feed() : list(tab);
+  $('#app').innerHTML = tab === 'home' ? home() : tab === 'feed' ? feed() : list(tab);
   if (keepFocus) { const q = $('#q'); q.focus(); q.setSelectionRange(pos, pos); }
 }
 const go = k => { tab = k; sel = null; draw(); scrollTo(0, 0); };
@@ -577,12 +585,17 @@ const gmaps = p => 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
 const fact = (k, txt) => has(txt) ? `<div class="fact">${ic(k)}<span>${esc(txt)}</span></div>` : '';
 const row = (k, label, val, html) => has(val) || html ? `<div class="r"><small>${esc(label)}</small><i class="dots"></i><span class="v">${html || esc(val)}</span></div>` : '';
 // Save (this item) and Golden Banana (the place, or the event's venue)
-const acts = (id, pid) => `<button class="act ${isSaved(id) ? 'on' : ''}" aria-pressed="${isSaved(id)}" onclick="act(this,'saved','${id}','${pid || ''}')">${ic('heart')}${t(isSaved(id) ? 'saved' : 'save')}</button>`
-  + (pid ? `<button class="act ${isBanana(pid) ? 'on' : ''}" aria-pressed="${isBanana(pid)}" onclick="act(this,'bananas','${pid}','${pid}','${id}')">${ic('banana')}${t(isBanana(pid) ? 'bananaOn' : 'banana')}</button>` : '');
-function act(btn, list, id, pid, self) {
-  toggle(list, id); const box = btn.closest('.acts'); box.innerHTML = acts(self || id, pid);
-  if (document.querySelector('.you')) you(); draw();
-}
+const bBtn = (id, label, box) => `<button class="act ${isBanana(id) ? 'on' : ''}" aria-pressed="${isBanana(id)}" onclick="act(this,'${id}','${box}')">${ic('banana')}${label}</button>`;
+const acts = (id, pid) => { const x = BY.get(id), ev = x._title !== undefined;
+  return ev ? bBtn(id, t(isBanana(id) ? 'bananaOn' : 'banana'), id + '|' + (pid || '')) + (pid ? bBtn(pid, (isBanana(pid) ? '✓ ' : '') + BY.get(pid).Name, id + '|' + pid) : '')
+    : bBtn(id, t(isBanana(id) ? 'bananaOn' : 'banana'), id + '|'); };
+function act(btn, id, box) { toggle('bananas', id); const [a, b] = box.split('|'); btn.closest('.acts').innerHTML = acts(a, b); draw(); }
+// one event into Google Calendar (template link) or Apple Calendar (its own .ics)
+const gcalEvent = e => { const d = evDay(e), x = hm(e._time) || { h: 12, m: 0 }; if (!d) return '';
+  const st = Date.UTC(+d.slice(0, 4), +d.slice(5, 7) - 1, +d.slice(8, 10), x.h + 3, x.m), f = v => new Date(v).toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+  return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(e._title) + '&dates=' + f(st) + '/' + f(st + 72e5)
+    + '&location=' + encodeURIComponent(e._venue || '') + '&details=' + encodeURIComponent((e._desc || '') + '\ntheconnectup.com/citybanana'); };
+const addCal = e => `<div class="cal"><a class="act" href="${gcalEvent(e)}" target="_blank" rel="noopener">${ic('feed')}${t('gcal')}</a><a class="act" href="https://${CAL}e/${e._id}.ics">${ic('feed')}${t('acal')}</a></div>`;
 function detail(id) {
   const x = BY.get(id), ev = x._title !== undefined, p = ev ? placeFor(x) : x, el = document.createElement('div');
   const ig = (p && (has(p.Instagram) ? p.Instagram : (String(p.Evidence || '').match(/IG (@[\w.]+)/) || [])[1])) || '';
@@ -593,7 +606,7 @@ function detail(id) {
   const lead = ev ? (x._desc || t('seeYou')) : x._deal ? `${x._deal.big} ${x._deal.small === 'DEAL' ? t('deal') : x._deal.small}: ${x._deal.snip}` : [x['Type / style'], x._hood].filter(has).join(' · ');
   el.className = 'detail dk';
   el.innerHTML = `<div class="hero"><img src="symbol.png" alt=""><button class="back" onclick="this.closest('.detail').remove()" aria-label="Back">${ic('back')}</button></div>
-   <div class="dbody"><div class="pills">${ev ? evPills(x) : placePills(x)}</div><h1>${esc(ev ? x._title : x.Name)}</h1><div class="dv" aria-hidden="true">◆</div><p class="lead">${esc(lead)}</p><div class="acts">${acts(x._id, p?._id)}</div>
+   <div class="dbody"><div class="pills">${ev ? evPills(x) : placePills(x)}</div><h1>${esc(ev ? x._title : x.Name)}</h1><div class="dv" aria-hidden="true">◆</div><p class="lead">${esc(lead)}</p><div class="acts">${acts(x._id, p?._id)}</div>${ev ? `<div class="calrow"><small>${t('addToCal')}</small>${addCal(x)}</div>` : ''}
    ${ev ? fact('feed', `${dd} · ${tm.t} ${tm.ap}`) + fact('map', [x._venue, x._hood].filter(v => has(v) && !/^tbc/i.test(v)).join(', ') || x._venue)
         : fact('map', x['Neighborhood / address']) + fact('clock', /closed|cerrad/i.test(x['Activity status']) ? x['Activity status'] : '')}
    <div class="more">${ev ? row('music', t('artist'), x['Artist / Performer']) + row('people', t('status'), [x._status, x.Recurring].filter(has).join(' · '))
@@ -608,25 +621,26 @@ function detail(id) {
    <div class="foot"><div><small>${t('entry')}</small><b>${esc(entry)}</b></div>${cta}</div>`;
   document.body.appendChild(el);
 }
-addEventListener('keydown', e => { if (e.key === 'Escape') [...document.querySelectorAll('.detail,.veil,.you')].pop()?.remove(); });
+addEventListener('keydown', e => { if (e.key === 'Escape') [...document.querySelectorAll('.detail,.veil')].pop()?.remove(); });
 
-/* ---------- For you ---------- */
-function you() {
-  let el = $('.you'); if (!el) { el = document.createElement('div'); el.className = 'you'; document.body.appendChild(el); }
+/* ---------- Home: only your Golden Bananas ---------- */
+function home() {
   const al = alerts(), isNew = a => !ME.seen.includes(a.id);
   const tagNew = (html, on) => on ? html.replace('<div class="pills">', '<div class="pills">' + pill(t('new'), 'new')) : html;
-  const items = al.sort((a, b) => isNew(b) - isNew(a)).map(a => tagNew(a.deal ? dealCard(a.x) : eventCard(a.x), isNew(a))).join('');
-  const bananas = ME.bananas.map(id => BY.get(id)).filter(Boolean), saved = ME.saved.map(id => BY.get(id)).filter(Boolean);
-  el.innerHTML = `<header class="mast dk"><div class="mtools"><button class="bell" onclick="this.closest('.you').remove()" aria-label="Back">${ic('back')}</button></div>
-     <img class="msym" src="symbol.png" alt="City Banana"><div class="eyebrow">City Banana</div><h1>${t('home')}</h1><div class="issue">${t('homeSub')}</div></header>
-   <div class="who">${ic('heart')}<div><b>${esc(WHO ? t('signedIn')(WHO.name || 'you') : t('local'))}</b><div class="sub">${esc(WHO ? t('acct') : t('localHint'))}</div></div></div>
-   ${sec('I', t('newAt'))}${items ? `<div class="grid">${items}</div>` : `<p class="hint">${t(ME.bananas.length ? 'noNews' : 'noBananas')}</p>`}
-   ${sec('II', t('myBananas'))}${bananas.length ? `<p class="hint">${t('alertsHint')}</p><div class="grid">${bananas.map(p => `<div class="stack">${placeCard(p)}${calLinks(p._id)}</div>`).join('')}</div>` : `<p class="hint">${t('noBananas')}</p>`}
-   ${sec('III', t('mySaved'))}${saved.length ? `<div class="grid">${saved.map(x => x._title !== undefined ? eventCard(x) : placeCard(x)).join('')}</div>` : `<p class="hint">${t('noSaved')}</p>`}
-   ${sec('IV', t('allCal'))}<div class="stack">${calLinks('all')}</div>
-   ${sec('V', t('addPlace'))}<p class="hint">${t('addSub')}</p><button class="btn gold" onclick="addPlace()">${t('addPlace')}</button>`;
+  const bananas = ME.bananas.map(id => BY.get(id)).filter(x => x && x._title === undefined);
+  const today = ymd(new Date()), soon = ymd(week[6]);
+  const busy = places.filter(p => !p._closed && !isBanana(p._id)).map(p => [p, events.filter(e => placeFor(e) === p && evDay(e) >= today && evDay(e) <= soon).length])
+    .filter(([, n]) => n).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([p]) => p);
+  const pick = p => `<div class="stack">${placeCard(p)}<div class="acts">${acts(p._id)}</div></div>`;
+  const html = head(t('home'), t('weekly'), t('homeSub'), true)
+   + sec('I', t('newAt')) + (al.length ? `<div class="grid">${al.map(a => tagNew(a.deal ? dealCard(a.x) : eventCard(a.x), isNew(a))).join('')}</div>` : `<p class="hint center">${t(ME.bananas.length ? 'noNews' : 'noBananas')}</p>`)
+   + (busy.length ? sec('', t('startHere')) + `<div class="grid">${busy.map(pick).join('')}</div>` : '')
+   + (bananas.length ? sec('II', t('myBananas')) + `<p class="hint center">${t('alertsHint')}</p><div class="grid">${bananas.map(p => `<div class="stack">${placeCard(p)}${calLinks(p._id)}</div>`).join('')}</div>` : '')
+   + sec('III', t('allCal')) + `<div class="stack narrow">${calLinks('all')}</div>`
+   + sec('IV', t('addPlace')) + `<p class="hint center">${t('addSub')}</p><div class="addrow"><button class="btn gold" onclick="addPlace()">${t('addPlace')}</button></div>`;
   const ids = al.map(a => a.id).filter(id => !ME.seen.includes(id));
-  if (ids.length) { ME.seen.push(...ids); persist(); draw(); }   // opening the inbox marks alerts as read
+  if (ids.length) { ME.seen.push(...ids); persist(); setTimeout(() => { const b = $('.nav .badge'); b && b.remove(); }, 0); }
+  return html;
 }
 
 /* ---------- calendar alerts: one feed per venue, built with the data (cal/*.ics on theconnectup.com) ---------- */

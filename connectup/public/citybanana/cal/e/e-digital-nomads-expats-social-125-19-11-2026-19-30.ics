@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Digital Nomads & Expats Social #125
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-digital-nomads-expats-social-125-19-11-2026-19-30@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261119T223000Z
+DTEND:20261120T003000Z
+SUMMARY:Digital Nomads & Expats Social #125
+LOCATION:D'Alepo
+DESCRIPTION:Venue not announced yet. Check the link a few days before.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/digital-nomads-and-expats-social-meetup-125/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social #125
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

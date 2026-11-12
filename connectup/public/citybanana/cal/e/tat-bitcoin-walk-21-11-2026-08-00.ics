@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:BITCOIN WALK
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:tat-bitcoin-walk-21-11-2026-08-00@citybanana
+DTSTAMP:20261112T032419Z
+DTSTART:20261121T110000Z
+DTEND:20261121T130000Z
+SUMMARY:BITCOIN WALK
+LOCATION:Ñu Guazú Park – Gate 2
+DESCRIPTION:A Saturday morning walk for people interested in Bitcoin\, part of a worldwide Bitcoin Walk movement. Meet at Ñu Guazú Park\, gate 2\, at 08:00 and talk shop for a couple of hours in the fresh air. Free. Organised by the Bitcoin Paraguay community.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/bitcoin-walk-21-nov-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:BITCOIN WALK
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
