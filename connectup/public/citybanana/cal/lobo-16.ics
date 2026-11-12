@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:City Banana · Lobo
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-domingo-de-pagode-y-copa-paraguay-15-11-2026-18-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261115T210000Z
+DTEND:20261115T230000Z
+SUMMARY:Domingo de Pagode y Copa Paraguay
+LOCATION:Lobo
+DESCRIPTION:18:00 Cerro Porteno vs Sol de America on screens\; 22:00 Asunsamba live. Entry price not stated. Also Portuguese.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Domingo de Pagode y Copa Paraguay
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -284,6 +284,14 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 .r .v{max-width:64%;text-align:right;overflow-wrap:anywhere}
 .foot{border-top:4px double var(--gold)}
 .foot small{font:600 11px var(--ttl);letter-spacing:.18em;text-transform:uppercase}
+.homebtn{display:block;margin:0 auto;padding:0;background:none;border:0;cursor:pointer}
+.stack{display:flex;flex-direction:column;gap:8px}.stack .card{height:auto}
+.cal{display:flex;gap:8px;flex-wrap:wrap}.cal .act{flex:1;min-width:150px;color:var(--tx);text-decoration:none;min-height:44px}
+.pill.org{background:var(--ame);color:var(--gold)}
+.addrow{display:flex;justify-content:center;margin-top:24px}
+.sheet input,.sheet select{width:100%;height:46px;border-radius:0;border:3px double var(--rule);background:var(--card);color:var(--tx);padding:0 14px;font-size:16px}
+.sheet .yn{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:4px 10px}
+.sheet .hint{color:var(--tx2);font-style:italic}
 /* map: framed engraving */
 #mapwrap::after{content:'';position:absolute;inset:8px;border:1px solid rgba(228,168,38,.55);outline:1px solid rgba(228,168,38,.25);outline-offset:4px;pointer-events:none;z-index:999}
 .lbl,.lbl.big{font-family:var(--ttl)}
@@ -309,6 +317,7 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 </head>
 <body>
 <div id="splash"><img src="logo.png" alt="City Banana"><p id="tagline">Your city, just ripe.</p></div>
+<form name="add-place" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="bot-field"><input name="name"><input name="category"><input name="type"><input name="neighborhood"><input name="address"><input name="price"><input name="wifi"><input name="food"><input name="music"><input name="cocktails"><input name="wine"><input name="beer"><input name="free"><input name="genre"><input name="deals"><input name="instagram"><input name="submitted_by"><input name="email"></form>
 <div id="app"></div>
 <nav class="nav" id="nav"></nav>
 <script src="data.js"></script>
@@ -330,7 +339,7 @@ const T = {
   directions:'Directions',entry:'Entry',seeYou:'See you there.',notOnMap:'Not on our map yet. Open in Google Maps',tapPin:'Tap a pin to see the place.',all:'All',
   chips:{rest:'Food',bars:'Bars',cafes:'Coffee',music:'Music'},closed:'Closed',yourList:'Your list',style:'Style',status:'Status',drinks:'Drinks',goodFor:'Good for',insta:'Instagram',
   artist:'Artist',language:'Language',deal:'Deal',count:n=>`${n} establishments catalogued`,weekly:'The Weekly Catalogue of Asunción',chap:n=>`Chapter ${n}`,
-  readTat:'Read it on The Asunción Times',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'New at your Golden Bananas',myBananas:'Your Golden Bananas',mySaved:'Saved',
+  readTat:'Read the full listing',moreInfo:'More information',by:o=>`By ${o}`,home:'Home',homeSub:'Your Golden Bananas, saved events and calendar alerts',alertsHint:'Subscribe once. New events at this place appear in your calendar with a reminder 3 hours before.',gcal:'Google Calendar',acal:'Apple Calendar',allCal:'Every City Banana event',addPlace:'Add a place',addSub:'Know a spot we’re missing? Send it to Lana. She checks every suggestion before it goes live.',send:'Send to Lana',sent:'Thank you. Lana will check it before it goes live.',sendFail:'That didn’t send. Check your connection and try again.',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'New at your Golden Bananas',myBananas:'Your Golden Bananas',mySaved:'Saved',
   noNews:'Nothing new yet. We’ll list new events and deals here.',noBananas:'Give a place the Golden Banana to hear about its new events and deals.',noSaved:'Tap Save on any place or event to keep it here.',
   signedIn:n=>`Signed in as ${n}`,acct:'Your saves follow your account on every device.',local:'Saved on this device',localHint:'Open City Banana from its link to keep your list on every device.',
   bell:n=>n?`For you, ${n} new`:'For you',
@@ -342,7 +351,7 @@ const T = {
   directions:'Cómo llegar',entry:'Entrada',seeYou:'Nos vemos ahí.',notOnMap:'Todavía no está en el mapa. Abrir en Google Maps',tapPin:'Tocá un pin para ver el lugar.',all:'Todos',
   chips:{rest:'Comida',bars:'Bares',cafes:'Café',music:'Música'},closed:'Cerrado',yourList:'Tu lista',style:'Estilo',status:'Estado',drinks:'Bebidas',goodFor:'Ideal para',insta:'Instagram',
   artist:'Artista',language:'Idioma',deal:'Promo',count:n=>`${n} establecimientos catalogados`,weekly:'El catálogo semanal de Asunción',chap:n=>`Capítulo ${n}`,
-  readTat:'Ver en The Asunción Times',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Novedades de tus Bananas de Oro',myBananas:'Tus Bananas de Oro',mySaved:'Guardados',
+  readTat:'Ver la publicación completa',moreInfo:'Más información',by:o=>`Por ${o}`,home:'Inicio',homeSub:'Tus Bananas de Oro, eventos guardados y alertas en tu calendario',alertsHint:'Suscribite una vez. Los eventos nuevos de este lugar aparecen en tu calendario con aviso 3 horas antes.',gcal:'Google Calendar',acal:'Calendario de Apple',allCal:'Todos los eventos de City Banana',addPlace:'Sugerir un lugar',addSub:'¿Conocés un lugar que falta? Mandáselo a Lana. Ella revisa cada sugerencia antes de publicarla.',send:'Enviar a Lana',sent:'¡Gracias! Lana lo revisa antes de publicarlo.',sendFail:'No se pudo enviar. Revisá tu conexión e intentá de nuevo.',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Novedades de tus Bananas de Oro',myBananas:'Tus Bananas de Oro',mySaved:'Guardados',
   noNews:'Todavía nada nuevo. Acá vas a ver eventos y promos nuevas.',noBananas:'Dale la Banana de Oro a un lugar para enterarte de sus eventos y promos.',noSaved:'Tocá Guardar en un lugar o evento para tenerlo acá.',
   signedIn:n=>`Sesión iniciada como ${n}`,acct:'Lo que guardás te sigue en todos tus dispositivos.',local:'Guardado en este dispositivo',localHint:'Abrí City Banana desde su enlace para tener tu lista en todos tus dispositivos.',
   bell:n=>n?`Para vos, ${n} nuevos`:'Para vos',
@@ -409,10 +418,10 @@ for (const p of places) {
 function attrs(x) {
   if (x._title !== undefined) { const p = placeFor(x) || {}, a = p._id ? attrs(p) : {};
     return { ...a, hood: has(x._hood) && !/^tbc/i.test(x._hood) ? x._hood : a.hood || '', price: tier(x._entry) || '', free: x._free, genres: genres(x._genre).concat(a.genres || []),
-      lang: String(x._lang || ''), cat: x._cat || '', closed: false, text: Object.values(x).filter(v => typeof v !== 'object').join(' ') + ' ' + (a.text || '') }; }
+      lang: String(x._lang || ''), cat: x._cat || '', closed: false, text: [x._title, x._venue, x._hood, x._genre, x._cat, x._org, x['Artist / Performer'], x._desc].join(' ') + ' ' + (a.text || '') }; }
   return { hood: x._hood, price: tier(x['Price range']), wifi: has(x['WiFi / co-working']), food: has(x.Food), music: has(x['Live music']), cocktails: has(x.Cocktails),
     wine: has(x.Wine), beer: has(x['Beer type']), free: isFree(x['Price range']), genres: genres(x['Music genre / style']), lang: '', cat: x['Type / style'] || '',
-    closed: x._closed, text: Object.values(x).filter(v => typeof v !== 'object').join(' ') };
+    closed: x._closed, text: [x.Name, x['Type / style'], x._hood, x['Neighborhood / address'], x.Category, x['Music genre / style'], x['Live music'], x.Food, x.Area].join(' ') };
 }
 
 /* ---------- filters ---------- */
@@ -421,7 +430,8 @@ const SEL = ['hood', 'price', 'genre', 'cat', 'langF'];
 let F = { q: '', closed: false };
 const match = x => { const a = attrs(x);
   if (a.closed && !F.closed) return false;
-  if (F.q && !norm(a.text).includes(norm(F.q))) return false;
+  if (F.q) { const h = hoodQ(), q = norm(F.q).trim(), p = x._lat ? x : placeFor(x) || {};
+    if (h ? !(norm(a.hood + ' ' + (x['Neighborhood / address'] || '')).includes(q) || (p._lat && km([p._lat, p._lon], h) < 1)) : !norm(a.text).includes(q)) return false; }
   if (F.hood && a.hood !== F.hood) return false; if (F.price && a.price !== F.price) return false;
   if (F.genre && !a.genres.includes(F.genre)) return false; if (F.cat && a.cat !== F.cat) return false;
   if (F.langF && !norm(a.lang).includes(norm(F.langF))) return false;
@@ -434,6 +444,11 @@ function options(base) {
   return o;
 }
 const LANGN = { es: 'Español', en: 'English' };
+// Neighbourhood points: bundled map labels plus local names the map doesn't print
+const km = (a, b) => Math.hypot((a[0] - b[0]) * 111, (a[1] - b[1]) * 101);
+const HP = {}; (window.BASEMAP?.label || []).forEach(([, n, y, x]) => HP[norm(n)] = [BASEMAP.o[0] + y / BASEMAP.s, BASEMAP.o[1] + x / BASEMAP.s]);
+Object.assign(HP, { 'centro': [-25.2836, -57.6355], 'centro historico': [-25.28, -57.64], 'carmelitas': [-25.2885, -57.5818], 'paseo carmelitas': [-25.2885, -57.5818], 'shopping del sol': [-25.2862, -57.566] });
+const hoodQ = () => { const q = norm(F.q).trim(); return q.length > 3 ? HP[q] || null : null; };
 
 /* ---------- you: saves, Golden Bananas, seen alerts ----------
    One record per person. With the link (claude.ai) it lives in the account store, private to that person;
@@ -479,7 +494,7 @@ const week = [...Array(7)].map((_, i) => { const d = new Date(); d.setHours(0, 0
 const loc = () => lang === 'es' ? 'es-PY' : 'en-US';
 
 /* ---------- UI pieces ---------- */
-let tab = ['feed','rest','bars','cafes','map'].find(k => '#' + k === location.hash) || store('tab') || 'feed', day = 0, sel = null, mapCat = 'all', map, layer;
+let tab = ['feed','rest','bars','cafes','map'].find(k => '#' + k === location.hash) || store('tab') || 'feed', day = 0, sel = null, mapCat = 'all', map, layer, flown = '';
 const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
 const isoWeek = d => { const x = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())); x.setUTCDate(x.getUTCDate() + 4 - (x.getUTCDay() || 7)); return Math.ceil(((x - Date.UTC(x.getUTCFullYear(), 0, 1)) / 864e5 + 1) / 7); };
 const issue = () => { const a = week[0], b = week[6], f = (d, o) => d.toLocaleDateString(loc(), o);
@@ -488,13 +503,13 @@ const issue = () => { const a = week[0], b = week[6], f = (d, o) => d.toLocaleDa
 const head = (title, eyebrow, line, cover) => `<header class="mast dk${cover ? ' cover' : ''}"><div class="mtools">
   <button class="lang" onclick="setLang()" aria-label="Español / English">${lang === 'en' ? 'ES' : 'EN'}</button>
   <button class="bell" onclick="you()" aria-label="${t('bell')(unseen())}">${ic('bell')}${unseen() ? `<b>${unseen()}</b>` : ''}</button></div>
-  <img class="${cover ? 'mlogo' : 'msym'}" src="${cover ? 'logo.png' : 'symbol.png'}" alt="City Banana">
+  <button class="homebtn" onclick="you()" aria-label="${t('home')}"><img class="${cover ? 'mlogo' : 'msym'}" src="${cover ? 'logo.png' : 'symbol.png'}" alt="City Banana"></button>
   <div class="eyebrow">${esc(eyebrow)}</div><h1>${esc(title)}</h1>${line ? `<div class="issue">${line}</div>` : ''}</header>`;
 const sec = (n, txt) => `<h2 class="orn"><span>${n ? n + '. ' : ''}${esc(txt)}</span></h2>`;
 const no = i => i === undefined || typeof i !== 'number' ? '' : `<span class="no">Nº ${String(i + 1).padStart(3, '0')}</span>`;
 const pill = (txt, cls = '') => `<span class="pill ${cls}">${esc(txt)}</span>`;
 const evPills = e => (liveNow(e) ? pill(t('live'), 'live') : '') + (e._free ? pill(t('free'), 'free') : '') + (/^https?:/i.test(e._ticket) ? pill(t('tix'), 'tix') : '')
-  + (e._tat ? pill('Asunción Times') : '') + (/sold out|agotad/i.test(e._status) ? pill(e._status, 'out') : has(e._status) && !/confirm/i.test(e._status) ? pill(e._status, 'new') : '');
+  + (e._org ? pill(t('by')(e._org), 'org') : '') + (/sold out|agotad/i.test(e._status) ? pill(e._status, 'out') : has(e._status) && !/confirm/i.test(e._status) ? pill(e._status, 'new') : '');
 const nActive = () => SEL.filter(k => F[k]).length + (F.closed ? 1 : 0);
 const searchBox = () => `<div class="search">${ic('search')}<input id="q" type="search" placeholder="${t('search')}" aria-label="${t('search')}" value="${esc(F.q)}" oninput="F.q=this.value;draw(true)"></div>`;
 // Only offer filters this tab can actually satisfy
@@ -528,7 +543,7 @@ function feed() {
 function list(cat) {
   const ps = places.filter(p => p._cat === cat && match(p));
   return head(t(cat), t('chap')(ROMAN[['feed', 'rest', 'bars', 'cafes', 'map'].indexOf(cat)]), `<b>${t('count')(ps.length)}</b>`) + filterBar() + (ps.length ? '<div class="grid" style="margin-top:8px">' + ps.map(placeCard).join('') + '</div>' : `<div class="empty">${t('none')}</div>`)
-   + `<p class="joke">${t('joke')[cat]}</p>`;
+   + `<div class="addrow"><button class="chip" onclick="addPlace()">+ ${t('addPlace')}</button></div><p class="joke">${t('joke')[cat]}</p>`;
 }
 const baseFor = () => tab === 'feed' ? events.filter(e => evDay(e) === ymd(week[day])).concat(places.filter(p => p._deal))
   : places.filter(p => tab === 'map' ? mapCat === 'all' || mapCat === 'music' || p._cat === mapCat : p._cat === tab);
@@ -575,19 +590,19 @@ function detail(id) {
   const entry = ev ? (x._free ? t('free') : x._entry || '—') : (tier(x['Price range']) || (isFree(x['Price range']) ? t('free') : '—'));
   const cta = ev && /^https?:/i.test(x._ticket) ? `<a class="btn gold" href="${esc(x._ticket)}" target="_blank" rel="noopener">${t('getTicket')}</a>`
     : `<a class="btn gold" href="${gmaps(p || { Name: x._venue })}" target="_blank" rel="noopener">${t('directions')}</a>`;
-  const lead = ev ? (has(x.Notes) ? x.Notes : has(x.Description) ? x.Description : t('seeYou')) : x._deal ? `${x._deal.big} ${x._deal.small === 'DEAL' ? t('deal') : x._deal.small}: ${x._deal.snip}` : [x['Type / style'], x._hood].filter(has).join(' · ');
+  const lead = ev ? (x._desc || t('seeYou')) : x._deal ? `${x._deal.big} ${x._deal.small === 'DEAL' ? t('deal') : x._deal.small}: ${x._deal.snip}` : [x['Type / style'], x._hood].filter(has).join(' · ');
   el.className = 'detail dk';
   el.innerHTML = `<div class="hero"><img src="symbol.png" alt=""><button class="back" onclick="this.closest('.detail').remove()" aria-label="Back">${ic('back')}</button></div>
    <div class="dbody"><div class="pills">${ev ? evPills(x) : placePills(x)}</div><h1>${esc(ev ? x._title : x.Name)}</h1><div class="dv" aria-hidden="true">◆</div><p class="lead">${esc(lead)}</p><div class="acts">${acts(x._id, p?._id)}</div>
    ${ev ? fact('feed', `${dd} · ${tm.t} ${tm.ap}`) + fact('map', [x._venue, x._hood].filter(v => has(v) && !/^tbc/i.test(v)).join(', ') || x._venue)
-        : fact('map', x['Neighborhood / address']) + fact('clock', x['Activity status'])}
+        : fact('map', x['Neighborhood / address']) + fact('clock', /closed|cerrad/i.test(x['Activity status']) ? x['Activity status'] : '')}
    <div class="more">${ev ? row('music', t('artist'), x['Artist / Performer']) + row('people', t('status'), [x._status, x.Recurring].filter(has).join(' · '))
         + row('globe', t('language'), String(x._lang || '').split(/,\s*/).map(l => LANGN[l] || l).join(' · ')) + row('star', t('cat'), [x._cat, x._genre].filter(has).join(' · ')) : ''}
    ${p ? (ev ? '' : row('info', t('style'), p['Type / style'])) + row('music', t('music'), [p['Live music'], p['Music genre / style']].filter(has).join(' · '))
      + row('bars', t('drinks'), [['Cocktails', p.Cocktails], ['Wine', p.Wine], ['Beer', p['Beer type']]].filter(a => has(a[1])).map(a => `${a[0]}: ${a[1]}`).join(' · '))
      + row('rest', t('food'), [p.Food, p['Food quality mentions']].filter(has).join(' · ')) + row('wifi', 'WiFi', p['WiFi / co-working'])
      + row('people', t('goodFor'), [p['Good for (date / friends / family)'], p['Seated or standing'], p['Vibe (dance / talk / flirt)']].filter(has).join(' · ')) : ''}
-   ${ev && x._tat ? row('feed', 'What’s On', '', `<a href="${esc(x._tat)}" target="_blank" rel="noopener">${t('readTat')}</a>`) : ''}
+   ${ev && x._tat ? row('feed', t('moreInfo'), '', `<a href="${esc(x._tat)}" target="_blank" rel="noopener">${t('readTat')}</a>`) : ''}
    ${ig ? row('camera', t('insta'), ig, `<a href="https://instagram.com/${esc(ig.replace('@', ''))}" target="_blank" rel="noopener">${esc(ig)}</a>`) : ''}</div>
    </div>
    <div class="foot"><div><small>${t('entry')}</small><b>${esc(entry)}</b></div>${cta}</div>`;
@@ -603,13 +618,50 @@ function you() {
   const items = al.sort((a, b) => isNew(b) - isNew(a)).map(a => tagNew(a.deal ? dealCard(a.x) : eventCard(a.x), isNew(a))).join('');
   const bananas = ME.bananas.map(id => BY.get(id)).filter(Boolean), saved = ME.saved.map(id => BY.get(id)).filter(Boolean);
   el.innerHTML = `<header class="mast dk"><div class="mtools"><button class="bell" onclick="this.closest('.you').remove()" aria-label="Back">${ic('back')}</button></div>
-     <img class="msym" src="symbol.png" alt="City Banana"><div class="eyebrow">City Banana</div><h1>${t('forYou')}</h1></header>
+     <img class="msym" src="symbol.png" alt="City Banana"><div class="eyebrow">City Banana</div><h1>${t('home')}</h1><div class="issue">${t('homeSub')}</div></header>
    <div class="who">${ic('heart')}<div><b>${esc(WHO ? t('signedIn')(WHO.name || 'you') : t('local'))}</b><div class="sub">${esc(WHO ? t('acct') : t('localHint'))}</div></div></div>
    ${sec('I', t('newAt'))}${items ? `<div class="grid">${items}</div>` : `<p class="hint">${t(ME.bananas.length ? 'noNews' : 'noBananas')}</p>`}
-   ${sec('II', t('myBananas'))}${bananas.length ? `<div class="grid">${bananas.map(placeCard).join('')}</div>` : `<p class="hint">${t('noBananas')}</p>`}
-   ${sec('III', t('mySaved'))}${saved.length ? `<div class="grid">${saved.map(x => x._title !== undefined ? eventCard(x) : placeCard(x)).join('')}</div>` : `<p class="hint">${t('noSaved')}</p>`}`;
+   ${sec('II', t('myBananas'))}${bananas.length ? `<p class="hint">${t('alertsHint')}</p><div class="grid">${bananas.map(p => `<div class="stack">${placeCard(p)}${calLinks(p._id)}</div>`).join('')}</div>` : `<p class="hint">${t('noBananas')}</p>`}
+   ${sec('III', t('mySaved'))}${saved.length ? `<div class="grid">${saved.map(x => x._title !== undefined ? eventCard(x) : placeCard(x)).join('')}</div>` : `<p class="hint">${t('noSaved')}</p>`}
+   ${sec('IV', t('allCal'))}<div class="stack">${calLinks('all')}</div>
+   ${sec('V', t('addPlace'))}<p class="hint">${t('addSub')}</p><button class="btn gold" onclick="addPlace()">${t('addPlace')}</button>`;
   const ids = al.map(a => a.id).filter(id => !ME.seen.includes(id));
   if (ids.length) { ME.seen.push(...ids); persist(); draw(); }   // opening the inbox marks alerts as read
+}
+
+/* ---------- calendar alerts: one feed per venue, built with the data (cal/*.ics on theconnectup.com) ---------- */
+const CAL = 'theconnectup.com/citybanana/cal/';
+const calLinks = id => `<div class="cal"><a class="act" href="https://calendar.google.com/calendar/r?cid=${encodeURIComponent('webcal://' + CAL + id + '.ics')}" target="_blank" rel="noopener">${ic('feed')}${t('gcal')}</a>
+  <a class="act" href="webcal://${CAL}${id}.ics">${ic('feed')}${t('acal')}</a></div>`;
+
+/* ---------- add a place: Netlify Form on theconnectup.com, emailed to Lana for approval ---------- */
+const HOSTED = /theconnectup\.com|netlify\.app/.test(location.host);
+function addPlace() {
+  if (!HOSTED) return open('https://theconnectup.com/citybanana/#add', '_blank');
+  const v = document.createElement('div'), o = options(places), yn = n => `<select id="ap-${n}" name="${n}"><option value="">—</option><option>Yes</option><option>No</option></select>`;
+  v.className = 'veil'; v.onclick = e => { if (e.target === v) v.remove(); };
+  v.innerHTML = `<form class="sheet" name="add-place" id="ap"><h2 class="orn" style="margin-top:0"><span>${t('addPlace')}</span></h2><p class="hint">${t('addSub')}</p>
+   <input type="hidden" name="form-name" value="add-place"><p hidden><label>Leave empty <input name="bot-field"></label></p>
+   <label for="ap-name">Name *</label><input id="ap-name" name="name" required>
+   <label for="ap-cat">${t('cat')} *</label><select id="ap-cat" name="category" required><option value="">—</option><option>Restaurant</option><option>Bar</option><option>Café</option></select>
+   <label for="ap-type">${t('style')}</label><input id="ap-type" name="type" placeholder="Cocktail bar, pizzeria, specialty coffee…">
+   <label for="ap-hood">${t('hood')} *</label><input id="ap-hood" name="neighborhood" required list="ap-hoods"><datalist id="ap-hoods">${o.hood.map(h => `<option value="${esc(h)}">`).join('')}</datalist>
+   <label for="ap-addr">Address / Google Maps link</label><input id="ap-addr" name="address">
+   <label for="ap-price">${t('price')}</label><select id="ap-price" name="price"><option value="">—</option><option>$</option><option>$$</option><option>$$$</option></select>
+   <div class="yn"><div><label for="ap-wifi">WiFi</label>${yn('wifi')}</div><div><label for="ap-food">${t('food')}</label>${yn('food')}</div>
+    <div><label for="ap-music">${t('music')}</label>${yn('music')}</div><div><label for="ap-cocktails">${t('cocktails')}</label>${yn('cocktails')}</div>
+    <div><label for="ap-wine">${t('wine')}</label>${yn('wine')}</div><div><label for="ap-beer">${t('beer')}</label>${yn('beer')}</div><div><label for="ap-free">${t('free')}</label>${yn('free')}</div></div>
+   <label for="ap-genre">${t('genre')}</label><input id="ap-genre" name="genre">
+   <label for="ap-deals">${t('deals')}</label><input id="ap-deals" name="deals" placeholder="2x1 Thursdays, happy hour 18–20…">
+   <label for="ap-ig">Instagram</label><input id="ap-ig" name="instagram" placeholder="@">
+   <label for="ap-from">Your name</label><input id="ap-from" name="submitted_by"><label for="ap-email">Your email</label><input id="ap-email" name="email" type="email">
+   <p class="hint" id="ap-msg" role="status"></p>
+   <div class="row2"><button type="button" class="btn sm ghost" onclick="this.closest('.veil').remove()">${t('clear')}</button><button class="btn sm gold">${t('send')}</button></div></form>`;
+  document.body.appendChild(v);
+  v.querySelector('form').onsubmit = async e => { e.preventDefault(); const f = e.target, msg = f.querySelector('#ap-msg');
+    try { const r = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(f)).toString() });
+      if (!r.ok) throw 0; f.innerHTML = `<h2 class="orn" style="margin-top:0"><span>${t('addPlace')}</span></h2><p class="lead" style="text-align:center">${t('sent')}</p><button type="button" class="btn sm gold" onclick="this.closest('.veil').remove()">${t('done')}</button>`;
+    } catch (err) { msg.textContent = t('sendFail'); } };
 }
 
 /* ---------- map ---------- */
@@ -629,6 +681,7 @@ function drawMap(keepFocus) {
    <div class="chips">${['all', 'rest', 'bars', 'cafes', 'music'].map(c => `<button class="chip ${mapCat === c ? 'on' : ''}" onclick="mapCat='${c}';sel=null;draw()">${c === 'all' ? t('all') : t('chips')[c]}</button>`).join('')}
    <button class="chip ${nActive() || BOOL.some(k => F[k]) ? 'on' : ''}" onclick="sheet()">${ic('filter')}${t('filters')}</button></div>`;
   if (keepFocus) { const q = $('#q'); q.focus(); q.setSelectionRange(pos, pos); }
+  const hq = hoodQ(); if (hq && map && flown !== F.q) { flown = F.q; map.flyTo(hq, 15); }
   const s = sel && BY.get(sel);
   w.querySelector('.mcard').innerHTML = s ? `<div class="mc"><div class="mi">${ic(s._cat)}</div><div class="mt"><b>${esc(s.Name)}</b><span>${esc([s['Type / style'], s._hood].filter(has).join(' · '))}</span></div>
     <button class="btn sm gold" onclick="detail('${s._id}')">${t('details')}</button></div>${s._lat ? '' : `<a class="gm" href="${gmaps(s)}" target="_blank" rel="noopener">${t('notOnMap')}</a>`}`
@@ -676,6 +729,7 @@ function pick(id) { const p = BY.get(id); sel = id; F.q = ''; draw(); if (p._lat
 
 /* ---------- boot ---------- */
 draw();
+if (location.hash === '#add') addPlace();
 account();
 setTimeout(() => $('#splash')?.classList.add('out'), 1200);
 setInterval(() => tab === 'feed' && !document.querySelector('.detail,.veil') && draw(), 60000); // refresh "Live now"

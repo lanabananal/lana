@@ -1,0 +1,2185 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:City Banana · Asunción
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-ai-paraguay-conference-2026-day-1-11-11-2026-09-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261111T120000Z
+DTEND:20261111T140000Z
+SUMMARY:AI Paraguay Conference 2026 - Day 1
+LOCATION:Paseo La Galería
+DESCRIPTION:300+ attendees. Panels on AI in business\, government\, education.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:AI Paraguay Conference 2026 - Day 1
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-11-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261111T130000Z
+DTEND:20261111T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Runs Nov 10-22. Multiple galleries and artists. Open daily.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-ai-paraguay-conference-c-level-networking-dinner-12-11-2026-20-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261112T230000Z
+DTEND:20261113T010000Z
+SUMMARY:AI Paraguay Conference - C-Level Networking Dinner
+LOCATION:TBC
+DESCRIPTION:C-Level executives only. 50 people. Invitation through AI Paraguay.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:AI Paraguay Conference - C-Level Networking Dinner
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-12-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261112T130000Z
+DTEND:20261112T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Runs Nov 10-22.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-dia-mundial-de-la-cancion-de-autor-homenaje-a-vicente-feliu-12-11-2026-20-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261112T230000Z
+DTEND:20261113T010000Z
+SUMMARY:Dia Mundial de la Cancion de Autor (homenaje a Vicente Feliu)
+LOCATION:VERSO Casa de Arte (Herrera 875 e/ Tacuary y EE.UU.)
+DESCRIPTION:Caption in post.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Dia Mundial de la Cancion de Autor (homenaje a Vicente Feliu)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-so-nasty-edicion-2019-retroton-hits-12-11-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261112T150000Z
+DTEND:20261112T170000Z
+SUMMARY:So Nasty: Edicion 2019 (Retroton Hits)
+LOCATION:Arsenal Cue (Primer Piso)
+DESCRIPTION:\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:So Nasty: Edicion 2019 (Retroton Hits)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-jueves-de-pagode-en-vivo-12-11-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261112T150000Z
+DTEND:20261112T170000Z
+SUMMARY:Jueves de Pagode en vivo
+LOCATION:Buho (El Nido)
+DESCRIPTION:Promo After 2x1 chopp/fernet/gin until 20:00\; Pilsen 3x65k\, Michelob 6x90k. Also Portuguese.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Jueves de Pagode en vivo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-zeta-ex-ma-go-de-oz-ilussia-fest-13-11-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261114T000000Z
+DTEND:20261114T020000Z
+SUMMARY:Zeta (ex-Mägo de Oz) - Ilussia Fest
+LOCATION:Teatro Hotel Excelsior
+DESCRIPTION:Solo project of Txus di Fellatio. VIP meet & greet available.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Zeta (ex-Mägo de Oz) - Ilussia Fest
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-muestra-de-cine-mercosur-ue-closing-13-11-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261113T223000Z
+DTEND:20261114T003000Z
+SUMMARY:Muestra de Cine Mercosur-UE (closing)
+LOCATION:Centro Cultural de España Juan de Salazar
+DESCRIPTION:EU-Mercosur film showcase. Runs Nov 3-13\, this is closing night.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Muestra de Cine Mercosur-UE (closing)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-13-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261113T130000Z
+DTEND:20261113T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Runs Nov 10-22.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-13-11-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261113T210000Z
+DTEND:20261113T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-pacheko-music-13-11-2026-23-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261114T023000Z
+DTEND:20261114T043000Z
+SUMMARY:Pacheko Music
+LOCATION:Titanium Arena
+DESCRIPTION:\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Pacheko Music
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-zeze-di-camargo-luciano-14-11-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261115T000000Z
+DTEND:20261115T020000Z
+SUMMARY:Zezé Di Camargo & Luciano
+LOCATION:Yacht y Golf Club Paraguayo
+DESCRIPTION:Brazilian sertanejo legends. Huge draw for Brazil-connected community.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Zezé Di Camargo & Luciano
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-14-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261114T130000Z
+DTEND:20261114T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Runs Nov 10-22.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-14-11-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261114T150000Z
+DTEND:20261114T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming. Check SNC social media for specific events each weekend.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-bfc-bachiforce-14-11-2026-00-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261114T030000Z
+DTEND:20261114T050000Z
+SUMMARY:BFC Bachiforce
+LOCATION:Titanium Arena
+DESCRIPTION:May mean late Friday night\; check.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:BFC Bachiforce
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-necroblasphemy-edicion-19-14-11-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261115T000000Z
+DTEND:20261115T020000Z
+SUMMARY:Necroblasphemy\, Edicion 19
+LOCATION:Absoluto Rock Bar (Herrera 163 c/ Yegros)
+DESCRIPTION:Caption in post.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Necroblasphemy\, Edicion 19
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-noche-de-puro-rock-14-11-2026-22-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261115T010000Z
+DTEND:20261115T030000Z
+SUMMARY:Noche de puro Rock
+LOCATION:VERSO Casa de Arte (Herrera 875)
+DESCRIPTION:Caption: 'Acceso libre'. Pizzas and drinks on sale.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Noche de puro Rock
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-saoko-live-with-mc2k-14-11-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261114T150000Z
+DTEND:20261114T170000Z
+SUMMARY:Saoko live with MC2K
+LOCATION:Saoko (O'Higgins y Tte. Vera)
+DESCRIPTION:Only date shown.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Saoko live with MC2K
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-erreway-juntos-otra-vez-15-11-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261116T000000Z
+DTEND:20261116T020000Z
+SUMMARY:Erreway - Juntos Otra Vez
+LOCATION:Yacht y Golf Club Paraguayo
+DESCRIPTION:Argentine pop group reunion tour. VIP Premium sold out. Prices Gs. 320\,000 - 960\,000.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Erreway - Juntos Otra Vez
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-15-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261115T130000Z
+DTEND:20261115T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Runs Nov 10-22.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-15-11-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261115T150000Z
+DTEND:20261115T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming. Check SNC social media for specific events each weekend.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-dominguero-coffee-party-arsenal-cue-x-cafe-consulado-15-11-2026-16-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261115T190000Z
+DTEND:20261115T210000Z
+SUMMARY:Dominguero Coffee Party (Arsenal Cue x Cafe Consulado)
+LOCATION:Arsenal Cue
+DESCRIPTION:Doors 16:00. Free entry. Collab with @consuladocafe.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Dominguero Coffee Party (Arsenal Cue x Cafe Consulado)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-domingo-de-pagode-y-copa-paraguay-15-11-2026-18-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261115T210000Z
+DTEND:20261115T230000Z
+SUMMARY:Domingo de Pagode y Copa Paraguay
+LOCATION:Lobo
+DESCRIPTION:18:00 Cerro Porteno vs Sol de America on screens\; 22:00 Asunsamba live. Entry price not stated. Also Portuguese.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Domingo de Pagode y Copa Paraguay
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-iberamia-2026-workshops-16-11-2026-09-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261116T120000Z
+DTEND:20261116T140000Z
+SUMMARY:IBERAMIA 2026 - Workshops
+LOCATION:UNA Facultad Politécnica
+DESCRIPTION:Ibero-American AI conference. Workshop day 1 at San Lorenzo campus.\ntheconnectup.com/citybanana
+URL:https://iberamia2026.org
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:IBERAMIA 2026 - Workshops
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-16-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261116T130000Z
+DTEND:20261116T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Runs Nov 10-22.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-iberamia-2026-workshops-17-11-2026-09-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261117T120000Z
+DTEND:20261117T140000Z
+SUMMARY:IBERAMIA 2026 - Workshops
+LOCATION:UNA Facultad Politécnica
+DESCRIPTION:Ibero-American AI conference. Workshop day 2 at San Lorenzo campus.\ntheconnectup.com/citybanana
+URL:https://iberamia2026.org
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:IBERAMIA 2026 - Workshops
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-17-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261117T130000Z
+DTEND:20261117T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Runs Nov 10-22.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-iberamia-2026-main-conference-day-1-18-11-2026-09-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261118T120000Z
+DTEND:20261118T140000Z
+SUMMARY:IBERAMIA 2026 - Main Conference Day 1
+LOCATION:UCA Campus Santa Librada
+DESCRIPTION:Main conference starts. Keynotes\, paper presentations.\ntheconnectup.com/citybanana
+URL:https://iberamia2026.org
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:IBERAMIA 2026 - Main Conference Day 1
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-18-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261118T130000Z
+DTEND:20261118T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Runs Nov 10-22.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-late-night-with-icy-b-2x1-fernet-branca-until-23-00-18-11-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261118T150000Z
+DTEND:20261118T170000Z
+SUMMARY:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+LOCATION:Arsenal Cue (Primer Piso)
+DESCRIPTION:\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-iberamia-2026-main-conference-day-2-19-11-2026-09-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261119T120000Z
+DTEND:20261119T140000Z
+SUMMARY:IBERAMIA 2026 - Main Conference Day 2
+LOCATION:UCA Campus Santa Librada
+DESCRIPTION:Day 2 of main conference.\ntheconnectup.com/citybanana
+URL:https://iberamia2026.org
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:IBERAMIA 2026 - Main Conference Day 2
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-micsur-paraguay-2026-day-1-19-11-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261119T150000Z
+DTEND:20261119T170000Z
+SUMMARY:MICSUR Paraguay 2026 - Day 1
+LOCATION:Centro Cultural del Puerto
+DESCRIPTION:Mercado de Industrias Culturales del Sur. Hosted by Paraguay for first time. Open to public for some activities.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:MICSUR Paraguay 2026 - Day 1
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-19-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261119T130000Z
+DTEND:20261119T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Runs Nov 10-22.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-hdp-tributo-al-rock-19-11-2026-23-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261120T020000Z
+DTEND:20261120T040000Z
+SUMMARY:HDP: tributo al rock
+LOCATION:Titanium Arena
+DESCRIPTION:\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:HDP: tributo al rock
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-iberamia-2026-main-conference-day-3-20-11-2026-09-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261120T120000Z
+DTEND:20261120T140000Z
+SUMMARY:IBERAMIA 2026 - Main Conference Day 3
+LOCATION:UCA Campus Santa Librada
+DESCRIPTION:Final day of main conference.\ntheconnectup.com/citybanana
+URL:https://iberamia2026.org
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:IBERAMIA 2026 - Main Conference Day 3
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-micsur-paraguay-2026-day-2-20-11-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261120T150000Z
+DTEND:20261120T170000Z
+SUMMARY:MICSUR Paraguay 2026 - Day 2
+LOCATION:Centro Cultural del Puerto
+DESCRIPTION:Day 2 of cultural industries market.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:MICSUR Paraguay 2026 - Day 2
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-20-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261120T130000Z
+DTEND:20261120T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Runs Nov 10-22.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-20-11-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261120T210000Z
+DTEND:20261120T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-ondarapai-20-11-2026-23-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261121T023000Z
+DTEND:20261121T043000Z
+SUMMARY:Ondarapai
+LOCATION:Titanium Arena
+DESCRIPTION:\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Ondarapai
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-micsur-paraguay-2026-day-3-21-11-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261121T150000Z
+DTEND:20261121T170000Z
+SUMMARY:MICSUR Paraguay 2026 - Day 3
+LOCATION:Centro Cultural del Puerto
+DESCRIPTION:Day 3 of cultural industries market.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:MICSUR Paraguay 2026 - Day 3
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-21-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261121T130000Z
+DTEND:20261121T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Runs Nov 10-22.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-21-11-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261121T150000Z
+DTEND:20261121T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-noche-de-cumbia-21-11-2026-00-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261121T030000Z
+DTEND:20261121T050000Z
+SUMMARY:Noche de Cumbia
+LOCATION:Titanium Arena
+DESCRIPTION:00:00 may mean late the night before\; check.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Noche de Cumbia
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-micsur-paraguay-2026-day-4-closing-22-11-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261122T150000Z
+DTEND:20261122T170000Z
+SUMMARY:MICSUR Paraguay 2026 - Day 4 (closing)
+LOCATION:Centro Cultural del Puerto
+DESCRIPTION:Closing day of MICSUR 2026.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:MICSUR Paraguay 2026 - Day 4 (closing)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-obituary-death-metal-22-11-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261123T000000Z
+DTEND:20261123T020000Z
+SUMMARY:Obituary (death metal)
+LOCATION:Manzana de la Rivera
+DESCRIPTION:Florida death metal legends. Venue capacity ~800.\ntheconnectup.com/citybanana
+URL:https://reduts.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Obituary (death metal)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-feria-mira-arte-contempora-neo-closing-22-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261122T130000Z
+DTEND:20261122T150000Z
+SUMMARY:Feria MIRA - Arte Contemporáneo (closing)
+LOCATION:Casa Ardissone (25 de Mayo 871)
+DESCRIPTION:Contemporary art fair. Closing day.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria MIRA - Arte Contemporáneo (closing)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-22-11-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261122T150000Z
+DTEND:20261122T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-late-night-with-icy-b-2x1-fernet-branca-until-23-00-25-11-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261125T150000Z
+DTEND:20261125T170000Z
+SUMMARY:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+LOCATION:Arsenal Cue (Primer Piso)
+DESCRIPTION:\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-ed-sheeran-finneas-mathematics-tour-26-11-2026-20-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261126T230000Z
+DTEND:20261127T010000Z
+SUMMARY:Ed Sheeran + FINNEAS - Mathematics Tour
+LOCATION:Estadio ueno La Nueva Olla
+DESCRIPTION:First time in Paraguay. Prices from Gs. 336\,000 (Popular) up to VIP. Massive event.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Ed Sheeran + FINNEAS - Mathematics Tour
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-27-11-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261127T210000Z
+DTEND:20261127T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-penneando-27-11-2026-23-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261128T023000Z
+DTEND:20261128T043000Z
+SUMMARY:Penneando
+LOCATION:Titanium Arena
+DESCRIPTION:\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Penneando
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-shakira-las-mujeres-ya-no-lloran-night-1-28-11-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261129T000000Z
+DTEND:20261129T020000Z
+SUMMARY:Shakira - Las Mujeres Ya No Lloran (Night 1)
+LOCATION:Estadio ueno La Nueva Olla
+DESCRIPTION:Campo General Gs. 760\,000. Campo VIP Gs. 1\,650\,000. VIP Wolf Gs. 5\,500\,000.\ntheconnectup.com/citybanana
+URL:https://allaccess.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Shakira - Las Mujeres Ya No Lloran (Night 1)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-caacupe-novena-begins-28-11-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261128T150000Z
+DTEND:20261128T170000Z
+SUMMARY:Caacupé Novena begins
+LOCATION:Basílica de Caacupé
+DESCRIPTION:Start of 9-day novena. Pilgrims walk from Asunción. ~4 million visitors total. Peak Dec 7-8.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Caacupé Novena begins
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-28-11-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261128T150000Z
+DTEND:20261128T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-fer-perez-en-vivo-28-11-2026-00-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261128T030000Z
+DTEND:20261128T050000Z
+SUMMARY:Fer Perez en vivo
+LOCATION:Titanium Arena
+DESCRIPTION:00:00 may mean late the night before\; check.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Fer Perez en vivo
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-shakira-las-mujeres-ya-no-lloran-night-2-29-11-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261130T000000Z
+DTEND:20261130T020000Z
+SUMMARY:Shakira - Las Mujeres Ya No Lloran (Night 2)
+LOCATION:Estadio ueno La Nueva Olla
+DESCRIPTION:Night 2. Same pricing as Night 1.\ntheconnectup.com/citybanana
+URL:https://allaccess.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Shakira - Las Mujeres Ya No Lloran (Night 2)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-29-11-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261129T150000Z
+DTEND:20261129T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-carcass-in-paraguay-first-time-30-11-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261130T150000Z
+DTEND:20261130T170000Z
+SUMMARY:Carcass in Paraguay (first time)
+LOCATION:Absoluto Rock Bar (Herrera 163 c/ Yegros)
+DESCRIPTION:Caption in post\, 2 days old. Collab with @paridosporelrock and @clandestineprodspy.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Carcass in Paraguay (first time)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-gorillaz-the-mountain-tour-01-12-2026-20-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261201T230000Z
+DTEND:20261202T010000Z
+SUMMARY:Gorillaz - The Mountain Tour
+LOCATION:Jockey Club del Paraguay
+DESCRIPTION:First time in Paraguay. Prices from Gs. 360\,000 (General). Part of South American tour.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Gorillaz - The Mountain Tour
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-flor-bertotti-floricienta-live-02-12-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261203T000000Z
+DTEND:20261203T020000Z
+SUMMARY:Flor Bertotti (Floricienta) Live
+LOCATION:Arena SND
+DESCRIPTION:Star of Floricienta (Argentine telenovela). Huge nostalgia draw. From Gs. 200\,000.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Flor Bertotti (Floricienta) Live
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-late-night-with-icy-b-2x1-fernet-branca-until-23-00-02-12-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261202T150000Z
+DTEND:20261202T170000Z
+SUMMARY:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+LOCATION:Arsenal Cue (Primer Piso)
+DESCRIPTION:\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-luciano-pereyra-live-03-12-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261204T000000Z
+DTEND:20261204T020000Z
+SUMMARY:Luciano Pereyra Live
+LOCATION:Arena SND
+DESCRIPTION:Argentine balladeer. Graderías Gs. 225\,000\, Preferencias Gs. 335\,000\, Palcos Gs. 560\,000.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Luciano Pereyra Live
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-04-12-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261204T210000Z
+DTEND:20261204T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-05-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261205T150000Z
+DTEND:20261205T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-06-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261206T150000Z
+DTEND:20261206T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-benjami-n-amadeo-pyrock-fest-07-12-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261208T000000Z
+DTEND:20261208T020000Z
+SUMMARY:Benjamín Amadeo (PyRock Fest)
+LOCATION:Teatro Hotel Guaraní
+DESCRIPTION:Part of PyRock Fest. VIP Golden from Gs. 367\,500.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Benjamín Amadeo (PyRock Fest)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-caacupe-pilgrimage-peak-eve-07-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261207T150000Z
+DTEND:20261207T170000Z
+SUMMARY:Caacupé Pilgrimage - Peak Eve
+LOCATION:Basílica de Caacupé
+DESCRIPTION:Biggest night of pilgrimage. Thousands walk overnight from Asunción. Expect road closures on Ruta 2.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Caacupé Pilgrimage - Peak Eve
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-virgen-de-caacupe-national-holiday-08-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261208T150000Z
+DTEND:20261208T170000Z
+SUMMARY:Virgen de Caacupé - National Holiday
+LOCATION:Basílica de Caacupé
+DESCRIPTION:Día de la Virgen de Caacupé. National holiday. Main Mass. ~4 million visitors over the novena.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Virgen de Caacupé - National Holiday
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-paiko-rock-08-12-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261209T000000Z
+DTEND:20261209T020000Z
+SUMMARY:Paiko (rock)
+LOCATION:Sacramento Brewing Co.
+DESCRIPTION:Preventa Gs. 70\,000 - 130\,000. Local/regional rock.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Paiko (rock)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-late-night-with-icy-b-2x1-fernet-branca-until-23-00-09-12-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261209T150000Z
+DTEND:20261209T170000Z
+SUMMARY:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+LOCATION:Arsenal Cue (Primer Piso)
+DESCRIPTION:\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-tini-stoessel-quiero-volver-tour-10-12-2026-21-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261211T003000Z
+DTEND:20261211T023000Z
+SUMMARY:Tini Stoessel - Quiero Volver Tour
+LOCATION:Arena SND
+DESCRIPTION:From Gs. 180\,000. Anna Chase opens at 20:30.\ntheconnectup.com/citybanana
+URL:https://ticketea.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Tini Stoessel - Quiero Volver Tour
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-11-12-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261211T210000Z
+DTEND:20261211T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-12-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261212T150000Z
+DTEND:20261212T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-13-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261213T150000Z
+DTEND:20261213T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-marc-anthony-viviendo-tour-16-12-2026-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261217T000000Z
+DTEND:20261217T020000Z
+SUMMARY:Marc Anthony - Viviendo Tour
+LOCATION:Jockey Club del Paraguay
+DESCRIPTION:From Gs. 175\,000. One of the biggest salsa artists alive.\ntheconnectup.com/citybanana
+URL:https://reduts.com.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Marc Anthony - Viviendo Tour
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-late-night-with-icy-b-2x1-fernet-branca-until-23-00-16-12-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261216T150000Z
+DTEND:20261216T170000Z
+SUMMARY:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+LOCATION:Arsenal Cue (Primer Piso)
+DESCRIPTION:\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-18-12-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261218T210000Z
+DTEND:20261218T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-19-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261219T150000Z
+DTEND:20261219T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-20-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261220T150000Z
+DTEND:20261220T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-late-night-with-icy-b-2x1-fernet-branca-until-23-00-23-12-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261223T150000Z
+DTEND:20261223T170000Z
+SUMMARY:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+LOCATION:Arsenal Cue (Primer Piso)
+DESCRIPTION:Holiday week\, may change.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-christmas-day-25-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261225T150000Z
+DTEND:20261225T170000Z
+SUMMARY:Christmas Day
+LOCATION:Citywide
+DESCRIPTION:National holiday. Most venues closed. Families gather for asado.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Christmas Day
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-25-12-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261225T210000Z
+DTEND:20261225T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues. Holiday\, may be closed.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-26-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261226T150000Z
+DTEND:20261226T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming. Post-Christmas\, may be reduced.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-snc-agenda-cultural-weekend-activities-27-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261227T150000Z
+DTEND:20261227T170000Z
+SUMMARY:SNC Agenda Cultural - Weekend Activities
+LOCATION:Various (Centro Histórico)
+DESCRIPTION:Government cultural programming.\ntheconnectup.com/citybanana
+URL:https://www.cultura.gov.py
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SNC Agenda Cultural - Weekend Activities
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-late-night-with-icy-b-2x1-fernet-branca-until-23-00-30-12-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261230T150000Z
+DTEND:20261230T170000Z
+SUMMARY:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+LOCATION:Arsenal Cue (Primer Piso)
+DESCRIPTION:Holiday week\, may change.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-new-year-s-eve-31-12-2026-all-day@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261231T150000Z
+DTEND:20261231T170000Z
+SUMMARY:New Year's Eve
+LOCATION:Citywide
+DESCRIPTION:Costanera and plazas host free public celebrations. Most bars/clubs have special NYE events (check venues closer to date).\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:New Year's Eve
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-01-01-2027-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20270101T210000Z
+DTEND:20270101T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues. Holiday\, may be closed.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-late-night-with-icy-b-2x1-fernet-branca-until-23-00-06-01-2027@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20270106T150000Z
+DTEND:20270106T170000Z
+SUMMARY:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+LOCATION:Arsenal Cue (Primer Piso)
+DESCRIPTION:\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Late Night with Icy B (2x1 Fernet Branca until 23:00)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-digital-nomads-expats-social-124-12-11-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261112T223000Z
+DTEND:20261113T003000Z
+SUMMARY:Digital Nomads & Expats Social #124
+LOCATION:Mamba Carmelitas
+DESCRIPTION:Electronic night (house/techno). Reservation under 'Digital Nomads'.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://nomads.com/meetups/asuncion/meetup-124-nomads-thursday-social-at-mamba-carmelitas-1876
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social #124
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-echai-asuncio-n-startup-mixer-12-11-2026-18-00-20-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261112T210000Z
+DTEND:20261112T230000Z
+SUMMARY:eChai Asunción Startup Mixer
+LOCATION:TBC (no venue)
+DESCRIPTION:Only goes ahead if 10 founders in Asunción show interest. Previously moved from 15 Oct.\ntheconnectup.com/citybanana
+URL:https://echai.ventures/events/echai-asuncion-startup-mixer-nov-12-2026
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:eChai Asunción Startup Mixer
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-sunday-run-club-15-11-2026-10-00-12-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261115T130000Z
+DTEND:20261115T150000Z
+SUMMARY:Sunday Run Club
+LOCATION:Parque de la Salud
+DESCRIPTION:A Sunday morning group run around Parque de la Salud for runners of all paces. Free. Organised by Asunci&oacute\;n Run Club\; there is more about them in our article.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/asuncion-run-club-15-nov-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Sunday Run Club
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-try-gaelic-football-sunday-training-15-11-2026-10-30-12-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261115T133000Z
+DTEND:20261115T153000Z
+SUMMARY:Try Gaelic Football: Sunday Training
+LOCATION:Jabalíes Rugby Club\, Capitán Valois Rivarola
+DESCRIPTION:All levels\, all ages\, families welcome. New players can turn up or message @paraguaygaa first.\ntheconnectup.com/citybanana
+URL:https://www.instagram.com/paraguaygaa
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Try Gaelic Football: Sunday Training
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-gran-asado-pulse-event-123-150-15-11-2026-16-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261115T190000Z
+DTEND:20261115T210000Z
+SUMMARY:Gran Asado (Pulse Event 123/150)
+LOCATION:KAFEA
+DESCRIPTION:Price by phase (Gs.): Early 149k men / 65k women\, Phase 1 159k / 75k\, Phase 2 169k / 80k\, Late 179k / 85k. Meat until full\, drinks not included. 123 of 150 spots taken at time of check. Tickets transferable up to 72h before. Organizer: Martin.\ntheconnectup.com/citybanana
+URL:https://paraguaypulse.com/en/event/asado-grande-15th-nov
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Gran Asado (Pulse Event 123/150)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-tuesday-coworking-west-coffee-17-11-2026-13-00-18-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261117T160000Z
+DTEND:20261117T180000Z
+SUMMARY:Tuesday Coworking @ West Coffee
+LOCATION:West Coffee\, Paseo Miraflores (Julio Correa)
+DESCRIPTION:Listing says it repeats every Tuesday\, but only shows dates through 27/10. Buy something to support the cafe.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://nomads.com/meetups/asuncion/tuesday-coworking-west-coffee-1860
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Tuesday Coworking @ West Coffee
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-the-asuncio-n-times-trivia-night-17-11-2026-19-00-quiz-20-00-22-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261117T220000Z
+DTEND:20261118T000000Z
+SUMMARY:The Asunción Times Trivia Night
+LOCATION:Corner Sports Bar
+DESCRIPTION:Gs. 50\,000 includes one drink. VIP members 50% off. Teams of 4\, singles get placed on a team.\nBy The Asunción Times\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/the-asuncion-times-trivia-night-4/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:The Asunción Times Trivia Night
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-digital-nomads-expats-social-125-19-11-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261119T223000Z
+DTEND:20261120T003000Z
+SUMMARY:Digital Nomads & Expats Social #125
+LOCATION:D'Alepo
+DESCRIPTION:Venue not announced yet. Check the link a few days before.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/digital-nomads-and-expats-social-meetup-125/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social #125
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-spanglish-social-spanish-english-exchange-21-11-2026-tbc@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261121T150000Z
+DTEND:20261121T170000Z
+SUMMARY:Spanglish Social (Spanish/English exchange)
+LOCATION:Rotating coffee shop
+DESCRIPTION:Date carried over from earlier sheet and NOT confirmed. Real dates and venues only on Instagram (@spanglishsocialpy). VIP members get 25% off.\ntheconnectup.com/citybanana
+URL:https://www.instagram.com/spanglishsocialpy
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Spanglish Social (Spanish/English exchange)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-sunday-run-club-22-11-2026-10-00-12-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261122T130000Z
+DTEND:20261122T150000Z
+SUMMARY:Sunday Run Club
+LOCATION:Parque de la Salud
+DESCRIPTION:A Sunday morning group run around Parque de la Salud for runners of all paces. Free. Organised by Asunci&oacute\;n Run Club\; there is more about them in our article.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/asuncion-run-club-22-nov-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Sunday Run Club
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-try-gaelic-football-sunday-training-22-11-2026-10-30-12-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261122T133000Z
+DTEND:20261122T153000Z
+SUMMARY:Try Gaelic Football: Sunday Training
+LOCATION:Jabalíes Rugby Club\, Capitán Valois Rivarola
+DESCRIPTION:All levels\, all ages\, families welcome. New players can turn up or message @paraguaygaa first.\ntheconnectup.com/citybanana
+URL:https://www.instagram.com/paraguaygaa
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Try Gaelic Football: Sunday Training
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-tuesday-coworking-west-coffee-24-11-2026-13-00-18-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261124T160000Z
+DTEND:20261124T180000Z
+SUMMARY:Tuesday Coworking @ West Coffee
+LOCATION:West Coffee\, Paseo Miraflores (Julio Correa)
+DESCRIPTION:Listing says it repeats every Tuesday\, but only shows dates through 27/10. Buy something to support the cafe.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://nomads.com/meetups/asuncion/tuesday-coworking-west-coffee-1860
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Tuesday Coworking @ West Coffee
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-afterwork-english-networking-75-24-11-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261124T210000Z
+DTEND:20261124T230000Z
+SUMMARY:Afterwork English Networking #75
+LOCATION:Dorsia
+DESCRIPTION:Normal bar prices. Listing says 'every second Tuesday'.\nBy The Asunción Times\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/afterwork-networking-75/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Afterwork English Networking #75
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-entrepreneurs-networking-evening-25-11-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261125T223000Z
+DTEND:20261126T003000Z
+SUMMARY:Entrepreneurs Networking Evening
+LOCATION:Registered guests only (Las Lomas area)
+DESCRIPTION:Pattern: last Wednesday of each month. Register on Luma (address sent after approval). Smart casual.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/asuncion-entrepreneurs-networking-event
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Entrepreneurs Networking Evening
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-digital-nomads-expats-social-126-26-11-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261126T223000Z
+DTEND:20261127T003000Z
+SUMMARY:Digital Nomads & Expats Social #126
+LOCATION:La Vermutería
+DESCRIPTION:Whether you are here in Paraguay for a month or three\, or just forgot to ever leave\, Thursday night is when the digital nomad and expat community takes over a bar in Asunción\, from 19:30 until late\, somewhere different every week. Nomads and expats are the same crowd here\, just on different timelines. A large share of the expats in Asunción arrived as digital nomads and decided to stay\, which is w\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/digital-nomads-and-expats-social-meetup-126/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social #126
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-sunday-run-club-29-11-2026-10-00-12-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261129T130000Z
+DTEND:20261129T150000Z
+SUMMARY:Sunday Run Club
+LOCATION:Parque de la Salud
+DESCRIPTION:A Sunday morning group run around Parque de la Salud for runners of all paces. Free. Organised by Asunci&oacute\;n Run Club\; there is more about them in our article.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/asuncion-run-club-29-nov-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Sunday Run Club
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-try-gaelic-football-sunday-training-29-11-2026-10-30-12-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261129T133000Z
+DTEND:20261129T153000Z
+SUMMARY:Try Gaelic Football: Sunday Training
+LOCATION:Jabalíes Rugby Club\, Capitán Valois Rivarola
+DESCRIPTION:All levels\, all ages\, families welcome. New players can turn up or message @paraguaygaa first.\ntheconnectup.com/citybanana
+URL:https://www.instagram.com/paraguaygaa
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Try Gaelic Football: Sunday Training
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-tuesday-coworking-west-coffee-01-12-2026-13-00-18-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261201T160000Z
+DTEND:20261201T180000Z
+SUMMARY:Tuesday Coworking @ West Coffee
+LOCATION:West Coffee\, Paseo Miraflores (Julio Correa)
+DESCRIPTION:Listing says it repeats every Tuesday\, but only shows dates through 27/10. Buy something to support the cafe.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://nomads.com/meetups/asuncion/tuesday-coworking-west-coffee-1860
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Tuesday Coworking @ West Coffee
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-culture-night-save-the-date-01-12-2026-19-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261201T220000Z
+DTEND:20261202T000000Z
+SUMMARY:Culture Night (save the date)
+LOCATION:Venue to be announced
+DESCRIPTION:Theme and venue not announced yet.\nBy The Asunción Times\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/culture-night-save-the-date/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Culture Night (save the date)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-digital-nomads-expats-social-127-03-12-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261203T223000Z
+DTEND:20261204T003000Z
+SUMMARY:Digital Nomads & Expats Social #127
+LOCATION:Pira Sushi
+DESCRIPTION:Whether you are here in Paraguay for a month or three\, or just forgot to ever leave\, Thursday night is when the digital nomad and expat community takes over a bar in Asunción\, from 19:30 until late\, somewhere different every week. Nomads and expats are the same crowd here\, just on different timelines. A large share of the expats in Asunción arrived as digital nomads and decided to stay\, which is w\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/digital-nomads-and-expats-social-meetup-127/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social #127
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-sunday-run-club-06-12-2026-10-00-12-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261206T130000Z
+DTEND:20261206T150000Z
+SUMMARY:Sunday Run Club
+LOCATION:Parque de la Salud
+DESCRIPTION:A Sunday morning group run around Parque de la Salud for runners of all paces. Free. Organised by Asunci&oacute\;n Run Club\; there is more about them in our article.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/asuncion-run-club-6-dec-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Sunday Run Club
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-try-gaelic-football-sunday-training-06-12-2026-10-30-12-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261206T133000Z
+DTEND:20261206T153000Z
+SUMMARY:Try Gaelic Football: Sunday Training
+LOCATION:Jabalíes Rugby Club\, Capitán Valois Rivarola
+DESCRIPTION:All levels\, all ages\, families welcome. New players can turn up or message @paraguaygaa first.\ntheconnectup.com/citybanana
+URL:https://www.instagram.com/paraguaygaa
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Try Gaelic Football: Sunday Training
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-tuesday-coworking-west-coffee-08-12-2026-13-00-18-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261208T160000Z
+DTEND:20261208T180000Z
+SUMMARY:Tuesday Coworking @ West Coffee
+LOCATION:West Coffee\, Paseo Miraflores (Julio Correa)
+DESCRIPTION:Listing says it repeats every Tuesday\, but only shows dates through 27/10. Buy something to support the cafe.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://nomads.com/meetups/asuncion/tuesday-coworking-west-coffee-1860
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Tuesday Coworking @ West Coffee
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-afterwork-english-networking-76-08-12-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261208T210000Z
+DTEND:20261208T230000Z
+SUMMARY:Afterwork English Networking #76
+LOCATION:Venue to be announced
+DESCRIPTION:Afterwork English Networking is where Paraguay meets the world\, in English. Every second Tuesday from 18:00\, English speakers in Asunción meet for a drink and a chat after work\, wherever they learnt their English. Locals come to meet people from abroad\, and newcomers come to meet locals. It’s a social evening in English\, not a class\, so come ready to talk. Half the room comes on their own\, so if y\nBy The Asunción Times\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/afterwork-networking-76/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Afterwork English Networking #76
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-digital-nomads-expats-social-128-10-12-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261210T223000Z
+DTEND:20261211T003000Z
+SUMMARY:Digital Nomads & Expats Social #128
+LOCATION:Venue to be announced
+DESCRIPTION:Whether you are here in Paraguay for a month or three\, or just forgot to ever leave\, Thursday night is when the digital nomad and expat community takes over a bar in Asunción\, from 19:30 until late\, somewhere different every week. Nomads and expats are the same crowd here\, just on different timelines. A large share of the expats in Asunción arrived as digital nomads and decided to stay\, which is w\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/digital-nomads-and-expats-social-meetup-128/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social #128
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-echai-asuncio-n-startup-mixer-10-12-2026-18-00-20-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261210T210000Z
+DTEND:20261210T230000Z
+SUMMARY:eChai Asunción Startup Mixer
+LOCATION:TBC (no venue)
+DESCRIPTION:Proposed date. Needs 10 interested founders.\ntheconnectup.com/citybanana
+URL:https://echai.ventures/events/echai-asuncion-startup-mixer-dec-10-2026
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:eChai Asunción Startup Mixer
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-sunday-run-club-13-12-2026-10-00-12-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261213T130000Z
+DTEND:20261213T150000Z
+SUMMARY:Sunday Run Club
+LOCATION:Parque de la Salud
+DESCRIPTION:A Sunday morning group run around Parque de la Salud for runners of all paces. Free. Organised by Asunci&oacute\;n Run Club\; there is more about them in our article.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/asuncion-run-club-13-dec-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Sunday Run Club
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-try-gaelic-football-sunday-training-13-12-2026-10-30-12-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261213T133000Z
+DTEND:20261213T153000Z
+SUMMARY:Try Gaelic Football: Sunday Training
+LOCATION:Jabalíes Rugby Club\, Capitán Valois Rivarola
+DESCRIPTION:All levels\, all ages\, families welcome. New players can turn up or message @paraguaygaa first.\ntheconnectup.com/citybanana
+URL:https://www.instagram.com/paraguaygaa
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Try Gaelic Football: Sunday Training
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-tuesday-coworking-west-coffee-15-12-2026-13-00-18-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261215T160000Z
+DTEND:20261215T180000Z
+SUMMARY:Tuesday Coworking @ West Coffee
+LOCATION:West Coffee\, Paseo Miraflores (Julio Correa)
+DESCRIPTION:Listing says it repeats every Tuesday\, but only shows dates through 27/10. Buy something to support the cafe.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://nomads.com/meetups/asuncion/tuesday-coworking-west-coffee-1860
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Tuesday Coworking @ West Coffee
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-the-asuncio-n-times-trivia-night-15-12-2026-19-00-quiz-20-00-22-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261215T220000Z
+DTEND:20261216T000000Z
+SUMMARY:The Asunción Times Trivia Night
+LOCATION:Corner Sports Bar
+DESCRIPTION:Gs. 50\,000 includes one drink. VIP members 50% off.\nBy The Asunción Times\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/the-asuncion-times-trivia-night-5/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:The Asunción Times Trivia Night
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-digital-nomads-expats-social-129-17-12-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261217T223000Z
+DTEND:20261218T003000Z
+SUMMARY:Digital Nomads & Expats Social #129
+LOCATION:La Vermutería (Benjamin Constant 838)
+DESCRIPTION:Whether you are here in Paraguay for a month or three\, or just forgot to ever leave\, Thursday night is when the digital nomad and expat community takes over a bar in Asunción\, from 19:30 until late\, somewhere different every week. Nomads and expats are the same crowd here\, just on different timelines. A large share of the expats in Asunción arrived as digital nomads and decided to stay\, which is w\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/digital-nomads-and-expats-social-meetup-129/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social #129
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-spanglish-social-spanish-english-exchange-19-12-2026-tbc@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261219T150000Z
+DTEND:20261219T170000Z
+SUMMARY:Spanglish Social (Spanish/English exchange)
+LOCATION:Rotating coffee shop
+DESCRIPTION:Date carried over from earlier sheet and NOT confirmed. Check @spanglishsocialpy.\ntheconnectup.com/citybanana
+URL:https://www.instagram.com/spanglishsocialpy
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Spanglish Social (Spanish/English exchange)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-sunday-run-club-20-12-2026-10-00-12-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261220T130000Z
+DTEND:20261220T150000Z
+SUMMARY:Sunday Run Club
+LOCATION:Parque de la Salud
+DESCRIPTION:A Sunday morning group run around Parque de la Salud for runners of all paces. Free. Organised by Asunci&oacute\;n Run Club\; there is more about them in our article.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/asuncion-run-club-20-dec-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Sunday Run Club
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-try-gaelic-football-sunday-training-20-12-2026-10-30-12-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261220T133000Z
+DTEND:20261220T153000Z
+SUMMARY:Try Gaelic Football: Sunday Training
+LOCATION:Jabalíes Rugby Club\, Capitán Valois Rivarola
+DESCRIPTION:All levels\, all ages\, families welcome. New players can turn up or message @paraguaygaa first.\ntheconnectup.com/citybanana
+URL:https://www.instagram.com/paraguaygaa
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Try Gaelic Football: Sunday Training
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-tuesday-coworking-west-coffee-22-12-2026-13-00-18-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261222T160000Z
+DTEND:20261222T180000Z
+SUMMARY:Tuesday Coworking @ West Coffee
+LOCATION:West Coffee\, Paseo Miraflores (Julio Correa)
+DESCRIPTION:Listing says it repeats every Tuesday\, but only shows dates through 27/10. Buy something to support the cafe.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://nomads.com/meetups/asuncion/tuesday-coworking-west-coffee-1860
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Tuesday Coworking @ West Coffee
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-afterwork-english-networking-77-22-12-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261222T210000Z
+DTEND:20261222T230000Z
+SUMMARY:Afterwork English Networking #77
+LOCATION:Venue to be announced
+DESCRIPTION:Afterwork English Networking is where Paraguay meets the world\, in English. Every second Tuesday from 18:00\, English speakers in Asunción meet for a drink and a chat after work\, wherever they learnt their English. Locals come to meet people from abroad\, and newcomers come to meet locals. It’s a social evening in English\, not a class\, so come ready to talk. Half the room comes on their own\, so if y\nBy The Asunción Times\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/afterwork-networking-77/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Afterwork English Networking #77
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-digital-nomads-expats-social-christmas-eve-24-12-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261224T223000Z
+DTEND:20261225T003000Z
+SUMMARY:Digital Nomads & Expats Social (Christmas Eve)
+LOCATION:TBC
+DESCRIPTION:Not listed anywhere yet. Weekly pattern says Thursday\, but it may not run on Christmas Eve.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social (Christmas Eve)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-tuesday-coworking-west-coffee-29-12-2026-13-00-18-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261229T160000Z
+DTEND:20261229T180000Z
+SUMMARY:Tuesday Coworking @ West Coffee
+LOCATION:West Coffee\, Paseo Miraflores (Julio Correa)
+DESCRIPTION:Listing says it repeats every Tuesday\, but only shows dates through 27/10. Buy something to support the cafe.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://nomads.com/meetups/asuncion/tuesday-coworking-west-coffee-1860
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Tuesday Coworking @ West Coffee
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-entrepreneurs-networking-evening-30-12-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261230T223000Z
+DTEND:20261231T003000Z
+SUMMARY:Entrepreneurs Networking Evening
+LOCATION:Registered guests only (Las Lomas area)
+DESCRIPTION:Last Wednesday of December. May be skipped for the holidays.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/asuncion-entrepreneurs-networking-event
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Entrepreneurs Networking Evening
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-digital-nomads-expats-social-new-year-s-eve-31-12-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261231T223000Z
+DTEND:20270101T003000Z
+SUMMARY:Digital Nomads & Expats Social (New Year's Eve)
+LOCATION:TBC
+DESCRIPTION:Not listed anywhere yet. Weekly pattern says Thursday\, but it may not run on New Year's Eve.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social (New Year's Eve)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-bitcoin-walk-14-11-2026-08-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261114T110000Z
+DTEND:20261114T130000Z
+SUMMARY:BITCOIN WALK
+LOCATION:Ñu Guazú Park – Gate 2
+DESCRIPTION:A Saturday morning walk for people interested in Bitcoin\, part of a worldwide Bitcoin Walk movement. Meet at Ñu Guazú Park\, gate 2\, at 08:00 and talk shop for a couple of hours in the fresh air. Free. Organised by the Bitcoin Paraguay community.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/bitcoin-walk-14-nov-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:BITCOIN WALK
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-changing-of-the-guard-at-the-panteo-n-de-los-he-roes-14-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261114T130000Z
+DTEND:20261114T150000Z
+SUMMARY:Changing of the Guard at the Panteón de los Héroes
+LOCATION:Panteón Nacional de los Héroes
+DESCRIPTION:Every Saturday morning the honour guard at the Panteón Nacional de los Héroes is relieved in a formal ceremony on the steps\, in full dress uniform\, right in the middle of the historic centre. This is a genuine piece of national ritual rather than something staged for visitors\, and there is not a word of Spanish to follow\, so it works for everyone. It costs nothing and there is nothing to book. The\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/changing-of-the-guard-at-the-panteon-de-los-heroes-7/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Changing of the Guard at the Panteón de los Héroes
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-feria-palmear-14-11-2026-11-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261114T140000Z
+DTEND:20261114T160000Z
+SUMMARY:Feria Palmear
+LOCATION:Venue to be announced
+DESCRIPTION:Every Saturday in season\, Asunción’s grandest old street shuts to traffic and turns into a party. Feria Palmear fills Calle Palma between Independencia Nacional and 14 de Mayo from late morning until eleven at night\, and it is free to walk straight into. There are makers and artisans selling along the pavements\, street food in every direction\, live music and dancing\, and a different theme each wee\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/feria-palmear-7/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria Palmear
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-bitcoin-walk-21-11-2026-08-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261121T110000Z
+DTEND:20261121T130000Z
+SUMMARY:BITCOIN WALK
+LOCATION:Ñu Guazú Park – Gate 2
+DESCRIPTION:A Saturday morning walk for people interested in Bitcoin\, part of a worldwide Bitcoin Walk movement. Meet at Ñu Guazú Park\, gate 2\, at 08:00 and talk shop for a couple of hours in the fresh air. Free. Organised by the Bitcoin Paraguay community.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/bitcoin-walk-21-nov-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:BITCOIN WALK
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-changing-of-the-guard-at-the-panteo-n-de-los-he-roes-21-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261121T130000Z
+DTEND:20261121T150000Z
+SUMMARY:Changing of the Guard at the Panteón de los Héroes
+LOCATION:Panteón Nacional de los Héroes
+DESCRIPTION:Every Saturday morning the honour guard at the Panteón Nacional de los Héroes is relieved in a formal ceremony on the steps\, in full dress uniform\, right in the middle of the historic centre. This is a genuine piece of national ritual rather than something staged for visitors\, and there is not a word of Spanish to follow\, so it works for everyone. It costs nothing and there is nothing to book. The\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/changing-of-the-guard-at-the-panteon-de-los-heroes-8/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Changing of the Guard at the Panteón de los Héroes
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-feria-palmear-21-11-2026-11-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261121T140000Z
+DTEND:20261121T160000Z
+SUMMARY:Feria Palmear
+LOCATION:Venue to be announced
+DESCRIPTION:Every Saturday in season\, Asunción’s grandest old street shuts to traffic and turns into a party. Feria Palmear fills Calle Palma between Independencia Nacional and 14 de Mayo from late morning until eleven at night\, and it is free to walk straight into. There are makers and artisans selling along the pavements\, street food in every direction\, live music and dancing\, and a different theme each wee\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/feria-palmear-8/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria Palmear
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-bitcoin-walk-28-11-2026-08-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261128T110000Z
+DTEND:20261128T130000Z
+SUMMARY:BITCOIN WALK
+LOCATION:Ñu Guazú Park – Gate 2
+DESCRIPTION:A Saturday morning walk for people interested in Bitcoin\, part of a worldwide Bitcoin Walk movement. Meet at Ñu Guazú Park\, gate 2\, at 08:00 and talk shop for a couple of hours in the fresh air. Free. Organised by the Bitcoin Paraguay community.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/bitcoin-walk-28-nov-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:BITCOIN WALK
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-changing-of-the-guard-at-the-panteo-n-de-los-he-roes-28-11-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261128T130000Z
+DTEND:20261128T150000Z
+SUMMARY:Changing of the Guard at the Panteón de los Héroes
+LOCATION:Panteón Nacional de los Héroes
+DESCRIPTION:Every Saturday morning the honour guard at the Panteón Nacional de los Héroes is relieved in a formal ceremony on the steps\, in full dress uniform\, right in the middle of the historic centre. This is a genuine piece of national ritual rather than something staged for visitors\, and there is not a word of Spanish to follow\, so it works for everyone. It costs nothing and there is nothing to book. The\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/changing-of-the-guard-at-the-panteon-de-los-heroes-9/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Changing of the Guard at the Panteón de los Héroes
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-feria-palmear-28-11-2026-11-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261128T140000Z
+DTEND:20261128T160000Z
+SUMMARY:Feria Palmear
+LOCATION:Venue to be announced
+DESCRIPTION:Every Saturday in season\, Asunción’s grandest old street shuts to traffic and turns into a party. Feria Palmear fills Calle Palma between Independencia Nacional and 14 de Mayo from late morning until eleven at night\, and it is free to walk straight into. There are makers and artisans selling along the pavements\, street food in every direction\, live music and dancing\, and a different theme each wee\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/feria-palmear-9/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria Palmear
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-bitcoin-walk-05-12-2026-08-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261205T110000Z
+DTEND:20261205T130000Z
+SUMMARY:BITCOIN WALK
+LOCATION:Ñu Guazú Park – Gate 2
+DESCRIPTION:A Saturday morning walk for people interested in Bitcoin\, part of a worldwide Bitcoin Walk movement. Meet at Ñu Guazú Park\, gate 2\, at 08:00 and talk shop for a couple of hours in the fresh air. Free. Organised by the Bitcoin Paraguay community.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/bitcoin-walk-5-dec-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:BITCOIN WALK
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-changing-of-the-guard-at-the-panteo-n-de-los-he-roes-05-12-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261205T130000Z
+DTEND:20261205T150000Z
+SUMMARY:Changing of the Guard at the Panteón de los Héroes
+LOCATION:Panteón Nacional de los Héroes
+DESCRIPTION:Every Saturday morning the honour guard at the Panteón Nacional de los Héroes is relieved in a formal ceremony on the steps\, in full dress uniform\, right in the middle of the historic centre. This is a genuine piece of national ritual rather than something staged for visitors\, and there is not a word of Spanish to follow\, so it works for everyone. It costs nothing and there is nothing to book. The\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/changing-of-the-guard-at-the-panteon-de-los-heroes-10/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Changing of the Guard at the Panteón de los Héroes
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-feria-palmear-05-12-2026-11-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261205T140000Z
+DTEND:20261205T160000Z
+SUMMARY:Feria Palmear
+LOCATION:Venue to be announced
+DESCRIPTION:Every Saturday in season\, Asunción’s grandest old street shuts to traffic and turns into a party. Feria Palmear fills Calle Palma between Independencia Nacional and 14 de Mayo from late morning until eleven at night\, and it is free to walk straight into. There are makers and artisans selling along the pavements\, street food in every direction\, live music and dancing\, and a different theme each wee\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/feria-palmear-10/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria Palmear
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-bitcoin-walk-12-12-2026-08-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261212T110000Z
+DTEND:20261212T130000Z
+SUMMARY:BITCOIN WALK
+LOCATION:Ñu Guazú Park – Gate 2
+DESCRIPTION:A Saturday morning walk for people interested in Bitcoin\, part of a worldwide Bitcoin Walk movement. Meet at Ñu Guazú Park\, gate 2\, at 08:00 and talk shop for a couple of hours in the fresh air. Free. Organised by the Bitcoin Paraguay community.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/bitcoin-walk-12-dec-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:BITCOIN WALK
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-changing-of-the-guard-at-the-panteo-n-de-los-he-roes-12-12-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261212T130000Z
+DTEND:20261212T150000Z
+SUMMARY:Changing of the Guard at the Panteón de los Héroes
+LOCATION:Panteón Nacional de los Héroes
+DESCRIPTION:Every Saturday morning the honour guard at the Panteón Nacional de los Héroes is relieved in a formal ceremony on the steps\, in full dress uniform\, right in the middle of the historic centre. This is a genuine piece of national ritual rather than something staged for visitors\, and there is not a word of Spanish to follow\, so it works for everyone. It costs nothing and there is nothing to book. The\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/changing-of-the-guard-at-the-panteon-de-los-heroes-11/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Changing of the Guard at the Panteón de los Héroes
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-feria-palmear-12-12-2026-11-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261212T140000Z
+DTEND:20261212T160000Z
+SUMMARY:Feria Palmear
+LOCATION:Venue to be announced
+DESCRIPTION:Every Saturday in season\, Asunción’s grandest old street shuts to traffic and turns into a party. Feria Palmear fills Calle Palma between Independencia Nacional and 14 de Mayo from late morning until eleven at night\, and it is free to walk straight into. There are makers and artisans selling along the pavements\, street food in every direction\, live music and dancing\, and a different theme each wee\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/feria-palmear-11/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria Palmear
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-bitcoin-walk-19-12-2026-08-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261219T110000Z
+DTEND:20261219T130000Z
+SUMMARY:BITCOIN WALK
+LOCATION:Ñu Guazú Park – Gate 2
+DESCRIPTION:A Saturday morning walk for people interested in Bitcoin\, part of a worldwide Bitcoin Walk movement. Meet at Ñu Guazú Park\, gate 2\, at 08:00 and talk shop for a couple of hours in the fresh air. Free. Organised by the Bitcoin Paraguay community.\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/bitcoin-walk-19-dec-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:BITCOIN WALK
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-changing-of-the-guard-at-the-panteo-n-de-los-he-roes-19-12-2026-10-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261219T130000Z
+DTEND:20261219T150000Z
+SUMMARY:Changing of the Guard at the Panteón de los Héroes
+LOCATION:Panteón Nacional de los Héroes
+DESCRIPTION:Every Saturday morning the honour guard at the Panteón Nacional de los Héroes is relieved in a formal ceremony on the steps\, in full dress uniform\, right in the middle of the historic centre. This is a genuine piece of national ritual rather than something staged for visitors\, and there is not a word of Spanish to follow\, so it works for everyone. It costs nothing and there is nothing to book. The\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/changing-of-the-guard-at-the-panteon-de-los-heroes-12/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Changing of the Guard at the Panteón de los Héroes
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tat-feria-palmear-19-12-2026-11-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261219T140000Z
+DTEND:20261219T160000Z
+SUMMARY:Feria Palmear
+LOCATION:Venue to be announced
+DESCRIPTION:Every Saturday in season\, Asunción’s grandest old street shuts to traffic and turns into a party. Feria Palmear fills Calle Palma between Independencia Nacional and 14 de Mayo from late morning until eleven at night\, and it is free to walk straight into. There are makers and artisans selling along the pavements\, street food in every direction\, live music and dancing\, and a different theme each wee\ntheconnectup.com/citybanana
+URL:https://asunciontimes.com/events/feria-palmear-12/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Feria Palmear
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:sch-social-meetup-05-11-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261105T223000Z
+DTEND:20261106T003000Z
+SUMMARY:Digital Nomads & Expats Social
+LOCATION:Búho Bar
+DESCRIPTION:\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:sch-afterwork-networking-10-11-2026@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261110T210000Z
+DTEND:20261110T230000Z
+SUMMARY:Afterwork Networking
+LOCATION:Koggi Las Mercedes
+DESCRIPTION:\nBy The Asunción Times\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Afterwork Networking
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

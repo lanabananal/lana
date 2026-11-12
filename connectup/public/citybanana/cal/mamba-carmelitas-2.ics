@@ -1,0 +1,137 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//City Banana//Asuncion//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:City Banana · Mamba (Carmelitas)
+X-WR-TIMEZONE:America/Asuncion
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-13-11-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261113T210000Z
+DTEND:20261113T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-20-11-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261120T210000Z
+DTEND:20261120T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-27-11-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261127T210000Z
+DTEND:20261127T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-04-12-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261204T210000Z
+DTEND:20261204T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-11-12-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261211T210000Z
+DTEND:20261211T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-18-12-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261218T210000Z
+DTEND:20261218T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-25-12-2026-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261225T210000Z
+DTEND:20261225T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues. Holiday\, may be closed.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-only-girls-tragos-corridos-01-01-2027-18-00-21-00@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20270101T210000Z
+DTEND:20270101T230000Z
+SUMMARY:Only Girls: tragos corridos
+LOCATION:Mamba Carmelitas (Senador Long c/ Av. Espana)
+DESCRIPTION:Weekly per caption\; dates after the first assume it continues. Holiday\, may be closed.\ntheconnectup.com/citybanana
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Only Girls: tragos corridos
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e-digital-nomads-expats-social-124-12-11-2026-19-30@citybanana
+DTSTAMP:20261112T031131Z
+DTSTART:20261112T223000Z
+DTEND:20261113T003000Z
+SUMMARY:Digital Nomads & Expats Social #124
+LOCATION:Mamba Carmelitas
+DESCRIPTION:Electronic night (house/techno). Reservation under 'Digital Nomads'.\nBy PY Nomads+Expats\ntheconnectup.com/citybanana
+URL:https://nomads.com/meetups/asuncion/meetup-124-nomads-thursday-social-at-mamba-carmelitas-1876
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Digital Nomads & Expats Social #124
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

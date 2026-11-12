@@ -103,3 +103,10 @@
   for = "/ats-evaluator-en"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
+
+# City Banana calendar feeds (Google / Apple Calendar subscriptions)
+[[headers]]
+  for = "/citybanana/cal/*"
+  [headers.values]
+    Content-Type = "text/calendar; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
