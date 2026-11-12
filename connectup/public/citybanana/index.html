@@ -287,7 +287,7 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 .homebtn{display:block;margin:0 auto;padding:0;background:none;border:0;cursor:pointer}
 .stack{display:flex;flex-direction:column;gap:8px}.stack .card{height:auto}
 .cal{display:flex;gap:8px;flex-wrap:wrap}.cal .act{flex:1;min-width:150px;color:var(--tx);text-decoration:none;min-height:44px}
-.pill.org{background:var(--ame);color:var(--gold)}
+.pill.org{background:rgba(228,168,38,.2);color:var(--acc)}
 .addrow{display:flex;justify-content:center;margin-top:24px}
 .sheet input,.sheet select{width:100%;height:46px;border-radius:0;border:3px double var(--rule);background:var(--card);color:var(--tx);padding:0 14px;font-size:16px}
 .sheet .yn{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:4px 10px}
@@ -342,6 +342,9 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 .ripein .btn[disabled]{opacity:.45}
 .skip{min-height:44px;color:#CDB8E6;font:italic 15px 'Lora',Georgia,serif;text-decoration:underline}
 @media (min-width:760px){.detail{bottom:0}.detail .dbody,.pg{padding-bottom:120px}.pg{margin:28px auto;max-width:680px;padding:80px 56px 120px}.plate h1{font-size:52px}.ripein h1{font-size:48px}}
+.hoods{display:flex;flex-wrap:wrap;gap:8px;max-height:260px;overflow:auto;padding:2px}
+.hoods .chip{height:40px;font-size:11px}
+.multi{font:italic 13px 'Lora',Georgia,serif;letter-spacing:0;text-transform:none;color:var(--tx2)}
 /* map: framed engraving */
 #mapwrap::after{content:'';position:absolute;inset:8px;border:1px solid rgba(228,168,38,.55);outline:1px solid rgba(228,168,38,.25);outline-offset:4px;pointer-events:none;z-index:999}
 .lbl,.lbl.big{font-family:var(--ttl)}
@@ -367,7 +370,7 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 </head>
 <body>
 <div id="splash"><img src="logo.png" alt="City Banana"><p id="tagline">Your city, just ripe.</p></div>
-<form name="add-place" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="bot-field"><input name="name"><input name="category"><input name="type"><input name="neighborhood"><input name="address"><input name="price"><input name="wifi"><input name="food"><input name="music"><input name="cocktails"><input name="wine"><input name="beer"><input name="free"><input name="genre"><input name="deals"><input name="instagram"><input name="submitted_by"><input name="email"></form>
+<form name="add-place" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="bot-field"><input name="name"><input name="category"><input name="type"><input name="neighborhood"><input name="address"><input name="price"><input name="wifi"><input name="food"><input name="music"><input name="cocktails"><input name="wine"><input name="beer"><input name="free"><input name="genre"><input name="deals"><input name="instagram"><input name="submitted_by"><input name="email"><input name="kind"><input name="place_id"></form>
 <div id="app"></div>
 <nav class="nav" id="nav"></nav>
 <script src="data.js"></script>
@@ -389,7 +392,7 @@ const T = {
   directions:'Directions',entry:'Entry',seeYou:'See you there.',notOnMap:'Not on our map yet. Open in Google Maps',tapPin:'Tap a pin to see the place.',all:'All',
   chips:{rest:'Food',bars:'Bars',cafes:'Coffee',music:'Music'},closed:'Closed',yourList:'Your list',style:'Style',status:'Status',drinks:'Drinks',goodFor:'Good for',insta:'Instagram',
   artist:'Artist',language:'Language',deal:'Deal',count:n=>`${n} establishments catalogued`,weekly:'The Weekly Catalogue of Asunción',chap:n=>`Chapter ${n}`,
-  readTat:'Read the full listing',moreInfo:'More information',by:o=>`By ${o}`,home:'Home',homeSub:'Everything you gave the Golden Banana',alertsHint:'Subscribe once. New events at this place appear in your calendar with a reminder 3 hours before.',gcal:'Google Calendar',acal:'Apple Calendar',allCal:'Every City Banana event',addPlace:'Add a place',addSub:'Know a spot we’re missing? Send it to Lana. She checks every suggestion before it goes live.',send:'Send to Lana',sent:'Thank you. Lana will check it before it goes live.',sendFail:'That didn’t send. Check your connection and try again.',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'Coming up at your Golden Bananas',startHere:'Busy this week: tap the Golden Banana',addToCal:'Add to calendar',ripeQ:'What makes your banana ripe?',ripeSub:'Pick a few. We’ll peel the city for you and fill your Home with places and events you’ll like.',ripeGo:'Peel my feed',ripeSkip:'Skip for now',ripeEdit:'Change what makes your banana ripe',ripeFor:'Ripe for you this week',ripeVenues:'Places you’ll like',
+  readTat:'Read the full listing',moreInfo:'More information',by:o=>`By ${o}`,home:'Home',homeSub:'Everything you gave the Golden Banana',alertsHint:'Subscribe once. New events at this place appear in your calendar with a reminder 3 hours before.',gcal:'Google Calendar',acal:'Apple Calendar',allCal:'Every City Banana event',addPlace:'Add a place',addSub:'Know a spot we’re missing? Send it to Lana. She checks every suggestion before it goes live.',send:'Send to Lana',sent:'Thank you. Lana will check it before it goes live.',sendFail:'That didn’t send. Check your connection and try again.',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'Coming up at your Golden Bananas',startHere:'Busy this week: tap the Golden Banana',addToCal:'Add to calendar',pickMany:'pick as many as you like',fix:'Suggest a correction',fixSub:'Something changed here? Fix any detail below and send it. Lana checks every change before it goes live.',ripeQ:'What makes your banana ripe?',ripeSub:'Pick a few. We’ll peel the city for you and fill your Home with places and events you’ll like.',ripeGo:'Peel my feed',ripeSkip:'Skip for now',ripeEdit:'Change what makes your banana ripe',ripeFor:'Ripe for you this week',ripeVenues:'Places you’ll like',
   runHead:'Catalogue of Asunción',plate:'Plate',onBill:'This week at the house',nothingBill:'Nothing announced for the next two weeks. Give it the Golden Banana and we’ll tell you when there is.',every:'Every',fine:'Particulars as reported by the house and the press. Subject to change without notice.',
   likes:{music:'Live music',dance:'Dancing & DJs',cocktails:'Cocktails',beer:'Craft beer',wine:'Wine',food:'Good food',coffee:'Coffee & laptop',deals:'Deals & happy hours',meet:'Meeting people',culture:'Art & culture',active:'Sport & outdoors',free:'Free stuff'},myBananas:'Your Golden Bananas',mySaved:'Saved',
   noNews:'Nothing new yet. We’ll list new events and deals here.',noBananas:'Tap the Golden Banana on any place or event. Everything you banana shows up here, in date order.',noSaved:'Tap Save on any place or event to keep it here.',
@@ -403,7 +406,7 @@ const T = {
   directions:'Cómo llegar',entry:'Entrada',seeYou:'Nos vemos ahí.',notOnMap:'Todavía no está en el mapa. Abrir en Google Maps',tapPin:'Tocá un pin para ver el lugar.',all:'Todos',
   chips:{rest:'Comida',bars:'Bares',cafes:'Café',music:'Música'},closed:'Cerrado',yourList:'Tu lista',style:'Estilo',status:'Estado',drinks:'Bebidas',goodFor:'Ideal para',insta:'Instagram',
   artist:'Artista',language:'Idioma',deal:'Promo',count:n=>`${n} establecimientos catalogados`,weekly:'El catálogo semanal de Asunción',chap:n=>`Capítulo ${n}`,
-  readTat:'Ver la publicación completa',moreInfo:'Más información',by:o=>`Por ${o}`,home:'Inicio',homeSub:'Todo lo que marcaste con la Banana de Oro',alertsHint:'Suscribite una vez. Los eventos nuevos de este lugar aparecen en tu calendario con aviso 3 horas antes.',gcal:'Google Calendar',acal:'Calendario de Apple',allCal:'Todos los eventos de City Banana',addPlace:'Sugerir un lugar',addSub:'¿Conocés un lugar que falta? Mandáselo a Lana. Ella revisa cada sugerencia antes de publicarla.',send:'Enviar a Lana',sent:'¡Gracias! Lana lo revisa antes de publicarlo.',sendFail:'No se pudo enviar. Revisá tu conexión e intentá de nuevo.',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Lo próximo en tus Bananas de Oro',startHere:'Con movimiento esta semana: tocá la Banana de Oro',addToCal:'Agregar al calendario',ripeQ:'¿Qué hace madurar tu banana?',ripeSub:'Elegí algunas cosas. Pelamos la ciudad por vos y llenamos tu Inicio con lugares y eventos a tu gusto.',ripeGo:'Pelar mi feed',ripeSkip:'Ahora no',ripeEdit:'Cambiar lo que hace madurar tu banana',ripeFor:'Maduro para vos esta semana',ripeVenues:'Lugares que te van a gustar',
+  readTat:'Ver la publicación completa',moreInfo:'Más información',by:o=>`Por ${o}`,home:'Inicio',homeSub:'Todo lo que marcaste con la Banana de Oro',alertsHint:'Suscribite una vez. Los eventos nuevos de este lugar aparecen en tu calendario con aviso 3 horas antes.',gcal:'Google Calendar',acal:'Calendario de Apple',allCal:'Todos los eventos de City Banana',addPlace:'Sugerir un lugar',addSub:'¿Conocés un lugar que falta? Mandáselo a Lana. Ella revisa cada sugerencia antes de publicarla.',send:'Enviar a Lana',sent:'¡Gracias! Lana lo revisa antes de publicarlo.',sendFail:'No se pudo enviar. Revisá tu conexión e intentá de nuevo.',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Lo próximo en tus Bananas de Oro',startHere:'Con movimiento esta semana: tocá la Banana de Oro',addToCal:'Agregar al calendario',pickMany:'elegí todos los que quieras',fix:'Sugerir una corrección',fixSub:'¿Cambió algo? Corregí lo que haga falta y envialo. Lana revisa cada cambio antes de publicarlo.',ripeQ:'¿Qué hace madurar tu banana?',ripeSub:'Elegí algunas cosas. Pelamos la ciudad por vos y llenamos tu Inicio con lugares y eventos a tu gusto.',ripeGo:'Pelar mi feed',ripeSkip:'Ahora no',ripeEdit:'Cambiar lo que hace madurar tu banana',ripeFor:'Maduro para vos esta semana',ripeVenues:'Lugares que te van a gustar',
   runHead:'Catálogo de Asunción',plate:'Lámina',onBill:'Esta semana en la casa',nothingBill:'Nada anunciado para las próximas dos semanas. Dale la Banana de Oro y te avisamos cuando haya.',every:'Todos los',fine:'Datos según la casa y la prensa. Sujetos a cambios sin previo aviso.',
   likes:{music:'Música en vivo',dance:'Baile y DJs',cocktails:'Cócteles',beer:'Cerveza artesanal',wine:'Vino',food:'Buena comida',coffee:'Café y laptop',deals:'Promos y happy hours',meet:'Conocer gente',culture:'Arte y cultura',active:'Deporte y aire libre',free:'Gratis'},myBananas:'Tus Bananas de Oro',mySaved:'Guardados',
   noNews:'Todavía nada nuevo. Acá vas a ver eventos y promos nuevas.',noBananas:'Tocá la Banana de Oro en cualquier lugar o evento. Todo lo que marques aparece acá, por fecha.',noSaved:'Tocá Guardar en un lugar o evento para tenerlo acá.',
@@ -486,7 +489,7 @@ const match = x => { const a = attrs(x);
   if (a.closed && !F.closed) return false;
   if (F.q) { const h = hoodQ(), q = norm(F.q).trim(), p = x._lat ? x : placeFor(x) || {};
     if (h ? !(norm(a.hood + ' ' + (x['Neighborhood / address'] || '')).includes(q) || (p._lat && km([p._lat, p._lon], h) < 1)) : !norm(a.text).includes(q)) return false; }
-  if (F.hood && a.hood !== F.hood) return false; if (F.price && a.price !== F.price) return false;
+  if (F.hood?.length && !F.hood.includes(a.hood)) return false; if (F.price && a.price !== F.price) return false;
   if (F.genre && !a.genres.includes(F.genre)) return false; if (F.cat && a.cat !== F.cat) return false;
   if (F.langF && !norm(a.lang).includes(norm(F.langF))) return false;
   return BOOL.every(k => !F[k] || a[k]); };
@@ -597,11 +600,11 @@ const no = i => i === undefined || typeof i !== 'number' ? '' : `<span class="no
 const pill = (txt, cls = '') => `<span class="pill ${cls}">${esc(txt)}</span>`;
 const evPills = e => (liveNow(e) ? pill(t('live'), 'live') : '') + (e._free ? pill(t('free'), 'free') : '') + (/^https?:/i.test(e._ticket) ? pill(t('tix'), 'tix') : '')
   + (e._org ? pill(t('by')(e._org), 'org') : '') + (/sold out|agotad/i.test(e._status) ? pill(e._status, 'out') : has(e._status) && !/confirm/i.test(e._status) ? pill(e._status, 'new') : '');
-const nActive = () => SEL.filter(k => F[k]).length + (F.closed ? 1 : 0);
+const nActive = () => SEL.filter(k => (Array.isArray(F[k]) ? F[k].length : F[k])).length + (F.closed ? 1 : 0);
 const searchBox = () => `<div class="search">${ic('search')}<input id="q" type="search" placeholder="${t('search')}" aria-label="${t('search')}" value="${esc(F.q)}" oninput="F.q=this.value;draw(true)"></div>`;
 // Only offer filters this tab can actually satisfy
 const avail = () => { const base = baseFor(), as = base.map(attrs), o = options(base);
-  return { bool: BOOL.filter(k => F[k] || as.some(a => a[k])), sel: SEL.filter(k => o[k].length > 1 || F[k]), closed: as.some(a => a.closed), o }; };
+  return { bool: BOOL.filter(k => F[k] || as.some(a => a[k])), sel: SEL.filter(k => o[k].length > 1 || (Array.isArray(F[k]) ? F[k].length : F[k])), closed: as.some(a => a.closed), o }; };
 const filterBar = () => { const A = avail(), more = A.sel.length || A.closed;
   return searchBox() + `<div class="chips">${more ? `<button class="chip ${nActive() ? 'on' : ''}" onclick="sheet()">${ic('filter')}${t('filters')}${nActive() ? ' · ' + nActive() : ''}</button>` : ''}
  ${A.bool.map(k => `<button class="chip ${F[k] ? 'on' : ''}" onclick="F.${k}=!F.${k};draw()">${t(k)}</button>`).join('')}</div>`; };
@@ -653,18 +656,20 @@ const setLang = () => { lang = lang === 'en' ? 'es' : 'en'; store('lang', lang);
 function sheet() {
   const A = avail(), o = A.o, v = document.createElement('div');
   v.className = 'veil'; v.onclick = e => { if (e.target === v) v.remove(); };
-  v.innerHTML = `<div class="sheet"><h2 style="margin-top:0">${t('filters')}</h2>${A.sel.map(k => `<label for="f-${k}">${t(k)}</label>
+  v.innerHTML = `<div class="sheet"><h2 style="margin-top:0">${t('filters')}</h2>${A.sel.map(k => k === 'hood' ? `<label>${t('hood')} <small class="multi">${t('pickMany')}</small></label><div class="hoods">${o.hood.map(h => `<button type="button" class="chip ${(F.hood || []).includes(h) ? 'on' : ''}" aria-pressed="${(F.hood || []).includes(h)}" onclick="pickHood(this)" data-h="${esc(h)}">${esc(h)}</button>`).join('')}</div>` : `<label for="f-${k}">${t(k)}</label>
    <select id="f-${k}" onchange="F.${k}=this.value;draw()"><option value="">${t('any')}</option>${o[k].map(x => `<option value="${esc(x)}" ${F[k] === x ? 'selected' : ''}>${esc(k === 'langF' ? LANGN[x] || x : x)}</option>`).join('')}</select>`).join('')}
    ${A.closed ? `<label class="tog"><input id="f-closed" type="checkbox" ${F.closed ? 'checked' : ''} onchange="F.closed=this.checked;draw()">${t('showClosed')}</label>` : ''}
    <div class="row2"><button class="btn sm ghost" onclick="F={q:'',closed:false};draw();this.closest('.veil').remove()">${t('clear')}</button>
    <button class="btn sm gold" onclick="this.closest('.veil').remove();draw()">${t('done')}</button></div></div>`;
   document.body.appendChild(v);
 }
+function pickHood(b) { const h = b.dataset.h; F.hood = F.hood || []; const i = F.hood.indexOf(h); i < 0 ? F.hood.push(h) : F.hood.splice(i, 1);
+  b.classList.toggle('on', i < 0); b.setAttribute('aria-pressed', i < 0); draw(); }
 
 /* ---------- detail ---------- */
 const gmaps = p => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p?._lat ? `${p._lat},${p._lon}` : `${p?.Name || ''} Asunción`);
 const fact = (k, txt) => has(txt) ? `<div class="fact">${ic(k)}<span>${esc(txt)}</span></div>` : '';
-const row = (k, label, val, html) => has(val) || html ? `<div class="r"><small>${esc(label)}</small><i class="dots"></i><span class="v">${html || esc(val)}</span></div>` : '';
+const row = (k, label, val, html) => has(val) || html ? `<div class="r"><small>${esc(label)}</small><i class="dots"></i><span class="v">${html || esc(String(val).replace(/(^|: )(yes|sí)\s*\(([^)]*)\)/gi, '$1$3').replace(/(^|: )(yes|sí)$/gi, '$1✓'))}</span></div>` : '';
 // Save (this item) and Golden Banana (the place, or the event's venue)
 const bBtn = (id, label, box) => `<button class="act ${isBanana(id) ? 'on' : ''}" aria-pressed="${isBanana(id)}" onclick="act(this,'${id}','${box}')">${ic('banana')}${label}</button>`;
 const acts = (id, pid) => { const x = BY.get(id), ev = x._title !== undefined;
@@ -714,7 +719,10 @@ function plate(p) {
   const bill = events.filter(e => placeFor(e) === p && evDay(e) >= today && evDay(e) <= ymd(until)).sort((x, y) => (evDay(x) + x._time < evDay(y) + y._time ? -1 : 1));
   const dname = d => new Date(2024, 0, 7 + d).toLocaleDateString(loc(), { weekday: 'long' });
   const dealDays = p._deal ? (p._deal.days.size === 7 ? '' : [...p._deal.days].sort().map(dname).join(', ')) : '';
-  const story = [[p['Type / style'], p._hood].filter(has).join(' · '), has(p['Live music']) ? p['Live music'] : '', has(p.Food) ? p.Food : ''].filter(Boolean).join('. ').replace(/\.\./g, '.') + '.';
+  const yes = v => has(v) ? String(v).replace(/^(yes|sí|si)\s*[:(]\s*/i, '').replace(/\)$/, '').replace(/^(yes|sí|si)$/i, '') : '';
+  const w = lang === 'es' ? { in: 'en', music: 'Música', food: 'Cocina', bar: 'Barra' } : { in: 'in', music: 'Music', food: 'Kitchen', bar: 'Bar' };
+  const story = [[p['Type / style'] || t(p._cat), p._hood].filter(has).join(' ' + w.in + ' '), yes(p['Live music']) && w.music + ': ' + yes(p['Live music']),
+    yes(p.Food) && w.food + ': ' + yes(p.Food), yes(p.Cocktails) && w.bar + ': ' + yes(p.Cocktails)].filter(Boolean).map(x => x.replace(/[.\s]+$/, '')).join('. ') + '.';
   const line = (when, what, time, id) => `<button class="bill" onclick="detail('${id}')"><span class="bd">${when}</span><span class="bt">${esc(what)}</span><i class="dots"></i><span class="bh">${time}</span></button>`;
   el.className = 'detail plate';
   el.innerHTML = `<button class="back" onclick="history.back()" aria-label="Back">${ic('back')}</button>
@@ -741,6 +749,7 @@ function plate(p) {
      ${ig ? row('', t('insta'), ig, `<a href="https://instagram.com/${esc(ig.replace('@', ''))}" target="_blank" rel="noopener">${esc(ig)}</a>`) : ''}</div>
    <div class="acts">${acts(p._id)}</div>
    <div class="plcta"><a class="btn gold" href="${gmaps(p)}" target="_blank" rel="noopener">${t('directions')}</a></div>
+   <div class="addrow"><button class="chip" onclick="addPlace('${p._id}')">${ic('info')}${t('fix')}</button></div>
    <p class="fine">${t('fine')}</p>
   </article>`;
   openPage(el);
@@ -781,12 +790,13 @@ const calLinks = id => `<div class="cal"><a class="act" href="https://calendar.g
 
 /* ---------- add a place: Netlify Form on theconnectup.com, emailed to Lana for approval ---------- */
 const HOSTED = /theconnectup\.com|netlify\.app/.test(location.host);
-function addPlace() {
-  if (!HOSTED) return open('https://theconnectup.com/citybanana/#add', '_blank');
+function addPlace(fixId) {
+  if (!HOSTED) return open('https://theconnectup.com/citybanana/#' + (fixId ? 'fix=' + fixId : 'add'), '_blank');
+  const P0 = fixId && BY.get(fixId), A0 = P0 ? attrs(P0) : {};
   const v = document.createElement('div'), o = options(places), yn = n => `<select id="ap-${n}" name="${n}"><option value="">—</option><option>Yes</option><option>No</option></select>`;
   v.className = 'veil'; v.onclick = e => { if (e.target === v) v.remove(); };
-  v.innerHTML = `<form class="sheet" name="add-place" id="ap"><h2 class="orn" style="margin-top:0"><span>${t('addPlace')}</span></h2><p class="hint">${t('addSub')}</p>
-   <input type="hidden" name="form-name" value="add-place"><p hidden><label>Leave empty <input name="bot-field"></label></p>
+  v.innerHTML = `<form class="sheet" name="add-place" id="ap"><h2 class="orn" style="margin-top:0"><span>${t(P0 ? 'fix' : 'addPlace')}</span></h2><p class="hint">${t(P0 ? 'fixSub' : 'addSub')}</p>
+   <input type="hidden" name="form-name" value="add-place"><input type="hidden" name="kind" value="${P0 ? 'correction' : 'new place'}"><input type="hidden" name="place_id" value="${P0 ? esc(P0._id) : ''}"><p hidden><label>Leave empty <input name="bot-field"></label></p>
    <label for="ap-name">Name *</label><input id="ap-name" name="name" required>
    <label for="ap-cat">${t('cat')} *</label><select id="ap-cat" name="category" required><option value="">—</option><option>Restaurant</option><option>Bar</option><option>Café</option></select>
    <label for="ap-type">${t('style')}</label><input id="ap-type" name="type" placeholder="Cocktail bar, pizzeria, specialty coffee…">
@@ -803,6 +813,10 @@ function addPlace() {
    <p class="hint" id="ap-msg" role="status"></p>
    <div class="row2"><button type="button" class="btn sm ghost" onclick="this.closest('.veil').remove()">${t('clear')}</button><button class="btn sm gold">${t('send')}</button></div></form>`;
   document.body.appendChild(v);
+  if (P0) { const f = v.querySelector('form'), set = (n, val) => { const el = f.elements[n]; if (el && val) el.value = val; }, yn = b => b ? 'Yes' : '';
+    set('name', P0.Name); set('category', { rest: 'Restaurant', bars: 'Bar', cafes: 'Café' }[P0._cat]); set('type', P0['Type / style']); set('neighborhood', P0._hood);
+    set('address', P0['Neighborhood / address']); set('price', A0.price); set('genre', P0['Music genre / style']); set('instagram', P0.Instagram);
+    for (const k of ['wifi', 'food', 'music', 'cocktails', 'wine', 'beer', 'free']) set(k, yn(A0[k])); set('deals', P0._deal?.snip); }
   v.querySelector('form').onsubmit = async e => { e.preventDefault(); const f = e.target, msg = f.querySelector('#ap-msg');
     try { const r = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(f)).toString() });
       if (!r.ok) throw 0; f.innerHTML = `<h2 class="orn" style="margin-top:0"><span>${t('addPlace')}</span></h2><p class="lead" style="text-align:center">${t('sent')}</p><button type="button" class="btn sm gold" onclick="this.closest('.veil').remove()">${t('done')}</button>`;
@@ -875,7 +889,7 @@ function pick(id) { const p = BY.get(id); sel = id; F.q = ''; draw(); if (p._lat
 /* ---------- boot ---------- */
 draw();
 setTimeout(() => !ME.onboarded && !ME.bananas.length && location.hash !== '#add' && !$('.ripe') && ripe(), 1300);
-if (location.hash === '#add') addPlace();
+if (location.hash === '#add') addPlace(); else if (location.hash.startsWith('#fix=')) addPlace(location.hash.slice(5));
 account();
 setTimeout(() => $('#splash')?.classList.add('out'), 1200);
 setInterval(() => tab === 'feed' && !document.querySelector('.detail,.veil') && draw(), 60000); // refresh "Live now"
