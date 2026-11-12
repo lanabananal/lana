@@ -59,7 +59,8 @@ h2{font:700 13px 'Lora',Georgia,serif;letter-spacing:.06em;text-transform:upperc
 .tb svg{width:30px;height:30px;color:var(--gold)}
 .cb{min-width:0;flex:1;display:flex;flex-direction:column;gap:4px}
 .cb .ct{font-weight:700;font-size:17px;line-height:1.3;overflow-wrap:anywhere}
-.cb p{margin:0;color:var(--tx2);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.cb p{margin:0;color:var(--tx2);overflow-wrap:anywhere}
+.cb p.when{margin-top:4px;font:600 12px var(--ttl);letter-spacing:.08em;color:var(--acc)}
 .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
 .pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:13px;font:700 12px 'Lora',Georgia,serif;border:1.5px solid var(--chipline);color:var(--tx2)}
 .pill.free{background:var(--gold);border-color:var(--gold);color:var(--night)}
@@ -105,7 +106,7 @@ details{margin-top:6px}summary{font:700 13px 'Lora',Georgia,serif;letter-spacing
 dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
 .foot{position:sticky;bottom:0;display:flex;align-items:center;gap:18px;padding:16px 20px calc(16px + env(safe-area-inset-bottom));background:var(--night);border-top:1px solid rgba(201,165,92,.25)}
 .foot small{display:block;font-size:13px;color:var(--tx2)}
-.foot b{display:block;font:700 24px var(--ttl);color:var(--gold);max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.foot b{display:block;font:700 24px var(--ttl);color:var(--gold);max-width:160px;overflow-wrap:anywhere}
 .foot .btn{flex:1}
 /* map (always dark) */
 #mapwrap{overflow:hidden;position:fixed;top:0;bottom:calc(80px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:var(--app);z-index:10;color:var(--tx)}
@@ -139,8 +140,8 @@ dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
 .mc{display:flex;align-items:center;gap:14px}
 .mi{width:56px;height:56px;flex:none;border-radius:16px;background:var(--gold);color:var(--night);display:grid;place-items:center}.mi svg{width:28px;height:28px}
 .mt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-.mt b{font:600 20px/1.2 var(--ttl);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.mt span{font-size:14px;color:var(--tx2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mt b{font:600 20px/1.2 var(--ttl);overflow-wrap:anywhere}
+.mt span{font-size:14px;color:var(--tx2);overflow-wrap:anywhere}
 .gm{display:block;margin-top:10px;color:var(--orc)}
 .pinw{background:none;border:0}
 /* event regions on the map */
@@ -151,7 +152,7 @@ dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
 .mlist{max-height:min(30vh,260px);overflow:auto;margin-top:10px;border-top:1px solid rgba(201,165,92,.35)}
 .mlist button{display:flex;gap:12px;width:100%;text-align:left;padding:10px 2px;min-height:48px;border-bottom:1px dotted rgba(201,165,92,.35);cursor:pointer}
 .mlist .md{flex:none;width:64px;font:600 12px/1.3 var(--ttl);letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}.mlist .md small{color:var(--tx2)}
-.mlist .mx{display:flex;flex-direction:column;min-width:0}.mlist .mx b{font:600 15px/1.25 var(--ttl)}.mlist .mx small{color:var(--tx2);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mlist .mx{display:flex;flex-direction:column;min-width:0}.mlist .mx b{font:600 15px/1.25 var(--ttl)}.mlist .mx small{color:var(--tx2);font-size:13px;overflow-wrap:anywhere}
 .pin{position:relative}.pin svg{display:block;width:100%;height:100%;position:relative}
 .pin i{position:absolute;left:50%;transform:translateX(-50%);border-radius:50%;bottom:-3px;width:24px;height:8px;background:rgba(44,36,64,.65)}
 .pin.sel i{bottom:-8px;width:70px;height:20px;background:none;border:2px solid rgba(201,165,92,.55)}
@@ -443,6 +444,43 @@ svg.fig .h{stroke-width:1.1;opacity:.75}
  .dbody h1{font-size:44px}
  .you .mast{margin:0 -32px 24px}
 }
+/* 5-tab bar: full width on phones, safe-area aware, never over content */
+@media (max-width:759px){.nav{left:0;right:0;width:100%;transform:none;padding:4px max(6px,env(safe-area-inset-right)) env(safe-area-inset-bottom) max(6px,env(safe-area-inset-left))}.nav button{font-size:10px;letter-spacing:.08em}}
+/* clear ES | EN switch + crown */
+.lsw{display:inline-flex;border:1px solid rgba(201,165,92,.7);background:rgba(44,36,64,.55)}
+.lsw button{min-width:44px;height:40px;padding:0 10px;font:700 12px var(--ttl);letter-spacing:.14em;color:#D9CFF0;cursor:pointer}
+.lsw button.on{background:var(--goldbar);color:var(--night)}
+.crownbtn{width:44px;height:42px;display:grid;place-items:center;border:1px solid rgba(201,165,92,.7);background:rgba(44,36,64,.55);color:var(--gold);cursor:pointer}
+.crownbtn svg{width:26px;height:26px}
+/* Home after the first view: compact masthead */
+.mast.compact{padding-bottom:16px;margin-bottom:22px}.mast.compact .msym{height:44px}.mast.compact h1{font-size:24px;margin:2px 0 0}
+@media (min-width:760px){.mast.compact{padding-bottom:22px}.mast.compact h1{font-size:34px}.mast.compact .msym{height:56px}}
+/* the royal report: card on Home + daily full-screen decree */
+.rcard{display:flex;flex-direction:column;gap:6px;width:100%;margin:0 0 6px;padding:18px 18px 16px;text-align:left;cursor:pointer;color:var(--cream);
+ background:repeating-conic-gradient(from -90deg at 50% 110%,rgba(201,165,92,.14) 0 3deg,transparent 3deg 9deg),radial-gradient(ellipse at 50% 110%,#8C7BBF,#2C2440 75%);
+ border:1px solid var(--gold);box-shadow:inset 0 0 0 4px #2C2440,inset 0 0 0 5px rgba(201,165,92,.6)}
+.rcard .rc-h{display:flex;align-items:center;gap:10px;font:700 14px/1.25 var(--ttl);letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.rcard .rc-h svg{width:28px;height:28px;flex:none}.rcard small{font:italic 13px 'Lora',Georgia,serif;color:#D9CFF0}
+.rcard .rc-l{font:15px/1.45 'Lora',Georgia,serif}.rcard .rc-m{font:600 12px var(--ttl);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.royal{position:fixed;inset:0;z-index:96;overflow:auto;display:flex;justify-content:center;padding:70px 16px 24px;color:var(--cream);
+ background:repeating-conic-gradient(from -90deg at 50% 45%,rgba(201,165,92,.16) 0 4deg,transparent 4deg 12deg),radial-gradient(circle at 50% 45%,#8C7BBF 0%,#5E4E8C 40%,#2C2440 100%)}
+.rin{position:relative;margin:auto 0;max-width:560px;width:100%;padding:34px 22px 26px;text-align:center;background:rgba(44,36,64,.8);border:3px double var(--gold);
+ box-shadow:inset 0 0 0 6px rgba(44,36,64,.6),inset 0 0 0 7px rgba(201,165,92,.5),0 20px 60px rgba(0,0,0,.4)}
+.rin .crown{width:80px;height:80px;margin:-76px auto 10px;display:grid;place-items:center;background:var(--goldbar);color:var(--night);clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%)}
+.rin .crown svg{width:46px;height:46px}
+.rin h1{margin:10px 0 6px;font:700 28px/1.15 var(--deco);text-wrap:balance;color:var(--cream)}
+.rin p{margin:0 0 12px;font:17px/1.5 'Lora',Georgia,serif}
+.rin .sig{font-style:italic;color:var(--gold);margin-top:6px}.rin .btn{margin-top:8px;min-width:min(260px,100%)}
+@media (min-width:760px){.rin{padding:44px 48px 34px}.rin h1{font-size:40px}}
+/* unconfirmed events, tucked away */
+.unconf{margin-top:26px;border:1px dashed var(--rule);padding:4px 14px 14px}
+.unconf summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font:600 12px var(--ttl);letter-spacing:.16em;text-transform:uppercase;color:var(--tx2)}
+.unconf .hint{font-style:italic;color:var(--tx2);margin:4px 0 12px}
+/* place page */
+.plate .acts.links{margin-top:18px}.plate .acts.links:empty{display:none}
+.plcta .btn svg{width:22px;height:22px}
+.verif{margin:18px 0 0;font:italic 14px 'Lora',Georgia,serif;color:var(--tx2);text-align:center}
+.pcats{margin-bottom:10px}
 @media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
 </style>
 </head>
@@ -458,44 +496,45 @@ svg.fig .h{stroke-width:1.1;opacity:.75}
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm = s => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-const has = v => !!v && !/^(not found|not stated|no\b|n\/a|-|$)/i.test(String(v).trim());
+const has = v => !!v && !/^(not found|not stated|needs check|unknown|unverified|likely|probably|maybe|no\b|n\/a|-|$)/i.test(String(v).trim());
 const store = (k, v) => { try { v === undefined ? (v = localStorage[k]) : (localStorage[k] = v); } catch (e) {} return v; };
 
 /* ---------- copy ---------- */
 const T = {
- en:{feedTitle:'This week in Asunción',tagline:'Your city, just ripe.',nav:['Home','Events','Food','Bars','Coffee','Map'],feed:'Events',rest:'Restaurants',bars:'Bars',cafes:'Cafés',map:'Map',events:'Events',deals:'Food & drink deals',
+ en:{feedTitle:'This week in Asunción',tagline:'Your city, just ripe.',nav:['Home','Events','Places','Map','Saved'],places:'Places',night:'Nightlife',savedSub:'Everything you gave the Golden Banana, in date order',tonight:'Tonight',todayDeals:'Today’s deals',seeWeek:'See the whole week',nothingTonight:'Nothing confirmed for tonight yet.',unconf:n=>`Unconfirmed (${n})`,unconfHint:'Date or venue not confirmed yet. Check with the organiser before you go.',unconfP:'Unconfirmed',openNow:'Open now',closedNow:'Closed now',until:d=>`until ${d}`,from:'from',verified:'Last verified',listUpd:'Listing updated',report:'Report outdated info',royalT:'The Queen Banana Report of the Day',royalBtn:'Dismiss, Your Majesty',royalOpen:'Open today’s royal report',royalBy:'By order of Queen Banana',hearYe:'Hear ye!',moreDecrees:n=>`Tap to read ${n} more decree${n === 1 ? '' : 's'}`,feed:'Events',rest:'Restaurants',bars:'Bars',cafes:'Cafés',map:'Map',events:'Events',deals:'Food & drink deals',
   empty:'Nothing on tonight. Try tomorrow?',none:'No matches. Loosen a filter?',free:'Free',live:'Live now',tix:'Tickets',new:'New',search:'Search places and events',
   filters:'Filters',wifi:'WiFi',food:'Food',music:'Live music',cocktails:'Cocktails',wine:'Wine',beer:'Beer',hood:'Neighborhood',price:'Price',genre:'Music / genre',
   cat:'Category',langF:'Language',any:'Any',showClosed:'Show permanently closed places',clear:'Clear',done:'Done',details:'Details',getTicket:'Get ticket',
   directions:'Directions',entry:'Entry',seeYou:'See you there.',notOnMap:'Not on our map yet. Open in Google Maps',tapPin:'Tap a pin to see the place.',all:'All',
-  chips:{rest:'Food',bars:'Bars',cafes:'Coffee',music:'Music'},closed:'Closed',yourList:'Your list',style:'Style',status:'Status',drinks:'Drinks',goodFor:'Good for',insta:'Instagram',
+  chips:{rest:'Food',bars:'Bars',cafes:'Coffee',night:'Nightlife',music:'Music'},closed:'Closed',yourList:'Your list',style:'Style',status:'Status',drinks:'Drinks',goodFor:'Good for',insta:'Instagram',
   artist:'Artist',language:'Language',deal:'Deal',count:n=>`${n} establishments catalogued`,weekly:'The Weekly Catalogue of Asunción',chap:n=>`Chapter ${n}`,
-  readTat:'Read the full listing',moreInfo:'More information',by:o=>`By ${o}`,home:'Home',homeSub:'Everything you gave the Golden Banana',alertsHint:'Subscribe once. New events at this place appear in your calendar with a reminder 3 hours before.',gcal:'Google Calendar',acal:'Apple Calendar',allCal:'Every City Banana event',addPlace:'Add a place',addSub:'Know a spot we’re missing? Send it to Lana. She checks every suggestion before it goes live.',send:'Send to Lana',sent:'Thank you. Lana will check it before it goes live.',sendFail:'That didn’t send. Check your connection and try again.',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'Coming up at your Golden Bananas',startHere:'Busy this week: tap the Golden Banana',addToCal:'Add to calendar',addGcal:'Add to Google Calendar',figs:{cocktail:'Cocktails',beer:'Beer',wine:'Wine',coffee:'Coffee',guitar:'Live music',gramophone:'Dancing',dining:'Kitchen'},featuredIn:'Featured in',promos:'Promos',more:n=>`+${n} more dates`,noEv:'No events announced for the next two weeks.',noPromo:'No promos on record.',lots:'listed',daily:'Every day',pickMany:'pick as many as you like',fix:'Suggest a correction',fixSub:'Something changed here? Fix any detail below and send it. Lana checks every change before it goes live.',ripeQ:'What makes your banana ripe?',ripeSub:'Pick a few. We’ll peel the city for you and fill your Home with places and events you’ll like.',ripeGo:'Peel my feed',ripeSkip:'Skip for now',ripeEdit:'Change what makes your banana ripe',ripeFor:'Ripe for you this week',ripeVenues:'Places you’ll like',ripeTap:'Tap to choose your favourites',
-  introT:'Welcome to City Banana',introB:'Tap the <b>Golden Banana</b> on any place or event to follow it. Its new events land on your Home and in your calendar.',introR:'<b>What makes your banana ripe?</b> Tell us what you love (live music, cocktails, deals…) and we’ll fill your Home with matching picks.',introGo:'Choose what I like',introOk:'Got it',
+  readTat:'Read the full listing',moreInfo:'More information',by:o=>`By ${o}`,home:'Home',homeSub:'Tonight, today’s deals and the royal report',alertsHint:'Subscribe once. New events at this place appear in your calendar with a reminder 3 hours before.',gcal:'Google Calendar',acal:'Apple Calendar',allCal:'Every City Banana event',addPlace:'Add a place',addSub:'Know a spot we’re missing? Send it to Queen Banana. She checks every suggestion before it goes live.',send:'Send to Queen Banana',sent:'Thank you. Queen Banana will check it before it goes live.',sendFail:'That didn’t send. Check your connection and try again.',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'Coming up at your Golden Bananas',startHere:'Busy this week: tap the Golden Banana',addToCal:'Add to calendar',addGcal:'Add to Google Calendar',figs:{cocktail:'Cocktails',beer:'Beer',wine:'Wine',coffee:'Coffee',guitar:'Live music',gramophone:'Dancing',dining:'Kitchen'},featuredIn:'Featured in',promos:'Promos',more:n=>`+${n} more dates`,noEv:'No events announced for the next two weeks.',noPromo:'No promos on record.',lots:'listed',daily:'Every day',pickMany:'pick as many as you like',fix:'Suggest a correction',fixSub:'Something changed here? Fix any detail below and send it. Queen Banana checks every change before it goes live.',ripeQ:'What makes your banana ripe?',ripeSub:'Pick a few. We’ll peel the city for you and fill your Home with places and events you’ll like.',ripeGo:'Peel my feed',ripeSkip:'Skip for now',ripeEdit:'Change what makes your banana ripe',ripeFor:'Ripe for you this week',ripeVenues:'Places you’ll like',ripeTap:'Tap to choose your favourites',
+  introT:'Welcome to City Banana',introB:'Tap the <b>Golden Banana</b> on any place or event to follow it. It’s kept in Saved, and its new events land in your calendar.',introR:'<b>What makes your banana ripe?</b> Tell us what you love (live music, cocktails, deals…) and we’ll fill your Home with matching picks.',introGo:'Choose what I like',introOk:'Got it',
   evPlate:'Event',when:'When',where:'Where',venuePage:'See the venue',regionsHint:'Tap a region to see its events this week.',inRegion:n=>`${n} event${n === 1 ? '' : 's'} this week`,tbcLoc:n=>`${n} more with location to be confirmed`,beyond:'Beyond Asunción',
   runHead:'Catalogue of Asunción',plate:'Plate',onBill:'This week at the house',nothingBill:'Nothing announced for the next two weeks. Give it the Golden Banana and we’ll tell you when there is.',every:'Every',fine:'Particulars as reported by the house and the press. Subject to change without notice.',
   likes:{music:'Live music',dance:'Dancing & DJs',cocktails:'Cocktails',beer:'Craft beer',wine:'Wine',food:'Good food',coffee:'Coffee & laptop',deals:'Deals & happy hours',meet:'Meeting people',culture:'Art & culture',active:'Sport & outdoors',free:'Free stuff'},myBananas:'Your Golden Bananas',mySaved:'Saved',
   noNews:'Nothing new yet. We’ll list new events and deals here.',noBananas:'Tap the Golden Banana on any place or event. Everything you banana shows up here, in date order.',noSaved:'Tap Save on any place or event to keep it here.',
   signedIn:n=>`Signed in as ${n}`,acct:'Your saves follow your account on every device.',local:'Saved on this device',localHint:'Open City Banana from its link to keep your list on every device.',
   bell:n=>n?`For you, ${n} new`:'For you',
-  joke:{feed:'That’s the whole bunch for today.',rest:'Hungry? Let’s split. Banana optional.',bars:'Go bananas. Responsibly.',cafes:'Don’t slip on the way to coffee.',map:'Peel the city, one pin at a time.'}},
- es:{feedTitle:'Esta semana en Asunción',tagline:'Tu ciudad, en su punto.',nav:['Inicio','Eventos','Comida','Bares','Café','Mapa'],feed:'Eventos',rest:'Restaurantes',bars:'Bares',cafes:'Cafés',map:'Mapa',events:'Eventos',deals:'Promos de comida y tragos',
+  joke:{feed:'That’s the whole bunch for today.',rest:'Hungry? Let’s split. Banana optional.',bars:'Go bananas. Responsibly.',cafes:'Don’t slip on the way to coffee.',map:'Peel the city, one pin at a time.',places:'Go bananas. Responsibly.',night:'Dance like nobody’s peeling.'}},
+ es:{feedTitle:'Esta semana en Asunción',tagline:'Tu ciudad, en su punto.',nav:['Inicio','Eventos','Lugares','Mapa','Guardados'],places:'Lugares',night:'Vida nocturna',savedSub:'Todo lo que marcaste con la Banana de Oro, por fecha',tonight:'Esta noche',todayDeals:'Promos de hoy',seeWeek:'Ver toda la semana',nothingTonight:'Todavía nada confirmado para esta noche.',unconf:n=>`Sin confirmar (${n})`,unconfHint:'Fecha o lugar todavía sin confirmar. Consultá con quien organiza antes de ir.',unconfP:'Sin confirmar',openNow:'Abierto ahora',closedNow:'Cerrado ahora',until:d=>`hasta el ${d}`,from:'desde',verified:'Última verificación',listUpd:'Ficha actualizada',report:'Avisar que está desactualizado',royalT:'El Informe del Día de la Reina Banana',royalBtn:'Como ordene, Su Majestad',royalOpen:'Abrir el informe real de hoy',royalBy:'Por orden de la Reina Banana',hearYe:'¡Oíd, oíd!',moreDecrees:n=>`Tocá para leer ${n} decreto${n === 1 ? '' : 's'} más`,feed:'Eventos',rest:'Restaurantes',bars:'Bares',cafes:'Cafés',map:'Mapa',events:'Eventos',deals:'Promos de comida y tragos',
   empty:'Nada esta noche. ¿Probamos mañana?',none:'Sin resultados. ¿Aflojamos un filtro?',free:'Gratis',live:'En vivo',tix:'Entradas',new:'Nuevo',search:'Buscá lugares y eventos',
   filters:'Filtros',wifi:'WiFi',food:'Comida',music:'Música en vivo',cocktails:'Cócteles',wine:'Vino',beer:'Cerveza',hood:'Barrio',price:'Precio',genre:'Música / género',
   cat:'Categoría',langF:'Idioma',any:'Todos',showClosed:'Mostrar lugares cerrados definitivamente',clear:'Limpiar',done:'Listo',details:'Detalles',getTicket:'Comprar entrada',
   directions:'Cómo llegar',entry:'Entrada',seeYou:'Nos vemos ahí.',notOnMap:'Todavía no está en el mapa. Abrir en Google Maps',tapPin:'Tocá un pin para ver el lugar.',all:'Todos',
-  chips:{rest:'Comida',bars:'Bares',cafes:'Café',music:'Música'},closed:'Cerrado',yourList:'Tu lista',style:'Estilo',status:'Estado',drinks:'Bebidas',goodFor:'Ideal para',insta:'Instagram',
+  chips:{rest:'Comida',bars:'Bares',cafes:'Café',night:'Noche',music:'Música'},closed:'Cerrado',yourList:'Tu lista',style:'Estilo',status:'Estado',drinks:'Bebidas',goodFor:'Ideal para',insta:'Instagram',
   artist:'Artista',language:'Idioma',deal:'Promo',count:n=>`${n} establecimientos catalogados`,weekly:'El catálogo semanal de Asunción',chap:n=>`Capítulo ${n}`,
-  readTat:'Ver la publicación completa',moreInfo:'Más información',by:o=>`Por ${o}`,home:'Inicio',homeSub:'Todo lo que marcaste con la Banana de Oro',alertsHint:'Suscribite una vez. Los eventos nuevos de este lugar aparecen en tu calendario con aviso 3 horas antes.',gcal:'Google Calendar',acal:'Calendario de Apple',allCal:'Todos los eventos de City Banana',addPlace:'Sugerir un lugar',addSub:'¿Conocés un lugar que falta? Mandáselo a Lana. Ella revisa cada sugerencia antes de publicarla.',send:'Enviar a Lana',sent:'¡Gracias! Lana lo revisa antes de publicarlo.',sendFail:'No se pudo enviar. Revisá tu conexión e intentá de nuevo.',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Lo próximo en tus Bananas de Oro',startHere:'Con movimiento esta semana: tocá la Banana de Oro',addToCal:'Agregar al calendario',addGcal:'Agregar a Google Calendar',figs:{cocktail:'Cócteles',beer:'Cerveza',wine:'Vino',coffee:'Café',guitar:'Música en vivo',gramophone:'Baile',dining:'Cocina'},featuredIn:'Destacado en',promos:'Promos',more:n=>`+${n} fechas más`,noEv:'Sin eventos anunciados para las próximas dos semanas.',noPromo:'Sin promos registradas.',lots:'en lista',daily:'Todos los días',pickMany:'elegí todos los que quieras',fix:'Sugerir una corrección',fixSub:'¿Cambió algo? Corregí lo que haga falta y envialo. Lana revisa cada cambio antes de publicarlo.',ripeQ:'¿Qué hace madurar tu banana?',ripeSub:'Elegí algunas cosas. Pelamos la ciudad por vos y llenamos tu Inicio con lugares y eventos a tu gusto.',ripeGo:'Pelar mi feed',ripeSkip:'Ahora no',ripeEdit:'Cambiar lo que hace madurar tu banana',ripeFor:'Maduro para vos esta semana',ripeVenues:'Lugares que te van a gustar',ripeTap:'Tocá para elegir tus favoritos',
-  introT:'Bienvenido a City Banana',introB:'Tocá la <b>Banana de Oro</b> en cualquier lugar o evento para seguirlo. Sus eventos nuevos aparecen en tu Inicio y en tu calendario.',introR:'<b>¿Qué hace madurar tu banana?</b> Contanos lo que te gusta (música en vivo, cócteles, promos…) y llenamos tu Inicio con propuestas a tu medida.',introGo:'Elegir lo que me gusta',introOk:'Entendido',
+  readTat:'Ver la publicación completa',moreInfo:'Más información',by:o=>`Por ${o}`,home:'Inicio',homeSub:'Esta noche, las promos de hoy y el informe real',alertsHint:'Suscribite una vez. Los eventos nuevos de este lugar aparecen en tu calendario con aviso 3 horas antes.',gcal:'Google Calendar',acal:'Calendario de Apple',allCal:'Todos los eventos de City Banana',addPlace:'Sugerir un lugar',addSub:'¿Conocés un lugar que falta? Mandáselo a la Reina Banana. Ella revisa cada sugerencia antes de publicarla.',send:'Enviar a la Reina Banana',sent:'¡Gracias! La Reina Banana lo revisa antes de publicarlo.',sendFail:'No se pudo enviar. Revisá tu conexión e intentá de nuevo.',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Lo próximo en tus Bananas de Oro',startHere:'Con movimiento esta semana: tocá la Banana de Oro',addToCal:'Agregar al calendario',addGcal:'Agregar a Google Calendar',figs:{cocktail:'Cócteles',beer:'Cerveza',wine:'Vino',coffee:'Café',guitar:'Música en vivo',gramophone:'Baile',dining:'Cocina'},featuredIn:'Destacado en',promos:'Promos',more:n=>`+${n} fechas más`,noEv:'Sin eventos anunciados para las próximas dos semanas.',noPromo:'Sin promos registradas.',lots:'en lista',daily:'Todos los días',pickMany:'elegí todos los que quieras',fix:'Sugerir una corrección',fixSub:'¿Cambió algo? Corregí lo que haga falta y envialo. La Reina Banana revisa cada cambio antes de publicarlo.',ripeQ:'¿Qué hace madurar tu banana?',ripeSub:'Elegí algunas cosas. Pelamos la ciudad por vos y llenamos tu Inicio con lugares y eventos a tu gusto.',ripeGo:'Pelar mi feed',ripeSkip:'Ahora no',ripeEdit:'Cambiar lo que hace madurar tu banana',ripeFor:'Maduro para vos esta semana',ripeVenues:'Lugares que te van a gustar',ripeTap:'Tocá para elegir tus favoritos',
+  introT:'Bienvenido a City Banana',introB:'Tocá la <b>Banana de Oro</b> en cualquier lugar o evento para seguirlo. Queda en Guardados y sus eventos nuevos aparecen en tu calendario.',introR:'<b>¿Qué hace madurar tu banana?</b> Contanos lo que te gusta (música en vivo, cócteles, promos…) y llenamos tu Inicio con propuestas a tu medida.',introGo:'Elegir lo que me gusta',introOk:'Entendido',
   evPlate:'Evento',when:'Cuándo',where:'Dónde',venuePage:'Ver el lugar',regionsHint:'Tocá una zona para ver sus eventos de esta semana.',inRegion:n=>`${n} evento${n === 1 ? '' : 's'} esta semana`,tbcLoc:n=>`${n} más con lugar a confirmar`,beyond:'Fuera de Asunción',
   runHead:'Catálogo de Asunción',plate:'Lámina',onBill:'Esta semana en la casa',nothingBill:'Nada anunciado para las próximas dos semanas. Dale la Banana de Oro y te avisamos cuando haya.',every:'Todos los',fine:'Datos según la casa y la prensa. Sujetos a cambios sin previo aviso.',
   likes:{music:'Música en vivo',dance:'Baile y DJs',cocktails:'Cócteles',beer:'Cerveza artesanal',wine:'Vino',food:'Buena comida',coffee:'Café y laptop',deals:'Promos y happy hours',meet:'Conocer gente',culture:'Arte y cultura',active:'Deporte y aire libre',free:'Gratis'},myBananas:'Tus Bananas de Oro',mySaved:'Guardados',
   noNews:'Todavía nada nuevo. Acá vas a ver eventos y promos nuevas.',noBananas:'Tocá la Banana de Oro en cualquier lugar o evento. Todo lo que marques aparece acá, por fecha.',noSaved:'Tocá Guardar en un lugar o evento para tenerlo acá.',
   signedIn:n=>`Sesión iniciada como ${n}`,acct:'Lo que guardás te sigue en todos tus dispositivos.',local:'Guardado en este dispositivo',localHint:'Abrí City Banana desde su enlace para tener tu lista en todos tus dispositivos.',
   bell:n=>n?`Para vos, ${n} nuevos`:'Para vos',
-  joke:{feed:'Ese es todo el racimo de hoy.',rest:'¿Hambre? Banana split opcional.',bars:'Volvete banana. Con moderación.',cafes:'No te resbales camino al café.',map:'Pelá la ciudad, un pin a la vez.'}}};
-let lang = store('lang') || (navigator.language.startsWith('es') ? 'es' : 'en');
+  joke:{feed:'Ese es todo el racimo de hoy.',rest:'¿Hambre? Banana split opcional.',bars:'Volvete banana. Con moderación.',cafes:'No te resbales camino al café.',map:'Pelá la ciudad, un pin a la vez.',places:'Volvete banana. Con moderación.',night:'Bailá como si nadie te pelara.'}}};
+// follows the phone's language until the person picks ES/EN in the masthead switch
+let lang = store('lang') || ((navigator.languages || [navigator.language || 'en']).find(l => /^(es|en)/i.test(l)) || 'en').slice(0, 2).toLowerCase();
 const t = k => T[lang][k];
 
 /* ---------- icons: brand set, 24px grid, stroke 1.75 ---------- */
@@ -518,6 +557,11 @@ const P = {
  camera:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/>',
  // a real banana: crescent body hanging from a squared stalk, ridge along the curve, dark tip
  banana:'<path d="M17.3 6.2C17.1 11.6 12.6 15.6 6.6 15.3 5.4 15.2 4.4 14.9 3.6 14.4 4.3 16.3 5.7 17.6 7.4 18.1 14.2 20 20.2 14.2 19.5 6.2z" fill="currentColor" fill-opacity=".2"/><path d="M17.3 6.2 16.9 3.3h2.3l.3 2.9"/><path d="M18.6 8.6c-.5 4.6-4.6 8.2-10.2 8.2"/><path d="M3.6 14.4l-.9-.4"/>',
+ home:'<path d="M4 11 12 4l8 7M6 9.5V20h12V9.5M10 20v-5h4v5"/>',
+ places:'<path d="M4 9h16l-1.6-4H5.6zM4 9c0 1.7 1.2 3 2.7 3s2.6-1.3 2.6-3c0 1.7 1.2 3 2.7 3s2.7-1.3 2.7-3c0 1.7 1.2 3 2.6 3S20 10.7 20 9M5.5 12v8h13v-8M10 20v-5h4v5"/>',
+ night:'<path d="M19.5 14.6A8 8 0 1 1 9.4 4.5a6.4 6.4 0 0 0 10.1 10.1z"/><path d="M17 3v4M15 5h4"/>',
+ crown:'<path d="M3.5 8.5 7.8 12 12 5.5l4.2 6.5 4.3-3.5L18.8 18H5.2z"/><path d="M5.2 21h13.6"/><circle cx="12" cy="3.6" r=".9"/><circle cx="3.3" cy="7.3" r=".9"/><circle cx="20.7" cy="7.3" r=".9"/>',
+ chat:'<path d="M4 20l1.3-3.8A8 8 0 1 1 8 18.9z"/><path d="M9 10.5h6M9 13.5h4"/>',
  heart:'<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"/>',
  bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0"/>',
  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/>'};
@@ -531,7 +575,7 @@ const FIG = {
  dining: '<path d="M22 68Q22 38 50 36Q78 38 78 68Z"/><circle cx="50" cy="31" r="3.5"/><path d="M12 72H88Q86 79 50 79Q14 79 12 72Z"/><path d="M30 62Q30 48 41 42" class="h"/><path d="M35 64Q35 54 43 48" class="h"/><path d="M8 50V60M5 50V56Q5 60 8 60Q11 60 11 56V50M92 48V62Q96 58 96 52Q96 48 92 48Z"/>'
 };
 const fig = (k, cls = '') => `<svg class="fig ${cls}" viewBox="0 0 100 100" aria-hidden="true">${FIG[k]}</svg>`;
-const mainFig = p => p._cat === 'cafes' ? 'coffee' : p._cat === 'rest' ? 'dining' : has(p.Cocktails) || !has(p['Beer type']) ? 'cocktail' : 'beer';
+const mainFig = p => p._cat === 'night' ? 'gramophone' : p._cat === 'cafes' ? 'coffee' : p._cat === 'rest' ? 'dining' : has(p.Cocktails) || !has(p['Beer type']) ? 'cocktail' : 'beer';
 const figsFor = p => { const a = attrs(p), q = norm(a.text), out = [];
   if (a.music) out.push(/\bdj|danc|baile|club\b/.test(q) && !/live|vivo|band|banda|jazz|rock/.test(q) ? 'gramophone' : 'guitar');
   if (/\bdj|danc|baile/.test(q) && !out.includes('gramophone')) out.push('gramophone');
@@ -542,8 +586,38 @@ const ic = k => `<svg class="i" viewBox="0 0 24 24">${P[k]}</svg>`;
 
 /* ---------- data ---------- */
 const D = window.DATA || { places: [], events: [] };
-const places = D.places, events = D.events, BY = new Map([...places, ...events].map(x => [x._id, x]));
-const catKey = p => /restaur/i.test(p.Category) ? 'rest' : /caf/i.test(p.Category) ? 'cafes' : 'bars';
+/* data hygiene: research notes out, unconfirmed events aside, nightclubs in Nightlife, ~15 clean neighbourhoods */
+const NOTE = /\s*\((?=[^()]*\b(?:caption|captions|reel|posts?|ig bio|instagram only|highlight|seen|from address|per ig|visitor|commenters|check|google|gmaps|research|night \d|story)\b)[^()]*\)/gi;
+const clean = v => typeof v !== 'string' ? v : v.replace(NOTE, '').replace(/\b(?:caption|captions) in (?:the )?(?:post|reel)\.?/gi, '').replace(/\s{2,}/g, ' ').replace(/\s+([.,;])/g, '$1').trim();
+for (const x of [...D.places, ...D.events]) for (const k in x) if (!/^(Evidence|Source|Notes|Instagram|_id|_ticket|_tat)$/.test(k)) x[k] = clean(x[k]);
+// descriptions: drop sentences that are research notes ("Weekly per caption…", "Caption: …")
+for (const e of D.events) e._desc = String(e._desc || '').split(/(?<=[.!?])\s+/).filter(s => !/\b(caption|captions|reel|per ig|ig bio|assumes?|inferred|seen on|posts? seen|to verify|check (?:closer|again))\b/i.test(s)).join(' ').trim();
+for (const e of D.events) e._unconf = /propos|unconfirm|not announced|inferred|tbc|tba|to be confirmed|a confirmar/i.test(e._status || '') || /^(tbc|tba|rotating|registered guests)/i.test(String(e._venue || '').trim());
+const places = D.places, events = D.events.filter(e => !e._unconf), UNCONF = D.events.filter(e => e._unconf), BY = new Map([...places, ...D.events].map(x => [x._id, x]));
+const catKey = p => /night ?club|boliche|discoteca|dance club/i.test(p['Type / style'] + ' ' + p['Live music']) ? 'night' : /restaur/i.test(p.Category) ? 'rest' : /caf/i.test(p.Category) ? 'cafes' : 'bars';
+// live music only when the research confirmed real performances (not "nightlife venue", DJs or background music)
+const liveOK = v => /^(yes\b|live\b)/i.test(String(v || '').trim()) && !/nightlife venue|buena m[uú]sica|background/i.test(v);
+const HOODS = [   // [name, centre, words in the hood / address]
+  ['Centro Histórico', [-25.2836, -57.6355], /centro|chacarita|catedral|microcentro|panteon|palma/],
+  ['Sajonia', [-25.2955, -57.6545], /sajonia|bahia|mburicao|tacumbu/],
+  ['San Roque', [-25.2905, -57.6265], /san roque|ciudad nueva/],
+  ['Las Mercedes · Jara', [-25.2875, -57.6125], /las mercedes|jara/],
+  ['Recoleta', [-25.2965, -57.6045], /recoleta|mburucuya/],
+  ['Carmelitas', [-25.2885, -57.5818], /carmelitas|senador long|tte\.? vera|teniente .*vera/],
+  ['Villa Morra', [-25.2935, -57.5805], /villa morra|mariscal lopez|mcal\.? lopez|shopping mariscal|san cristobal|francisco morra|eje corporativo/],
+  ['Las Lomas', [-25.2850, -57.5700], /las lomas/],
+  ['Shopping del Sol · Los Laureles', [-25.2862, -57.5660], /shopping del sol|laureles|aviadores del chaco/],
+  ['Manorá · Herrera', [-25.2800, -57.5770], /manora|herrera|paseo la galeria|santa teresa/],
+  ['Lambaré', [-25.3445, -57.6065], /lambare/],
+  ['Fernando de la Mora', [-25.3220, -57.5450], /fernando de la mora|fdlm/],
+  ['San Lorenzo', [-25.3397, -57.5088], /san lorenzo/],
+  ['Luque', [-25.2700, -57.4870], /luque|nu guazu/],
+  ['Gran Asunción', null, /aregua|gran asuncion|caacupe|km from|san bernardino/]];
+const hoodOf = (txt, pt) => { const q = norm(txt), byText = HOODS.find(h => h[2].test(q));
+  if (byText) return byText[0];
+  if (pt) { const [h, d] = HOODS.filter(h => h[1]).map(h => [h, Math.hypot((pt[0] - h[1][0]) * 111, (pt[1] - h[1][1]) * 101)]).sort((a, b) => a[1] - b[1])[0]; if (d < 3) return h[0]; }
+  return ''; };
+for (const p of places) p._hood = hoodOf([p._hood, p['Neighborhood / address'], p.Area].join(' '), p._lat ? [p._lat, p._lon] : null) || 'Asunción';
 const tier = v => { const m = String(v || '').match(/^(?:likely\s*)?(\${1,4})/i); return m ? m[1] : ''; };
 const isFree = v => v === 0 || /\b(free|gratis|sin costo|no cover|entrada libre)\b/i.test(v || '');
 const genres = v => has(v) ? String(v).split(/[,/;+]| and | y /).map(s => s.trim()).filter(s => s && s.length < 30).map(s => s[0].toUpperCase() + s.slice(1).toLowerCase()) : [];
@@ -561,6 +635,21 @@ function dealDays(txt) {
   for (const m of s.matchAll(new RegExp(`\\b(${DK})s?\\b`, 'g'))) set.add(DN[m[1]]);
   return set.size ? set : new Set([0, 1, 2, 3, 4, 5, 6]);
 }
+const TODAY0 = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })();
+const MON = { jan: 0, ene: 0, feb: 1, mar: 2, apr: 3, abr: 3, may: 4, jun: 5, jul: 6, aug: 7, ago: 7, sep: 8, set: 8, oct: 9, nov: 10, dec: 11, dic: 11 };
+function dealDates(txt) {   // "May 28", "Nov 10-22", "28 de mayo", "28/05" -> dates this year
+  const s = norm(txt), y = TODAY0.getFullYear(), out = [], M = '(jan|ene|feb|mar|apr|abr|may|jun|jul|aug|ago|sep|set|oct|nov|dec|dic)[a-z]*\\.?';
+  for (const m of s.matchAll(new RegExp(`\\b${M}\\s+(\\d{1,2})(?:\\s*[-–]\\s*(\\d{1,2}))?\\b`, 'g'))) out.push(new Date(y, MON[m[1]], +(m[3] || m[2])));
+  for (const m of s.matchAll(new RegExp(`\\b(\\d{1,2})(?:\\s*[-–]\\s*(\\d{1,2}))?\\s+(?:de\\s+)?${M}`, 'g'))) out.push(new Date(y, MON[m[3]], +(m[2] || m[1])));
+  for (const m of s.matchAll(/\b(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?\b/g)) if (+m[2] <= 12) out.push(new Date(m[3] ? (m[3].length === 2 ? 2000 + +m[3] : +m[3]) : y, m[2] - 1, +m[1]));
+  return out.filter(d => !isNaN(d)); }
+function dealHours(txt) {   // "18-20hs", "19:00 a 23:00", "from 19:00" -> "18:00–20:00" / "+19:00"
+  const f = (h, m) => String(h).padStart(2, '0') + ':' + (m || '00');
+  for (const m of String(txt).matchAll(/(\d{1,2})(?::(\d{2}))?\s*(hs?\.?)?\s*(?:-|–|to|a|al|hasta)\s*(\d{1,2})(?::(\d{2}))?\s*(hs?\b|h\b)?/gi))
+    if (+m[1] <= 24 && +m[4] <= 24 && ((m[2] || m[3] || m[5] || m[6]) || (+m[1] >= 6 && !/(jan|ene|feb|mar|apr|abr|may|jun|jul|aug|ago|sep|set|oct|nov|dec|dic)[a-z]*\.?\s*$/i.test(String(txt).slice(0, m.index)))))
+      return f(m[1], m[2]) + '–' + f(m[4], m[5]);
+  const m = String(txt).match(/(?:from|desde(?: las)?|after|a partir de(?: las)?)\s*(\d{1,2})(?::(\d{2}))?/i);
+  return m && +m[1] <= 24 ? '+' + f(m[1], m[2]) : ''; }
 for (const p of places) {
   p._cat = catKey(p);
   for (const k of ['Notes', 'Price range', 'Cocktails', 'Beer type', 'Wine', 'Food', 'Live music', 'Food quality mentions', 'Type / style']) {
@@ -569,14 +658,34 @@ for (const p of places) {
     const m = v.toLowerCase(), pct = v.match(/\d+\s?%/);   // label by priority, not first match
     const [big, small] = /2\s?x\s?1|2 por 1/.test(m) ? ['2x1', 'DEAL'] : /ladies|girls|chicas/.test(m) ? ['LADIES', 'NIGHT'] : /happy hour|after.?office/.test(m) ? ['HAPPY', 'HOUR']
       : pct ? [pct[0].replace(/\s/, ''), 'OFF'] : /corrid|\blibre\b/.test(m) ? ['LIBRE', '∞'] : ['PROMO', 'DEAL'];
-    p._deal = { big, small, snip: snip.slice(0, 110), days: dealDays(v) }; break;
+    const ds = dealDates(v), until = ds.length ? new Date(Math.max(...ds)) : null;
+    if (until && until < TODAY0) continue;   // a dated promo that is over: auto-expired
+    p._deal = { big, small, snip: snip.replace(/[\s.;,]+$/, ''), days: dealDays(v), hours: dealHours(v), until }; break;
   }
 }
+for (const e of D.events) { const p = placeFor(e); e._hood = /^(tbc|all)?$/i.test(String(e._hood || '').trim()) ? '' : hoodOf([e._hood, e._venue].join(' '), p?._lat ? [p._lat, p._lon] : null) || (p ? p._hood : ''); }
+const dname = d => new Date(2024, 0, 7 + d).toLocaleDateString(loc(), { weekday: 'short' }).replace('.', '');
+const dealWhen = d => [d.days.size === 7 ? t('daily') : [...d.days].sort().map(dname).join(', '), d.hours ? (d.hours[0] === '+' ? t('from') + ' ' + d.hours.slice(1) : d.hours) : '',
+  d.until ? t('until')(d.until.toLocaleDateString(loc(), { day: 'numeric', month: 'short' })) : ''].filter(Boolean).join(' · ');
+const dealToday = (p, d = new Date()) => { const x = new Date(d); x.setHours(0, 0, 0, 0); return !!p._deal && p._deal.days.has(x.getDay()) && !(p._deal.until && p._deal.until < x); };
+// opening hours come from an "Hours" column in the sheet, e.g. "Tue-Sun 18:00-02:00"
+function openNow(p, now = new Date()) { const txt = p.Hours || p['Opening hours'] || p.Horario; if (!has(txt)) return null;
+  const mins = now.getHours() * 60 + now.getMinutes(), wd = now.getDay(); let known = false;
+  for (const seg of String(txt).split(/[;\n]/)) { const m = seg.match(/(\d{1,2})(?::(\d{2}))?\s*(?:hs?)?\s*[-–]\s*(\d{1,2})(?::(\d{2}))?/); if (!m) continue; known = true;
+    const days = dealDays(seg), s = +m[1] * 60 + +(m[2] || 0), e = +m[3] * 60 + +(m[4] || 0);
+    if (e > s ? days.has(wd) && mins >= s && mins < e : (days.has(wd) && mins >= s) || (days.has((wd + 6) % 7) && mins < e)) return true; }
+  return known ? false : null; }
+// WhatsApp: a WhatsApp/Phone column, else the tel: number in the research notes (mobiles only: 09xx -> +595 9xx)
+const waNum = p => { let d = String(p.WhatsApp || p.Phone || (String(p.Evidence || '').match(/tel:\s*([+\d][\d\s-]{6,})/i) || [])[1] || '').replace(/\D/g, '');
+  if (!d) return ''; d = d.startsWith('0') ? '595' + d.slice(1) : d.startsWith('595') ? d : '595' + d; return /^5959\d{8}$/.test(d) ? d : ''; };
+const verified = p => { const v = p['Last verified'] || p['Verified on'] || p['Last checked'], o = { day: 'numeric', month: 'long', year: 'numeric' };
+  const d = typeof v === 'number' ? new Date(Math.round((v - 25569) * 864e5)) : v ? new Date((evDay({ _date: v }) || '') + 'T12:00') : null;   // sheet dates may be Excel serials
+  return d && !isNaN(d) ? `${t('verified')}: ${d.toLocaleDateString(loc(), o)}` : `${t('listUpd')}: ${new Date(D.generated).toLocaleDateString(loc(), o)}`; };
 function attrs(x) {
   if (x._title !== undefined) { const p = placeFor(x) || {}, a = p._id ? attrs(p) : {};
     return { ...a, hood: has(x._hood) && !/^tbc/i.test(x._hood) ? x._hood : a.hood || '', price: tier(x._entry) || '', free: x._free, genres: genres(x._genre).concat(a.genres || []),
       lang: String(x._lang || ''), cat: x._cat || '', closed: false, text: [x._title, x._venue, x._hood, x._genre, x._cat, x._org, x['Artist / Performer'], x._desc].join(' ') + ' ' + (a.text || '') }; }
-  return { hood: x._hood, price: tier(x['Price range']), wifi: has(x['WiFi / co-working']), food: has(x.Food), music: has(x['Live music']), cocktails: has(x.Cocktails),
+  return { hood: x._hood, price: tier(x['Price range']), wifi: has(x['WiFi / co-working']), food: has(x.Food), music: liveOK(x['Live music']), cocktails: has(x.Cocktails),
     wine: has(x.Wine), beer: has(x['Beer type']), free: isFree(x['Price range']), genres: genres(x['Music genre / style']), lang: '', cat: x['Type / style'] || '',
     closed: x._closed, text: [x.Name, x['Type / style'], x._hood, x['Neighborhood / address'], x.Category, x['Music genre / style'], x['Live music'], x.Food, x.Area].join(' ') };
 }
@@ -684,7 +793,7 @@ const hm = v => { const m = String(v || '').match(/(\d{1,2})(?:[:h.](\d{2}))?\s*
 // chronological key: date then 24h time; undated last, untimed last within their day
 const evKey = e => { const x = hm(e._time); return (evDay(e) || '9999-99-99') + ' ' + (x ? String(x.h).padStart(2, '0') + ':' + String(x.m).padStart(2, '0') : '99:99'); };
 const byTime = (a, b) => { const x = evKey(a), y = evKey(b); return x < y ? -1 : x > y ? 1 : 0; };
-events.sort(byTime);   // every list built from events is earliest-first from here on
+events.sort(byTime); UNCONF.sort(byTime);   // every list built from events is earliest-first from here on
 const fmtT = v => { const x = hm(v); return x ? { t: `${x.h % 12 || 12}:${String(x.m).padStart(2, '0')}`, ap: x.h < 12 ? 'AM' : 'PM' } : { t: '—', ap: '' }; };
 const liveNow = e => { const x = hm(e._time); if (!x || evDay(e) !== ymd(new Date())) return false;
   const s = new Date(); s.setHours(x.h, x.m, 0); const n = Date.now(); return n >= s && n < +s + 3 * 36e5; };
@@ -692,21 +801,24 @@ const week = [...Array(7)].map((_, i) => { const d = new Date(); d.setHours(0, 0
 const loc = () => lang === 'es' ? 'es-PY' : 'en-US';
 
 /* ---------- UI pieces ---------- */
-let tab = ['home','feed','rest','bars','cafes','map'].find(k => '#' + k === location.hash) || 'home', day = 0, sel = null, mapCat = 'all', map, layer, flown = '';
+const TABS = ['home', 'feed', 'places', 'map', 'saved'], OLDTAB = { '#rest': 'rest', '#bars': 'bars', '#cafes': 'cafes', '#night': 'night' };
+let placeCat = OLDTAB[location.hash] || 'all', tab = OLDTAB[location.hash] ? 'places' : TABS.find(k => '#' + k === location.hash) || 'home', day = 0, sel = null, mapCat = 'all', map, layer, flown = '';
 const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
 const isoWeek = d => { const x = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())); x.setUTCDate(x.getUTCDate() + 4 - (x.getUTCDay() || 7)); return Math.ceil(((x - Date.UTC(x.getUTCFullYear(), 0, 1)) / 864e5 + 1) / 7); };
 const issue = () => { const a = week[0], b = week[6], f = (d, o) => d.toLocaleDateString(loc(), o);
   return `<b>Nº ${isoWeek(a)}</b> · ${f(a, { day: 'numeric' })}${a.getMonth() === b.getMonth() ? '' : ' ' + f(a, { month: 'long' })} – ${f(b, { day: 'numeric', month: 'long', year: 'numeric' })}`; };
 // Catalogue masthead: always on the dark band, as the brand asks for the logo
-const head = (title, eyebrow, line, cover) => `<header class="mast dk${cover ? ' cover' : ''}"><div class="mtools">
-  <button class="lang" onclick="setLang()" aria-label="Español / English">${lang === 'en' ? 'ES' : 'EN'}</button>
-  <span></span></div>
-  <button class="homebtn" onclick="go('home')" aria-label="${t('home')}"><img class="${cover ? 'mlogo' : 'msym'}" src="${cover ? 'logo.png' : 'symbol.png'}" alt="City Banana"></button>
-  <div class="eyebrow">${esc(eyebrow)}</div><h1>${esc(title)}</h1>${line ? `<div class="issue">${line}</div>` : ''}</header>`;
+const HOME_SEEN = store('cb.homeSeen'); store('cb.homeSeen', '1');   // the big cover only on the very first view
+const langSw = () => `<div class="lsw" role="group" aria-label="Idioma / Language">${['es', 'en'].map(l => `<button class="${lang === l ? 'on' : ''}" aria-pressed="${lang === l}" onclick="setLang('${l}')">${l.toUpperCase()}</button>`).join('')}</div>`;
+const head = (title, eyebrow, line, cover) => { const big = cover && !HOME_SEEN;
+  return `<header class="mast dk${cover ? ' cover' : ''}${cover && !big ? ' compact' : ''}"><div class="mtools">
+  ${langSw()}${cover ? `<button class="crownbtn" onclick="royal()" aria-label="${t('royalOpen')}" title="${t('royalOpen')}">${ic('crown')}</button>` : '<span></span>'}</div>
+  <button class="homebtn" onclick="go('home')" aria-label="${t('home')}"><img class="${big ? 'mlogo' : 'msym'}" src="${big ? 'logo.png' : 'symbol.png'}" alt="City Banana"></button>
+  ${!cover || big ? `<div class="eyebrow">${esc(eyebrow)}</div>` : ''}<h1>${esc(title)}</h1>${line && (!cover || big) ? `<div class="issue">${line}</div>` : ''}</header>`; };
 const sec = (n, txt) => `<h2 class="orn"><span>${n ? n + '. ' : ''}${esc(txt)}</span></h2>`;
 const no = i => i === undefined || typeof i !== 'number' ? '' : `<span class="no">Nº ${String(i + 1).padStart(3, '0')}</span>`;
 const pill = (txt, cls = '') => `<span class="pill ${cls}">${esc(txt)}</span>`;
-const evPills = e => (liveNow(e) ? pill(t('live'), 'live') : '') + (e._free ? pill(t('free'), 'free') : '') + (/^https?:/i.test(e._ticket) ? pill(t('tix'), 'tix') : '')
+const evPills = e => (e._unconf ? pill(t('unconfP'), 'out') : '') + (liveNow(e) ? pill(t('live'), 'live') : '') + (e._free ? pill(t('free'), 'free') : '') + (/^https?:/i.test(e._ticket) ? pill(t('tix'), 'tix') : '')
   + (e._org ? pill(t('by')(e._org), 'org') : '') + (/sold out|agotad/i.test(e._status) ? pill(e._status, 'out') : has(e._status) && !/confirm/i.test(e._status) ? pill(e._status, 'new') : '');
 const nActive = () => SEL.filter(k => (Array.isArray(F[k]) ? F[k].length : F[k])).length + (F.closed ? 1 : 0);
 const searchBox = () => `<div class="search">${ic('search')}<input id="q" type="search" placeholder="${t('search')}" aria-label="${t('search')}" value="${esc(F.q)}" oninput="F.q=this.value;draw(true)"></div>`;
@@ -721,50 +833,56 @@ function eventCard(e, i) { const x = fmtT(e._time), p = placeFor(e);
   ${no(i)}<span class="ct">${esc(e._title)}</span><p>${esc(e._venue || p?.Name || '')}</p><div class="pills">${cap(evPills(e) + (e._more ? pill(t('more')(e._more), 'new') : ''))}</div></div></button>`; }
 function dealCard(p, i) { const d = p._deal;
   return `<button class="card" onclick="detail('${p._id}')"><div class="tb"><b class="${d.big.length > 3 ? 'sm' : ''}">${esc(d.big)}</b><small>${esc(d.small === 'DEAL' ? t('deal').toUpperCase() : d.small)}</small></div>
-  <div class="cb">${no(i)}<span class="ct">${esc(p.Name)}</span><p>${esc(d.snip)}</p><div class="pills">${pill(p._hood)}${isFree(p['Price range']) ? pill(t('free'), 'free') : ''}</div></div></button>`; }
+  <div class="cb">${no(i)}<span class="ct">${esc(p.Name)}</span><p>${esc(d.snip)}</p><p class="when">${esc(dealWhen(d))}</p><div class="pills">${pill(p._hood)}${isFree(p['Price range']) ? pill(t('free'), 'free') : ''}</div></div></button>`; }
 let EVAT; const upcomingAt = p => { if (!EVAT) { EVAT = new Map(); const d0 = ymd(new Date());
   for (const e of events) { const v = placeFor(e); if (v && evDay(e) >= d0) (EVAT.get(v) || EVAT.set(v, []).get(v)).push(e); } } return uniq(EVAT.get(p) || []); };
 const feat = p => { const n = upcomingAt(p).length, parts = [n ? `${t('events')} (${n})` : '', p._deal ? t('promos') : ''].filter(Boolean);
   return parts.length ? `<span class="feat">${t('featuredIn')}: ${parts.join(' · ')}</span>` : ''; };
 const cap = (html, n = 3) => (html.match(/<span class="pill[\s\S]*?<\/span>/g) || []).slice(0, n).join('');
-const placePills = (p, a = attrs(p)) => (isBanana(p._id) ? pill(t('banana'), 'gb') : '') + (a.free ? pill(t('free'), 'free') : '') + (a.music ? pill(t('music'), 'tix') : '')
-  + (a.wifi ? pill('WiFi') : '') + (a.cocktails ? pill(t('cocktails')) : '') + (p._deal ? pill(t('deal')) : '') + (p._closed ? pill(t('closed'), 'out') : '');
+const placePills = (p, a = attrs(p)) => { const o = openNow(p);
+  return (isBanana(p._id) ? pill(t('banana'), 'gb') : '') + (p._closed ? pill(t('closed'), 'out') : o === true ? pill(t('openNow'), 'free') : o === false ? pill(t('closedNow'), 'out') : '')
+  + (a.wifi ? pill('WiFi') : '') + (a.music ? pill(t('music'), 'tix') : '') + (a.free ? pill(t('free'), 'free') : '') + (a.cocktails ? pill(t('cocktails')) : '') + (p._deal ? pill(t('deal')) : ''); };
 function placeCard(p, i) { const a = attrs(p);
   return `<button class="card" onclick="detail('${p._id}')"><div class="tb">${fig(mainFig(p))}${a.price ? `<small>${esc(a.price)}</small>` : ''}</div><div class="cb">${no(i)}<span class="ct">${esc(p.Name)}</span>
-  <p>${esc([p['Type / style'], p._hood].filter(has).join(' · '))}</p>${feat(p)}<div class="pills">${cap(placePills(p, a))}</div></div></button>`; }
+  <p>${esc([p['Type / style'], p._hood].filter(has).join(' · '))}</p>${feat(p)}<div class="pills">${cap(placePills(p, a), 4)}</div></div></button>`; }
 
 /* ---------- screens ---------- */
 function feed() {
   const d = week[day], key = ymd(d);
   const evs = events.filter(e => evDay(e) === key && match(e)).sort(byTime);
-  const deals = places.filter(p => p._deal && p._deal.days.has(d.getDay()) && match(p));
+  const deals = places.filter(p => dealToday(p, d) && match(p)), un = UNCONF.filter(e => evDay(e) === key && match(e));
   return head(t('feedTitle'), t('chap')('I'), issue()) + `<div class="days">${week.map((w, i) => `<button class="day ${i === day ? 'on' : ''}" onclick="day=${i};draw()" aria-pressed="${i === day}">
     <small>${w.toLocaleDateString(loc(), { weekday: 'short' }).replace('.', '')}</small><b>${w.getDate()}</b></button>`).join('')}</div>` + filterBar()
    + sec('I', t('events')) + (evs.length ? '<div class="grid">' + evs.map(eventCard).join('') + '</div>' : `<div class="empty">${t('empty')}</div>`)
-   + (deals.length ? sec('II', t('deals')) + `<div class="grid">` + deals.map(dealCard).join('') + '</div>' : '') + `<p class="joke">${t('joke').feed}</p>`;
+   + (deals.length ? sec('II', t('deals')) + `<div class="grid">` + deals.map(dealCard).join('') + '</div>' : '')
+   + (un.length ? `<details class="unconf"><summary>${t('unconf')(un.length)}</summary><p class="hint">${t('unconfHint')}</p><div class="grid">${un.map(eventCard).join('')}</div></details>` : '')
+   + `<p class="joke">${t('joke').feed}</p>`;
 }
-function list(cat) {
-  const ps = places.filter(p => p._cat === cat && match(p));
-  return head(t(cat), t('chap')(ROMAN[['feed', 'rest', 'bars', 'cafes', 'map'].indexOf(cat)]), `<b>${t('count')(ps.length)}</b>`) + filterBar() + (ps.length ? '<div class="grid" style="margin-top:8px">' + ps.map(placeCard).join('') + '</div>' : `<div class="empty">${t('none')}</div>`)
-   + `<div class="addrow"><button class="chip" onclick="addPlace()">+ ${t('addPlace')}</button></div><p class="joke">${t('joke')[cat]}</p>`;
+const PCATS = ['all', 'rest', 'bars', 'cafes', 'night'];
+function list() {
+  const ps = places.filter(p => (placeCat === 'all' || p._cat === placeCat) && match(p));
+  return head(t('places'), t('chap')('II'), `<b>${t('count')(ps.length)}</b>`)
+   + `<div class="chips pcats">${PCATS.map(c => `<button class="chip ${placeCat === c ? 'on' : ''}" aria-pressed="${placeCat === c}" onclick="placeCat='${c}';draw()">${c === 'all' ? t('all') : ic(c) + t(c)}</button>`).join('')}</div>`
+   + filterBar() + (ps.length ? '<div class="grid" style="margin-top:8px">' + ps.map(placeCard).join('') + '</div>' : `<div class="empty">${t('none')}</div>`)
+   + `<div class="addrow"><button class="chip" onclick="addPlace()">+ ${t('addPlace')}</button></div><p class="joke">${t('joke')[placeCat] || t('joke').places}</p>`;
 }
 const baseFor = () => tab === 'feed' ? events.filter(e => evDay(e) === ymd(week[day])).concat(places.filter(p => p._deal))
-  : tab === 'map' && mapCat === 'events' ? mapEvents(true) : places.filter(p => tab === 'map' ? mapCat === 'all' || mapCat === 'music' || p._cat === mapCat : p._cat === tab);
+  : tab === 'map' && mapCat === 'events' ? mapEvents(true) : places.filter(p => tab === 'map' ? mapCat === 'all' || mapCat === 'music' || p._cat === mapCat : placeCat === 'all' || p._cat === placeCat);
 
 function draw(keepFocus) {
   store('tab', tab); document.documentElement.lang = lang; const tg = $('#tagline'); if (tg) tg.textContent = t('tagline');
-  const n = unseen(); $('#nav').innerHTML = ['home', 'feed', 'rest', 'bars', 'cafes', 'map'].map((k, i) => `<button class="${k === tab ? 'on' : ''}" onclick="go('${k}')" aria-current="${k === tab}">${ic(k === 'home' ? 'banana' : k)}${k === 'home' && n ? `<b class="badge">${n}</b>` : ''}${t('nav')[i]}</button>`).join('');
+  const n = unseen(); $('#nav').innerHTML = TABS.map((k, i) => `<button class="${k === tab ? 'on' : ''}" onclick="go('${k}')" aria-current="${k === tab}">${ic(k === 'saved' ? 'banana' : k)}${k === 'saved' && n ? `<b class="badge">${n}</b>` : ''}${t('nav')[i]}</button>`).join('');
   $('#nav').classList.add('dk');
   if (tab === 'map') { $('#app').innerHTML = ''; return drawMap(keepFocus); }
   $('#mapwrap')?.remove(); map = null;
   const pos = keepFocus && $('#q')?.selectionStart;
-  $('#app').innerHTML = tab === 'home' ? home() : tab === 'feed' ? feed() : list(tab);
+  $('#app').innerHTML = tab === 'home' ? home() : tab === 'feed' ? feed() : tab === 'saved' ? saved() : list();
   if (keepFocus) { const q = $('#q'); q.focus(); q.setSelectionRange(pos, pos); }
 }
 const go = k => { document.querySelectorAll('.detail').forEach(d => d.remove()); tab = k; sel = null; draw(); scrollTo(0, 0); };
 addEventListener('popstate', () => { const d = [...document.querySelectorAll('.detail')].pop(); d && d.remove(); });
 const openPage = el => { document.body.appendChild(el); history.pushState({ page: 1 }, ''); };
-const setLang = () => { lang = lang === 'en' ? 'es' : 'en'; store('lang', lang); draw(); };
+const setLang = l => { lang = l || (lang === 'en' ? 'es' : 'en'); store('lang', lang); draw(); };
 
 function sheet() {
   const A = avail(), o = A.o, v = document.createElement('div');
@@ -800,7 +918,7 @@ function detail(id) { const x = BY.get(id); return x._title !== undefined ? evPl
 function evPlate(x) {
   const el = document.createElement('div'), p = placeFor(x), tm = fmtT(x._time);
   const day = evDay(x), dd = day ? new Date(day + 'T12:00').toLocaleDateString(loc(), { weekday: 'long', day: 'numeric', month: 'long' }) : '';
-  const no = events.indexOf(x) + 1, entry = x._free ? t('free') : x._entry || '';
+  const no = D.events.indexOf(x) + 1, entry = x._free ? t('free') : x._entry || '';
   const where = [x._venue, x._hood].filter(v => has(v) && !/^tbc/i.test(v)).join(', ');
   const ig = (p && (has(p.Instagram) ? p.Instagram : (String(p.Evidence || '').match(/IG (@[\w.]+)/) || [])[1])) || '';
   const q = norm([x._title, x._cat, x._genre].join(' ')), figK = /\bdj|danc|baile|salsa|bachata/.test(q) ? 'gramophone' : /music|musica|concert|jazz|rock|band|live|vivo|orquesta/.test(q) ? 'guitar'
@@ -841,8 +959,8 @@ addEventListener('keydown', e => { if (e.key !== 'Escape') return; const v = [..
 const roman = n => [['M', 1000], ['CM', 900], ['D', 500], ['CD', 400], ['C', 100], ['XC', 90], ['L', 50], ['XL', 40], ['X', 10], ['IX', 9], ['V', 5], ['IV', 4], ['I', 1]].reduce((o, [r, v]) => { while (n >= v) { o += r; n -= v; } return o; }, '');
 function plate(p) {
   const el = document.createElement('div'), a = attrs(p), today = ymd(new Date()), until = new Date(); until.setDate(until.getDate() + 14);
-  const chap = ['rest', 'bars', 'cafes'].indexOf(p._cat) + 2, no = places.filter(q => q._cat === p._cat).indexOf(p) + 1;
-  const ig = has(p.Instagram) ? p.Instagram : (String(p.Evidence || '').match(/IG (@[\w.]+)/) || [])[1] || '';
+  const chap = 2, no = places.filter(q => q._cat === p._cat).indexOf(p) + 1;
+  const ig = has(p.Instagram) ? p.Instagram : (String(p.Evidence || '').match(/IG (@[\w.]+)/) || [])[1] || '', wa = waNum(p);
   const bill = uniq(events.filter(e => placeFor(e) === p && evDay(e) >= today && evDay(e) <= ymd(until))).sort(byTime);
   const dname = d => new Date(2024, 0, 7 + d).toLocaleDateString(loc(), { weekday: 'long' });
   const dealDays = p._deal ? (p._deal.days.size === 7 ? '' : [...p._deal.days].sort().map(dname).join(', ')) : '';
@@ -867,58 +985,107 @@ function plate(p) {
     <h3 class="cath"><span>${t('events')}</span><small>${bill.length ? bill.length + ' ' + t('lots') : ''}</small></h3>
     ${bill.length ? bill.map((e, i) => { const d = new Date(evDay(e) + 'T12:00'), tm = fmtT(e._time);
        return `<button class="lot" onclick="detail('${e._id}')"><span class="ln">No. ${i + 1}.</span><span class="lt">${esc(e._title)}${e._more ? ` <em>(${t('more')(e._more)})</em>` : ''}</span><i class="dots"></i><span class="lr">${d.toLocaleDateString(loc(), { weekday: 'short', day: 'numeric', month: 'short' })}${tm.ap ? ', ' + tm.t + ' ' + tm.ap : ''}</span></button>`; }).join('') : `<p class="none">${t('noEv')}</p>`}
-    <h3 class="cath"><span>${t('promos')}</span><small></small></h3>
-    ${p._deal ? `<div class="lot"><span class="ln">No. 1.</span><span class="lt">${esc(p._deal.big)} ${esc(p._deal.small === 'DEAL' ? t('deal') : p._deal.small)} — ${esc(p._deal.snip)}</span><i class="dots"></i><span class="lr">${dealDays ? t('every') + ' ' + esc(dealDays) : t('daily')}</span></div>` : `<p class="none">${t('noPromo')}</p>`}
+    ${p._deal ? `<h3 class="cath"><span>${t('promos')}</span><small></small></h3><div class="lot"><span class="ln">No. 1.</span><span class="lt">${esc(p._deal.big)} ${esc(p._deal.small === 'DEAL' ? t('deal') : p._deal.small)} — ${esc(p._deal.snip)}</span><i class="dots"></i><span class="lr">${esc(dealWhen(p._deal))}</span></div>` : ''}
    </div>
    <h2 class="orn"><span>${t('style')}</span></h2>
-   <div class="more">${row('', t('price'), a.price || (a.free ? t('free') : ''))}${row('', t('hood'), p._hood)}${row('', t('music'), [p['Live music'], p['Music genre / style']].filter(has).join(' · '))}
+   <div class="more">${row('', t('price'), a.price || (a.free ? t('free') : ''))}${row('', t('hood'), p._hood)}${liveOK(p['Live music']) ? row('', t('music'), [p['Live music'], p['Music genre / style']].filter(has).join(' · ')) : ''}
      ${row('', t('drinks'), [['Cocktails', p.Cocktails], ['Wine', p.Wine], ['Beer', p['Beer type']]].filter(v => has(v[1])).map(v => v[0] + ': ' + v[1]).join(' · '))}
      ${row('', t('food'), [p.Food, p['Food quality mentions']].filter(has).join(' · '))}${row('', 'WiFi', p['WiFi / co-working'])}
      ${row('', t('goodFor'), [p['Good for (date / friends / family)'], p['Seated or standing'], p['Vibe (dance / talk / flirt)']].filter(has).join(' · '))}
      ${/closed|cerrad/i.test(p['Activity status']) ? row('', t('status'), p['Activity status']) : ''}
      ${ig ? row('', t('insta'), ig, `<a href="https://instagram.com/${esc(ig.replace('@', ''))}" target="_blank" rel="noopener">${esc(ig)}</a>`) : ''}</div>
    <div class="acts">${acts(p._id)}</div>
-   <div class="plcta"><a class="btn gold" href="${gmaps(p)}" target="_blank" rel="noopener">${t('directions')}</a></div>
-   <div class="addrow"><button class="chip" onclick="addPlace('${p._id}')">${ic('info')}${t('fix')}</button></div>
+   <div class="acts links">${wa ? `<a class="act" href="https://wa.me/${wa}" target="_blank" rel="noopener">${ic('chat')}WhatsApp</a>` : ''}${ig ? `<a class="act" href="https://instagram.com/${esc(ig.replace('@', ''))}" target="_blank" rel="noopener">${ic('camera')}Instagram</a>` : ''}</div>
+   <div class="plcta"><a class="btn gold" href="${gmaps(p)}" target="_blank" rel="noopener">${ic('map')}${t('directions')}</a></div>
+   <p class="verif">${esc(verified(p))}</p>
+   <div class="addrow"><button class="chip" onclick="addPlace('${p._id}')">${ic('info')}${t('report')}</button></div>
    <p class="fine">${t('fine')}</p>
   </article>`;
   openPage(el);
 }
 
-/* ---------- Home: only your Golden Bananas ---------- */
+/* ---------- Home: royal report, tonight, today's deals, then ripe picks ---------- */
 function home() {
-  const al = alerts(), isNew = a => !ME.seen.includes(a.id);
-  const tagNew = (html, on) => on ? html.replace('<div class="pills">', '<div class="pills">' + pill(t('new'), 'new')) : html;
-  const bananas = ME.bananas.map(id => BY.get(id)).filter(x => x && x._title === undefined);
-  const today = ymd(new Date()), soon = ymd(week[6]);
-  const busy = places.filter(p => !p._closed && !isBanana(p._id)).map(p => [p, events.filter(e => placeFor(e) === p && evDay(e) >= today && evDay(e) <= soon).length])
-    .filter(([, n]) => n).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([p]) => p);
+  const now = new Date(), today = ymd(now), soon7 = ymd(week[6]), L = ME.likes || [], mins = now.getHours() * 60 + now.getMinutes();
+  const notOver = e => { const x = hm(e._time); return !x || x.h * 60 + x.m + 180 > mins; };
+  const tonight = uniq(events.filter(e => evDay(e) === today && notOver(e))), deals = places.filter(p => !p._closed && dealToday(p));
   const pick = p => `<div class="stack">${placeCard(p)}<div class="acts">${acts(p._id)}</div></div>`;
-  const L = ME.likes || [], soon7 = ymd(week[6]);
+  const busy = places.filter(p => !p._closed && !isBanana(p._id)).map(p => [p, events.filter(e => placeFor(e) === p && evDay(e) >= today && evDay(e) <= soon7).length])
+    .filter(([, n]) => n).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([p]) => p);
   // best matches first to choose the 8, then shown earliest-first
-  const ripeEv = L.length ? uniq(events.filter(e => evDay(e) >= today && evDay(e) <= soon7 && !isBanana(e._id))).map(e => [e, ripeScore(e)]).filter(([, n]) => n)
+  const ripeEv = L.length ? uniq(events.filter(e => evDay(e) > today && evDay(e) <= soon7 && !isBanana(e._id))).map(e => [e, ripeScore(e)]).filter(([, n]) => n)
     .sort((a, b) => b[1] - a[1] || byTime(a[0], b[0])).slice(0, 8).map(([e]) => e).sort(byTime) : [];
   const ripePl = L.length ? places.filter(p => !p._closed && !isBanana(p._id)).map(p => [p, ripeScore(p) + (events.some(e => placeFor(e) === p && evDay(e) >= today && evDay(e) <= soon7) ? .5 : 0)])
     .filter(([, n]) => n >= 1).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([p]) => p) : [];
-  const html = head(t('home'), t('weekly'), t('homeSub'), true)
+  return head(t('home'), t('weekly'), t('homeSub'), true) + reportCard()
+   + sec('', t('tonight')) + (tonight.length ? `<div class="grid">${tonight.map(eventCard).join('')}</div>` : `<p class="hint center">${t('nothingTonight')}</p>`)
+   + `<div class="addrow" style="margin-top:12px"><button class="chip" onclick="go('feed')">${ic('feed')}${t('seeWeek')}</button></div>`
+   + (deals.length ? sec('', t('todayDeals')) + `<div class="grid">${deals.map(dealCard).join('')}</div>` : '')
    + `<div class="addrow"><button class="ripecta" onclick="ripe()">${ic('banana')}<span><b>${t(L.length ? 'ripeEdit' : 'ripeQ')}</b><small>${t('ripeTap')}</small></span><i aria-hidden="true">›</i></button></div>`
    + (ripeEv.length ? sec('', t('ripeFor')) + `<div class="grid">${ripeEv.map(eventCard).join('')}</div>` : '')
    + (ripePl.length ? sec('', t('ripeVenues')) + `<div class="grid">${ripePl.map(pick).join('')}</div>` : '')
-   + (ME.bananas.length ? sec('', t('newAt')) + (al.length ? `<div class="grid">${al.map(a => tagNew(a.deal ? dealCard(a.x) : eventCard(a.x), isNew(a))).join('')}</div>` : `<p class="hint center">${t('noNews')}</p>`) : '')
    + (busy.length && !ME.bananas.length && !ripePl.length ? sec('', t('startHere')) + `<div class="grid">${busy.map(pick).join('')}</div>` : '')
-   + (bananas.length ? sec('', t('myBananas')) + `<p class="hint center">${t('alertsHint')}</p><div class="grid">${bananas.map(p => `<div class="stack">${placeCard(p)}${calLinks(p._id)}</div>`).join('')}</div>` : '')
    + sec('', t('allCal')) + `<div class="stack narrow">${calLinks('all')}</div>`
    + sec('', t('addPlace')) + `<p class="hint center">${t('addSub')}</p><div class="addrow"><button class="btn gold" onclick="addPlace()">${t('addPlace')}</button></div>`;
+}
+
+/* ---------- Saved: your Golden Bananas (the banana is the save button) ---------- */
+function saved() {
+  const al = alerts(), isNew = a => !ME.seen.includes(a.id);
+  const tagNew = (html, on) => on ? html.replace('<div class="pills">', '<div class="pills">' + pill(t('new'), 'new')) : html;
+  const bananas = ME.bananas.map(id => BY.get(id)).filter(x => x && x._title === undefined);
+  const html = head(t('mySaved'), t('weekly'), t('savedSub'))
+   + (ME.bananas.length ? sec('', t('newAt')) + (al.length ? `<div class="grid">${al.map(a => tagNew(a.deal ? dealCard(a.x) : eventCard(a.x), isNew(a))).join('')}</div>` : `<p class="hint center">${t('noNews')}</p>`)
+     : `<p class="hint center">${t('noBananas')}</p>`)
+   + (bananas.length ? sec('', t('myBananas')) + `<p class="hint center">${t('alertsHint')}</p><div class="grid">${bananas.map(p => `<div class="stack">${placeCard(p)}${calLinks(p._id)}</div>`).join('')}</div>` : '');
   const ids = al.map(a => a.id).filter(id => !ME.seen.includes(id));
   if (ids.length) { ME.seen.push(...ids); persist(); setTimeout(() => { const b = $('.nav .badge'); b && b.remove(); }, 0); }
   return html;
+}
+
+/* ---------- The Queen Banana Report of the Day: daily-report.txt, else written from today's events and deals ----------
+   daily-report.txt:   date: 2026-11-12   (optional; a report dated another day is ignored)
+                       [en]  one line per paragraph…   [es]  una línea por párrafo… */
+let REPORT = null;
+async function loadReport() {
+  try { const r = await fetch('daily-report.txt', { cache: 'no-cache' }); if (!r.ok) return;
+    const txt = await r.text(), d = txt.match(/^\s*date:\s*(\d{4}-\d\d-\d\d)/im); if (d && d[1] !== ymd(new Date())) return;
+    const o = {}; let k = 'en';
+    for (const line of txt.split(/\r?\n/)) { const m = line.match(/^\s*\[(en|es)\]\s*$/i); if (m) { k = m[1].toLowerCase(); continue; }
+      if (line.trim() && !/^\s*(date:|#)/i.test(line)) (o[k] = o[k] || []).push(line.trim()); }
+    if (o.en || o.es) REPORT = o;
+  } catch (e) {}
+}
+const dealLabel = d => d.small === 'DEAL' ? d.big : d.small === '∞' ? (lang === 'es' ? 'corrida libre' : 'all-you-can-eat') : (d.big + ' ' + d.small).toLowerCase();
+function autoReport() {
+  const es = lang === 'es', today = ymd(new Date()), L = [], hear = () => L.length ? '' : t('hearYe') + ' ';
+  uniq(events.filter(e => evDay(e) === today)).slice(0, 3).forEach(e => { const x = hm(e._time), tm = fmtT(e._time), v = placeFor(e)?.Name || e._venue, late = x && x.h >= 17;
+    const at = x ? (es ? ` a las ${String(x.h).padStart(2, '0')}:${String(x.m).padStart(2, '0')}` : ` at ${tm.t} ${tm.ap}`) : '';
+    L.push(hear() + (es ? `${late ? 'Esta noche' : 'Hoy'} en ${v}: ${e._title}${e._free ? ', entrada libre' : ''}. La Corte se reúne${at || ' allí'}.`
+      : `${late ? 'Tonight' : 'Today'} at ${v}: ${e._title}${e._free ? ', free entry' : ''}. The Court gathers${at || ' there'}.`)); });
+  places.filter(p => !p._closed && dealToday(p)).slice(0, 2).forEach(p => { const h = p._deal.hours ? ' (' + (p._deal.hours[0] === '+' ? t('from') + ' ' + p._deal.hours.slice(1) : p._deal.hours) + ')' : '';
+    L.push(hear() + (es ? `Por decreto real: ${dealLabel(p._deal)} en ${p.Name}${h}.` : `By royal decree: ${dealLabel(p._deal)} at ${p.Name}${h}.`)); });
+  if (!L.length) L.push(es ? '¡Oíd, oíd! Hoy el reino descansa. La Reina recomienda un buen café y planear el fin de semana.' : 'Hear ye! The realm rests today. The Queen recommends a fine coffee and plotting the weekend.');
+  if (L.length < 3) L.push(es ? 'Que tu banana esté siempre en su punto.' : 'May your banana ever be ripe.');
+  return L.slice(0, 5);
+}
+const reportLines = () => REPORT ? REPORT[lang] || REPORT.en || REPORT.es : autoReport();
+const royalDate = () => new Date().toLocaleDateString(loc(), { weekday: 'long', day: 'numeric', month: 'long' });
+const reportCard = () => `<button class="rcard" onclick="royal()"><span class="rc-h">${ic('crown')}<b>${t('royalT')}</b></span><small>${esc(royalDate())}</small>${reportLines().slice(0, 2).map(l => `<span class="rc-l">${esc(l)}</span>`).join('')}<span class="rc-m">${reportLines().length > 2 ? t('moreDecrees')(reportLines().length - 2) : t('royalOpen')} ›</span></button>`;
+function royal() {
+  $('.royal')?.remove();
+  const v = document.createElement('div'); v.className = 'royal dk'; v.setAttribute('role', 'dialog'); v.setAttribute('aria-modal', 'true'); v.setAttribute('aria-label', t('royalT'));
+  v.innerHTML = `<div class="rin"><div class="crown">${ic('crown')}</div><div class="eyebrow">${esc(royalDate())}</div><h1>${t('royalT')}</h1><div class="dv" aria-hidden="true">◆</div>
+   ${reportLines().map(l => `<p>${esc(l)}</p>`).join('')}<p class="sig">${t('royalBy')}</p><button class="btn gold" data-x="1">${t('royalBtn')}</button></div>`;
+  v.onclick = e => { if (!e.target.closest('[data-x]')) return; store('cb.report', ymd(new Date())); v.remove(); if (!store('cb.intro')) setTimeout(intro, 400); };
+  document.body.appendChild(v); v.querySelector('[data-x]').focus({ preventScroll: true });
 }
 
 /* ---------- calendar alerts: one feed per venue, built with the data (cal/*.ics on theconnectup.com) ---------- */
 const CAL = 'theconnectup.com/citybanana/cal/';
 const calLinks = id => `<div class="cal"><a class="act" href="https://calendar.google.com/calendar/r?cid=${encodeURIComponent('webcal://' + CAL + id + '.ics')}" target="_blank" rel="noopener">${ic('feed')}${t('addGcal')}</a></div>`;
 
-/* ---------- add a place: Netlify Form on theconnectup.com, emailed to Lana for approval ---------- */
+/* ---------- add a place: Netlify Form on theconnectup.com, emailed to Queen Banana for approval ---------- */
 const HOSTED = /theconnectup\.com|netlify\.app/.test(location.host);
 function addPlace(fixId) {
   if (!HOSTED) return open('https://theconnectup.com/citybanana/#' + (fixId ? 'fix=' + fixId : 'add'), '_blank');
@@ -928,7 +1095,7 @@ function addPlace(fixId) {
   v.innerHTML = `<form class="sheet" name="add-place" id="ap"><h2 class="orn" style="margin-top:0"><span>${t(P0 ? 'fix' : 'addPlace')}</span></h2><p class="hint">${t(P0 ? 'fixSub' : 'addSub')}</p>
    <input type="hidden" name="form-name" value="add-place"><input type="hidden" name="kind" value="${P0 ? 'correction' : 'new place'}"><input type="hidden" name="place_id" value="${P0 ? esc(P0._id) : ''}"><p hidden><label>Leave empty <input name="bot-field"></label></p>
    <label for="ap-name">Name *</label><input id="ap-name" name="name" required>
-   <label for="ap-cat">${t('cat')} *</label><select id="ap-cat" name="category" required><option value="">—</option><option>Restaurant</option><option>Bar</option><option>Café</option></select>
+   <label for="ap-cat">${t('cat')} *</label><select id="ap-cat" name="category" required><option value="">—</option><option>Restaurant</option><option>Bar</option><option>Café</option><option>Nightclub</option></select>
    <label for="ap-type">${t('style')}</label><input id="ap-type" name="type" placeholder="Cocktail bar, pizzeria, specialty coffee…">
    <label for="ap-hood">${t('hood')} *</label><input id="ap-hood" name="neighborhood" required list="ap-hoods"><datalist id="ap-hoods">${o.hood.map(h => `<option value="${esc(h)}">`).join('')}</datalist>
    <label for="ap-addr">Address / Google Maps link</label><input id="ap-addr" name="address">
@@ -944,7 +1111,7 @@ function addPlace(fixId) {
    <div class="row2"><button type="button" class="btn sm ghost" onclick="this.closest('.veil').remove()">${t('clear')}</button><button class="btn sm gold">${t('send')}</button></div></form>`;
   document.body.appendChild(v);
   if (P0) { const f = v.querySelector('form'), set = (n, val) => { const el = f.elements[n]; if (el && val) el.value = val; }, yn = b => b ? 'Yes' : '';
-    set('name', P0.Name); set('category', { rest: 'Restaurant', bars: 'Bar', cafes: 'Café' }[P0._cat]); set('type', P0['Type / style']); set('neighborhood', P0._hood);
+    set('name', P0.Name); set('category', { rest: 'Restaurant', bars: 'Bar', cafes: 'Café', night: 'Nightclub' }[P0._cat]); set('type', P0['Type / style']); set('neighborhood', P0._hood);
     set('address', P0['Neighborhood / address']); set('price', A0.price); set('genre', P0['Music genre / style']); set('instagram', P0.Instagram);
     for (const k of ['wifi', 'food', 'music', 'cocktails', 'wine', 'beer', 'free']) set(k, yn(A0[k])); set('deals', P0._deal?.snip); }
   v.querySelector('form').onsubmit = async e => { e.preventDefault(); const f = e.target, msg = f.querySelector('#ap-msg');
@@ -962,7 +1129,7 @@ const REGIONS = [   // [key, name, centre, words in the Hood / venue that place 
   ['lambare', 'Lambaré', [-25.3445, -57.6065], /lambare/],
   ['sanlorenzo', 'San Lorenzo · F. de la Mora', [-25.3397, -57.5088], /san lorenzo|fernando de la mora/],
   ['luque', 'Luque · Ñu Guazú', [-25.255, -57.505], /luque|nu guazu|aeropuerto|autodromo/]];
-const BEYOND = /caacupe|encarnacion|ciudad del este|san bernardino|aregua|km from/;
+const BEYOND = /caacupe|encarnacion|ciudad del este|san bernardino|aregua|km from|gran asuncion/;
 const regionOf = e => {
   if (e._reg !== undefined) return e._reg;
   const h = norm([e._hood, e._venue].join(' ')), p = placeFor(e);
@@ -992,7 +1159,7 @@ function regionPins() {
 
 /* ---------- map ---------- */
 const PIN = 'M24 2C12.4 2 4 10.6 4 21.5 4 35 24 58 24 58s20-23 20-36.5C44 10.6 35.6 2 24 2z';
-const isLive = p => has(p['Live music']);
+const isLive = p => liveOK(p['Live music']);
 const pinHtml = (p, on) => `<div class="pin ${on ? 'sel' : isLive(p) ? 'live' : ''}" style="width:${on ? 62 : 40}px;height:${on ? 78 : 50}px"><i></i><svg viewBox="0 0 48 60">
   <path d="${PIN}" fill="${isLive(p) ? '#CDBDF0' : '#C9A55C'}" stroke="${on ? '#F5EEDF' : '#2C2440'}" stroke-width="2"/>
   <g transform="translate(12 10)" fill="none" stroke="#2C2440" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${P[p._cat]}</g></svg></div>`;
@@ -1004,7 +1171,7 @@ function drawMap(keepFocus) {
   const pos = keepFocus && $('#q')?.selectionStart;
   w.querySelector('.mtop').innerHTML = `<div class="bar"><img class="sym" src="symbol.png" alt="City Banana">${searchBox()}</div>
    ${F.q && keepFocus ? `<div class="sugg">${places.filter(match).slice(0, 5).map(p => `<button onclick="pick('${p._id}')">${esc(p.Name)}<br><small>${esc(p._hood)}${p._lat ? '' : ' · ' + t('notOnMap')}</small></button>`).join('')}</div>` : ''}
-   <div class="chips">${['all', 'events', 'rest', 'bars', 'cafes', 'music'].map(c => `<button class="chip ${mapCat === c ? 'on' : ''}" onclick="mapCat='${c}';sel=null;draw()">${c === 'all' ? t('all') : c === 'events' ? ic('feed') + t('events') : t('chips')[c]}</button>`).join('')}
+   <div class="chips">${['all', 'events', 'rest', 'bars', 'cafes', 'night', 'music'].map(c => `<button class="chip ${mapCat === c ? 'on' : ''}" onclick="mapCat='${c}';sel=null;draw()">${c === 'all' ? t('all') : c === 'events' ? ic('feed') + t('events') : t('chips')[c]}</button>`).join('')}
    <button class="chip ${nActive() || BOOL.some(k => F[k]) ? 'on' : ''}" onclick="sheet()">${ic('filter')}${t('filters')}</button></div>`;
   if (keepFocus) { const q = $('#q'); q.focus(); q.setSelectionRange(pos, pos); }
   const hq = hoodQ(); if (hq && map && flown !== F.q) { flown = F.q; map.flyTo(hq, 15); }
@@ -1064,7 +1231,9 @@ function intro() {
   v.onclick = e => { const b = e.target.closest('button'); if (!b) return; close(); if (b.dataset.go) ripe(); };
   document.body.appendChild(v); v.querySelector('[data-go]').focus({ preventScroll: true });
 }
-setTimeout(() => { if (store('cb.intro') || /^#(add|fix=)/.test(location.hash) || $('.ripe,.veil')) return; intro(); }, 1500);
+// each day's first open: the royal report (then, on a first visit, the Golden Banana intro)
+loadReport().then(() => { if (tab === 'home' && !$('.detail,.veil,.ripe')) draw();
+  setTimeout(() => { if (/^#(add|fix=)/.test(location.hash) || $('.ripe,.veil,.royal')) return; store('cb.report') !== ymd(new Date()) ? royal() : !store('cb.intro') && intro(); }, 1300); });
 if (location.hash === '#add') addPlace(); else if (location.hash.startsWith('#fix=')) addPlace(location.hash.slice(5));
 account();
 setTimeout(() => $('#splash')?.classList.add('out'), 1200);
