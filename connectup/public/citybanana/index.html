@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <base href="/citybanana/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1F1A2B">
+<meta name="theme-color" content="#2C2440">
 <title>City Banana</title>
 <link rel="icon" href="symbol.png">
 <link rel="apple-touch-icon" href="icon.png">
@@ -14,11 +14,11 @@
 <script>/* follow the system theme; .dk also forces dark on the map and detail screens */
 (()=>{const q=matchMedia('(prefers-color-scheme: dark)'),f=()=>document.documentElement.classList.toggle('dk',q.matches);f();q.addEventListener('change',f)})();</script>
 <style>
-:root{--night:#1F1A2B;--ame:#3A2D4F;--vio:#5B4777;--orc:#B49BC8;--gold:#C9A55C;--ogold:#9A7B45;--cream:#F5EEDF;--mist:#E4DEEA;
- --bg:var(--cream);--card:#fff;--line:var(--mist);--chipbg:#fff;--chipline:var(--mist);--daybg:var(--mist);--tb:var(--ame);--tx:var(--night);--tx2:#4A4058;
- --nav:var(--cream);--navtx:#625873;--navon:var(--ame);--navline:var(--mist);--acc:var(--ame);--app:min(100vw,430px);--ttl:'Cinzel',Georgia,serif;color-scheme:light}
-.dk{--bg:#29213A;--card:#3A2D4F;--line:rgba(201,165,92,.22);--chipbg:#3A2D4F;--chipline:rgba(201,165,92,.4);--daybg:#3A2D4F;--tb:var(--night);--tx:var(--cream);--tx2:#CBBFD8;
- --nav:var(--night);--navtx:#CBBFD8;--navon:var(--gold);--navline:rgba(201,165,92,.25);--acc:var(--gold);color-scheme:dark}
+:root{--night:#2C2440;--ame:#5E4E8C;--vio:#8C7BBF;--orc:#CDBDF0;--gold:#C9A55C;--ogold:#9A7B45;--cream:#F5EEDF;--mist:#EAE4F6;
+ --bg:var(--cream);--card:#fff;--line:var(--mist);--chipbg:#fff;--chipline:var(--mist);--daybg:var(--mist);--tb:var(--ame);--tx:var(--night);--tx2:#4E4468;
+ --nav:var(--cream);--navtx:#6A6088;--navon:var(--ame);--navline:var(--mist);--acc:var(--ame);--app:min(100vw,430px);--ttl:'Cinzel',Georgia,serif;color-scheme:light}
+.dk{--bg:#3A3058;--card:#5E4E8C;--line:rgba(201,165,92,.22);--chipbg:#5E4E8C;--chipline:rgba(201,165,92,.4);--daybg:#5E4E8C;--tb:var(--night);--tx:var(--cream);--tx2:#D9CFF0;
+ --nav:var(--night);--navtx:#D9CFF0;--navon:var(--gold);--navline:rgba(201,165,92,.25);--acc:var(--gold);color-scheme:dark}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--night)}
 body{font:16px/1.5 'Lora',Georgia,serif;color:var(--tx)}
@@ -74,7 +74,7 @@ h2{font:700 13px 'Lora',Georgia,serif;letter-spacing:.06em;text-transform:upperc
 .nav svg{width:24px;height:24px}
 .nav .on{color:var(--navon);font-weight:700}
 /* filter sheet */
-.veil{position:fixed;inset:0;background:#1F1A2B99;z-index:40;display:flex;align-items:flex-end;justify-content:center}
+.veil{position:fixed;inset:0;background:#2C244099;z-index:40;display:flex;align-items:flex-end;justify-content:center}
 .sheet{width:var(--app);max-height:85vh;overflow:auto;background:var(--bg);color:var(--tx);border-radius:24px 24px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom))}
 .sheet label{display:block;font:700 13px 'Lora',Georgia,serif;letter-spacing:.06em;text-transform:uppercase;color:var(--tx2);margin:14px 4px 6px}
 .sheet select{width:100%;height:48px;border-radius:24px;border:1.5px solid var(--chipline);background:var(--chipbg);padding:0 16px;font-size:16px}
@@ -88,9 +88,9 @@ h2{font:700 13px 'Lora',Georgia,serif;letter-spacing:.06em;text-transform:upperc
 /* detail (always dark, like the brand board) */
 .detail{position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:var(--app);background:var(--bg);color:var(--tx);z-index:30;overflow:auto;display:flex;flex-direction:column}
 .hero{position:relative;flex:none;height:340px;display:flex;align-items:center;justify-content:center;
- background:repeating-conic-gradient(from -90deg at 50% 100%,rgba(201,165,92,.16) 0deg 4deg,rgba(201,165,92,0) 4deg 12deg),radial-gradient(ellipse at 50% 100%,#5B4777 0%,#3A2D4F 55%,#29213A 100%)}
+ background:repeating-conic-gradient(from -90deg at 50% 100%,rgba(201,165,92,.16) 0deg 4deg,rgba(201,165,92,0) 4deg 12deg),radial-gradient(ellipse at 50% 100%,#8C7BBF 0%,#5E4E8C 55%,#3A3058 100%)}
 .hero img{width:290px;max-width:76%;height:auto}
-.back{position:absolute;left:16px;top:calc(20px + env(safe-area-inset-top));width:48px;height:48px;border-radius:24px;border:1px solid rgba(201,165,92,.4);background:rgba(31,26,43,.7);color:var(--gold);display:grid;place-items:center}
+.back{position:absolute;left:16px;top:calc(20px + env(safe-area-inset-top));width:48px;height:48px;border-radius:24px;border:1px solid rgba(201,165,92,.4);background:rgba(44,36,64,.7);color:var(--gold);display:grid;place-items:center}
 .back svg{width:24px;height:24px}
 .dbody{padding:24px 24px 28px;display:flex;flex-direction:column;gap:14px;flex:1}
 .dbody .pill{height:30px;padding:0 14px;border-radius:15px;font-size:13px}
@@ -109,10 +109,10 @@ dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
 .foot .btn{flex:1}
 /* map (always dark) */
 #mapwrap{overflow:hidden;position:fixed;top:0;bottom:calc(80px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:var(--app);z-index:10;color:var(--tx)}
-#map{position:absolute;inset:0;background:#29213A}
-.lbl{background:none;border:0;white-space:nowrap;font:600 11px 'Lora',Georgia,serif;letter-spacing:.08em;text-transform:uppercase;color:#A79BB8;text-shadow:0 0 4px #29213A,0 0 4px #29213A}
+#map{position:absolute;inset:0;background:#3A3058}
+.lbl{background:none;border:0;white-space:nowrap;font:600 11px 'Lora',Georgia,serif;letter-spacing:.08em;text-transform:uppercase;color:#B9ADD6;text-shadow:0 0 4px #3A3058,0 0 4px #3A3058}
 .lbl span{display:block;transform:translate(-50%,-50%)}
-.lbl.big{font:600 13px var(--ttl);color:#CBBFD8;letter-spacing:.1em}
+.lbl.big{font:600 13px var(--ttl);color:#D9CFF0;letter-spacing:.1em}
 /* bell, actions, "For you" */
 .bell{position:relative;width:44px;height:44px;flex:none;border-radius:22px;border:1.5px solid var(--chipline);background:var(--chipbg);color:var(--acc);display:grid;place-items:center}
 .bell svg{width:22px;height:22px}
@@ -126,7 +126,7 @@ dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
 .you .who{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:24px;background:var(--card);border:2px solid var(--line)}
 .you .who svg{width:28px;height:28px;color:var(--gold)}.you .sub{color:var(--tx2)}
 .you .hint{color:var(--tx2);margin:0 4px 12px}
-.mtop{position:absolute;top:0;left:0;right:0;z-index:1000;padding:calc(20px + env(safe-area-inset-top)) 16px 0;background:linear-gradient(rgba(41,33,58,.92) 55%,transparent)}
+.mtop{position:absolute;top:0;left:0;right:0;z-index:1000;padding:calc(20px + env(safe-area-inset-top)) 16px 0;background:linear-gradient(rgba(58,48,88,.92) 55%,transparent)}
 .mtop .bar{display:flex;gap:10px;align-items:center}.mtop .search{flex:1;margin:0}
 .mtop .search input{border:1.5px solid var(--gold)}
 .mtop .search{max-width:none}
@@ -135,7 +135,7 @@ dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
 .sugg{margin:8px 0 0 54px;background:var(--card);border-radius:20px;border:1px solid rgba(201,165,92,.4);overflow:hidden}
 .sugg button{display:block;width:100%;text-align:left;padding:10px 16px;min-height:44px;border-bottom:1px solid var(--line)}
 .sugg small{color:var(--tx2)}
-.mcard{position:absolute;left:12px;right:12px;bottom:12px;z-index:1000;padding:14px 14px 14px 16px;border-radius:26px;background:var(--ame);border:1px solid rgba(201,165,92,.35);box-shadow:0 10px 30px rgba(31,26,43,.5)}
+.mcard{position:absolute;left:12px;right:12px;bottom:12px;z-index:1000;padding:14px 14px 14px 16px;border-radius:26px;background:var(--ame);border:1px solid rgba(201,165,92,.35);box-shadow:0 10px 30px rgba(44,36,64,.5)}
 .mc{display:flex;align-items:center;gap:14px}
 .mi{width:56px;height:56px;flex:none;border-radius:16px;background:var(--gold);color:var(--night);display:grid;place-items:center}.mi svg{width:28px;height:28px}
 .mt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
@@ -144,9 +144,9 @@ dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
 .gm{display:block;margin-top:10px;color:var(--orc)}
 .pinw{background:none;border:0}
 .pin{position:relative}.pin svg{display:block;width:100%;height:100%;position:relative}
-.pin i{position:absolute;left:50%;transform:translateX(-50%);border-radius:50%;bottom:-3px;width:24px;height:8px;background:rgba(31,26,43,.65)}
+.pin i{position:absolute;left:50%;transform:translateX(-50%);border-radius:50%;bottom:-3px;width:24px;height:8px;background:rgba(44,36,64,.65)}
 .pin.sel i{bottom:-8px;width:70px;height:20px;background:none;border:2px solid rgba(201,165,92,.55)}
-.pin.live i{bottom:-6px;width:64px;height:18px;background:none;border:2px solid rgba(180,155,200,.5)}
+.pin.live i{bottom:-6px;width:64px;height:18px;background:none;border:2px solid rgba(205,189,240,.5)}
 .clu{width:62px;height:62px;border-radius:31px;background:rgba(201,165,92,.28);display:grid;place-items:center}
 .clu b{width:44px;height:44px;border-radius:22px;background:var(--gold);color:var(--night);display:grid;place-items:center;font:700 18px var(--ttl)}
 .leaflet-control-attribution{font-size:10px}.leaflet-container{font:inherit}
@@ -163,12 +163,12 @@ dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
  .search{max-width:640px}
  .cb .ct{font-size:18px}
  h2{font-size:14px;margin:30px 4px 14px}
- .nav{width:min(620px,calc(100vw - 32px));bottom:calc(16px + env(safe-area-inset-bottom));height:76px;padding:6px 10px;border-radius:38px;border:1px solid var(--navline);box-shadow:0 12px 40px rgba(31,26,43,.35)}
+ .nav{width:min(620px,calc(100vw - 32px));bottom:calc(16px + env(safe-area-inset-bottom));height:76px;padding:6px 10px;border-radius:38px;border:1px solid var(--navline);box-shadow:0 12px 40px rgba(44,36,64,.35)}
  .nav button{font-size:13px}
- .detail{width:min(100vw,760px);box-shadow:0 0 0 100vmax rgba(31,26,43,.6)}
+ .detail{width:min(100vw,760px);box-shadow:0 0 0 100vmax rgba(44,36,64,.6)}
  .hero{height:400px}.hero img{width:330px}
  .dbody{padding:32px 40px}.dbody h1{font-size:44px}
- .you{width:min(100vw,1000px);padding:0 32px 40px;box-shadow:0 0 0 100vmax rgba(31,26,43,.6)}
+ .you{width:min(100vw,1000px);padding:0 32px 40px;box-shadow:0 0 0 100vmax rgba(44,36,64,.6)}
  .you header{margin:0 -32px}
  .veil{align-items:center}.sheet{width:min(560px,calc(100vw - 32px));border-radius:24px}
  #mapwrap{width:100vw;bottom:0}
@@ -177,7 +177,7 @@ dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
 }
 @media (min-width:1280px){header h1{font-size:46px}}
 /* splash */
-#splash{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 30%,#44355E,#1F1A2B 70%);z-index:99;display:flex;flex-direction:column;gap:22px;align-items:center;justify-content:center;transition:opacity .5s}
+#splash{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 30%,#6A5A9A,#2C2440 70%);z-index:99;display:flex;flex-direction:column;gap:22px;align-items:center;justify-content:center;transition:opacity .5s}
 #splash img{max-width:62%;max-height:46vh;width:auto;height:auto}
 #splash p{margin:0;font:600 18px var(--ttl);letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
 #splash.out{opacity:0;pointer-events:none}
@@ -187,7 +187,7 @@ dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
    with corner blocks, octagonal medallions, ticket-cut tags, chapter ornaments, dotted-leader spec lists. */
 :root{--rule:var(--ogold);--fan:rgba(154,123,69,.10);--card:#FFFBEE;--tagbg:#F3E5BF;--deco:'Cinzel Decorative','Cinzel',Georgia,serif;
  --goldbar:linear-gradient(180deg,#DCC08A 0%,#C9A55C 48%,#9A7B45 100%)}
-.dk{--rule:var(--gold);--fan:rgba(201,165,92,.07);--card:#3A2D4F;--tagbg:rgba(201,165,92,.14)}
+.dk{--rule:var(--gold);--fan:rgba(201,165,92,.07);--card:#5E4E8C;--tagbg:rgba(201,165,92,.14)}
 #app{background-color:var(--bg);
  background-image:radial-gradient(circle at 50% 100%,transparent 0 7px,var(--fan) 7px 8px,transparent 8px 12px,var(--fan) 12px 13px,transparent 13px 17px,var(--fan) 17px 18px,transparent 18px),
   radial-gradient(circle at 50% 100%,transparent 0 7px,var(--fan) 7px 8px,transparent 8px 12px,var(--fan) 12px 13px,transparent 13px 17px,var(--fan) 17px 18px,transparent 18px);
@@ -195,19 +195,19 @@ dl{margin:0}dt{margin-top:10px}dd{margin:0;overflow-wrap:anywhere}
 :focus-visible{outline:2px solid var(--orc);outline-offset:2px}
 /* masthead */
 .mast{position:relative;top:auto;display:block;margin:0 -16px 26px;padding:calc(12px + env(safe-area-inset-top)) 20px 26px;text-align:center;color:var(--cream);
- background:repeating-conic-gradient(from -90deg at 50% 100%,rgba(201,165,92,.13) 0 3deg,transparent 3deg 9deg),radial-gradient(ellipse at 50% 100%,#5B4777 0%,#3A2D4F 50%,#1F1A2B 100%);
+ background:repeating-conic-gradient(from -90deg at 50% 100%,rgba(201,165,92,.13) 0 3deg,transparent 3deg 9deg),radial-gradient(ellipse at 50% 100%,#8C7BBF 0%,#5E4E8C 50%,#2C2440 100%);
  border-bottom:4px double var(--gold)}
 .mast::before{content:'';position:absolute;inset:8px 8px 10px;border:1px solid rgba(201,165,92,.35);pointer-events:none}
 .mast::after{content:'';position:absolute;left:50%;bottom:-13px;width:18px;height:18px;transform:translateX(-50%) rotate(45deg);background:var(--gold);box-shadow:0 0 0 4px var(--bg)}
 .mtools{position:relative;display:flex;justify-content:space-between;align-items:center;z-index:1}
-.mast .lang,.mast .bell{border-radius:0;border:1px solid rgba(201,165,92,.55);background-color:rgba(31,26,43,.55);color:var(--gold);background-image:linear-gradient(var(--rule),var(--rule)),linear-gradient(var(--rule),var(--rule));background-size:6px 6px;background-repeat:no-repeat;background-position:0 0,100% 100%}
+.mast .lang,.mast .bell{border-radius:0;border:1px solid rgba(201,165,92,.55);background-color:rgba(44,36,64,.55);color:var(--gold);background-image:linear-gradient(var(--rule),var(--rule)),linear-gradient(var(--rule),var(--rule));background-size:6px 6px;background-repeat:no-repeat;background-position:0 0,100% 100%}
 .mast .bell b{border-radius:0;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);min-width:22px;height:22px;line-height:22px;top:0;right:0;font-family:var(--ttl)}
 .mlogo{display:block;height:128px;width:auto;max-width:none;object-fit:contain;margin:-30px auto 6px}
 .msym{display:block;height:58px;width:auto;margin:-34px auto 6px}
 .eyebrow{display:flex;align-items:center;justify-content:center;gap:10px;font:600 11px var(--ttl);letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .eyebrow::before,.eyebrow::after{content:'';flex:0 1 44px;height:4px;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}
-.mast h1{margin:8px 0 6px;font:700 30px/1.12 var(--deco);color:var(--cream);letter-spacing:.02em;text-wrap:balance;text-shadow:0 2px 0 #1F1A2B}
-.issue{font:italic 15px 'Lora',Georgia,serif;color:#CBBFD8}
+.mast h1{margin:8px 0 6px;font:700 30px/1.12 var(--deco);color:var(--cream);letter-spacing:.02em;text-wrap:balance;text-shadow:0 2px 0 #2C2440}
+.issue{font:italic 15px 'Lora',Georgia,serif;color:#D9CFF0}
 .issue b{font:600 12px var(--ttl);font-style:normal;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
 /* chapter ornaments */
 h2.orn{display:flex;align-items:center;gap:12px;margin:30px 0 16px;font:600 13px var(--ttl);letter-spacing:.24em;text-transform:uppercase;color:var(--acc);text-align:center}
@@ -236,8 +236,8 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 /* octagonal medallion with sun rays */
 .tb{position:relative;flex:0 0 74px;height:74px;border-radius:0;background:var(--goldbar);box-shadow:none;
  clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%)}
-.tb::before{content:'';position:absolute;inset:2px;clip-path:inherit;background:repeating-conic-gradient(from 0deg,rgba(201,165,92,.16) 0 6deg,transparent 6deg 18deg),#3A2D4F}
-.dk .tb::before{background:repeating-conic-gradient(from 0deg,rgba(201,165,92,.16) 0 6deg,transparent 6deg 18deg),#1F1A2B}
+.tb::before{content:'';position:absolute;inset:2px;clip-path:inherit;background:repeating-conic-gradient(from 0deg,rgba(201,165,92,.16) 0 6deg,transparent 6deg 18deg),#5E4E8C}
+.dk .tb::before{background:repeating-conic-gradient(from 0deg,rgba(201,165,92,.16) 0 6deg,transparent 6deg 18deg),#2C2440}
 .tb>*{position:relative}
 /* ticket-cut tags */
 .pill{height:24px;padding:0 12px;border-radius:0;border:0;background:var(--tagbg);color:var(--tx);font:600 10.5px var(--ttl);letter-spacing:.12em;text-transform:uppercase;
@@ -298,11 +298,11 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 .nav button{min-width:0}
 /* nav stays reachable over pages */
 .nav{z-index:45}.detail{bottom:calc(80px + env(safe-area-inset-bottom))}
-.detail .back{position:fixed;left:max(14px,calc(50% - var(--app)/2 + 14px));top:calc(14px + env(safe-area-inset-top));z-index:46;background-color:rgba(31,26,43,.85)}
+.detail .back{position:fixed;left:max(14px,calc(50% - var(--app)/2 + 14px));top:calc(14px + env(safe-area-inset-top));z-index:46;background-color:rgba(44,36,64,.85)}
 /* the plate: aged catalogue paper, ink and old gold, whatever the theme */
-.plate{--bg:#FBF1D6;--card:#FBF1D6;--tx:#1F1A2B;--tx2:#4A4058;--rule:#9A7B45;--acc:#3A2D4F;--tagbg:#EFDDAE;--line:rgba(154,123,69,.35);color-scheme:light;
+.plate{--bg:#FBF1D6;--card:#FBF1D6;--tx:#2C2440;--tx2:#4E4468;--rule:#9A7B45;--acc:#5E4E8C;--tagbg:#EFDDAE;--line:rgba(154,123,69,.35);color-scheme:light;
  background-color:#F7EACA;background-image:radial-gradient(ellipse at 50% 35%,rgba(255,250,235,.9) 0%,rgba(255,250,235,0) 60%),radial-gradient(ellipse at 50% 50%,transparent 60%,rgba(154,123,69,.22) 100%),
- repeating-linear-gradient(0deg,rgba(31,26,43,.022) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(154,123,69,.025) 0 1px,transparent 1px 5px)}
+ repeating-linear-gradient(0deg,rgba(44,36,64,.022) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(154,123,69,.025) 0 1px,transparent 1px 5px)}
 .pg{position:relative;margin:16px;padding:64px 22px 40px;border:1px solid var(--rule);outline:1px solid var(--rule);outline-offset:5px;text-align:center;color:var(--tx)}
 .pg::before{content:'';position:absolute;inset:10px;border:1px dashed rgba(154,123,69,.35);pointer-events:none}
 .cn{position:absolute;font-style:normal;color:var(--rule);font-size:15px;line-height:1;background:#F7EACA;padding:2px}
@@ -310,7 +310,7 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 .runhead{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;font:600 10.5px var(--ttl);letter-spacing:.28em;text-transform:uppercase;color:var(--rule);border-bottom:3px double var(--rule);padding-bottom:10px}
 .plno{margin-top:12px;font:600 11px var(--ttl);letter-spacing:.24em;text-transform:uppercase;color:var(--tx2)}
 .medal{width:112px;height:112px;margin:22px auto 14px;display:grid;place-items:center;color:var(--gold);position:relative;background:var(--goldbar);clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%)}
-.medal::before{content:'';position:absolute;inset:3px;clip-path:inherit;background:repeating-conic-gradient(from 0deg,rgba(201,165,92,.22) 0 5deg,transparent 5deg 15deg),#1F1A2B}
+.medal::before{content:'';position:absolute;inset:3px;clip-path:inherit;background:repeating-conic-gradient(from 0deg,rgba(201,165,92,.22) 0 5deg,transparent 5deg 15deg),#2C2440}
 .medal svg{position:relative;width:52px;height:52px}
 .plate h1{margin:0;font:700 38px/1.08 var(--deco);color:var(--tx);letter-spacing:.01em;text-wrap:balance}
 .plate .dv{color:var(--rule);margin:12px 0}.plate .dv::before,.plate .dv::after{border-color:var(--rule)}
@@ -334,19 +334,19 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 .fine{margin:26px 0 0;font:italic 13px 'Lora',Georgia,serif;color:var(--tx2)}
 /* first-run interest picker */
 .ripe{position:fixed;inset:0;z-index:90;overflow:auto;display:flex;justify-content:center;color:var(--cream);
- background:repeating-conic-gradient(from -90deg at 50% 100%,rgba(201,165,92,.12) 0 3deg,transparent 3deg 9deg),radial-gradient(ellipse at 50% 100%,#5B4777 0%,#3A2D4F 50%,#1F1A2B 100%)}
+ background:repeating-conic-gradient(from -90deg at 50% 100%,rgba(201,165,92,.12) 0 3deg,transparent 3deg 9deg),radial-gradient(ellipse at 50% 100%,#8C7BBF 0%,#5E4E8C 50%,#2C2440 100%)}
 .ripein{max-width:620px;padding:calc(40px + env(safe-area-inset-top)) 20px 40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
 .ripein .msym{margin:0 auto}.ripein h1{margin:0;font:700 34px/1.12 var(--deco);text-wrap:balance}
-.ripein .lead{color:#CBBFD8;font-style:italic;margin:0}
+.ripein .lead{color:#D9CFF0;font-style:italic;margin:0}
 .likes{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:8px 0 10px}
 .ripein .btn[disabled]{opacity:.45}
-.skip{min-height:44px;color:#CBBFD8;font:italic 15px 'Lora',Georgia,serif;text-decoration:underline}
+.skip{min-height:44px;color:#D9CFF0;font:italic 15px 'Lora',Georgia,serif;text-decoration:underline}
 @media (min-width:760px){.detail{bottom:0}.detail .dbody,.pg{padding-bottom:120px}.pg{margin:28px auto;max-width:680px;padding:80px 56px 120px}.plate h1{font-size:52px}.ripein h1{font-size:48px}}
 .hoods{display:flex;flex-wrap:wrap;gap:8px;max-height:260px;overflow:auto;padding:2px}
 .hoods .chip{height:40px;font-size:11px}
 .multi{font:italic 13px 'Lora',Georgia,serif;letter-spacing:0;text-transform:none;color:var(--tx2)}
 /* venue plate, trade-catalogue edition */
-.plate{--tx:#2B2219;--tx2:#5C4B3B;--rule:#2B2219;--acc:#3A2D4F;--line:rgba(43,34,25,.28);--fell:'IM Fell English',Georgia,serif;--fellsc:'IM Fell English SC','IM Fell English',Georgia,serif;font-family:var(--fell)}
+.plate{--tx:#2B2219;--tx2:#5C4B3B;--rule:#2B2219;--acc:#5E4E8C;--line:rgba(43,34,25,.28);--fell:'IM Fell English',Georgia,serif;--fellsc:'IM Fell English SC','IM Fell English',Georgia,serif;font-family:var(--fell)}
 .plate .pg{border:1.5px solid var(--rule);outline:1px solid var(--rule);outline-offset:4px}
 .plate .pg::before{border:1px solid rgba(43,34,25,.35)}
 .plate .cn{color:var(--rule);background:#F3E8CC}
@@ -377,10 +377,19 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 .plate .act{border-color:var(--rule);font:16px var(--fellsc);letter-spacing:.08em;text-transform:none}
 .plate .fine{font:italic 14px var(--fell)}
 .feat{font:italic 14px 'Lora',Georgia,serif;color:var(--acc)}
+svg.fig{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+svg.fig .h{stroke-width:1.1;opacity:.75}
+.tb:has(svg.fig)::before{background:#2C2440}
+.tb svg.fig{width:50px;height:50px;color:var(--gold)}.tb small{margin-top:-2px}
+.plate .medal{width:150px;height:150px;color:var(--tx)}.plate .medal svg.fig.big{width:104px;height:104px;stroke-width:2}
+.figs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 6px;margin:6px 0 16px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.figs figure{margin:0;flex:0 0 31%;min-width:96px;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--tx)}
+.figs svg.fig{width:84px;height:84px;stroke-width:2}
+.figs figcaption{font:italic 15px var(--fell,'Lora'),Georgia,serif;color:var(--tx2)}
 /* map: framed engraving */
 #mapwrap::after{content:'';position:absolute;inset:8px;border:1px solid rgba(201,165,92,.55);outline:1px solid rgba(201,165,92,.25);outline-offset:4px;pointer-events:none;z-index:999}
 .lbl,.lbl.big{font-family:var(--ttl)}
-.mcard{border-radius:0;border:1px solid var(--gold);box-shadow:inset 0 0 0 5px var(--ame),inset 0 0 0 6px rgba(201,165,92,.6),0 10px 30px rgba(31,26,43,.5);padding:18px}
+.mcard{border-radius:0;border:1px solid var(--gold);box-shadow:inset 0 0 0 5px var(--ame),inset 0 0 0 6px rgba(201,165,92,.6),0 10px 30px rgba(44,36,64,.5);padding:18px}
 .mi{border-radius:0;background:var(--goldbar);clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%)}
 .sugg{border-radius:0}
 .clu b{font-family:var(--deco)}
@@ -393,7 +402,7 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
  .mast h1{font-size:54px}.eyebrow{font-size:12px}.eyebrow::before,.eyebrow::after{flex-basis:90px}
  .issue{font-size:17px}
  h2.orn{font-size:14px;margin:40px 0 20px}
- .nav{border-radius:0;border:1px solid var(--gold);box-shadow:inset 0 0 0 4px var(--nav),inset 0 0 0 5px rgba(201,165,92,.5),0 12px 40px rgba(31,26,43,.45)}
+ .nav{border-radius:0;border:1px solid var(--gold);box-shadow:inset 0 0 0 4px var(--nav),inset 0 0 0 5px rgba(201,165,92,.5),0 12px 40px rgba(44,36,64,.45)}
  .dbody h1{font-size:44px}
  .you .mast{margin:0 -32px 24px}
 }
@@ -424,7 +433,7 @@ const T = {
   directions:'Directions',entry:'Entry',seeYou:'See you there.',notOnMap:'Not on our map yet. Open in Google Maps',tapPin:'Tap a pin to see the place.',all:'All',
   chips:{rest:'Food',bars:'Bars',cafes:'Coffee',music:'Music'},closed:'Closed',yourList:'Your list',style:'Style',status:'Status',drinks:'Drinks',goodFor:'Good for',insta:'Instagram',
   artist:'Artist',language:'Language',deal:'Deal',count:n=>`${n} establishments catalogued`,weekly:'The Weekly Catalogue of Asunción',chap:n=>`Chapter ${n}`,
-  readTat:'Read the full listing',moreInfo:'More information',by:o=>`By ${o}`,home:'Home',homeSub:'Everything you gave the Golden Banana',alertsHint:'Subscribe once. New events at this place appear in your calendar with a reminder 3 hours before.',gcal:'Google Calendar',acal:'Apple Calendar',allCal:'Every City Banana event',addPlace:'Add a place',addSub:'Know a spot we’re missing? Send it to Lana. She checks every suggestion before it goes live.',send:'Send to Lana',sent:'Thank you. Lana will check it before it goes live.',sendFail:'That didn’t send. Check your connection and try again.',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'Coming up at your Golden Bananas',startHere:'Busy this week: tap the Golden Banana',addToCal:'Add to calendar',addGcal:'Add to Google Calendar',featuredIn:'Featured in',promos:'Promos',more:n=>`+${n} more dates`,noEv:'No events announced for the next two weeks.',noPromo:'No promos on record.',lots:'listed',daily:'Every day',pickMany:'pick as many as you like',fix:'Suggest a correction',fixSub:'Something changed here? Fix any detail below and send it. Lana checks every change before it goes live.',ripeQ:'What makes your banana ripe?',ripeSub:'Pick a few. We’ll peel the city for you and fill your Home with places and events you’ll like.',ripeGo:'Peel my feed',ripeSkip:'Skip for now',ripeEdit:'Change what makes your banana ripe',ripeFor:'Ripe for you this week',ripeVenues:'Places you’ll like',
+  readTat:'Read the full listing',moreInfo:'More information',by:o=>`By ${o}`,home:'Home',homeSub:'Everything you gave the Golden Banana',alertsHint:'Subscribe once. New events at this place appear in your calendar with a reminder 3 hours before.',gcal:'Google Calendar',acal:'Apple Calendar',allCal:'Every City Banana event',addPlace:'Add a place',addSub:'Know a spot we’re missing? Send it to Lana. She checks every suggestion before it goes live.',send:'Send to Lana',sent:'Thank you. Lana will check it before it goes live.',sendFail:'That didn’t send. Check your connection and try again.',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'Coming up at your Golden Bananas',startHere:'Busy this week: tap the Golden Banana',addToCal:'Add to calendar',addGcal:'Add to Google Calendar',figs:{cocktail:'Cocktails',beer:'Beer',wine:'Wine',coffee:'Coffee',guitar:'Live music',gramophone:'Dancing',dining:'Kitchen'},featuredIn:'Featured in',promos:'Promos',more:n=>`+${n} more dates`,noEv:'No events announced for the next two weeks.',noPromo:'No promos on record.',lots:'listed',daily:'Every day',pickMany:'pick as many as you like',fix:'Suggest a correction',fixSub:'Something changed here? Fix any detail below and send it. Lana checks every change before it goes live.',ripeQ:'What makes your banana ripe?',ripeSub:'Pick a few. We’ll peel the city for you and fill your Home with places and events you’ll like.',ripeGo:'Peel my feed',ripeSkip:'Skip for now',ripeEdit:'Change what makes your banana ripe',ripeFor:'Ripe for you this week',ripeVenues:'Places you’ll like',
   runHead:'Catalogue of Asunción',plate:'Plate',onBill:'This week at the house',nothingBill:'Nothing announced for the next two weeks. Give it the Golden Banana and we’ll tell you when there is.',every:'Every',fine:'Particulars as reported by the house and the press. Subject to change without notice.',
   likes:{music:'Live music',dance:'Dancing & DJs',cocktails:'Cocktails',beer:'Craft beer',wine:'Wine',food:'Good food',coffee:'Coffee & laptop',deals:'Deals & happy hours',meet:'Meeting people',culture:'Art & culture',active:'Sport & outdoors',free:'Free stuff'},myBananas:'Your Golden Bananas',mySaved:'Saved',
   noNews:'Nothing new yet. We’ll list new events and deals here.',noBananas:'Tap the Golden Banana on any place or event. Everything you banana shows up here, in date order.',noSaved:'Tap Save on any place or event to keep it here.',
@@ -438,7 +447,7 @@ const T = {
   directions:'Cómo llegar',entry:'Entrada',seeYou:'Nos vemos ahí.',notOnMap:'Todavía no está en el mapa. Abrir en Google Maps',tapPin:'Tocá un pin para ver el lugar.',all:'Todos',
   chips:{rest:'Comida',bars:'Bares',cafes:'Café',music:'Música'},closed:'Cerrado',yourList:'Tu lista',style:'Estilo',status:'Estado',drinks:'Bebidas',goodFor:'Ideal para',insta:'Instagram',
   artist:'Artista',language:'Idioma',deal:'Promo',count:n=>`${n} establecimientos catalogados`,weekly:'El catálogo semanal de Asunción',chap:n=>`Capítulo ${n}`,
-  readTat:'Ver la publicación completa',moreInfo:'Más información',by:o=>`Por ${o}`,home:'Inicio',homeSub:'Todo lo que marcaste con la Banana de Oro',alertsHint:'Suscribite una vez. Los eventos nuevos de este lugar aparecen en tu calendario con aviso 3 horas antes.',gcal:'Google Calendar',acal:'Calendario de Apple',allCal:'Todos los eventos de City Banana',addPlace:'Sugerir un lugar',addSub:'¿Conocés un lugar que falta? Mandáselo a Lana. Ella revisa cada sugerencia antes de publicarla.',send:'Enviar a Lana',sent:'¡Gracias! Lana lo revisa antes de publicarlo.',sendFail:'No se pudo enviar. Revisá tu conexión e intentá de nuevo.',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Lo próximo en tus Bananas de Oro',startHere:'Con movimiento esta semana: tocá la Banana de Oro',addToCal:'Agregar al calendario',addGcal:'Agregar a Google Calendar',featuredIn:'Destacado en',promos:'Promos',more:n=>`+${n} fechas más`,noEv:'Sin eventos anunciados para las próximas dos semanas.',noPromo:'Sin promos registradas.',lots:'en lista',daily:'Todos los días',pickMany:'elegí todos los que quieras',fix:'Sugerir una corrección',fixSub:'¿Cambió algo? Corregí lo que haga falta y envialo. Lana revisa cada cambio antes de publicarlo.',ripeQ:'¿Qué hace madurar tu banana?',ripeSub:'Elegí algunas cosas. Pelamos la ciudad por vos y llenamos tu Inicio con lugares y eventos a tu gusto.',ripeGo:'Pelar mi feed',ripeSkip:'Ahora no',ripeEdit:'Cambiar lo que hace madurar tu banana',ripeFor:'Maduro para vos esta semana',ripeVenues:'Lugares que te van a gustar',
+  readTat:'Ver la publicación completa',moreInfo:'Más información',by:o=>`Por ${o}`,home:'Inicio',homeSub:'Todo lo que marcaste con la Banana de Oro',alertsHint:'Suscribite una vez. Los eventos nuevos de este lugar aparecen en tu calendario con aviso 3 horas antes.',gcal:'Google Calendar',acal:'Calendario de Apple',allCal:'Todos los eventos de City Banana',addPlace:'Sugerir un lugar',addSub:'¿Conocés un lugar que falta? Mandáselo a Lana. Ella revisa cada sugerencia antes de publicarla.',send:'Enviar a Lana',sent:'¡Gracias! Lana lo revisa antes de publicarlo.',sendFail:'No se pudo enviar. Revisá tu conexión e intentá de nuevo.',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Lo próximo en tus Bananas de Oro',startHere:'Con movimiento esta semana: tocá la Banana de Oro',addToCal:'Agregar al calendario',addGcal:'Agregar a Google Calendar',figs:{cocktail:'Cócteles',beer:'Cerveza',wine:'Vino',coffee:'Café',guitar:'Música en vivo',gramophone:'Baile',dining:'Cocina'},featuredIn:'Destacado en',promos:'Promos',more:n=>`+${n} fechas más`,noEv:'Sin eventos anunciados para las próximas dos semanas.',noPromo:'Sin promos registradas.',lots:'en lista',daily:'Todos los días',pickMany:'elegí todos los que quieras',fix:'Sugerir una corrección',fixSub:'¿Cambió algo? Corregí lo que haga falta y envialo. Lana revisa cada cambio antes de publicarlo.',ripeQ:'¿Qué hace madurar tu banana?',ripeSub:'Elegí algunas cosas. Pelamos la ciudad por vos y llenamos tu Inicio con lugares y eventos a tu gusto.',ripeGo:'Pelar mi feed',ripeSkip:'Ahora no',ripeEdit:'Cambiar lo que hace madurar tu banana',ripeFor:'Maduro para vos esta semana',ripeVenues:'Lugares que te van a gustar',
   runHead:'Catálogo de Asunción',plate:'Lámina',onBill:'Esta semana en la casa',nothingBill:'Nada anunciado para las próximas dos semanas. Dale la Banana de Oro y te avisamos cuando haya.',every:'Todos los',fine:'Datos según la casa y la prensa. Sujetos a cambios sin previo aviso.',
   likes:{music:'Música en vivo',dance:'Baile y DJs',cocktails:'Cócteles',beer:'Cerveza artesanal',wine:'Vino',food:'Buena comida',coffee:'Café y laptop',deals:'Promos y happy hours',meet:'Conocer gente',culture:'Arte y cultura',active:'Deporte y aire libre',free:'Gratis'},myBananas:'Tus Bananas de Oro',mySaved:'Guardados',
   noNews:'Todavía nada nuevo. Acá vas a ver eventos y promos nuevas.',noBananas:'Tocá la Banana de Oro en cualquier lugar o evento. Todo lo que marques aparece acá, por fecha.',noSaved:'Tocá Guardar en un lugar o evento para tenerlo acá.',
@@ -470,6 +479,23 @@ const P = {
  heart:'<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"/>',
  bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0"/>',
  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/>'};
+const FIG = {
+ cocktail: '<path d="M20 28H80Q74 52 50 54Q26 52 20 28Z"/><path d="M26 34H74"/><path d="M50 54V84"/><path d="M33 87Q50 80 67 87"/><circle cx="66" cy="22" r="4"/><path d="M66 22 76 10"/><path d="M31 38l5 7M39 38l6 9M48 38l6 10M57 38l5 8M65 38l4 5" class="h"/><path d="M47 60v18M53 60v18" class="h"/>',
+ beer: '<path d="M30 32H66V80Q48 86 30 80Z"/><path d="M66 42Q82 44 80 58Q78 70 66 70"/><path d="M27 33Q29 22 38 24Q42 15 50 19Q58 13 64 21Q73 21 69 33"/><path d="M30 44H66M30 72H66"/><path d="M36 48v20M42 48v20M48 48v20M54 48v20M60 48v20" class="h"/><circle cx="40" cy="28" r="1.5"/><circle cx="56" cy="26" r="1.5"/>',
+ wine: '<path d="M28 86V46Q28 38 34 34V14H42V34Q48 38 48 46V86Z"/><path d="M28 56H48M28 72H48"/><path d="M34 18H42"/><path d="M60 38Q60 62 71 62Q82 62 82 38Z"/><path d="M71 62V82"/><path d="M61 86Q71 81 81 86"/><path d="M61 47H81"/><path d="M31 62l4-4M31 68l9-9M36 70l9-9M42 70l4-4" class="h"/><path d="M64 52l5 6M70 50l6 7M76 50l4 4" class="h"/>',
+ coffee: '<path d="M28 48H70V58Q70 76 49 76Q28 76 28 58Z"/><path d="M70 52Q84 52 82 62Q80 70 68 68"/><path d="M16 80Q49 90 82 80Q49 74 16 80Z"/><path d="M40 42Q35 34 41 27Q47 20 43 12M53 42Q48 34 54 27Q60 20 56 12"/><path d="M33 55l6 11M41 54l8 15M51 54l8 15M61 54l5 9" class="h"/>',
+ guitar: '<path d="M50 46C38 46 34 54 38 60C29 64 27 78 35 84C43 91 57 91 65 84C73 78 71 64 62 60C66 54 62 46 50 46Z"/><circle cx="50" cy="68" r="6"/><path d="M43 79H57"/><path d="M47 46V14H53V46"/><path d="M45 14V5H55V14"/><path d="M49 14V79M51 14V79" class="h"/><path d="M47 20H53M47 26H53M47 32H53M47 38H53"/><path d="M45 8H41M45 12H41M55 8H59M55 12H59"/><path d="M38 70l4 6M60 70l-4 6M41 82l3 3M59 82l-3 3" class="h"/>',
+ gramophone: '<path d="M46 58Q58 36 72 16Q88 20 90 36Q72 46 50 62"/><path d="M72 16Q76 30 90 36" class="h"/><path d="M62 30Q70 34 78 28" class="h"/><path d="M16 66H58V86H16Z"/><path d="M18 64Q37 58 56 64"/><path d="M48 60 40 64"/><path d="M16 74H8V68"/><path d="M22 70v12M28 70v12M34 70v12M40 70v12M46 70v12M52 70v12" class="h"/>',
+ dining: '<path d="M22 68Q22 38 50 36Q78 38 78 68Z"/><circle cx="50" cy="31" r="3.5"/><path d="M12 72H88Q86 79 50 79Q14 79 12 72Z"/><path d="M30 62Q30 48 41 42" class="h"/><path d="M35 64Q35 54 43 48" class="h"/><path d="M8 50V60M5 50V56Q5 60 8 60Q11 60 11 56V50M92 48V62Q96 58 96 52Q96 48 92 48Z"/>'
+};
+const fig = (k, cls = '') => `<svg class="fig ${cls}" viewBox="0 0 100 100" aria-hidden="true">${FIG[k]}</svg>`;
+const mainFig = p => p._cat === 'cafes' ? 'coffee' : p._cat === 'rest' ? 'dining' : has(p.Cocktails) || !has(p['Beer type']) ? 'cocktail' : 'beer';
+const figsFor = p => { const a = attrs(p), q = norm(a.text), out = [];
+  if (a.music) out.push(/\bdj|danc|baile|club\b/.test(q) && !/live|vivo|band|banda|jazz|rock/.test(q) ? 'gramophone' : 'guitar');
+  if (/\bdj|danc|baile/.test(q) && !out.includes('gramophone')) out.push('gramophone');
+  if (a.cocktails) out.push('cocktail'); if (a.beer) out.push('beer'); if (a.wine) out.push('wine');
+  if (p._cat === 'cafes' || a.wifi) out.push('coffee'); if (a.food || p._cat === 'rest') out.push('dining');
+  return [...new Set(out)].slice(0, 4); };
 const ic = k => `<svg class="i" viewBox="0 0 24 24">${P[k]}</svg>`;
 
 /* ---------- data ---------- */
@@ -646,7 +672,7 @@ const filterBar = () => { const A = avail(), more = A.sel.length || A.closed;
  ${A.bool.map(k => `<button class="chip ${F[k] ? 'on' : ''}" onclick="F.${k}=!F.${k};draw()">${t(k)}</button>`).join('')}</div>`; };
 function eventCard(e, i) { const x = fmtT(e._time), p = placeFor(e);
   return `<button class="card" onclick="detail('${e._id}')"><div class="tb"><b>${x.t}</b><small>${x.ap}</small></div><div class="cb">
-  ${no(i)}<span class="ct">${esc(e._title)}</span><p>${esc(e._venue || p?.Name || '')}</p><div class="pills">${evPills(e)}${e._more ? pill(t('more')(e._more), 'new') : ''}</div></div></button>`; }
+  ${no(i)}<span class="ct">${esc(e._title)}</span><p>${esc(e._venue || p?.Name || '')}</p><div class="pills">${cap(evPills(e) + (e._more ? pill(t('more')(e._more), 'new') : ''))}</div></div></button>`; }
 function dealCard(p, i) { const d = p._deal;
   return `<button class="card" onclick="detail('${p._id}')"><div class="tb"><b class="${d.big.length > 3 ? 'sm' : ''}">${esc(d.big)}</b><small>${esc(d.small === 'DEAL' ? t('deal').toUpperCase() : d.small)}</small></div>
   <div class="cb">${no(i)}<span class="ct">${esc(p.Name)}</span><p>${esc(d.snip)}</p><div class="pills">${pill(p._hood)}${isFree(p['Price range']) ? pill(t('free'), 'free') : ''}</div></div></button>`; }
@@ -654,11 +680,12 @@ let EVAT; const upcomingAt = p => { if (!EVAT) { EVAT = new Map(); const d0 = ym
   for (const e of events) { const v = placeFor(e); if (v && evDay(e) >= d0) (EVAT.get(v) || EVAT.set(v, []).get(v)).push(e); } } return uniq(EVAT.get(p) || []); };
 const feat = p => { const n = upcomingAt(p).length, parts = [n ? `${t('events')} (${n})` : '', p._deal ? t('promos') : ''].filter(Boolean);
   return parts.length ? `<span class="feat">${t('featuredIn')}: ${parts.join(' · ')}</span>` : ''; };
+const cap = (html, n = 3) => (html.match(/<span class="pill[\s\S]*?<\/span>/g) || []).slice(0, n).join('');
 const placePills = (p, a = attrs(p)) => (isBanana(p._id) ? pill(t('banana'), 'gb') : '') + (a.free ? pill(t('free'), 'free') : '') + (a.music ? pill(t('music'), 'tix') : '')
   + (a.wifi ? pill('WiFi') : '') + (a.cocktails ? pill(t('cocktails')) : '') + (p._deal ? pill(t('deal')) : '') + (p._closed ? pill(t('closed'), 'out') : '');
 function placeCard(p, i) { const a = attrs(p);
-  return `<button class="card" onclick="detail('${p._id}')"><div class="tb">${ic(p._cat)}${a.price ? `<small>${esc(a.price)}</small>` : ''}</div><div class="cb">${no(i)}<span class="ct">${esc(p.Name)}</span>
-  <p>${esc([p['Type / style'], p._hood].filter(has).join(' · '))}</p>${feat(p)}<div class="pills">${placePills(p, a)}</div></div></button>`; }
+  return `<button class="card" onclick="detail('${p._id}')"><div class="tb">${fig(mainFig(p))}${a.price ? `<small>${esc(a.price)}</small>` : ''}</div><div class="cb">${no(i)}<span class="ct">${esc(p.Name)}</span>
+  <p>${esc([p['Type / style'], p._hood].filter(has).join(' · '))}</p>${feat(p)}<div class="pills">${cap(placePills(p, a))}</div></div></button>`; }
 
 /* ---------- screens ---------- */
 function feed() {
@@ -769,11 +796,12 @@ function plate(p) {
   <article class="pg"><i class="cn tl">◆</i><i class="cn tr">◆</i><i class="cn bl">◆</i><i class="cn br">◆</i>
    <div class="runhead">City Banana <span>✦</span> ${t('runHead')} <span>✦</span> ${roman(new Date().getFullYear())}</div>
    <div class="plno">${t('plate')} Nº ${String(no).padStart(3, '0')} · ${t('chap')(roman(chap))} · ${esc(t(p._cat))}</div>
-   <div class="medal">${ic(p._cat)}</div>
+   <div class="medal">${fig(mainFig(p), 'big')}</div>
    <h1>${esc(p.Name)}</h1>
    <div class="dv" aria-hidden="true">◆</div>
    <p class="sub">${esc([p['Type / style'], p['Neighborhood / address']].filter(has).join(' — '))}</p>
    <p class="drop">${esc(story)}</p>
+   ${figsFor(p).length ? `<div class="figs">${figsFor(p).map((k, i) => `<figure>${fig(k)}<figcaption>Fig. ${i + 1}. ${t('figs')[k]}</figcaption></figure>`).join('')}</div>` : ''}
    <div class="pills">${placePills(p, a)}</div>
    <div class="featured"><div class="fh">${t('featuredIn')}</div>
     <h3 class="cath"><span>${t('events')}</span><small>${bill.length ? bill.length + ' ' + t('lots') : ''}</small></h3>
@@ -868,8 +896,8 @@ function addPlace(fixId) {
 const PIN = 'M24 2C12.4 2 4 10.6 4 21.5 4 35 24 58 24 58s20-23 20-36.5C44 10.6 35.6 2 24 2z';
 const isLive = p => has(p['Live music']);
 const pinHtml = (p, on) => `<div class="pin ${on ? 'sel' : isLive(p) ? 'live' : ''}" style="width:${on ? 62 : 40}px;height:${on ? 78 : 50}px"><i></i><svg viewBox="0 0 48 60">
-  <path d="${PIN}" fill="${isLive(p) ? '#B49BC8' : '#C9A55C'}" stroke="${on ? '#F5EEDF' : '#1F1A2B'}" stroke-width="2"/>
-  <g transform="translate(12 10)" fill="none" stroke="#1F1A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${P[p._cat]}</g></svg></div>`;
+  <path d="${PIN}" fill="${isLive(p) ? '#CDBDF0' : '#C9A55C'}" stroke="${on ? '#F5EEDF' : '#2C2440'}" stroke-width="2"/>
+  <g transform="translate(12 10)" fill="none" stroke="#2C2440" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${P[p._cat]}</g></svg></div>`;
 const mapPlaces = () => places.filter(p => (mapCat === 'all' || (mapCat === 'music' ? isLive(p) : p._cat === mapCat)) && match(p));
 function drawMap(keepFocus) {
   let w = $('#mapwrap');
@@ -899,9 +927,9 @@ function basemap() {
   const dec = a => { const r = []; for (let i = 0, y = 0, x = 0; i < a.length; i += 2) { y += a[i]; x += a[i + 1]; r.push([B.o[0] + y / B.s, B.o[1] + x / B.s]); } return r; };
   const cv = L.canvas({ padding: .5 }), opt = { renderer: cv, interactive: false };
   map.setMaxBounds([[B.o[0] - .02, B.o[1] - .02], [B.o[0] + .16, B.o[1] + .21]]);
-  L.polygon(B.park.map(dec), { ...opt, stroke: false, fillColor: '#33284A', fillOpacity: 1 }).addTo(map);
-  L.polygon(B.water.map(dec), { ...opt, stroke: false, fillColor: '#1A1526', fillOpacity: 1 }).addTo(map);
-  const roads = [['minor', '#3E3354', 1.4], ['mid', '#52446C', 2.6], ['major', 'rgba(201,165,92,.55)', 3.6]].map(([k, c, w]) => [L.polyline(B[k].map(dec), { ...opt, color: c, weight: w, lineCap: 'round', lineJoin: 'round' }).addTo(map), w]);
+  L.polygon(B.park.map(dec), { ...opt, stroke: false, fillColor: '#463B66', fillOpacity: 1 }).addTo(map);
+  L.polygon(B.water.map(dec), { ...opt, stroke: false, fillColor: '#2A2340', fillOpacity: 1 }).addTo(map);
+  const roads = [['minor', '#54487A', 1.4], ['mid', '#6C5E96', 2.6], ['major', 'rgba(201,165,92,.55)', 3.6]].map(([k, c, w]) => [L.polyline(B[k].map(dec), { ...opt, color: c, weight: w, lineCap: 'round', lineJoin: 'round' }).addTo(map), w]);
   const big = L.layerGroup(), small = L.layerGroup();
   for (const [s, name, y, x] of B.label) (s ? big : small).addLayer(L.marker([B.o[0] + y / B.s, B.o[1] + x / B.s],
     { interactive: false, keyboard: false, icon: L.divIcon({ className: 'lbl' + (s ? ' big' : ''), html: '<span>' + esc(name) + '</span>', iconSize: null }) }));
