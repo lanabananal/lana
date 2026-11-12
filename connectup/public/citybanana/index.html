@@ -296,6 +296,52 @@ h2.orn span::before{content:'◆ ';color:var(--rule)}h2.orn span::after{content:
 .calrow{display:flex;flex-direction:column;gap:8px}.calrow small{font:600 11px var(--ttl);letter-spacing:.18em;text-transform:uppercase;color:var(--tx2)}
 .nav button .badge{position:absolute;top:4px;left:calc(50% + 6px);min-width:18px;height:18px;padding:0 4px;background:var(--gold);color:var(--night);font:700 11px/18px var(--ttl);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
 .nav button{min-width:0}
+/* nav stays reachable over pages */
+.nav{z-index:45}.detail{bottom:calc(80px + env(safe-area-inset-bottom))}
+.detail .back{position:fixed;left:max(14px,calc(50% - var(--app)/2 + 14px));top:calc(14px + env(safe-area-inset-top));z-index:46;background-color:rgba(30,8,54,.85)}
+/* the plate: aged catalogue paper, ink and old gold, whatever the theme */
+.plate{--bg:#FBF1D6;--card:#FBF1D6;--tx:#1E0836;--tx2:#4B3A63;--rule:#B07D12;--acc:#3D0F6B;--tagbg:#EFDDAE;--line:rgba(176,125,18,.35);color-scheme:light;
+ background-color:#F7EACA;background-image:radial-gradient(ellipse at 50% 35%,rgba(255,250,235,.9) 0%,rgba(255,250,235,0) 60%),radial-gradient(ellipse at 50% 50%,transparent 60%,rgba(176,125,18,.22) 100%),
+ repeating-linear-gradient(0deg,rgba(30,8,54,.022) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(176,125,18,.025) 0 1px,transparent 1px 5px)}
+.pg{position:relative;margin:16px;padding:64px 22px 40px;border:1px solid var(--rule);outline:1px solid var(--rule);outline-offset:5px;text-align:center;color:var(--tx)}
+.pg::before{content:'';position:absolute;inset:10px;border:1px dashed rgba(176,125,18,.35);pointer-events:none}
+.cn{position:absolute;font-style:normal;color:var(--rule);font-size:15px;line-height:1;background:#F7EACA;padding:2px}
+.cn.tl{top:-10px;left:-10px}.cn.tr{top:-10px;right:-10px}.cn.bl{bottom:-10px;left:-10px}.cn.br{bottom:-10px;right:-10px}
+.runhead{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;font:600 10.5px var(--ttl);letter-spacing:.28em;text-transform:uppercase;color:var(--rule);border-bottom:3px double var(--rule);padding-bottom:10px}
+.plno{margin-top:12px;font:600 11px var(--ttl);letter-spacing:.24em;text-transform:uppercase;color:var(--tx2)}
+.medal{width:112px;height:112px;margin:22px auto 14px;display:grid;place-items:center;color:var(--gold);position:relative;background:var(--goldbar);clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%)}
+.medal::before{content:'';position:absolute;inset:3px;clip-path:inherit;background:repeating-conic-gradient(from 0deg,rgba(228,168,38,.22) 0 5deg,transparent 5deg 15deg),#1E0836}
+.medal svg{position:relative;width:52px;height:52px}
+.plate h1{margin:0;font:700 38px/1.08 var(--deco);color:var(--tx);letter-spacing:.01em;text-wrap:balance}
+.plate .dv{color:var(--rule);margin:12px 0}.plate .dv::before,.plate .dv::after{border-color:var(--rule)}
+.plate .sub{margin:0 0 14px;font:italic 17px 'Lora',Georgia,serif;color:var(--acc)}
+.drop{text-align:left;font-size:17px;line-height:1.65;margin:0 0 14px}
+.drop::first-letter{float:left;font:700 58px/.82 var(--deco);color:var(--rule);margin:6px 10px 0 0}
+.plate .pills{justify-content:center}
+.plate h2.orn{color:var(--acc)}
+.bills{display:flex;flex-direction:column;text-align:left}
+.bill{display:flex;align-items:baseline;gap:10px;padding:10px 2px;border-bottom:1px solid var(--line);width:100%;text-align:left;color:var(--tx)}
+.bill:disabled{cursor:default;opacity:1}
+.bd{flex:0 0 74px;font:600 11px var(--ttl);letter-spacing:.14em;text-transform:uppercase;color:var(--tx2)}.bd b{font-size:20px;color:var(--rule);letter-spacing:0}
+.bt{font:600 15px var(--ttl);letter-spacing:.02em;min-width:0}
+.bill .dots{flex:1;min-width:16px;border-bottom:1px dotted var(--rule);transform:translateY(-4px)}
+.bh{flex:none;font:italic 15px 'Lora',Georgia,serif;color:var(--acc)}
+.plate .more{border-top:0;margin-top:0}
+.plate .r .v{color:var(--tx)}.plate .r a{color:var(--acc)}
+.plate .acts{justify-content:center;margin-top:22px}.plate .act{--rule:var(--ogold);color:var(--tx);border-color:var(--rule);background-color:rgba(176,125,18,.08)}
+.plate .act.on{background:var(--goldbar);color:var(--night)}
+.plcta{display:flex;justify-content:center;margin-top:12px}.plcta .btn{min-width:240px}
+.fine{margin:26px 0 0;font:italic 13px 'Lora',Georgia,serif;color:var(--tx2)}
+/* first-run interest picker */
+.ripe{position:fixed;inset:0;z-index:90;overflow:auto;display:flex;justify-content:center;color:var(--cream);
+ background:repeating-conic-gradient(from -90deg at 50% 100%,rgba(228,168,38,.12) 0 3deg,transparent 3deg 9deg),radial-gradient(ellipse at 50% 100%,#6A1FA8 0%,#3D0F6B 50%,#1E0836 100%)}
+.ripein{max-width:620px;padding:calc(40px + env(safe-area-inset-top)) 20px 40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.ripein .msym{margin:0 auto}.ripein h1{margin:0;font:700 34px/1.12 var(--deco);text-wrap:balance}
+.ripein .lead{color:#CDB8E6;font-style:italic;margin:0}
+.likes{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:8px 0 10px}
+.ripein .btn[disabled]{opacity:.45}
+.skip{min-height:44px;color:#CDB8E6;font:italic 15px 'Lora',Georgia,serif;text-decoration:underline}
+@media (min-width:760px){.detail{bottom:0}.detail .dbody,.pg{padding-bottom:120px}.pg{margin:28px auto;max-width:680px;padding:80px 56px 120px}.plate h1{font-size:52px}.ripein h1{font-size:48px}}
 /* map: framed engraving */
 #mapwrap::after{content:'';position:absolute;inset:8px;border:1px solid rgba(228,168,38,.55);outline:1px solid rgba(228,168,38,.25);outline-offset:4px;pointer-events:none;z-index:999}
 .lbl,.lbl.big{font-family:var(--ttl)}
@@ -343,7 +389,9 @@ const T = {
   directions:'Directions',entry:'Entry',seeYou:'See you there.',notOnMap:'Not on our map yet. Open in Google Maps',tapPin:'Tap a pin to see the place.',all:'All',
   chips:{rest:'Food',bars:'Bars',cafes:'Coffee',music:'Music'},closed:'Closed',yourList:'Your list',style:'Style',status:'Status',drinks:'Drinks',goodFor:'Good for',insta:'Instagram',
   artist:'Artist',language:'Language',deal:'Deal',count:n=>`${n} establishments catalogued`,weekly:'The Weekly Catalogue of Asunción',chap:n=>`Chapter ${n}`,
-  readTat:'Read the full listing',moreInfo:'More information',by:o=>`By ${o}`,home:'Home',homeSub:'Everything you gave the Golden Banana',alertsHint:'Subscribe once. New events at this place appear in your calendar with a reminder 3 hours before.',gcal:'Google Calendar',acal:'Apple Calendar',allCal:'Every City Banana event',addPlace:'Add a place',addSub:'Know a spot we’re missing? Send it to Lana. She checks every suggestion before it goes live.',send:'Send to Lana',sent:'Thank you. Lana will check it before it goes live.',sendFail:'That didn’t send. Check your connection and try again.',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'Coming up at your Golden Bananas',startHere:'Busy this week: tap the Golden Banana',addToCal:'Add to calendar',myBananas:'Your Golden Bananas',mySaved:'Saved',
+  readTat:'Read the full listing',moreInfo:'More information',by:o=>`By ${o}`,home:'Home',homeSub:'Everything you gave the Golden Banana',alertsHint:'Subscribe once. New events at this place appear in your calendar with a reminder 3 hours before.',gcal:'Google Calendar',acal:'Apple Calendar',allCal:'Every City Banana event',addPlace:'Add a place',addSub:'Know a spot we’re missing? Send it to Lana. She checks every suggestion before it goes live.',send:'Send to Lana',sent:'Thank you. Lana will check it before it goes live.',sendFail:'That didn’t send. Check your connection and try again.',save:'Save',saved:'Saved',banana:'Golden Banana',bananaOn:'Golden Banana on',forYou:'For you',newAt:'Coming up at your Golden Bananas',startHere:'Busy this week: tap the Golden Banana',addToCal:'Add to calendar',ripeQ:'What makes your banana ripe?',ripeSub:'Pick a few. We’ll peel the city for you and fill your Home with places and events you’ll like.',ripeGo:'Peel my feed',ripeSkip:'Skip for now',ripeEdit:'Change what makes your banana ripe',ripeFor:'Ripe for you this week',ripeVenues:'Places you’ll like',
+  runHead:'Catalogue of Asunción',plate:'Plate',onBill:'This week at the house',nothingBill:'Nothing announced for the next two weeks. Give it the Golden Banana and we’ll tell you when there is.',every:'Every',fine:'Particulars as reported by the house and the press. Subject to change without notice.',
+  likes:{music:'Live music',dance:'Dancing & DJs',cocktails:'Cocktails',beer:'Craft beer',wine:'Wine',food:'Good food',coffee:'Coffee & laptop',deals:'Deals & happy hours',meet:'Meeting people',culture:'Art & culture',active:'Sport & outdoors',free:'Free stuff'},myBananas:'Your Golden Bananas',mySaved:'Saved',
   noNews:'Nothing new yet. We’ll list new events and deals here.',noBananas:'Tap the Golden Banana on any place or event. Everything you banana shows up here, in date order.',noSaved:'Tap Save on any place or event to keep it here.',
   signedIn:n=>`Signed in as ${n}`,acct:'Your saves follow your account on every device.',local:'Saved on this device',localHint:'Open City Banana from its link to keep your list on every device.',
   bell:n=>n?`For you, ${n} new`:'For you',
@@ -355,7 +403,9 @@ const T = {
   directions:'Cómo llegar',entry:'Entrada',seeYou:'Nos vemos ahí.',notOnMap:'Todavía no está en el mapa. Abrir en Google Maps',tapPin:'Tocá un pin para ver el lugar.',all:'Todos',
   chips:{rest:'Comida',bars:'Bares',cafes:'Café',music:'Música'},closed:'Cerrado',yourList:'Tu lista',style:'Estilo',status:'Estado',drinks:'Bebidas',goodFor:'Ideal para',insta:'Instagram',
   artist:'Artista',language:'Idioma',deal:'Promo',count:n=>`${n} establecimientos catalogados`,weekly:'El catálogo semanal de Asunción',chap:n=>`Capítulo ${n}`,
-  readTat:'Ver la publicación completa',moreInfo:'Más información',by:o=>`Por ${o}`,home:'Inicio',homeSub:'Todo lo que marcaste con la Banana de Oro',alertsHint:'Suscribite una vez. Los eventos nuevos de este lugar aparecen en tu calendario con aviso 3 horas antes.',gcal:'Google Calendar',acal:'Calendario de Apple',allCal:'Todos los eventos de City Banana',addPlace:'Sugerir un lugar',addSub:'¿Conocés un lugar que falta? Mandáselo a Lana. Ella revisa cada sugerencia antes de publicarla.',send:'Enviar a Lana',sent:'¡Gracias! Lana lo revisa antes de publicarlo.',sendFail:'No se pudo enviar. Revisá tu conexión e intentá de nuevo.',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Lo próximo en tus Bananas de Oro',startHere:'Con movimiento esta semana: tocá la Banana de Oro',addToCal:'Agregar al calendario',myBananas:'Tus Bananas de Oro',mySaved:'Guardados',
+  readTat:'Ver la publicación completa',moreInfo:'Más información',by:o=>`Por ${o}`,home:'Inicio',homeSub:'Todo lo que marcaste con la Banana de Oro',alertsHint:'Suscribite una vez. Los eventos nuevos de este lugar aparecen en tu calendario con aviso 3 horas antes.',gcal:'Google Calendar',acal:'Calendario de Apple',allCal:'Todos los eventos de City Banana',addPlace:'Sugerir un lugar',addSub:'¿Conocés un lugar que falta? Mandáselo a Lana. Ella revisa cada sugerencia antes de publicarla.',send:'Enviar a Lana',sent:'¡Gracias! Lana lo revisa antes de publicarlo.',sendFail:'No se pudo enviar. Revisá tu conexión e intentá de nuevo.',save:'Guardar',saved:'Guardado',banana:'Banana de Oro',bananaOn:'Banana de Oro activa',forYou:'Para vos',newAt:'Lo próximo en tus Bananas de Oro',startHere:'Con movimiento esta semana: tocá la Banana de Oro',addToCal:'Agregar al calendario',ripeQ:'¿Qué hace madurar tu banana?',ripeSub:'Elegí algunas cosas. Pelamos la ciudad por vos y llenamos tu Inicio con lugares y eventos a tu gusto.',ripeGo:'Pelar mi feed',ripeSkip:'Ahora no',ripeEdit:'Cambiar lo que hace madurar tu banana',ripeFor:'Maduro para vos esta semana',ripeVenues:'Lugares que te van a gustar',
+  runHead:'Catálogo de Asunción',plate:'Lámina',onBill:'Esta semana en la casa',nothingBill:'Nada anunciado para las próximas dos semanas. Dale la Banana de Oro y te avisamos cuando haya.',every:'Todos los',fine:'Datos según la casa y la prensa. Sujetos a cambios sin previo aviso.',
+  likes:{music:'Música en vivo',dance:'Baile y DJs',cocktails:'Cócteles',beer:'Cerveza artesanal',wine:'Vino',food:'Buena comida',coffee:'Café y laptop',deals:'Promos y happy hours',meet:'Conocer gente',culture:'Arte y cultura',active:'Deporte y aire libre',free:'Gratis'},myBananas:'Tus Bananas de Oro',mySaved:'Guardados',
   noNews:'Todavía nada nuevo. Acá vas a ver eventos y promos nuevas.',noBananas:'Tocá la Banana de Oro en cualquier lugar o evento. Todo lo que marques aparece acá, por fecha.',noSaved:'Tocá Guardar en un lugar o evento para tenerlo acá.',
   signedIn:n=>`Sesión iniciada como ${n}`,acct:'Lo que guardás te sigue en todos tus dispositivos.',local:'Guardado en este dispositivo',localHint:'Abrí City Banana desde su enlace para tener tu lista en todos tus dispositivos.',
   bell:n=>n?`Para vos, ${n} nuevos`:'Para vos',
@@ -473,6 +523,35 @@ function alerts() {   // upcoming events + current deals at Golden Banana places
   const key = a => a.deal ? '9' : evDay(a.x) + String((hm(a.x._time) || { h: 99 }).h).padStart(2, '0');
   return out.sort((a, b) => key(a) < key(b) ? -1 : 1);
 }
+const LIKES = ['music', 'dance', 'cocktails', 'beer', 'wine', 'food', 'coffee', 'deals', 'meet', 'culture', 'active', 'free'];
+const likeMatch = (x, k) => { const a = attrs(x), q = norm(a.text), ev = x._title !== undefined;
+  switch (k) {
+    case 'music': return !!a.music || /live|concert|jazz|rock|band|musica|pagode|blues|orquesta/.test(q);
+    case 'dance': return /\bdj|danc|baile|salsa|bachata|disco|club\b|pagode/.test(q);
+    case 'cocktails': return !!a.cocktails || /cocktail|coctel|trago/.test(q);
+    case 'beer': return !!a.beer || /cerve|beer|brew|chopp/.test(q);
+    case 'wine': return !!a.wine || /\bwine|\bvino/.test(q);
+    case 'food': return ev ? /food|comida|festival|feria|matsuri|gastro/.test(q) : x._cat === 'rest' || !!a.food;
+    case 'coffee': return ev ? false : x._cat === 'cafes' || !!a.wifi;
+    case 'deals': return ev ? /2x1|happy|promo/.test(q) : !!x._deal;
+    case 'meet': return /network|meetup|social|nomad|exchange|intercambio|trivia|expat/.test(q);
+    case 'culture': return /\bart|arte|exhibit|muse|theat|teatro|cine|cultur|orquesta|galer/.test(q);
+    case 'active': return /\brun|futbol|football|walk|sport|yoga|rugby|bike|ciclis/.test(q);
+    case 'free': return !!a.free;
+  } };
+const ripeScore = x => (ME.likes || []).filter(k => likeMatch(x, k)).length;
+function ripe() {   // first-run interest picker; also reachable from Home
+  const v = document.createElement('div'), on = new Set(ME.likes || []);
+  v.className = 'ripe dk';
+  const paint = () => v.innerHTML = `<div class="ripein"><img class="msym" src="symbol.png" alt="City Banana"><div class="eyebrow">City Banana</div>
+    <h1>${t('ripeQ')}</h1><p class="lead">${t('ripeSub')}</p>
+    <div class="likes">${LIKES.map(k => `<button class="chip ${on.has(k) ? 'on' : ''}" aria-pressed="${on.has(k)}" data-k="${k}">${t('likes')[k]}</button>`).join('')}</div>
+    <button class="btn gold" data-go="1" ${on.size ? '' : 'disabled'}>${t('ripeGo')}</button><button class="skip" data-skip="1">${t('ripeSkip')}</button></div>`;
+  v.onclick = e => { const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.k) { on.has(b.dataset.k) ? on.delete(b.dataset.k) : on.add(b.dataset.k); return paint(); }
+    ME.likes = [...on]; ME.onboarded = true; persist(); v.remove(); go('home'); };
+  paint(); document.body.appendChild(v);
+}
 const unseen = () => alerts().filter(a => !ME.seen.includes(a.id)).length;
 async function account() {
   if (!window.claude?.use) return;
@@ -566,7 +645,9 @@ function draw(keepFocus) {
   $('#app').innerHTML = tab === 'home' ? home() : tab === 'feed' ? feed() : list(tab);
   if (keepFocus) { const q = $('#q'); q.focus(); q.setSelectionRange(pos, pos); }
 }
-const go = k => { tab = k; sel = null; draw(); scrollTo(0, 0); };
+const go = k => { document.querySelectorAll('.detail').forEach(d => d.remove()); tab = k; sel = null; draw(); scrollTo(0, 0); };
+addEventListener('popstate', () => { const d = [...document.querySelectorAll('.detail')].pop(); d && d.remove(); });
+const openPage = el => { document.body.appendChild(el); history.pushState({ page: 1 }, ''); };
 const setLang = () => { lang = lang === 'en' ? 'es' : 'en'; store('lang', lang); draw(); };
 
 function sheet() {
@@ -598,6 +679,7 @@ const gcalEvent = e => { const d = evDay(e), x = hm(e._time) || { h: 12, m: 0 };
 const addCal = e => `<div class="cal"><a class="act" href="${gcalEvent(e)}" target="_blank" rel="noopener">${ic('feed')}${t('gcal')}</a><a class="act" href="https://${CAL}e/${e._id}.ics">${ic('feed')}${t('acal')}</a></div>`;
 function detail(id) {
   const x = BY.get(id), ev = x._title !== undefined, p = ev ? placeFor(x) : x, el = document.createElement('div');
+  if (!ev) return plate(x);
   const ig = (p && (has(p.Instagram) ? p.Instagram : (String(p.Evidence || '').match(/IG (@[\w.]+)/) || [])[1])) || '';
   const tm = fmtT(x._time), dd = ev && evDay(x) ? new Date(evDay(x) + 'T12:00').toLocaleDateString(loc(), { weekday: 'short', day: 'numeric', month: 'short' }) : '';
   const entry = ev ? (x._free ? t('free') : x._entry || '—') : (tier(x['Price range']) || (isFree(x['Price range']) ? t('free') : '—'));
@@ -605,7 +687,7 @@ function detail(id) {
     : `<a class="btn gold" href="${gmaps(p || { Name: x._venue })}" target="_blank" rel="noopener">${t('directions')}</a>`;
   const lead = ev ? (x._desc || t('seeYou')) : x._deal ? `${x._deal.big} ${x._deal.small === 'DEAL' ? t('deal') : x._deal.small}: ${x._deal.snip}` : [x['Type / style'], x._hood].filter(has).join(' · ');
   el.className = 'detail dk';
-  el.innerHTML = `<div class="hero"><img src="symbol.png" alt=""><button class="back" onclick="this.closest('.detail').remove()" aria-label="Back">${ic('back')}</button></div>
+  el.innerHTML = `<div class="hero"><img src="symbol.png" alt=""><button class="back" onclick="history.back()" aria-label="Back">${ic('back')}</button></div>
    <div class="dbody"><div class="pills">${ev ? evPills(x) : placePills(x)}</div><h1>${esc(ev ? x._title : x.Name)}</h1><div class="dv" aria-hidden="true">◆</div><p class="lead">${esc(lead)}</p><div class="acts">${acts(x._id, p?._id)}</div>${ev ? `<div class="calrow"><small>${t('addToCal')}</small>${addCal(x)}</div>` : ''}
    ${ev ? fact('feed', `${dd} · ${tm.t} ${tm.ap}`) + fact('map', [x._venue, x._hood].filter(v => has(v) && !/^tbc/i.test(v)).join(', ') || x._venue)
         : fact('map', x['Neighborhood / address']) + fact('clock', /closed|cerrad/i.test(x['Activity status']) ? x['Activity status'] : '')}
@@ -619,9 +701,50 @@ function detail(id) {
    ${ig ? row('camera', t('insta'), ig, `<a href="https://instagram.com/${esc(ig.replace('@', ''))}" target="_blank" rel="noopener">${esc(ig)}</a>`) : ''}</div>
    </div>
    <div class="foot"><div><small>${t('entry')}</small><b>${esc(entry)}</b></div>${cta}</div>`;
-  document.body.appendChild(el);
+  openPage(el);
 }
-addEventListener('keydown', e => { if (e.key === 'Escape') [...document.querySelectorAll('.detail,.veil')].pop()?.remove(); });
+addEventListener('keydown', e => { if (e.key !== 'Escape') return; const v = [...document.querySelectorAll('.veil')].pop(); v ? v.remove() : document.querySelector('.detail') && history.back(); });
+
+/* ---------- venue page: a plate from a 1920s catalogue ---------- */
+const roman = n => [['M', 1000], ['CM', 900], ['D', 500], ['CD', 400], ['C', 100], ['XC', 90], ['L', 50], ['XL', 40], ['X', 10], ['IX', 9], ['V', 5], ['IV', 4], ['I', 1]].reduce((o, [r, v]) => { while (n >= v) { o += r; n -= v; } return o; }, '');
+function plate(p) {
+  const el = document.createElement('div'), a = attrs(p), today = ymd(new Date()), until = new Date(); until.setDate(until.getDate() + 14);
+  const chap = ['rest', 'bars', 'cafes'].indexOf(p._cat) + 2, no = places.filter(q => q._cat === p._cat).indexOf(p) + 1;
+  const ig = has(p.Instagram) ? p.Instagram : (String(p.Evidence || '').match(/IG (@[\w.]+)/) || [])[1] || '';
+  const bill = events.filter(e => placeFor(e) === p && evDay(e) >= today && evDay(e) <= ymd(until)).sort((x, y) => (evDay(x) + x._time < evDay(y) + y._time ? -1 : 1));
+  const dname = d => new Date(2024, 0, 7 + d).toLocaleDateString(loc(), { weekday: 'long' });
+  const dealDays = p._deal ? (p._deal.days.size === 7 ? '' : [...p._deal.days].sort().map(dname).join(', ')) : '';
+  const story = [[p['Type / style'], p._hood].filter(has).join(' · '), has(p['Live music']) ? p['Live music'] : '', has(p.Food) ? p.Food : ''].filter(Boolean).join('. ').replace(/\.\./g, '.') + '.';
+  const line = (when, what, time, id) => `<button class="bill" onclick="detail('${id}')"><span class="bd">${when}</span><span class="bt">${esc(what)}</span><i class="dots"></i><span class="bh">${time}</span></button>`;
+  el.className = 'detail plate';
+  el.innerHTML = `<button class="back" onclick="history.back()" aria-label="Back">${ic('back')}</button>
+  <article class="pg"><i class="cn tl">◆</i><i class="cn tr">◆</i><i class="cn bl">◆</i><i class="cn br">◆</i>
+   <div class="runhead">City Banana <span>✦</span> ${t('runHead')} <span>✦</span> ${roman(new Date().getFullYear())}</div>
+   <div class="plno">${t('plate')} Nº ${String(no).padStart(3, '0')} · ${t('chap')(roman(chap))} · ${esc(t(p._cat))}</div>
+   <div class="medal">${ic(p._cat)}</div>
+   <h1>${esc(p.Name)}</h1>
+   <div class="dv" aria-hidden="true">◆</div>
+   <p class="sub">${esc([p['Type / style'], p['Neighborhood / address']].filter(has).join(' — '))}</p>
+   <p class="drop">${esc(story)}</p>
+   <div class="pills">${placePills(p, a)}</div>
+   <h2 class="orn"><span>${t('onBill')}</span></h2>
+   <div class="bills">${p._deal ? line(`<b>${esc(p._deal.big)}</b>`, `${dealDays ? t('every') + ' ' + dealDays + ': ' : ''}${p._deal.snip}`, esc(p._deal.small === 'DEAL' ? t('deal') : p._deal.small), p._id).replace('onclick="detail(\'' + p._id + '\')"', 'disabled') : ''}
+     ${bill.map(e => { const d = new Date(evDay(e) + 'T12:00'), tm = fmtT(e._time);
+       return line(`${d.toLocaleDateString(loc(), { weekday: 'short' }).replace('.', '')} <b>${d.getDate()}</b>`, e._title, `${tm.t} ${tm.ap}`, e._id); }).join('')}
+     ${!bill.length && !p._deal ? `<p class="hint center">${t('nothingBill')}</p>` : ''}</div>
+   <h2 class="orn"><span>${t('style')}</span></h2>
+   <div class="more">${row('', t('price'), a.price || (a.free ? t('free') : ''))}${row('', t('hood'), p._hood)}${row('', t('music'), [p['Live music'], p['Music genre / style']].filter(has).join(' · '))}
+     ${row('', t('drinks'), [['Cocktails', p.Cocktails], ['Wine', p.Wine], ['Beer', p['Beer type']]].filter(v => has(v[1])).map(v => v[0] + ': ' + v[1]).join(' · '))}
+     ${row('', t('food'), [p.Food, p['Food quality mentions']].filter(has).join(' · '))}${row('', 'WiFi', p['WiFi / co-working'])}
+     ${row('', t('goodFor'), [p['Good for (date / friends / family)'], p['Seated or standing'], p['Vibe (dance / talk / flirt)']].filter(has).join(' · '))}
+     ${/closed|cerrad/i.test(p['Activity status']) ? row('', t('status'), p['Activity status']) : ''}
+     ${ig ? row('', t('insta'), ig, `<a href="https://instagram.com/${esc(ig.replace('@', ''))}" target="_blank" rel="noopener">${esc(ig)}</a>`) : ''}</div>
+   <div class="acts">${acts(p._id)}</div>
+   <div class="plcta"><a class="btn gold" href="${gmaps(p)}" target="_blank" rel="noopener">${t('directions')}</a></div>
+   <p class="fine">${t('fine')}</p>
+  </article>`;
+  openPage(el);
+}
 
 /* ---------- Home: only your Golden Bananas ---------- */
 function home() {
@@ -632,12 +755,20 @@ function home() {
   const busy = places.filter(p => !p._closed && !isBanana(p._id)).map(p => [p, events.filter(e => placeFor(e) === p && evDay(e) >= today && evDay(e) <= soon).length])
     .filter(([, n]) => n).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([p]) => p);
   const pick = p => `<div class="stack">${placeCard(p)}<div class="acts">${acts(p._id)}</div></div>`;
+  const L = ME.likes || [], soon7 = ymd(week[6]);
+  const ripeEv = L.length ? events.filter(e => evDay(e) >= today && evDay(e) <= soon7 && !isBanana(e._id)).map(e => [e, ripeScore(e)]).filter(([, n]) => n)
+    .sort((a, b) => b[1] - a[1] || (evDay(a[0]) < evDay(b[0]) ? -1 : 1)).slice(0, 8).map(([e]) => e) : [];
+  const ripePl = L.length ? places.filter(p => !p._closed && !isBanana(p._id)).map(p => [p, ripeScore(p) + (events.some(e => placeFor(e) === p && evDay(e) >= today && evDay(e) <= soon7) ? .5 : 0)])
+    .filter(([, n]) => n >= 1).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([p]) => p) : [];
   const html = head(t('home'), t('weekly'), t('homeSub'), true)
-   + sec('I', t('newAt')) + (al.length ? `<div class="grid">${al.map(a => tagNew(a.deal ? dealCard(a.x) : eventCard(a.x), isNew(a))).join('')}</div>` : `<p class="hint center">${t(ME.bananas.length ? 'noNews' : 'noBananas')}</p>`)
-   + (busy.length ? sec('', t('startHere')) + `<div class="grid">${busy.map(pick).join('')}</div>` : '')
-   + (bananas.length ? sec('II', t('myBananas')) + `<p class="hint center">${t('alertsHint')}</p><div class="grid">${bananas.map(p => `<div class="stack">${placeCard(p)}${calLinks(p._id)}</div>`).join('')}</div>` : '')
-   + sec('III', t('allCal')) + `<div class="stack narrow">${calLinks('all')}</div>`
-   + sec('IV', t('addPlace')) + `<p class="hint center">${t('addSub')}</p><div class="addrow"><button class="btn gold" onclick="addPlace()">${t('addPlace')}</button></div>`;
+   + `<div class="addrow"><button class="chip" onclick="ripe()">${ic('banana')}${t('ripeEdit')}</button></div>`
+   + (ripeEv.length ? sec('', t('ripeFor')) + `<div class="grid">${ripeEv.map(eventCard).join('')}</div>` : '')
+   + (ripePl.length ? sec('', t('ripeVenues')) + `<div class="grid">${ripePl.map(pick).join('')}</div>` : '')
+   + (ME.bananas.length ? sec('', t('newAt')) + (al.length ? `<div class="grid">${al.map(a => tagNew(a.deal ? dealCard(a.x) : eventCard(a.x), isNew(a))).join('')}</div>` : `<p class="hint center">${t('noNews')}</p>`) : '')
+   + (busy.length && !ME.bananas.length && !ripePl.length ? sec('', t('startHere')) + `<div class="grid">${busy.map(pick).join('')}</div>` : '')
+   + (bananas.length ? sec('', t('myBananas')) + `<p class="hint center">${t('alertsHint')}</p><div class="grid">${bananas.map(p => `<div class="stack">${placeCard(p)}${calLinks(p._id)}</div>`).join('')}</div>` : '')
+   + sec('', t('allCal')) + `<div class="stack narrow">${calLinks('all')}</div>`
+   + sec('', t('addPlace')) + `<p class="hint center">${t('addSub')}</p><div class="addrow"><button class="btn gold" onclick="addPlace()">${t('addPlace')}</button></div>`;
   const ids = al.map(a => a.id).filter(id => !ME.seen.includes(id));
   if (ids.length) { ME.seen.push(...ids); persist(); setTimeout(() => { const b = $('.nav .badge'); b && b.remove(); }, 0); }
   return html;
@@ -743,6 +874,7 @@ function pick(id) { const p = BY.get(id); sel = id; F.q = ''; draw(); if (p._lat
 
 /* ---------- boot ---------- */
 draw();
+setTimeout(() => !ME.onboarded && !ME.bananas.length && location.hash !== '#add' && !$('.ripe') && ripe(), 1300);
 if (location.hash === '#add') addPlace();
 account();
 setTimeout(() => $('#splash')?.classList.add('out'), 1200);
